@@ -113,6 +113,7 @@ header .titleSecPart {
     width: 100%;
     z-index: 10;
     border-radius: 3px;
+    border: 20px solid #FFF;
 }
 
 #textLeaf {
@@ -306,7 +307,7 @@ header .titleSecPart {
 }
 
 #about .splitter {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 #about .photo img {
@@ -321,10 +322,6 @@ header .titleSecPart {
     margin-right: 5%;
     margin-bottom: 20px;
     line-height: 1.2;
-}
-
-#about .inset h3 {
-
 }
 
 #book {
