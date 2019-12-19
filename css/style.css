@@ -1,0 +1,302 @@
+/*[class*="col"] { margin-bottom: 20px; }
+img { width: 100%; }
+body {padding-top: 10px;} *//*
+[class*="col-"], footer {background-color: lightgreen;border: 2px solid black;border-radius: 6px;line-height: 40px;text-align: center;}
+.col-lg-2 {height: 100px;}
+.col-lg-5 {line-height: 200px;}
+.col-lg-12 {line-height: 80px;}*/
+
+
+
+
+
+                            /* GENERAL */
+                            /* GENERAL */
+                            /* GENERAL */
+
+a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+.socialNetwork {
+    display: flex;
+    justify-content: center;
+}
+
+.circle {
+    border-radius:50%;
+    width:30px;
+    height:30px;
+    margin: 5px;
+}
+
+.split {
+    width: 100%;
+    height: 3px;
+}
+
+
+
+
+                            /* HEADER */
+                            /* HEADER */
+                            /* HEADER */
+
+header {
+    background-color: #181D27;
+}
+
+.headband {
+    height: 250px;
+    color: #FFF;
+    background-color: #181D27;
+}
+
+.headband > div {
+    text-align: center;
+}
+
+h1 {
+    font-family:"Open Sans", sans-serif ;
+}
+
+header .titleFirstPart {
+    font-size: 3em;
+    font-weight: 300;
+}
+
+header .titleSecPart {
+    font-size: 3.5em;
+    font-weight: 800;
+}
+
+.headband .split {
+    width: 100%;
+    height: 3px;
+    background-color: #38435A;
+}
+
+/* cercles reseaux sociaux */
+.headband .circle {
+    background:#38435A;
+}
+
+
+                            /* SECTION 1 TOPLEAF */
+                            /* SECTION 1 TOPLEAF */
+                            /* SECTION 1 TOPLEAF */
+
+
+
+
+#topLeaf {
+    background-color: #181D27;
+    height: 550px;
+    z-index: 9;
+}
+
+#frameworkLeaf {
+    background-color: rgba(24, 29, 39, 0.6);
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    margin: 10px;
+}
+
+#photoLeaf {
+    background-image: url("../img/alaska.jpg");
+    background-size: cover;
+    background-position: center;
+    box-shadow: 1px 1px 7px #FFF;
+    height: 500px;
+    width: 100%;
+    z-index: 10;
+}
+
+#textLeaf {
+    font-family: "Source Sans Pro", sans-serif;
+    color: #FFF;
+    margin: 20px;
+}
+
+#textLeaf > h2 {
+    font-weight: 900;
+    font-size: 3em;
+    margin: 10px;
+
+}
+
+#textLeaf > p {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 400;
+    font-size: 2em;
+    margin: 10px;
+}
+
+#inputLeaf {
+    margin: 20px;
+}
+
+#inputLeaf button {
+    color: #FFF;
+    background-color: #542E00;
+    border: none;
+    font-family: "Roboto";
+    font-size: 1.3em;
+    border-radius: 3px;
+}
+
+
+
+                            /* SECTION INSERT */
+                            /* SECTION INSERT */
+                            /* SECTION INSERT */
+
+#insert {
+    background: #542E00 url("../img/fond-reseaux-sociaux.png");
+    background-size: 15%;
+    height: fit-content;
+    padding: 5px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.2em;
+    color: #FFF;
+    line-height: 1;
+}
+
+/* cercles reseaux sociaux */
+#insert .circle {
+    background:#905105;
+}
+
+
+
+                            /* SECTION 2 NEWS */
+                            /* SECTION 2 NEWS */
+                            /* SECTION 2 NEWS */
+
+#news {
+    background-color: #38435A;
+    height: fit-content;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #FFF;
+}
+
+#news h2 {
+    color: #FFF;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 800;
+    font-size: 4em;
+    padding-top: 30px;
+}
+
+#news #frameworkNews {
+    padding-top: 20px;
+}
+
+#news .chapter {
+    background-color: #181D27;
+    border: solid 5px #38435A;
+}
+
+#news .photoChapter img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+}
+
+#news .split {
+    background-color: #FFF;
+    padding: 0px 5px 0px 5px;
+}
+
+#news .contentChapter {
+    text-align: justify;    
+}
+
+#news .socialNetworkChapter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#news .socialCircles .row {
+    display: inline-flex;
+}
+
+#news .circle {
+    background-color: #FFF;
+}
+
+#news button {
+    color: #FFF;
+    background-color: #542E00;
+    border: none;
+    font-family: "Roboto";
+    font-size: 1.3em;
+    border-radius: 3px;
+}
+
+
+
+                            /* SECTION 3 ABOUT */
+                            /* SECTION 3 ABOUT */
+                            /* SECTION 3 ABOUT */
+
+#about {
+    background-color: #FFF;
+    height: 1000px;
+    text-align: center;
+}
+
+#about h2 {
+    color: #181D27;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 800;
+    font-size: 4em;
+    padding-top: 30px;
+}
+
+#about .split {
+    background-color: #181D27;
+}
+
+
+
+
+                            /* FOOTER */
+                            /* FOOTER */
+                            /* FOOTER */
+
+.footband {
+    height: 200px;
+    color: #FFF;
+    background-color: #181D27;
+    text-align: center;
+}
+
+footer a, footer p {
+    margin: 10px;
+}
+
+footer .titleFirstPart {
+    font-size: 2em;
+    font-weight: 300;
+}
+
+footer .titleSecPart {
+    font-size: 2.5em;
+    font-weight: 800;
+}
+
+footer nav {
+    display: flex;
+    justify-content: center;
+}
+
+.footerLink > div {
+    display: flex;
+    justify-content: center;
+}
