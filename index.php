@@ -135,9 +135,9 @@
                         <div class="spaceChapter col-1"></div>    
                     </div>
                     <div class="context">
-                        <h3>INSERER TITRE ICI</h3>
-                        <p class="dateChapter">34 décembre 2393</p>
-                        <p class="contentChapter">Salut, il était une fois une jolie princesse au royaumme des neiges qui rencontre un gentil bonhomme de neige Olaf</p>
+                        <h3>La route de tout les malheurs</h3>
+                        <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
+                        <p class="contentChapter">Salut, il était une fois une jolie princesse au royaumme des neiges qui rencontre un gentil bonhomme de neige Olaf ... </p>
                     </div>
                     <div class="more">
                         <button>Lire la suite</button>
@@ -173,7 +173,43 @@
                     <div class="spaceSplit col-1"></div>
                 </div>
             </div>
-            
+            <div id="book" class="inset book row">
+                <div class="title col-12">
+                    <h3>Le livre</h3>
+                    <div class="row">
+                        <div class="split col-6"></div>
+                        <div class="spaceSplit col-6"></div>
+                    </div>
+                </div>
+                <div class="photo col-5">
+                    <img src="img/chapter2.jpg" />
+                </div>
+                <div class="content col-7">
+                    <h3>Billet simple pour l'Alaska</h3>
+                    <p>Est un roman publié par Jean Forteroche, en autopublication sur internet à partir du 34 juillon 4356.</p>
+                    <p>Le but étant de laisser libre court au préccesus créatif, aucunes barrière entre le lecteur et l'auteur.</p>
+                    <p>Il est publié sous forme de chapitres individuel que vous pouvez lire à chaque nouvelles publication.</p>
+                    <p>C'est l'histoire de ma jeunesse et des hommes et femmes que j'ai rencontré en vivant cette aventure extraordinaire, d'aller vivre en Alaska</p>
+                </div>
+            </div>
+            <div id="author" class="inset author row">
+                <div class="title col-12">
+                    <h3>L'auteur</h3>
+                    <div class="row">
+                        <div class="spaceSplit col-6"></div>
+                        <div class="split col-6"></div>
+                    </div>
+                </div>
+                <div class="content col-7">
+                    <h3>Jean Forteroche</h3>
+                    <p>Je me suis révélé écrivaint que tard, et heureusement j'ai eu la chance de vivre de grandes aventures.</p>
+                    <p>Ce ne sera pas mon premier roman, mais les précédent "Au pays des Merveilles - 2003" et "Dans la grande tourmante - 1999" on été publié de manière classique ches les éditions bigflammion.</p>
+                    <p>Je suis originaire de haute savoie et nés de parents explorateurs.</p>
+                </div>
+                <div class="photo col-5">
+                    <img src="img/jean_forteroche.jpg" />
+                </div>
+            </div>
         </section>
         
         

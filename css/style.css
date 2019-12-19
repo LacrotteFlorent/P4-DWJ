@@ -112,6 +112,7 @@ header .titleSecPart {
     height: 500px;
     width: 100%;
     z-index: 10;
+    border-radius: 3px;
 }
 
 #textLeaf {
@@ -184,32 +185,57 @@ header .titleSecPart {
     color: #FFF;
 }
 
+
 #news h2 {
     color: #FFF;
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 800;
     font-size: 4em;
     padding-top: 30px;
+    margin-bottom: 20px;
+}
+
+#news .splitter {
+    margin-bottom: 30px;
+}
+
+#news h3 {
+    color: #FFF;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 800;
+    font-size: 2em;
+    padding-top: 30px;
+    margin-bottom: 15px;
 }
 
 #news #frameworkNews {
     padding-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 #news .chapter {
     background-color: #181D27;
     border: solid 5px #38435A;
+    margin-top: 60px;
 }
 
 #news .photoChapter img {
     max-width: 100%;
     height: auto;
-    margin-top: 15px;
+    margin-top: -55px;
+    border-radius: 3px;
 }
 
 #news .split {
     background-color: #FFF;
     padding: 0px 5px 0px 5px;
+}
+
+#news .dateChapter {
+    color: cadetblue;
+    text-align: left;
+    font-size: 0.8em;
 }
 
 #news .contentChapter {
@@ -220,6 +246,9 @@ header .titleSecPart {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 10px;
 }
 
 #news .socialCircles .row {
@@ -237,6 +266,7 @@ header .titleSecPart {
     font-family: "Roboto";
     font-size: 1.3em;
     border-radius: 3px;
+    margin-bottom: 10px;
 }
 
 
@@ -247,7 +277,7 @@ header .titleSecPart {
 
 #about {
     background-color: #FFF;
-    height: 1000px;
+    height: fit-content;
     text-align: center;
 }
 
@@ -257,13 +287,63 @@ header .titleSecPart {
     font-weight: 800;
     font-size: 4em;
     padding-top: 30px;
+    margin-bottom: 20px;
+}
+
+#about .title h3 {
+    color: #181D27;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 800;
+    font-size: 3em;
+}
+
+#about .title {
+    margin-bottom: 20px;
 }
 
 #about .split {
     background-color: #181D27;
 }
 
+#about .splitter {
+    margin-bottom: 30px;
+}
 
+#about .photo img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+#about .inset {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+#about .inset h3 {
+
+}
+
+#book {
+    text-align: left;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+#about h3 {
+    font-size: 3em;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+#author {
+    text-align: right;
+}
+
+#about p {
+    font-size: 1.4em;
+}
 
 
                             /* FOOTER */
