@@ -14,6 +14,11 @@ body {padding-top: 10px;} *//*
                             /* GENERAL */
                             /* GENERAL */
 
+
+.container {
+    max-width: 100% !important;
+}
+
 a {
     text-decoration: none;
     color: #FFF;
@@ -34,6 +39,7 @@ a {
 .split {
     width: 100%;
     height: 3px;
+    border-radius: 10px;
 }
 
 
@@ -92,14 +98,16 @@ header .titleSecPart {
 
 #topLeaf {
     background-color: #181D27;
-    height: 550px;
+    height: 60vh;
     z-index: 9;
 }
 
 #frameworkLeaf {
     background-color: rgba(24, 29, 39, 0.6);
     width: fit-content;
+    width: -moz-fit-content;
     height: fit-content;
+    height: -moz-fit-content;
     padding: 5px;
     margin: 10px;
 }
@@ -109,7 +117,7 @@ header .titleSecPart {
     background-size: cover;
     background-position: center;
     box-shadow: 1px 1px 7px #FFF;
-    height: 500px;
+    height: 55vh;
     width: 100%;
     z-index: 10;
     border-radius: 3px;
@@ -209,7 +217,7 @@ header .titleSecPart {
     margin-bottom: 15px;
 }
 
-#news #frameworkNews {
+#news #frameworkNews > div {
     padding-top: 20px;
     margin-left: 5%;
     margin-right: 5%;
