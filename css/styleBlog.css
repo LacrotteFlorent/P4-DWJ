@@ -1,0 +1,315 @@
+                            /* GENERAL */
+                            /* GENERAL */
+                            /* GENERAL */
+
+body {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+#blogContent {
+    background-color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
+
+                            /* ASIDE  */
+                            /* ASIDE  */
+                            /* ASIDE  */
+
+#blogAside {
+    padding: 20px;
+    background-color: #38435A;
+    color: #FFF;
+}
+
+#blogAside h4 {
+    font-weight: 300;
+    font-size: 2.5em;
+}
+
+
+                            /* ASIDE SUMMARY */
+                            /* ASIDE SUMMARY */
+                            /* ASIDE SUMMARY */
+
+#blogAsideSummary {
+    padding-bottom: 50px
+}
+
+#blogAsideSummary h4 {
+    margin-top: 10px;
+}
+
+#blogAsideSummary a {
+    text-decoration: none;
+    font-size: 1.0em;
+}
+
+#blogAsideSummary a:hover {
+    color: #F08400;
+}
+
+#blogAsideSummary ul {
+    list-style: none;
+    padding: 0px;
+    text-decoration: und;
+}
+
+#blogAsideSummary .splitRow {
+    margin-left: 0px;
+    padding-bottom: 20px;
+}
+
+#blogAsideSummary .split {
+    background-color: white;
+}
+
+
+
+                            /* ASIDE SEARCH */
+                            /* ASIDE SEARCH */
+                            /* ASIDE SEARCH */
+
+#blogAsideSearch {
+    padding-bottom: 50px
+}
+
+#blogAsideSearch h4 {
+    margin-top: 10px;
+}
+
+#blogAsideSearch .splitRow {
+    margin-left: 0px;
+    margin-bottom: 20px;
+}
+
+#blogAsideSearch .split {
+    background-color: white;
+}
+
+#blogAsideSearch input {
+    background-color: #181D27;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+
+
+                            /* ASIDE NEWSLETTER */
+                            /* ASIDE NEWSLETTER */
+                            /* ASIDE NEWSLETTER */
+
+#blogAsideNewsletter {
+    padding-bottom: 50px
+}
+
+#blogAsideNewsletter h4 {
+    margin-top: 10px;
+}
+
+#blogAsideNewsletter .splitRow {
+    margin-left: 0px;
+    margin-bottom: 20px;
+}
+
+#blogAsideNewsletter .split {
+    background-color: white;
+}
+
+#blogAsideNewsletter input {
+    background-color: #181D27;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 20px;
+    border: none;
+}
+
+#blogAsideNewsletter form {
+    display: flex;
+    flex-direction: column;
+}
+
+#blogAsideNewsletter form p {
+    font-size: 0.6em;
+    text-align: justify;
+}
+
+#blogAsideNewsletter label {
+    margin: 0px;
+    margin-left: 3px;
+}
+
+#divRGPD {
+    display: flex;
+    font-size: 0.8em;
+    margin-bottom: 20px;
+}
+
+#divRGPD input{
+    margin: 0px;
+}
+
+#blogAsideNewsletter button {
+    margin-bottom: 20px;
+    background-color: #181D27;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+#blogAsideNewsletter #divRGPD input {
+    background-color: #181D27;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+
+
+                            /* SECTION LAST CHAPTER */
+                            /* SECTION LAST CHAPTER */
+                            /* SECTION LAST CHAPTER */
+
+#blogLastChapter {
+    border: solid 5px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+
+#blogLastChapterPhoto {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#blogLastChapterPhoto img {
+    max-width: 50%;
+    height: max-content;
+    box-shadow:5px 5px 5px #181D27;
+    border-radius: 3px;
+}
+
+#blogLastChapterText {
+    text-align: center;
+}
+
+#blogLastChapterText h2 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+#blogLastChapterText p {
+    font-size: 1.2em;
+}
+
+#blogLastChapterSocialNetwork {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#blogLastChapterSocialNetwork div{
+    flex-direction: row;
+    justify-content: center;
+}
+
+#blogLastChapterSocialNetwork .circle {
+    background:#38435A;
+}
+
+#blogLastChapterButton .split {
+    background-color: #181D27;
+}
+
+#blogLastChapterButton > div {
+    align-items: center;
+}
+
+#blogLastChapterButton .more {
+    display: flex;
+    justify-content: center;
+}
+
+#blogLastChapterButton button {
+    color: #FFF;
+    background-color: #542E00;
+    border: none;
+    font-family: "Roboto";
+    font-size: 1.3em;
+    border-radius: 3px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+#blogLastChapterButton {
+    padding-bottom: 20px;
+}
+
+#blogLastChapterInformation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#blogLastChapterInformation div {
+    display: flex;
+    color: #38435A;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+#blogLastChapterInformation i {
+    margin: 5px;
+}
+
+                            /* SECTION OLD CHAPTER */
+                            /* SECTION OLD CHAPTER */
+                            /* SECTION OLD CHAPTER */
+
+#blogOldChapter {
+    background-color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+
+#blogPhotoChapter img {
+    max-width: 400px;
+}
+
+#blogContent .dateChapter {
+    color: cadetblue;
+    text-align: left;
+    font-size: 0.8em;
+}
+
+#blogOldChapter h3 {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 800;
+    font-size: 2em;
+    padding-top: 30px;
+    margin-bottom: 15px;
+}
+
+#blogOldChapter a {
+    color: #542E00;
+}
+
+#blogContentChapter {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#blogOldChapter div {
+    margin-bottom: 15px;
+}
