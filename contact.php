@@ -19,7 +19,7 @@
     </head>
     
     <body>
-        <div class="container">
+        <div class="container-fluid">
 
             <?php include("includes/include_header.php"); ?>
 
@@ -44,12 +44,14 @@
                     <textarea id="contactMessage" name="contactMessage" cols="30" rows="10">Votre message ici</textarea>
                     <div class="row">
                         <div class="col-6">
+                            <input type="checkbox" id="acceptRGPD_contact" name="acceptRGPD_contact">
+                            <label for="acceptRGPD_contact">Je reconnais avoir pris connaissance de ces droits.</label>
                         </div>
                         <div class="col-6">
-                            <!-- reczptcha-->
+                            <!-- recaptcha-->
                         </div>
                     </div>
-
+                    <button type="submit" value="Envoyer">Envoyer</button>
                 </form>
             </div>
             

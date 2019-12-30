@@ -8,8 +8,6 @@ body {
 
 #blogContent {
     background-color: white;
-    padding-left: 10%;
-    padding-right: 10%;
 }
 
 
@@ -178,7 +176,6 @@ body {
                             /* SECTION LAST CHAPTER */
 
 #blogLastChapter {
-    border: solid 5px;
     margin-top: 10px;
     margin-bottom: 30px;
     padding: 10px;
