@@ -19,7 +19,7 @@
     </head>
     
     <body>
-        <div class="contenair-fluid">
+        <div class="container-fluid">
             <?php include("includes/include_header.php"); ?>
 
             <div id="blogMainSplit" class="row">
@@ -48,15 +48,17 @@
                                         <p>Haec igitur prima lex amicitiae sanciatur, ut ab amicis honesta petamus, amicorum causa honesta faciamus, ne exspectemus quidem, dum rogemur; studium semper adsit, cunctatio absit; consilium vero dare audeamus libere. Plurimum in amicitia amicorum bene suadentium valeat auctoritas, eaque et adhibeatur ad monendum non modo aperte sed etiam acriter, si res postulabit, et adhibitae pareatur.</p>
                                     </div>
                                 </div>
-                                <div id="blogLastChapterButton" class="col-12">
-                                    <div class="row">
-                                        <div class="split col-5"></div>
-                                        <div class="more col-2">
-                                            <div class="row">
-                                                <button>Lire la suite</button>
+                                <div class="row justify-content-center">
+                                    <div id="blogLastChapterButton" class="col-10">
+                                        <div class="row">
+                                            <div class="split col-5"></div>
+                                            <div class="more col-2">
+                                                <div class="row">
+                                                    <button>Lire la suite</button>
+                                                </div>
                                             </div>
+                                            <div class="split col-5"></div>
                                         </div>
-                                        <div class="split col-5"></div>
                                     </div>
                                 </div>
                                 <div id="blogLastChapterInformation" class="col-12">
@@ -73,13 +75,13 @@
                             </div>
                         </section>
                         <!-- old Chapter -->
-                        <section id="blogOldChapter" class="row">
-                            <div class="col-12">
+                        <section id="blogOldChapter" class="row justify-content-center">
+                            <div class="col-10">
                                 <div class="row">
-                                    <div id="blogPhotoChapter" class="col-4">
+                                    <div id="blogPhotoChapter" class="col-5">
                                         <img src="./img/chapter2.jpg"  alt="photo d'illustration du chapitre 1" />
                                     </div>
-                                    <div id="blogContentChapter" class="col-8">
+                                    <div id="blogContentChapter" class="col-7">
                                         <div class="context">
                                             <h3>La route de tous les malheurs</h3>
                                             <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
@@ -89,12 +91,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-10">
                                 <div class="row">
-                                    <div id="blogPhotoChapter" class="col-4">
+                                    <div id="blogPhotoChapter" class="col-5">
                                         <img src="./img/chapter3.jpg"  alt="photo d'illustration du chapitre 1" />
                                     </div>
-                                    <div id="blogContentChapter" class="col-8">
+                                    <div id="blogContentChapter" class="col-7">
                                         <div class="context">
                                             <h3>La route de tous les bonheurs</h3>
                                             <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
@@ -104,12 +106,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-10">
                                 <div class="row">
-                                    <div id="blogPhotoChapter" class="col-4">
+                                    <div id="blogPhotoChapter" class="col-5">
                                         <img src="./img/chapter4.jpg"  alt="photo d'illustration du chapitre 1" />
                                     </div>
-                                    <div id="blogContentChapter" class="col-8">
+                                    <div id="blogContentChapter" class="col-7">
                                         <div class="context">
                                             <h3>La route de tous les défis</h3>
                                             <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>

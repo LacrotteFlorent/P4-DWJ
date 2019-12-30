@@ -1,0 +1,33 @@
+
+
+body {
+    background-color: #d9d7d7;
+}
+
+#billet h2 {
+    font-weight: 300;
+    font-size: 4em;
+    color: #181D27;
+    margin-bottom: 60px;
+    font-family: "Open sans", sans-serif;
+}
+
+#billet h3 {
+    font-family: "Open sans", sans-serif;
+}
+
+#billet p {
+    font-size: 1.3em;
+    line-height: 1.8em;
+    margin-bottom: 40px;
+    text-align: justify;
+    font-family: "Gelasio", sans-serif;
+}
+
+.billetCapitalize {
+    font-size: 2em;
+}
+
+#billet form{
+    font-family: "Source sans pro", sans-serif ;
+}

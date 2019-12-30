@@ -190,7 +190,7 @@ body {
 #blogLastChapterPhoto img {
     max-width: 50%;
     height: max-content;
-    box-shadow:5px 5px 5px #181D27;
+    box-shadow:3px 3px 10px #333;
     border-radius: 3px;
 }
 
@@ -275,13 +275,10 @@ body {
 
 #blogOldChapter {
     background-color: white;
-    padding-left: 10%;
-    padding-right: 10%;
-
 }
 
 #blogPhotoChapter img {
-    max-width: 400px;
+    width: 100%;
 }
 
 #blogContent .dateChapter {
@@ -294,7 +291,6 @@ body {
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 800;
     font-size: 1.6em;
-    padding-top: 30px;
     margin-bottom: 15px;
 }
 
@@ -302,10 +298,6 @@ body {
     color: #542E00;
 }
 
-#blogContentChapter {
-    padding-left: 10%;
-    padding-right: 10%;
-}
 
 #blogOldChapter div {
     margin-bottom: 15px;

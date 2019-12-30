@@ -16,11 +16,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" /> <!-- Bootstrap -->
 <link rel="stylesheet" href="./css/style.css" />
 <link rel="stylesheet" href="./css/styleBlog.css" />
+<link rel="stylesheet" href="./css/styleContact.css" />
+<link rel="stylesheet" href="./css/styleBillet.css" />
 <link rel="stylesheet" media="(max-width:768.00px)" href="./css/small.css" />
 <link rel="stylesheet" media="(min-width:768.00px) and (max-width:975.00px)" href="./css/medium.css" />
 <link rel="stylesheet" media="(min-width:975.00px)" href="./css/large.css" />
 <!-- Google Font -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,800|Source+Sans+Pro:300,400,900|Roboto&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,800|Source+Sans+Pro:300,400,900|Gelasio:400|Roboto&display=swap" rel="stylesheet">
 <!-- Fav Icon -->
 <link rel="icon" href="" />  <!-- A COMPLETER -->
 <!-- Titre -->

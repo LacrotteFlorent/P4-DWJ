@@ -17,7 +17,7 @@
         <?php include("./includes/include_head.php"); ?>
       </head>
     
-    <body class="container">
+    <body class="container-fluid">
         
         <?php include("./includes/include_header.php"); ?>
 
