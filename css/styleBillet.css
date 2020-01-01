@@ -4,6 +4,10 @@ body {
     background-color: #d9d7d7;
 }
 
+.split {
+    background-color: #181D27;
+}
+
 #billet h2 {
     font-weight: 300;
     font-size: 4em;
@@ -30,4 +34,39 @@ body {
 
 #billet form{
     font-family: "Source sans pro", sans-serif ;
+}
+
+
+/* com write part */
+#newComBillet {
+    padding-top: 70px;
+    padding-bottom: 15px;
+}
+
+#newComBillet > div {
+    background-color: #FFF;
+    border-color: #38435A;
+    Font-weight: 300;
+}
+
+#newComBillet h3 {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+#newComBillet input, #newComBillet button, #newComBillet textarea {
+    background-color: #BEC1C6;
+    color: #181D27;
+}
+
+
+/* com  part */
+#comBillet > div {
+    background-color: #FFF;
+}
+
+#comBillet .dateCom {
+    color: cadetblue;
+    text-align: left;
+    font-size: 0.8em;
 }

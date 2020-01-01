@@ -24,26 +24,26 @@
             <?php include("includes/include_header.php"); ?>
 
             <div id="contact" class="row justify-content-center">
-                <div class="col-8 my-4">
-                    <h2>Contactez moi</h2>
+                <div class="col-7 my-4">
+                    <h2>Formulaire de contact </h2>
                     <form method="POST" action="contact_post" class="row">
                         <div class="col-12 d-flex flex-column">
                             <div class="row justify-content-around">
                                 <div class="col-6 d-flex flex-column">
-                                    <label for="contactName">Nom : </label>
-                                    <input type="text" id="contactName" name="contactName" placeholder="Votre nom" />
+                                    <label for="contactName">Nom : </label> 
+                                    <input type="text" id="contactName" name="contactName" placeholder=" Votre nom" class="rounded-sm border-0" />
                                 </div>
                                 <div class="col-6 d-flex flex-column">
                                     <label for="contactFirstName">Prénom :</label>
-                                    <input type="text" id="contactFirstName" name="contactFirstName" placeholder="Votre prénom" />
+                                    <input type="text" id="contactFirstName" name="contactFirstName" placeholder=" Votre prénom" class="rounded-sm border-0" />
                                 </div>
                             </div>
-                            <label for="contactMail">Addresse mail :</label>
-                            <input type="text" id="contactMail" name="contactMail" placeholder="Votre adresse mail" />
+                            <label for="contactMail" class="pb-0" >Addresse mail :</label>
+                            <input type="text" id="contactMail" name="contactMail" placeholder=" Votre adresse mail" class="rounded-sm border-0" />
                             <label for="contactObject">Objet du message :</label>
-                            <input type="text" id="contactObject" name="contactObject" placeholder="L'objet de votre message" />
+                            <input type="text" id="contactObject" name="contactObject" placeholder=" L'objet de votre message" class="rounded-sm border-0" />
                             <label for="contactMessage">Message :</label>
-                            <textarea id="contactMessage" name="contactMessage" cols="30" rows="10">Votre message ici</textarea>
+                            <textarea id="contactMessage" name="contactMessage" cols="30" rows="10" class="rounded-sm border-0" placeholder=" Votre message ici"></textarea>
                                 <div class="row">
                                     <div class="col-6">
                                         <input type="checkbox" id="acceptRGPD_contact" name="acceptRGPD_contact">
@@ -54,7 +54,7 @@
                                         <p>reCaptcha</p>
                                     </div>
                                 </div>
-                            <button class="col-2" type="submit" value="Envoyer">Envoyer</button>
+                            <button class="rounded-sm border-0 p-1" class="col-2" type="submit" value="Envoyer"><i class="far fa-paper-plane"></i> Envoyer</button>
                         </div>
                     </form>
                 </div>

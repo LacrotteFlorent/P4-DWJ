@@ -56,22 +56,44 @@
                     <p>Haec igitur prima lex amicitiae sanciatur, ut ab amicis honesta petamus, amicorum causa honesta faciamus, ne exspectemus quidem, dum rogemur; studium semper adsit, cunctatio absit; consilium vero dare audeamus libere. Plurimum in amicitia amicorum bene suadentium valeat auctoritas, eaque et adhibeatur ad monendum non modo aperte sed etiam acriter, si res postulabit, et adhibitae pareatur.</p>
                 </div>
             </div>
+            <div class="row">
+                <div class="spaceSplit col-1"></div>
+                <div class="split col-10"></div>
+                <div class="spaceSplit col-1"></div>
+            </div>
             <div id="newComBillet" class="row justify-content-center">
-                <div class="col-8">
-                    <h3>Ajoutez un commentaire</h3>
-                    <form method="POST" action="billet_post.php">
-                        <label for="billetComPseudo">Pseudo :</label>
-                        <input type="text" id="billetComPseudo" name="billetComPseudo" placeholder="Votre pseudo" />
-                        <label for="billetComMsg">Message :</label>
-                        <textarea id="billetComMsg" name="billetComMsg">Votre commentaire ici</textarea>
-                        <button type="submit" value="Envoyer">Envoyer</button>
+                <div class="col-8 border rounded-sm">
+                    <h3 class="pt-3">Faites moi part de votre avis</h3>
+                    <form method="POST" action="billet_post.php" class="row">
+                        <div class="col-12 d-flex flex-column pb-3">
+                            <div class="row w-50">
+                                <div class="col-12 d-flex flex-column">
+                                    <label class="pb-0 mt-0" for="billetComPseudo">Pseudo :</label>
+                                    <input type="text" id="billetComPseudo" name="billetComPseudo" placeholder=" Votre pseudo" class="rounded-sm border-0" />
+                                </div>
+                            </div>
+                            <label for="billetComMsg">Message :</label>
+                            <textarea id="billetComMsg" name="billetComMsg" class="rounded-sm border-0" cols="30" rows="6" placeholder=" Ecrivez votre commentaire"></textarea>
+                            <div class="w-50 my-2">
+                                <button type="submit" value="Envoyer" class="rounded-sm border-0">Envoyer</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
-            <div id="comBillet" class="row justify-content-center">
-                <div class="col-10">
-
-                </div>
+            <div id="comBillet" class="row justify-content-center my-5">
+                    <div class="col-8 border rounded-sm py-4">
+                        <div class="mb-4 border p-1 rounded-sm">
+                            <h4 class="m-0 pb-1">JeanCharles Dupont</h4>
+                            <p class="">Je trouve votre façon d'écrire très interrssante malgrès le manque de d'intrigue</p>
+                            <p class="dateCom m-0">Le 23 Dec 2019</p>
+                        </div>
+                        <div class="mb-4 border p-1 rounded-sm">
+                            <h4 class="m-0 pb-1">Voltaire du 36</h4>
+                            <p>J'adore votre contenu et tout les chapitre de votre bouquin, il mérite à être connus de tous, continuez dans la même direction. Nous attendons avec impatience votre prochain chapitre !</p>
+                            <p class="dateCom m-0">Le 2 Jan 2020</p>
+                        </div>
+                    </div>
             </div>
             
             <?php include("includes/include_footer.php"); ?>
