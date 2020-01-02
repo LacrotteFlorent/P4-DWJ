@@ -56,7 +56,17 @@
                     <p>Haec igitur prima lex amicitiae sanciatur, ut ab amicis honesta petamus, amicorum causa honesta faciamus, ne exspectemus quidem, dum rogemur; studium semper adsit, cunctatio absit; consilium vero dare audeamus libere. Plurimum in amicitia amicorum bene suadentium valeat auctoritas, eaque et adhibeatur ad monendum non modo aperte sed etiam acriter, si res postulabit, et adhibitae pareatur.</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="socialNetworkBillet row py-4">
+                <div class="socialCircles col-12">
+                    <div class="row justify-content-center">
+                        <div id="facebook" class="circle"></div>
+                        <div id="instagram" class="circle"></div>
+                        <div id="twitter" class="circle"></div>
+                        <div id="like" class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="splitBillet" class="row">
                 <div class="spaceSplit col-1"></div>
                 <div class="split col-10"></div>
                 <div class="spaceSplit col-1"></div>
@@ -81,7 +91,12 @@
                     </form>
                 </div>
             </div>
-            <div id="comBillet" class="row justify-content-center my-5">
+            <div class="row justify-content-center mt-3 mb-1">
+                <div class="col-8">
+                    <p class="mb-0"><i class="far fa-comment"></i> 2 Commentaires</p>
+                </div>
+            </div>
+            <div id="comBillet" class="row justify-content-center mb-5">
                     <div class="col-8 border rounded-sm py-4">
                         <div class="mb-4 border p-1 rounded-sm">
                             <h4 class="m-0 pb-1">JeanCharles Dupont</h4>

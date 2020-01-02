@@ -4,8 +4,12 @@ body {
     background-color: #d9d7d7;
 }
 
-.split {
+#splitBillet .split {
     background-color: #181D27;
+}
+
+.socialNetworkBillet .circle {
+    background-color: #38435A;
 }
 
 #billet h2 {
