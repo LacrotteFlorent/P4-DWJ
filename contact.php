@@ -26,7 +26,7 @@
             <div id="contact" class="row justify-content-center">
                 <div class="col-7 my-4">
                     <h2>Formulaire de contact</h2>
-                    <form method="POST" action="contact_post" class="row">
+                    <form method="POST" action="contact_post" class="row miniShadow">
                         <div class="col-12 d-flex flex-column">
                             <div class="row justify-content-around">
                                 <div class="col-6 d-flex flex-column">
@@ -54,7 +54,7 @@
                                         <p>reCaptcha</p>
                                     </div>
                                 </div>
-                            <button class="rounded-sm border-0 p-1" class="col-2" type="submit" value="Envoyer"><i class="far fa-paper-plane"></i> Envoyer</button>
+                            <button class="rounded-sm border-0 mb-3" type="submit" value="Envoyer"><i class="far fa-paper-plane"></i> Envoyer</button>
                         </div>
                     </form>
                 </div>

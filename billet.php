@@ -18,7 +18,7 @@
     <?php include("includes/include_head.php"); ?>
     </head>
     
-    <body>
+    <body id="bodyBillet">
         <div class="container-fluid">
 
             <?php include("includes/include_header.php"); ?>
@@ -72,7 +72,7 @@
                 <div class="spaceSplit col-1"></div>
             </div>
             <div id="newComBillet" class="row justify-content-center">
-                <div class="col-8 border rounded-sm">
+                <div class="col-8 miniShadow">
                     <h3 class="pt-3">Faites moi part de votre avis</h3>
                     <form method="POST" action="billet_post.php" class="row">
                         <div class="col-12 d-flex flex-column pb-3">
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div id="comBillet" class="row justify-content-center mb-5">
-                    <div class="col-8 border rounded-sm py-4">
+                    <div class="col-8 miniShadow py-4">
                         <div class="mb-4 border p-1 rounded-sm">
                             <h4 class="m-0 pb-1">JeanCharles Dupont</h4>
                             <p class="">Je trouve votre façon d'écrire très interrssante malgrès le manque de d'intrigue</p>

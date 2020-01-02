@@ -30,23 +30,23 @@
                         <div class="col-12">
                             <h3 class="text-left bubbleTitle">Coup d'oeil</h3>
                         </div>
-                        <div class="col-12 border mb-4 p-3">
+                        <div class="col-12 mb-4 p-3">
                             <div class="row justify-content-between mb-4">
-                                <div class="bubbleDashboard col-3 border p-2 m-2 text-center rounded-sm">
+                                <div class="bubbleDashboard col-3 miniShadow p-2 text-center">
                                     <h5>Commentaires</h5>
                                     <div class="row justify-content-center">
                                         <p>32</p>
                                         <i class="far fa-comment"></i>
                                     </div>
                                 </div>
-                                <div class="bubbleDashboard col-3 border p-2 m-2 text-center rounded-sm">
+                                <div class="bubbleDashboard col-4 miniShadow p-2 text-center">
                                     <h5>On aimé</h5>
                                     <div class="row justify-content-center">
                                         <p>164</p>
                                         <i class="far fa-heart"></i>
                                     </div>
                                 </div>
-                                <div class="bubbleDashboard col-3 border p-2 m-2 text-center rounded-sm">
+                                <div class="bubbleDashboard col-3 miniShadow p-2 text-center">
                                     <h5>Nombre de vues</h5>
                                     <div class="row justify-content-center">
                                         <p>1642</p>
@@ -55,21 +55,21 @@
                                 </div>
                             </div>
                             <div class="row justify-content-between">
-                                <div class="bubbleDashboard col-4 border p-2 m-2 text-center rounded-sm">
+                                <div class="bubbleDashboard col-4 miniShadow p-2 text-center">
                                     <h5>Commentaires à modérer</h5>
                                     <div class="row justify-content-center">
                                         <p>13</p>
                                         <i class="fas fa-comment-medical"></i>
                                     </div>
                                 </div>
-                                <div class="bubbleDashboard col-4 border p-2 m-2 text-center rounded-sm">
+                                <div class="bubbleDashboard col-4 miniShadow p-2 text-center">
                                     <h5>Commentaires signalés</h5>
                                     <div class="row justify-content-center">
                                         <p>2</p>
                                         <i class="fas fa-comment-slash"></i>
                                     </div>
                                 </div>
-                                <div class="bubbleDashboard col-2 border p-2 m-2 text-center rounded-sm">
+                                <div class="bubbleDashboard col-2 miniShadow p-2 text-center">
                                     <h5>Créer un article</h5>
                                     <div class="row justify-content-center">
                                         <i class="fas fa-feather-alt"></i>
@@ -83,7 +83,7 @@
                         <div class="col-12">
                             <h3 class="text-left bubbleTitle">Articles</h3>
                         </div>
-                        <div class="col-12 border mb-4 p-3">
+                        <div class="col-12 miniShadow mb-4 p-3">
                             <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
@@ -114,13 +114,20 @@
                                     </tr>   
                                 </tbody>
                             </table>
+                            <div class="row justify-content-center">
+                                <a class="pages" href="####">1</a>
+                                <a class="pages" href="####">2</a>
+                                <a class="pages" href="####">3</a>
+                                <a class="pages" href="####">4</a>
+                                <a class="pages" href="####">5</a>
+                            </div>
                         </div>
                     </div>
                     <div class="row comAdmin">
                         <div class="col-12">
                             <h3 class="text-left bubbleTitle">Commentaires</h3>
                         </div>
-                        <div class="col-12 border mb-4 p-3">
+                        <div class="col-12 miniShadow mb-4 p-3">
                             <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
@@ -155,13 +162,20 @@
                                     </tr>   
                                 </tbody>
                             </table>
+                            <div class="row justify-content-center">
+                                <a class="pages" href="####">1</a>
+                                <a class="pages" href="####">2</a>
+                                <a class="pages" href="####">3</a>
+                                <a class="pages" href="####">4</a>
+                                <a class="pages" href="####">5</a>
+                            </div>
                         </div>
                     </div>
                     <div class="row reportedComAdmin">
                         <div class="col-12">
                             <h3 class="text-left bubbleTitle">Commentaires signalés</h3>
                         </div>
-                        <div class="col-12 border mb-4 p-3">
+                        <div class="col-12 miniShadow mb-4 p-3">
                             <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
@@ -196,6 +210,13 @@
                                     </tr>   
                                 </tbody>
                             </table>
+                            <div class="row justify-content-center">
+                                <a class="pages" href="####">1</a>
+                                <a class="pages" href="####">2</a>
+                                <a class="pages" href="####">3</a>
+                                <a class="pages" href="####">4</a>
+                                <a class="pages" href="####">5</a>
+                            </div>
                         </div>
                     </div>
                 </div>

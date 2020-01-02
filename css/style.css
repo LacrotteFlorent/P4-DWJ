@@ -27,7 +27,17 @@ a {
     border-radius: 10px;
 }
 
+.miniShadow {
+    box-shadow: 1px 1px 12px #555;
+}
 
+.pages {
+    color: #181D27;
+    margin-left: 3px;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    box-shadow: 1px 1px 4px #555;
+}
 
 
                             /* HEADER */

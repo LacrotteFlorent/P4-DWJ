@@ -4,8 +4,14 @@
 }
 
 #adminConnexion h2 {
-    font-size: 2.7em;
+    font-size: 3em;
     font-weight: 900;
+}
+
+#adminConnexion p {
+    font-size: 1.6em;
+    font-weight: 900;
+    color: #181D27;
 }
 
 .connexionAdmin {
