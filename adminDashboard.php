@@ -23,64 +23,181 @@
 
             <?php include("includes/include_header.php"); ?>
 
-            <div id="adminDashboard">
-                <div class="row overviewAdmin">
-                    <div class="col-10">
-                        <div class="row">
-                            <div class="col-3">
-                                <h5>Commentaires</h5>
-                                <div class="row justify-content-center">
-                                    <p>32</p>
-                                    <i class="far fa-comment"></i>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <h5>On aimé</h5>
-                                <div class="row justify-content-center">
-                                    <p>164</p>
-                                    <i class="far fa-heart"></i>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <h5>Nombre de vues</h5>
-                                <div class="row justify-content-center">
-                                    <p>1642</p>
-                                    <i class="far fa-eye"></i>
-                                </div>
-                            </div>
+            <div class="row justify-content-center" id="adminDashboard">
+                <div class="col-10">
+                    <h2 class="my-3">Tableau de bord</h2>
+                    <div class="mt-5 row overviewAdmin justify-content-center">
+                        <div class="col-12">
+                            <h3 class="text-left bubbleTitle">Coup d'oeil</h3>
                         </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <h5>Commentaires à modérer</h5>
-                                <div class="row justify-content-center">
-                                    <p>13</p>
-                                    <i class="fas fa-comment-medical"></i>
+                        <div class="col-12 border mb-4 p-3">
+                            <div class="row justify-content-between mb-4">
+                                <div class="bubbleDashboard col-3 border p-2 m-2 text-center rounded-sm">
+                                    <h5>Commentaires</h5>
+                                    <div class="row justify-content-center">
+                                        <p>32</p>
+                                        <i class="far fa-comment"></i>
+                                    </div>
+                                </div>
+                                <div class="bubbleDashboard col-3 border p-2 m-2 text-center rounded-sm">
+                                    <h5>On aimé</h5>
+                                    <div class="row justify-content-center">
+                                        <p>164</p>
+                                        <i class="far fa-heart"></i>
+                                    </div>
+                                </div>
+                                <div class="bubbleDashboard col-3 border p-2 m-2 text-center rounded-sm">
+                                    <h5>Nombre de vues</h5>
+                                    <div class="row justify-content-center">
+                                        <p>1642</p>
+                                        <i class="far fa-eye"></i>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <h5>Commentaires signalés</h5>
-                                <div class="row justify-content-center">
-                                    <p>2</p>
-                                    <i class="fas fa-comment-slash"></i>
+                            <div class="row justify-content-between">
+                                <div class="bubbleDashboard col-4 border p-2 m-2 text-center rounded-sm">
+                                    <h5>Commentaires à modérer</h5>
+                                    <div class="row justify-content-center">
+                                        <p>13</p>
+                                        <i class="fas fa-comment-medical"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-2">
-                                <h5>Créer un article</h5>
-                                <div class="row justify-content-center">
-                                    <i class="fas fa-feather-alt"></i>
+                                <div class="bubbleDashboard col-4 border p-2 m-2 text-center rounded-sm">
+                                    <h5>Commentaires signalés</h5>
+                                    <div class="row justify-content-center">
+                                        <p>2</p>
+                                        <i class="fas fa-comment-slash"></i>
+                                    </div>
+                                </div>
+                                <div class="bubbleDashboard col-2 border p-2 m-2 text-center rounded-sm">
+                                    <h5>Créer un article</h5>
+                                    <div class="row justify-content-center">
+                                        <i class="fas fa-feather-alt"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row articlesAdmin">
 
-                </div>
-                <div class="row comAdmin">
-
-                </div>
-                <div class="row reportedComAdmin">
-
+                    <div class="row articlesAdmin">
+                        <div class="col-12">
+                            <h3 class="text-left bubbleTitle">Articles</h3>
+                        </div>
+                        <div class="col-12 border mb-4 p-3">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Titre</th>
+                                        <th scope="col">Date de publication</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>La route du bonheur</td>
+                                        <td>43 DEC 1234</td>
+                                        <td>I B</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>La route du bonheur</td>
+                                        <td>43 DEC 1234</td>
+                                        <td>I B</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>La route du bonheur</td>
+                                        <td>43 DEC 1234</td>
+                                        <td>I B</td>
+                                    </tr>   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row comAdmin">
+                        <div class="col-12">
+                            <h3 class="text-left bubbleTitle">Commentaires</h3>
+                        </div>
+                        <div class="col-12 border mb-4 p-3">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Pseudo</th>
+                                        <th scope="col">Message</th>
+                                        <th scope="col">Date de publication</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Albert</td>
+                                        <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
+                                        <td>43 DEC 1234</td>
+                                        <td>I B</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Albert</td>
+                                        <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
+                                        <td>43 DEC 1234</td>
+                                        <td>I B</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Albert</td>
+                                        <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
+                                        <td>43 DEC 1234</td>
+                                        <td>I B</td>
+                                    </tr>   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row reportedComAdmin">
+                        <div class="col-12">
+                            <h3 class="text-left bubbleTitle">Commentaires signalés</h3>
+                        </div>
+                        <div class="col-12 border mb-4 p-3">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Pseudo</th>
+                                        <th scope="col">Message</th>
+                                        <th scope="col">Date de publication</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Albert</td>
+                                        <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
+                                        <td>43 DEC 1234</td>
+                                        <td>I B</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Albert</td>
+                                        <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
+                                        <td>43 DEC 1234</td>
+                                        <td>I B</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Albert</td>
+                                        <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
+                                        <td>43 DEC 1234</td>
+                                        <td>I B</td>
+                                    </tr>   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             

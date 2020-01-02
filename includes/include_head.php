@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="./css/styleBlog.css" />
 <link rel="stylesheet" href="./css/styleContact.css" />
 <link rel="stylesheet" href="./css/styleBillet.css" />
+<link rel="stylesheet" href="./css/styleAdminDashboard.css" />
+<link rel="stylesheet" href="./css/styleAdminConnexion.css" />
 <link rel="stylesheet" media="(max-width:768.00px)" href="./css/small.css" />
 <link rel="stylesheet" media="(min-width:768.00px) and (max-width:975.00px)" href="./css/medium.css" />
 <link rel="stylesheet" media="(min-width:975.00px)" href="./css/large.css" />

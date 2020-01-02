@@ -1,0 +1,25 @@
+
+#adminDashboard {
+    font-family: "Open sans", sans-serif;
+}
+
+.bubbleDashboard {
+    background-color: #FFF;
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+.bubbleTitle {
+    font-size: 1.3em;
+    font-weight: 300;
+}
+
+#adminDashboard h5 {
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+#adminDashboard h2 {
+    font-size: 2.7em;
+    font-weight: 900;
+}

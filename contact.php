@@ -25,7 +25,7 @@
 
             <div id="contact" class="row justify-content-center">
                 <div class="col-7 my-4">
-                    <h2>Formulaire de contact </h2>
+                    <h2>Formulaire de contact</h2>
                     <form method="POST" action="contact_post" class="row">
                         <div class="col-12 d-flex flex-column">
                             <div class="row justify-content-around">
