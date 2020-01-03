@@ -49,7 +49,6 @@ header {
 }
 
 .headband {
-    height: 250px;
     color: #FFF;
     background-color: #181D27;
 }
@@ -365,8 +364,7 @@ header a {
                             /* FOOTER */
                             /* FOOTER */
 
-.footband {
-    height: 200px;
+footer {
     color: #FFF;
     background-color: #181D27;
     text-align: center;

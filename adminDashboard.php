@@ -175,6 +175,10 @@
                         <div class="col-12">
                             <h3 class="text-left bubbleTitle">Commentaires signalés</h3>
                         </div>
+                        <div class="col-12">
+                            <input id="autoSuprCom" name="autoSuprCom" type="checkbox"/>
+                            <label for="autoSuprCom">Masquage automatique d'un commentaire signalé plus de 20 fois.</label>
+                        </div>
                         <div class="col-12 miniShadow mb-4 p-3">
                             <table class="table">
                                 <thead class="thead-dark">

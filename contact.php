@@ -25,8 +25,9 @@
 
             <div id="contact" class="row justify-content-center">
                 <div class="col-7 my-4">
-                    <h2>Formulaire de contact</h2>
-                    <form method="POST" action="contact_post" class="row miniShadow">
+                    <h2 class="mb-4">Formulaire de contact</h2>
+                    <form method="POST" action="contact_post" class="row p-5">
+                        <p class="ml-3">Vous pouvez me contacter via ce formulaire, je prend le temps de lire tout les messages que vous m'adressez.</p>
                         <div class="col-12 d-flex flex-column">
                             <div class="row justify-content-around">
                                 <div class="col-6 d-flex flex-column">

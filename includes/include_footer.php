@@ -7,7 +7,7 @@
 
 -->
 
-<footer class="row">
+<footer class="row py-4">
     <div class="footband col-12">
         <div class="row">
             <h1 class="titleFirstPart col-12">JEAN</h1>

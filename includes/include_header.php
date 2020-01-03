@@ -7,7 +7,7 @@
 
 -->
 
-<header class="row">
+<header class="row py-4">
     <div class="headband col-lg-12">
         <div class="row">
             <h1 class="titleFirstPart col-12">JEAN</h1>

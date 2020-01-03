@@ -19,6 +19,10 @@
 }
 
 #contact h2 {
-    font-size: 2.5em;
-    font-weight: 300;
+    font-size: 3em;
+    font-weight: 900;
+}
+
+#contact form {
+    border: 3px solid #542E00;
 }
