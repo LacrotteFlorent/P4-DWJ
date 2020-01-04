@@ -149,7 +149,11 @@
                                 <div class="spaceSplit col-6"></div>
                             </div>
                             <p>Retrouvez facilement votre chapitre</p>
-                            <input class="col-12" id="search_input_blog" type="text" placeholder=" Rechercher" />
+                            <form method="POST" action="search-blog-post">
+                                <div class="form-group">
+                                    <input id="search_input_blog" type="text" placeholder=" Rechercher" class="form-control" />
+                                </div>
+                            </form>
                         </div>
                         <!-- newsletter -->
                         <div id="blogAsideNewsletter" class="col-12">
@@ -162,18 +166,19 @@
                                 <div class="col-12">
                                     <p>Inscrivez vous pour être informé de la sortie des derniers chapitres.</p>
                                     <form method="POST" action="newsletter_post.php">
-                                        <label for="nom_newsletter_blog">Nom :</label>
-                                        <input type="text" id="nom_newsletter_blog" name="nom_newsletter_blog" placeholder=" Entrez votre nom" />
-                                        <label for="prenom_newsletter_blog">Prénom :</label>
-                                        <input type="text" id="prenom__newsletter_blog" name="prenom_newsletter_blog" placeholder=" Entrez votre prénom" />
-                                        <label for="mail_newsletter_blog">Addresse mail :</label>
-                                        <input type="email" id="mail_newsletter_blog" name="mail_newsletter_blog" placeholder=" Entrez votre email" />
-                                        <p>Les données à caractère personnel que vous nous communiquez feront l'objet d'un traitement automatisé aux fins de gestion de votre demande. Vous disposez d'un droit d'accès, de rectification, de suppression, de limitation et d'opposition conformément à la réglementation sur la protection des données à caractère personnel.</p>
-                                        <div id="divRGPD">
-                                            <input type="checkbox" id="acceptRGPD_newsletter_blog" name="acceptRGPD_newsletter_blog">
-                                            <label for="acceptRGPD_newsletter_blog">Je reconnais avoir pris connaissance de ces droits.</label>
+                                        <div class="form-group">
+                                            <label for="nom_newsletter_blog">Nom :</label>
+                                            <input type="text" id="nom_newsletter_blog" name="nom_newsletter_blog" placeholder=" Entrez votre nom" class="form-control" />
+                                            <label for="prenom_newsletter_blog">Prénom :</label>
+                                            <input type="text" id="prenom__newsletter_blog" name="prenom_newsletter_blog" placeholder=" Entrez votre prénom" class="form-control" />
+                                            <label for="mail_newsletter_blog">Addresse mail :</label>
+                                            <input type="email" id="mail_newsletter_blog" name="mail_newsletter_blog" placeholder=" Entrez votre email" class="form-control" />
+                                            <p>Les données à caractère personnel que vous nous communiquez feront l'objet d'un traitement automatisé aux fins de gestion de votre demande. Vous disposez d'un droit d'accès, de rectification, de suppression, de limitation et d'opposition conformément à la réglementation sur la protection des données à caractère personnel.</p>
+                                            <div id="divRGPD">
+                                                <label for="acceptRGPD_newsletter_blog"><input type="checkbox" id="acceptRGPD_newsletter_blog" name="acceptRGPD_newsletter_blog"> Je reconnais avoir pris connaissance de ces droits.</label>
+                                            </div>
+                                            <button type="submit" value="S'inscrire" id="register_newsletter_blog" class="btn">S'inscrire</button>
                                         </div>
-                                        <button type="submit" value="S'inscrire" id="register_newsletter_blog">S'inscrire</button>
                                     </form>
                                 </div>
                             </div>

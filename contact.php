@@ -26,36 +26,38 @@
             <div id="contact" class="row justify-content-center">
                 <div class="col-7 my-4">
                     <h2 class="mb-4">Formulaire de contact</h2>
-                    <form method="POST" action="contact_post" class="row p-5">
-                        <p class="ml-3">Vous pouvez me contacter via ce formulaire, je prend le temps de lire tout les messages que vous m'adressez.</p>
-                        <div class="col-12 d-flex flex-column">
-                            <div class="row justify-content-around">
+                    <form method="POST" action="contact_post" class="row p-5 border">
+                        <div class="col-12 d-flex flex-column form-group">
+                            <div class="form-row justify-content-around">
                                 <div class="col-6 d-flex flex-column">
                                     <label for="contactName">Nom : </label> 
-                                    <input type="text" id="contactName" name="contactName" placeholder=" Votre nom" class="rounded-sm border-0" />
+                                    <input type="text" id="contactName" name="contactName" placeholder=" Votre nom" class="form-control rounded-sm border-0" />
                                 </div>
                                 <div class="col-6 d-flex flex-column">
                                     <label for="contactFirstName">Prénom :</label>
-                                    <input type="text" id="contactFirstName" name="contactFirstName" placeholder=" Votre prénom" class="rounded-sm border-0" />
+                                    <input type="text" id="contactFirstName" name="contactFirstName" placeholder=" Votre prénom" class="form-control rounded-sm border-0" />
                                 </div>
                             </div>
                             <label for="contactMail" class="pb-0" >Addresse mail :</label>
-                            <input type="text" id="contactMail" name="contactMail" placeholder=" Votre adresse mail" class="rounded-sm border-0" />
+                            <input type="text" id="contactMail" name="contactMail" placeholder=" Votre adresse mail" class="form-control rounded-sm border-0" />
                             <label for="contactObject">Objet du message :</label>
-                            <input type="text" id="contactObject" name="contactObject" placeholder=" L'objet de votre message" class="rounded-sm border-0" />
+                            <input type="text" id="contactObject" name="contactObject" placeholder=" L'objet de votre message" class="form-control rounded-sm border-0" />
                             <label for="contactMessage">Message :</label>
-                            <textarea id="contactMessage" name="contactMessage" cols="30" rows="10" class="rounded-sm border-0" placeholder=" Votre message ici"></textarea>
-                                <div class="row">
+                            <textarea id="contactMessage" name="contactMessage" cols="30" rows="10" class="form-control rounded-sm border-0" placeholder=" Votre message ici"></textarea>
+                                <div class="row my-3">
                                     <div class="col-6">
-                                        <input type="checkbox" id="acceptRGPD_contact" name="acceptRGPD_contact">
-                                        <label for="acceptRGPD_contact">Je reconnais avoir pris connaissance de ces droits.</label>
+                                        <p>Les données à caractère personnel que vous nous communiquez feront l'objet d'un traitement automatisé aux fins de gestion de votre demande. Vous disposez d'un droit d'accès, de rectification, de suppression, de limitation et d'opposition conformément à la réglementation sur la protection des données à caractère personnel.</p>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="acceptRGPD_contact" name="acceptRGPD_contact">
+                                            <label class="custom-control-label" for="acceptRGPD_contact"> Je reconnais avoir pris connaissance de ces droits.</label>
+                                        </div>
                                     </div>
                                     <div class="col-6">
                                         <!-- recaptcha-->
                                         <p>reCaptcha</p>
                                     </div>
                                 </div>
-                            <button class="rounded-sm border-0 mb-3" type="submit" value="Envoyer"><i class="far fa-paper-plane"></i> Envoyer</button>
+                            <button class="btn rounded-sm border-0 mb-3" type="submit" value="Envoyer"><i class="far fa-paper-plane"></i> Envoyer</button>
                         </div>
                     </form>
                 </div>

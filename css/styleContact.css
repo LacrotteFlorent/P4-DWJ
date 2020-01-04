@@ -23,6 +23,7 @@
     font-weight: 900;
 }
 
-#contact form {
-    border: 3px solid #542E00;
+#contact form p {
+    font-size: 0.7em;
+    text-align: justify;
 }

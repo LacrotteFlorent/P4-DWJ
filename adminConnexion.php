@@ -31,15 +31,15 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-4 my-4">
-                            <form method="POST" action="contact_post" class="row">
-                                <div class="connexionAdmin col-12 d-flex flex-column m-4 miniShadow p-4">
+                        <div class="col-5 my-4">
+                            <form method="POST" action="contact_post">
+                                <div class="border p-4 form-group connexionAdmin">
                                     <p>Connectez vous :</p>
                                     <label for="connexionIdent" class="pb-0" >Identifiant :</label>
-                                    <input type="text" id="connexionIdent" name="connexionIdent" placeholder=" Identifiant" class="rounded-sm border-0 mb-4" />
+                                    <input type="text" id="connexionIdent" name="connexionIdent" placeholder=" Identifiant" class="form-control rounded-sm border-0 mb-4" />
                                     <label for="connexionMDP">Mot de passe :</label>
-                                    <input type="text" id="connexionMDP" name="connexionMDP" placeholder=" ############" class="rounded-sm border-0 mb-4" />
-                                    <button class="rounded-sm border-0" type="submit" value="Envoyer"><i class="far fa-paper-plane my-4"></i> Se connecter</button>
+                                    <input type="text" id="connexionMDP" name="connexionMDP" placeholder=" ############" class="form-control rounded-sm border-0 mb-4" />
+                                    <button class="btn rounded-sm border-0" type="submit" value="Envoyer"><i class="far fa-paper-plane"></i> Se connecter</button>
                                 </div>
                             </form>
                         </div>

@@ -75,17 +75,17 @@
                 <div class="col-8 miniShadow">
                     <h3 class="pt-3">Faites moi part de votre avis</h3>
                     <form method="POST" action="billet_post.php" class="row">
-                        <div class="col-12 d-flex flex-column pb-3">
+                        <div class="form-group col-12 d-flex flex-column pb-3">
                             <div class="row w-50">
                                 <div class="col-12 d-flex flex-column">
                                     <label class="pb-0 mt-0" for="billetComPseudo">Pseudo :</label>
-                                    <input type="text" id="billetComPseudo" name="billetComPseudo" placeholder=" Votre pseudo" class="rounded-sm border-0" />
+                                    <input type="text" id="billetComPseudo" name="billetComPseudo" placeholder=" Votre pseudo" class="form-control rounded-sm border-0" />
                                 </div>
                             </div>
                             <label for="billetComMsg">Message :</label>
-                            <textarea id="billetComMsg" name="billetComMsg" class="rounded-sm border-0" cols="30" rows="6" placeholder=" Ecrivez votre commentaire"></textarea>
+                            <textarea id="billetComMsg" name="billetComMsg" class="form-control rounded-sm border-0" cols="30" rows="6" placeholder=" Ecrivez votre commentaire"></textarea>
                             <div class="w-50 my-2">
-                                <button type="submit" value="Envoyer" class="rounded-sm border-0">Envoyer</button>
+                                <button type="submit" value="Envoyer" class="btn rounded-sm border-0">Envoyer</button>
                             </div>
                         </div>
                     </form>
