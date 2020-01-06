@@ -22,8 +22,14 @@
 <link rel="stylesheet" href="../public/css/styleAdminConnexion.css" />
 <link rel="stylesheet" href="../public/css/styleLegal.css" />
 <link rel="stylesheet" media="(max-width:576.00px)" href="../public/css/style-xs.css" />
+<link rel="stylesheet" media="(max-width:576.00px)" href="../public/css/styleBlog-xs.css" />
+
 <link rel="stylesheet" media="(min-width:577.00px) and (max-width:768.00px)" href="../public/css/style-sm.css" />
+<link rel="stylesheet" media="(min-width:577.00px) and (max-width:768.00px)" href="../public/css/styleBlog-sm.css" />
+
 <link rel="stylesheet" media="(min-width:768.00px) and (max-width:992.00px)" href="" />
+<link rel="stylesheet" media="(min-width:768.00px) and (max-width:992.00px)" href="../public/css/styleBlog-md.css" />
+
 <link rel="stylesheet" media="(min-width:992.00px) and (max-width:1200.00px)" href="" />
 <link rel="stylesheet" media="(min-width:1200.00px)" href="" />
 <!-- Google Font -->

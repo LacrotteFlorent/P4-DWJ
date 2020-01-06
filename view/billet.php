@@ -26,7 +26,7 @@
             <div id="billet" class="row justify-content-center my-5">
                 <div class="col-8 text-center">
                     <div class="row justify-content-center mb-5">
-                        <img src="./img/chapter1.jpg" alt="Photochapitre1" />
+                        <img src="../public/img/chapter1.jpg" alt="Photochapitre1" />
                     </div>
                     <h2>La route de tous les malheurs</h2>
                     <p><span class="billetCapitalize">S</span>alut, il était une fois une jolie princesse au royaumme des neiges qui rencontre un gentil bonhomme de neige Olaf ...</p>

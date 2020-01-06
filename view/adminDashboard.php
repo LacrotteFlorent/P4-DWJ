@@ -114,13 +114,19 @@
                                     </tr>   
                                 </tbody>
                             </table>
-                            <div class="row justify-content-center">
-                                <a class="pages" href="####">1</a>
-                                <a class="pages" href="####">2</a>
-                                <a class="pages" href="####">3</a>
-                                <a class="pages" href="####">4</a>
-                                <a class="pages" href="####">5</a>
-                            </div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédente</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                    <a class="page-link" href="#">Suivante</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                     <div class="row comAdmin">
@@ -162,13 +168,19 @@
                                     </tr>   
                                 </tbody>
                             </table>
-                            <div class="row justify-content-center">
-                                <a class="pages" href="####">1</a>
-                                <a class="pages" href="####">2</a>
-                                <a class="pages" href="####">3</a>
-                                <a class="pages" href="####">4</a>
-                                <a class="pages" href="####">5</a>
-                            </div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédente</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                    <a class="page-link" href="#">Suivante</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                     <div class="row reportedComAdmin">
@@ -176,8 +188,12 @@
                             <h3 class="text-left bubbleTitle">Commentaires signalés</h3>
                         </div>
                         <div class="col-12">
-                            <input id="autoSuprCom" name="autoSuprCom" type="checkbox"/>
-                            <label for="autoSuprCom">Masquage automatique d'un commentaire signalé plus de 20 fois.</label>
+                            <form method="POST" action="">
+                                <div class="custom-control custom-checkbox">
+                                    <input id="autoSuprCom" name="autoSuprCom" type="checkbox" class="custom-control-input" />
+                                    <label for="autoSuprCom" class="custom-control-label">Masquage automatique d'un commentaire signalé plus de 20 fois.</label>
+                                </div>
+                            </form>
                         </div>
                         <div class="col-12 miniShadow mb-4 p-3">
                             <table class="table">
@@ -214,13 +230,19 @@
                                     </tr>   
                                 </tbody>
                             </table>
-                            <div class="row justify-content-center">
-                                <a class="pages" href="####">1</a>
-                                <a class="pages" href="####">2</a>
-                                <a class="pages" href="####">3</a>
-                                <a class="pages" href="####">4</a>
-                                <a class="pages" href="####">5</a>
-                            </div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédente</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                    <a class="page-link" href="#">Suivante</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>

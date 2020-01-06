@@ -25,12 +25,12 @@
             <section class="row" id="topLeaf">
                 <div id="spaceLeaf" class="col-2 d-none d-sm-block"></div>
                 <div id="photoLeaf" class="col-12 col-sm-8">
-                    <div id="frameworkLeaf">
-                        <div id="textLeaf">
+                    <div id="frameworkLeaf" class="row">
+                        <div id="textLeaf" class="mt-3 m-sm-3">
                             <h2>"Billet simple pour l'Alaska"</h2>
                             <p>Un roman publié en ligne</p>
                         </div>
-                        <div id="inputLeaf">
+                        <div id="inputLeaf" class="mb-3">
                             <button>Dernier Chapitres</button>
                             <button>A Propos</button>
                             <button>Livre</button>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div id=frameworkNews class="col-10">
+                <div id=frameworkNews class="col-12 col-sm-10">
                     <div class="row px-2 mt-3">
                         <div class="chapter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
                             <div class="row justify-content-center">

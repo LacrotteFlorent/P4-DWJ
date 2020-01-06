@@ -107,7 +107,6 @@ header a {
     height: fit-content;
     height: -moz-fit-content;
     padding: 5px;
-    margin: 10px;
 }
 
 #photoLeaf {
@@ -125,7 +124,6 @@ header a {
 #textLeaf {
     font-family: "Source Sans Pro", sans-serif;
     color: #FFF;
-    margin: 20px;
 }
 
 #textLeaf > h2 {
@@ -139,10 +137,6 @@ header a {
     font-weight: 400;
     font-size: 2em;
     margin: 10px;
-}
-
-#inputLeaf {
-    margin: 20px;
 }
 
 #inputLeaf button {

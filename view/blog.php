@@ -24,7 +24,7 @@
 
             <div id="blogMainSplit" class="row">
                 <!-- main section with content -->
-                <section id="blogContent" class="col-10">
+                <section id="blogContent" class="col-12 col-lg-9">
                     <!-- new chapter -->
                         <section id="blogLastChapter" class="row ">
                             <div id="blogLastChapterPhoto" class="col-12">
@@ -40,7 +40,7 @@
                             </div>
                             <div id="blogLastChapterContent" class="col-12">
                                 <div class="row justify-content-center">
-                                    <div id="blogLastChapterText" class="col-10">
+                                    <div id="blogLastChapterText" class="col-12 col-sm-10">
                                         <h2>La route de tous les malheurs</h2>
                                         <p>Salut, il était une fois une jolie princesse au royaumme des neiges qui rencontre un gentil bonhomme de neige Olaf ...</p>
                                         <p>Eodem tempore Serenianus ex duce, cuius ignavia populatam in Phoenice Celsen ante rettulimus, pulsatae maiestatis imperii reus iure postulatus ac lege, incertum qua potuit suffragatione absolvi, aperte convictus familiarem suum cum pileo, quo caput operiebat, incantato vetitis artibus ad templum misisse fatidicum, quaeritatum expresse an ei firmum portenderetur imperium, ut cupiebat, et cunctum.</p>
@@ -51,17 +51,17 @@
                                 <div class="row justify-content-center">
                                     <div id="blogLastChapterButton" class="col-10">
                                         <div class="row">
-                                            <div class="split col-5"></div>
-                                            <div class="more col-2">
+                                            <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
+                                            <div class="more col-6 col-md-6 col-lg-3 col-xl-2">
                                                 <div class="row">
                                                     <button>Lire la suite</button>
                                                 </div>
                                             </div>
-                                            <div class="split col-5"></div>
+                                            <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="blogLastChapterInformation" class="col-12">
+                                <div id="blogLastChapterInformation" class="col-12 flex-column flex-sm-column flex-md-row">
                                     <div>
                                         <i class="fas fa-upload"></i><p>Publié le 12 Janvier 2020 à 15h42</p>
                                     </div>
@@ -76,12 +76,12 @@
                         </section>
                         <!-- old Chapter -->
                         <section id="blogOldChapter" class="row justify-content-center">
-                            <div class="col-10">
+                            <div class="col-12 col-sm-10">
                                 <div class="row">
-                                    <div id="blogPhotoChapter" class="col-5">
+                                    <div id="blogPhotoChapter" class="col-12 col-sm-5">
                                         <img src="../public/img/chapter2.jpg"  alt="photo d'illustration du chapitre 1" />
                                     </div>
-                                    <div id="blogContentChapter" class="col-7">
+                                    <div id="blogContentChapter" class="col-12 col-sm-7">
                                         <div class="context">
                                             <h3>La route de tous les malheurs</h3>
                                             <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
@@ -91,12 +91,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-10">
+                            <div class="col-12 col-sm-10">
                                 <div class="row">
-                                    <div id="blogPhotoChapter" class="col-5">
+                                    <div id="blogPhotoChapter" class="col-12 col-sm-5">
                                         <img src="../public/img/chapter3.jpg"  alt="photo d'illustration du chapitre 1" />
                                     </div>
-                                    <div id="blogContentChapter" class="col-7">
+                                    <div id="blogContentChapter" class="col-12 col-sm-7">
                                         <div class="context">
                                             <h3>La route de tous les bonheurs</h3>
                                             <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
@@ -106,12 +106,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-10">
+                            <div class="col-12 col-sm-10">
                                 <div class="row">
-                                    <div id="blogPhotoChapter" class="col-5">
+                                    <div id="blogPhotoChapter" class="col-12 col-sm-5">
                                         <img src="../public/img/chapter4.jpg"  alt="photo d'illustration du chapitre 1" />
                                     </div>
-                                    <div id="blogContentChapter" class="col-7">
+                                    <div id="blogContentChapter" class="col-12 col-sm-7">
                                         <div class="context">
                                             <h3>La route de tous les défis</h3>
                                             <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
@@ -124,7 +124,7 @@
                         </section>
                     </section>
                 <!-- aside section from right -->
-                <aside id="blogAside" class="col-2">
+                <aside id="blogAside" class="col-12 col-lg-3 ">
                     <div class="row">
                         <!-- summary -->
                         <div id="blogAsideSummary" class="col-12">
@@ -174,8 +174,9 @@
                                             <label for="mail_newsletter_blog">Addresse mail :</label>
                                             <input type="email" id="mail_newsletter_blog" name="mail_newsletter_blog" placeholder=" Entrez votre email" class="form-control" />
                                             <p>Les données à caractère personnel que vous nous communiquez feront l'objet d'un traitement automatisé aux fins de gestion de votre demande. Vous disposez d'un droit d'accès, de rectification, de suppression, de limitation et d'opposition conformément à la réglementation sur la protection des données à caractère personnel.</p>
-                                            <div id="divRGPD">
-                                                <label for="acceptRGPD_newsletter_blog"><input type="checkbox" id="acceptRGPD_newsletter_blog" name="acceptRGPD_newsletter_blog"> Je reconnais avoir pris connaissance de ces droits.</label>
+                                            <div id="divRGPD" class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="acceptRGPD_newsletter_blog" name="acceptRGPD_newsletter_blog" class="custom-control-input" />
+                                                <label for="acceptRGPD_newsletter_blog" class="custom-control-label">Je reconnais avoir pris connaissance de ces droits.</label>
                                             </div>
                                             <button type="submit" value="S'inscrire" id="register_newsletter_blog" class="btn">S'inscrire</button>
                                         </div>

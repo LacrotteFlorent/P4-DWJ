@@ -48,7 +48,7 @@
                                     <div class="col-6">
                                         <p>Les données à caractère personnel que vous nous communiquez feront l'objet d'un traitement automatisé aux fins de gestion de votre demande. Vous disposez d'un droit d'accès, de rectification, de suppression, de limitation et d'opposition conformément à la réglementation sur la protection des données à caractère personnel.</p>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="acceptRGPD_contact" name="acceptRGPD_contact">
+                                            <input class="custom-control-input" type="checkbox" id="acceptRGPD_contact" name="acceptRGPD_contact" />
                                             <label class="custom-control-label" for="acceptRGPD_contact"> Je reconnais avoir pris connaissance de ces droits.</label>
                                         </div>
                                     </div>
