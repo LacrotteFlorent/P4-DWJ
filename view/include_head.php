@@ -21,9 +21,11 @@
 <link rel="stylesheet" href="../public/css/styleAdminDashboard.css" />
 <link rel="stylesheet" href="../public/css/styleAdminConnexion.css" />
 <link rel="stylesheet" href="../public/css/styleLegal.css" />
-<link rel="stylesheet" media="(max-width:768.00px)" href="./css/small.css" />
-<link rel="stylesheet" media="(min-width:768.00px) and (max-width:975.00px)" href="./css/medium.css" />
-<link rel="stylesheet" media="(min-width:975.00px)" href="./css/large.css" />
+<link rel="stylesheet" media="(max-width:576.00px)" href="../public/css/style-xs.css" />
+<link rel="stylesheet" media="(min-width:577.00px) and (max-width:768.00px)" href="../public/css/style-sm.css" />
+<link rel="stylesheet" media="(min-width:768.00px) and (max-width:992.00px)" href="" />
+<link rel="stylesheet" media="(min-width:992.00px) and (max-width:1200.00px)" href="" />
+<link rel="stylesheet" media="(min-width:1200.00px)" href="" />
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,800|Source+Sans+Pro:300,400,900|Gelasio:400|Roboto&display=swap" rel="stylesheet">
 <!-- Fav Icon -->

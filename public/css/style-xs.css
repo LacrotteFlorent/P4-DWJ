@@ -1,0 +1,49 @@
+                            /* HEADER */
+                            /* HEADER */
+                            /* HEADER */
+
+header .titleFirstPart {
+    font-size: 2em;
+}
+
+header .titleSecPart {
+    font-size: 2.5em;
+}
+
+
+                            /* SECTION 1 TOPLEAF */
+                            /* SECTION 1 TOPLEAF */
+                            /* SECTION 1 TOPLEAF */
+
+
+
+#textLeaf > h2 {
+    font-size: 2.5em;
+}
+
+#inputLeaf button {
+    font-size: 1em;
+    margin-top: 3px;
+}
+
+                            /* SECTION 2 NEWS */
+                            /* SECTION 2 NEWS */
+                            /* SECTION 2 NEWS */
+
+
+#news h2 {
+    font-size: 2.5em;
+}
+
+                            /* SECTION 3 ABOUT */
+                            /* SECTION 3 ABOUT */
+                            /* SECTION 3 ABOUT */
+
+
+#about h2 {
+    font-size: 2.5em;
+}
+
+#about .title h3 {
+    font-size: 2.5em;
+}
