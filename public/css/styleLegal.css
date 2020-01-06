@@ -1,0 +1,18 @@
+#legal {
+    font-family: "Open sans", sans-serif;
+    font-weight: 500;
+}
+
+#legal a {
+    color: #542E00;
+}
+
+#legal h2 {
+    font-size: 2.7em;
+    font-weight: 900;
+}
+
+#legal .contentRGPD h2 {
+    font-size: 2em;
+    font-weight: 900;
+}

@@ -1,0 +1,29 @@
+#body {
+    font-family: "Open Sans", sans-serif;
+    color: #181D27;
+}
+
+#contact {
+    background-color: #FFF;
+    padding-top: 20px;
+    padding-bottom: 100px;
+}
+
+#contact label {
+    margin-top: 15px;
+}
+
+#contact input, #contact button, #contact textarea {
+    background-color: #38435A;
+    color: #FFF;
+}
+
+#contact h2 {
+    font-size: 3em;
+    font-weight: 900;
+}
+
+#contact form p {
+    font-size: 0.7em;
+    text-align: justify;
+}
