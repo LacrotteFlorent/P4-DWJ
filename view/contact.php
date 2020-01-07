@@ -46,7 +46,7 @@
                             <input type="text" id="contactObject" name="contactObject" placeholder=" L'objet de votre message" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label for="contactMessage">Message :</label>
+                            <label for="contactMessage">Message : (255 caractères max)</label>
                             <textarea id="contactMessage" name="contactMessage" cols="30" rows="10" class="form-control" placeholder=" Votre message ici"></textarea>
                         </div>
                         <div class="form row">
@@ -62,9 +62,8 @@
                                 <p>reCaptcha</p>
                             </div>
                         </div>
-                        <button class="btn mb-3" type="submit" value="Envoyer"><i class="far fa-paper-plane"></i> Envoyer</button>
-                    </div>
-                </form>
+                        <button class="btn mb-3" type="submit" value="Envoyer"><i class="far fa-paper-plane mx-2"></i> Envoyer</button>
+                    </form>
                 </div>
             </div>
             
