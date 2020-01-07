@@ -96,8 +96,8 @@ header a {
 
 #topLeaf {
     background-color: #181D27;
-    height: 60vh;
     z-index: 9;
+    min-height: 60vh;
 }
 
 #frameworkLeaf {
@@ -114,7 +114,6 @@ header a {
     background-size: cover;
     background-position: center;
     box-shadow: 1px 1px 7px #FFF;
-    height: 55vh;
     width: 100%;
     z-index: 10;
     border-radius: 3px;

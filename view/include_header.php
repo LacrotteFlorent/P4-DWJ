@@ -22,9 +22,10 @@
             <nav class="col-12">
                 <div class="row">
                     <div class="col-12">
-                        <a href="../index.php">ACCEUIL</a>
-                        <a href="../blog.php">BLOG</a>
-                        <a href="">CONTACT</a>
+                        <a href="./host.php">ACCEUIL</a>
+                        <a href="./blog.php">BLOG</a>
+                        <a href="./billet.php">BILLET</a>
+                        <a href="./contact.php">CONTACT</a>
                     </div>
                 </div>
             </nav>

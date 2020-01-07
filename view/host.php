@@ -22,15 +22,15 @@
         
             <?php include("include_header.php"); ?>
 
-            <section class="row" id="topLeaf">
+            <section class="row pb-4" id="topLeaf">
                 <div id="spaceLeaf" class="col-2 d-none d-sm-block"></div>
                 <div id="photoLeaf" class="col-12 col-sm-8">
                     <div id="frameworkLeaf" class="row">
-                        <div id="textLeaf" class="mt-3 m-sm-3">
+                        <div id="textLeaf" class="col-12 mt-3 m-sm-3">
                             <h2>"Billet simple pour l'Alaska"</h2>
                             <p>Un roman publié en ligne</p>
                         </div>
-                        <div id="inputLeaf" class="mb-3">
+                        <div id="inputLeaf" class="col-12 mb-3">
                             <button>Dernier Chapitres</button>
                             <button>A Propos</button>
                             <button>Livre</button>
@@ -81,22 +81,68 @@
                                 <button>Lire la suite</button>
                             </div>
                             <div class="socialNetworkChapter mx-3 row">
-                                <div class="split col-3"></div>
-                                <div class="socialCircles col-6">
+                                <div class="split col-3 d-none d-sm-block"></div>
+                                <div class="socialCircles col-10 col-sm-6">
                                     <div class="row">
                                         <div id="facebook" class="circle"></div>
                                         <div id="instagram" class="circle"></div>
                                         <div id="twitter" class="circle"></div>
                                     </div>
                                 </div>
-                                <div class="split col-3"></div>
+                                <div class="split col-3 d-none d-sm-block"></div>
                             </div>
                         </div>
                         <div class="chapter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                        
+                            <div class="row justify-content-center">
+                                <div class="photoChapter col-10">
+                                    <img src="../public/img/chapter1.jpg" />
+                                </div>
+                            </div>
+                            <div class="context">
+                                <h3>La route de tous les malheurs</h3>
+                                <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
+                                <p class="contentChapter">Salut, il était une fois une jolie princesse au royaumme des neiges qui rencontre un gentil bonhomme de neige Olaf ... </p>
+                            </div>
+                            <div class="more">
+                                <button>Lire la suite</button>
+                            </div>
+                            <div class="socialNetworkChapter mx-3 row">
+                                <div class="split col-3 d-none d-sm-block"></div>
+                                <div class="socialCircles col-10 col-sm-6">
+                                    <div class="row">
+                                        <div id="facebook" class="circle"></div>
+                                        <div id="instagram" class="circle"></div>
+                                        <div id="twitter" class="circle"></div>
+                                    </div>
+                                </div>
+                                <div class="split col-3 d-none d-sm-block"></div>
+                            </div>
                         </div>
                         <div class="chapter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                        
+                            <div class="row justify-content-center">
+                                <div class="photoChapter col-10">
+                                    <img src="../public/img/chapter1.jpg" />
+                                </div>
+                            </div>
+                            <div class="context">
+                                <h3>La route de tous les malheurs</h3>
+                                <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
+                                <p class="contentChapter">Salut, il était une fois une jolie princesse au royaumme des neiges qui rencontre un gentil bonhomme de neige Olaf ... </p>
+                            </div>
+                            <div class="more">
+                                <button>Lire la suite</button>
+                            </div>
+                            <div class="socialNetworkChapter mx-3 row">
+                                <div class="split col-3 d-none d-sm-block"></div>
+                                <div class="socialCircles col-10 col-sm-6">
+                                    <div class="row">
+                                        <div id="facebook" class="circle"></div>
+                                        <div id="instagram" class="circle"></div>
+                                        <div id="twitter" class="circle"></div>
+                                    </div>
+                                </div>
+                                <div class="split col-3 d-none d-sm-block"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

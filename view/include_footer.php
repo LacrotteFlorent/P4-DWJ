@@ -15,9 +15,10 @@
             <nav class="col-12">
                 <div class="row">
                     <div class="col-12">
-                        <a href="../index.php">ACCEUIL</a>
-                        <a href="../blog.php">BLOG</a>
-                        <a href="">CONTACT</a>
+                        <a href="./host.php">ACCEUIL</a>
+                        <a href="./blog.php">BLOG</a>
+                        <a href="./billet.php">BILLET</a>
+                        <a href="./contact.php">CONTACT</a>
                     </div>
                 </div>
             </nav>
@@ -25,9 +26,9 @@
                 <div class="row">
                     <div class="col-12">
                         <p>2019 Copyright</p>
-                        <a href="">Mention légales</a>
+                        <a href="./legal.php">Mention légales</a>
                         <a href="">Cookies</a>
-                        <a href="">Login Admin</a>
+                        <a href="./adminConnexion.php">Login Admin</a>
                     </div>
                 </div>
             </div>
