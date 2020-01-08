@@ -24,7 +24,7 @@
             <?php include("include_header.php"); ?>
 
             <div id="billet" class="row justify-content-center my-5">
-                <div class="col-8 text-center">
+                <div class="col-11 col-sm-10 col-md-8 text-center">
                     <div class="row justify-content-center mb-5">
                         <img src="../public/img/chapter1.jpg" alt="Photochapitre1" />
                     </div>
@@ -72,7 +72,7 @@
                 <div class="spaceSplit col-1"></div>
             </div>
             <div id="newComBillet" class="row justify-content-center">
-                <div class="col-8 miniShadow">
+                <div class="col-12 col-sm-10 col-md-8 shadow-lg">
                     <h3 class="pt-3">Faites moi part de votre avis</h3>
                     <form method="POST" action="billet_post.php" class="row">
                         <div class="form-group col-12 d-flex flex-column pb-3">
@@ -92,12 +92,12 @@
                 </div>
             </div>
             <div class="row justify-content-center mt-3 mb-1">
-                <div class="col-8">
+                <div class="col-12 col-sm-10 col-md-8">
                     <p class="mb-0"><i class="far fa-comment"></i> 2 Commentaires</p>
                 </div>
             </div>
             <div id="comBillet" class="row justify-content-center mb-5">
-                    <div class="col-8 miniShadow py-4">
+                    <div class="col-12 col-sm-10 col-md-8 shadow-lg py-4">
                         <div class="mb-4 border p-1 rounded-sm">
                             <h4 class="m-0 pb-1">JeanCharles Dupont</h4>
                             <p class="">Je trouve votre façon d'écrire très interrssante malgrès le manque de d'intrigue</p>
