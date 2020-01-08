@@ -24,52 +24,50 @@
             <?php include("include_header.php"); ?>
 
             <div class="row justify-content-center" id="adminDashboard">
-                <div class="col-10">
+                <div class="col-12 col-sm-10">
                     <h2 class="my-3">Tableau de bord</h2>
                     <div class="mt-5 row overviewAdmin justify-content-center">
                         <div class="col-12">
                             <h3 class="text-left bubbleTitle">Coup d'oeil</h3>
                         </div>
                         <div class="col-12 mb-4 p-3">
-                            <div class="row justify-content-between mb-4">
-                                <div class="bubbleDashboard col-3 miniShadow p-2 text-center">
+                            <div class="row">
+                                <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires</h5>
                                     <div class="row justify-content-center">
                                         <p>32</p>
                                         <i class="far fa-comment"></i>
                                     </div>
                                 </div>
-                                <div class="bubbleDashboard col-4 miniShadow p-2 text-center">
+                                <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>On aimé</h5>
                                     <div class="row justify-content-center">
                                         <p>164</p>
                                         <i class="far fa-heart"></i>
                                     </div>
                                 </div>
-                                <div class="bubbleDashboard col-3 miniShadow p-2 text-center">
+                                <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Nombre de vues</h5>
                                     <div class="row justify-content-center">
                                         <p>1642</p>
                                         <i class="far fa-eye"></i>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row justify-content-between">
-                                <div class="bubbleDashboard col-4 miniShadow p-2 text-center">
+                                <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires à modérer</h5>
                                     <div class="row justify-content-center">
                                         <p>13</p>
                                         <i class="fas fa-comment-medical"></i>
                                     </div>
                                 </div>
-                                <div class="bubbleDashboard col-4 miniShadow p-2 text-center">
+                                <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires signalés</h5>
                                     <div class="row justify-content-center">
                                         <p>2</p>
                                         <i class="fas fa-comment-slash"></i>
                                     </div>
                                 </div>
-                                <div class="bubbleDashboard col-2 miniShadow p-2 text-center">
+                                <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Créer un article</h5>
                                     <div class="row justify-content-center">
                                         <i class="fas fa-feather-alt"></i>
@@ -79,11 +77,11 @@
                         </div>
                     </div>
 
-                    <div class="row articlesAdmin">
-                        <div class="col-12">
-                            <h3 class="text-left bubbleTitle">Articles</h3>
+                    <div class="row articlesAdmin card mb-4">
+                        <div class="col-12 card-header">
+                            <h3 class="text-left bubbleTitle m-0">Articles</h3>
                         </div>
-                        <div class="col-12 miniShadow mb-4 p-3">
+                        <div class="col-12 p-3 card-body">
                             <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
@@ -114,8 +112,10 @@
                                     </tr>   
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card-footer">
                             <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
+                                <ul class="pagination justify-content-center mb-0">
                                     <li class="page-item disabled">
                                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédente</a>
                                     </li>
@@ -129,11 +129,11 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="row comAdmin">
-                        <div class="col-12">
+                    <div class="row comAdmin card mb-4">
+                        <div class="col-12 card-header">
                             <h3 class="text-left bubbleTitle">Commentaires</h3>
                         </div>
-                        <div class="col-12 miniShadow mb-4 p-3">
+                        <div class="col-12 p-3 card-body">
                             <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
@@ -168,8 +168,10 @@
                                     </tr>   
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card-footer">
                             <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
+                                <ul class="pagination justify-content-center mb-0">
                                     <li class="page-item disabled">
                                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédente</a>
                                     </li>
@@ -183,19 +185,19 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="row reportedComAdmin">
-                        <div class="col-12">
+                    <div class="row reportedComAdmin card mb-4">
+                        <div class="col-12 card-header">
                             <h3 class="text-left bubbleTitle">Commentaires signalés</h3>
                         </div>
-                        <div class="col-12">
-                            <form method="POST" action="">
+                        <div class="col-12 card-list-group my-2">
+                            <form method="POST" action="" class="list-group-item">
                                 <div class="custom-control custom-checkbox">
                                     <input id="autoSuprCom" name="autoSuprCom" type="checkbox" class="custom-control-input" />
                                     <label for="autoSuprCom" class="custom-control-label">Masquage automatique d'un commentaire signalé plus de 20 fois.</label>
                                 </div>
                             </form>
                         </div>
-                        <div class="col-12 miniShadow mb-4 p-3">
+                        <div class="col-12 p-3 card-body">
                             <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
@@ -230,8 +232,10 @@
                                     </tr>   
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card-footer">
                             <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
+                                <ul class="pagination justify-content-center mb-0">
                                     <li class="page-item disabled">
                                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédente</a>
                                     </li>

@@ -24,7 +24,7 @@
             <?php include("include_header.php"); ?>
 
             <div id="billet" class="row justify-content-center my-5">
-                <div class="col-11 col-sm-10 col-md-8 text-center">
+                <div class="col-12 col-sm-10 col-md-8 text-center">
                     <div class="row justify-content-center mb-5">
                         <img src="../public/img/chapter1.jpg" alt="Photochapitre1" />
                     </div>

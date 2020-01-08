@@ -24,14 +24,14 @@
             <?php include("include_header.php"); ?>
 
             <div id="legal" class="row justify-content-center my-3">
-                <div class="col-10">
+                <div class="col-12 col-sm-11 col-md-10">
                     <div class="row">
                         <div class="col-8">
                             <h2 class="my-3">Mentions légales et RGPD</h2>
                         </div>
                     </div>
                     <div class="contentRGPD row justify-content-center">
-                        <div class="col-10 my-4">
+                        <div class="col-12 col-sm-11 col-md-10 my-4">
                             <h2>Définitions</h2>
                             <p><b>Client&nbsp;:</b>&nbsp;tout professionnel ou personne physique capable au sens des articles 1123 et suivants du Code civil, ou personne morale, qui visite le Site objet des présentes conditions générales.<br>
                             <b>Prestations et Services&nbsp;:</b> <a href="https://www.jean-forteroche-p4-lacrotte.com">https://www.jean-forteroche-p4-lacrotte.com</a> met à disposition des Clients&nbsp;:</p>
@@ -243,7 +243,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
             
             <?php include("include_footer.php"); ?>

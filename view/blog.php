@@ -168,14 +168,14 @@
                                     <form method="POST" action="newsletter_post.php">
                                         <div class="form-group">
                                             <label for="nom_newsletter_blog">Nom :</label>
-                                            <input type="text" id="nom_newsletter_blog" name="nom_newsletter_blog" placeholder=" Entrez votre nom" class="form-control" />
+                                            <input required type="text" id="nom_newsletter_blog" name="nom_newsletter_blog" placeholder=" Entrez votre nom" class="form-control" />
                                             <label for="prenom_newsletter_blog">Prénom :</label>
-                                            <input type="text" id="prenom__newsletter_blog" name="prenom_newsletter_blog" placeholder=" Entrez votre prénom" class="form-control" />
+                                            <input required type="text" id="prenom__newsletter_blog" name="prenom_newsletter_blog" placeholder=" Entrez votre prénom" class="form-control" />
                                             <label for="mail_newsletter_blog">Addresse mail :</label>
-                                            <input type="email" id="mail_newsletter_blog" name="mail_newsletter_blog" placeholder=" Entrez votre email" class="form-control" />
+                                            <input required type="email" id="mail_newsletter_blog" name="mail_newsletter_blog" placeholder=" Entrez votre email" class="form-control" />
                                             <p>Les données à caractère personnel que vous nous communiquez feront l'objet d'un traitement automatisé aux fins de gestion de votre demande. Vous disposez d'un droit d'accès, de rectification, de suppression, de limitation et d'opposition conformément à la réglementation sur la protection des données à caractère personnel.</p>
                                             <div id="divRGPD" class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="acceptRGPD_newsletter_blog" name="acceptRGPD_newsletter_blog" class="custom-control-input" />
+                                                <input required type="checkbox" id="acceptRGPD_newsletter_blog" name="acceptRGPD_newsletter_blog" class="custom-control-input" />
                                                 <label for="acceptRGPD_newsletter_blog" class="custom-control-label">Je reconnais avoir pris connaissance de ces droits.</label>
                                             </div>
                                             <button type="submit" value="S'inscrire" id="register_newsletter_blog" class="btn">S'inscrire</button>
