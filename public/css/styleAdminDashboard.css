@@ -24,3 +24,7 @@
     font-size: 2.7em;
     font-weight: 900;
 }
+
+.card-body {
+    overflow-y: scroll;
+}
