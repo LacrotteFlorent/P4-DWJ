@@ -9,6 +9,10 @@ a {
     color: #FFF;
 }
 
+a:hover {
+    color: #905105;
+}
+
 .socialNetwork {
     display: flex;
     justify-content: center;
@@ -263,6 +267,9 @@ header a {
     margin-bottom: 10px;
 }
 
+#frameworkNews .fab, #frameworkNews .far {
+    color: #38435A;
+}
 
 
                             /* SECTION 3 ABOUT */

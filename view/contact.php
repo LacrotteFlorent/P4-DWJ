@@ -26,7 +26,7 @@
             <div id="contact" class="row justify-content-center">
                 <div class="col-12 col-sm-10 col-md-9 col-lg-7 my-4">
                     <h2 class="mb-4">Formulaire de contact</h2>
-                    <form method="POST" action="contact_post" class="p-0 p-sm-3 p-md-5 border">
+                    <form method="POST" action="./contact_post.php" class="p-0 p-sm-3 p-md-5 border">
                         <div class="form row">
                             <div class="form-group col-md-6 col-12">
                                 <label for="contactName">Nom : </label> 
@@ -57,9 +57,8 @@
                                     <label class="custom-control-label" for="acceptRGPD_contact"> Je reconnais avoir pris connaissance de ces droits.</label>
                                 </div>
                             </div>
-                            <div class="form-group col-md-6 col-12">
+                            <div class="form-group col-md-6 col-12 g-recaptcha" data-sitekey="6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33">
                                 <!-- recaptcha-->
-                                <p>reCaptcha</p>
                             </div>
                         </div>
                         <button class="btn mb-3" type="submit" value="Envoyer"><i class="far fa-paper-plane mx-2"></i> Envoyer</button>

@@ -39,6 +39,15 @@
 
 <link rel="stylesheet" media="(min-width:992.00px) and (max-width:1200.00px)" href="" />
 <link rel="stylesheet" media="(min-width:1200.00px)" href="" />
+<!-- Google ReCaptcha -->
+<script src="https://www.google.com/recaptcha/api.js?render=_reCAPTCHA_site_key"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('_reCAPTCHA_site_key_', {action: 'homepage'}).then(function(token) {
+           ...
+        });
+    });
+    </script>
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,800|Source+Sans+Pro:300,400,900|Gelasio:400|Roboto&display=swap" rel="stylesheet">
 <!-- Fav Icon -->

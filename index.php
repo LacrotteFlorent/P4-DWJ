@@ -1,1 +1,3 @@
- <?php header('Location: ./view/host.php');?>
+ <?php
+ 
+    header('Location: ./view/host.php');

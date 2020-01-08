@@ -45,11 +45,14 @@
                     <p><i>"J'ai fait le choix de partager ce livre avec vous en m'affranchissant d'un éditeur classique"</i></p>
                     <p><i>Partagez mon aventure !</i></p>
                     <div class="socialNetwork">
-                        <div id="facebook" class="circle">
+                        <div id="facebook" class="circle d-flex justify-content-center align-items-center">
+                            <i class="fab fa-facebook-f"></i>
                         </div>
-                        <div id="instagram" class="circle">
+                        <div id="instagram" class="circle d-flex justify-content-center align-items-center">
+                            <i class="fab fa-instagram"></i>
                         </div>
-                        <div id="twitter" class="circle">
+                        <div id="twitter" class="circle d-flex justify-content-center align-items-center">
+                            <i class="fab fa-twitter"></i>
                         </div>
                     </div>
                 </div>
@@ -84,9 +87,9 @@
                                 <div class="split col-3 d-none d-sm-block"></div>
                                 <div class="socialCircles col-10 col-sm-6">
                                     <div class="row">
-                                        <div id="facebook" class="circle"></div>
-                                        <div id="instagram" class="circle"></div>
-                                        <div id="twitter" class="circle"></div>
+                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
+                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
+                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
                                     </div>
                                 </div>
                                 <div class="split col-3 d-none d-sm-block"></div>
@@ -110,9 +113,9 @@
                                 <div class="split col-3 d-none d-sm-block"></div>
                                 <div class="socialCircles col-10 col-sm-6">
                                     <div class="row">
-                                        <div id="facebook" class="circle"></div>
-                                        <div id="instagram" class="circle"></div>
-                                        <div id="twitter" class="circle"></div>
+                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
+                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
+                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
                                     </div>
                                 </div>
                                 <div class="split col-3 d-none d-sm-block"></div>
@@ -136,9 +139,9 @@
                                 <div class="split col-3 d-none d-sm-block"></div>
                                 <div class="socialCircles col-10 col-sm-6">
                                     <div class="row">
-                                        <div id="facebook" class="circle"></div>
-                                        <div id="instagram" class="circle"></div>
-                                        <div id="twitter" class="circle"></div>
+                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
+                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
+                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
                                     </div>
                                 </div>
                                 <div class="split col-3 d-none d-sm-block"></div>

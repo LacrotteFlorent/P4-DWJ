@@ -1,4 +1,6 @@
-
+.socialNetworkBillet .fab, .socialNetworkBillet .far {
+    color: #FFF;
+}
 
 #bodyBillet {
     background-color: #d9d7d7;

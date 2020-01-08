@@ -30,11 +30,14 @@
                 </div>
             </nav>
             <div class="socialNetwork col-12">
-                <div id="facebook" class="circle">
+                <div id="facebook" class="circle d-flex justify-content-center align-items-center">
+                    <i class="fab fa-facebook-f"></i>
                 </div>
-                <div id="instagram" class="circle">
+                <div id="instagram" class="circle d-flex justify-content-center align-items-center">
+                    <i class="fab fa-instagram"></i>
                 </div>
-                <div id="twitter" class="circle">
+                <div id="twitter" class="circle d-flex justify-content-center align-items-center">
+                    <i class="fab fa-twitter"></i>
                 </div>
             </div>
         </div>

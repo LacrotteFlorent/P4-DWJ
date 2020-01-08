@@ -32,10 +32,10 @@
                             </div>
                             <div id="blogLastChapterSocialNetwork" class="col-12">
                                 <div class="row">
-                                    <div id="facebook" class="circle"></div>
-                                    <div id="instagram" class="circle"></div>
-                                    <div id="twitter" class="circle"></div>
-                                    <div id="like" class="circle"></div>
+                                    <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
+                                    <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
+                                    <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
+                                    <div id="like" class="circle d-flex justify-content-center align-items-center"><i class="far fa-heart"></i></div>
                                 </div>
                             </div>
                             <div id="blogLastChapterContent" class="col-12">

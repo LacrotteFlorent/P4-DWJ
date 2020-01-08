@@ -59,10 +59,10 @@
             <div class="socialNetworkBillet row py-4">
                 <div class="socialCircles col-12">
                     <div class="row justify-content-center">
-                        <div id="facebook" class="circle"></div>
-                        <div id="instagram" class="circle"></div>
-                        <div id="twitter" class="circle"></div>
-                        <div id="like" class="circle"></div>
+                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
+                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
+                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
+                        <div id="like" class="circle d-flex justify-content-center align-items-center"><i class="far fa-heart"></i></div>
                     </div>
                 </div>
             </div>
