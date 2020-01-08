@@ -24,13 +24,13 @@
             <?php include("./include_header.php"); ?>
 
             <div id="adminConnexion" class="row justify-content-center my-3">
-                <div class="col-10">
-                    <div class="row">
+                <div class="col-12 col-sm-11 col-md-10">
+                    <div class="row connexionTwenty">
                         <div class="col-8">
                             <h2 class="my-3">Page de connexion</h2>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center align-items-center connexionHeighty">
                         <div class="col-12 col-sm-8 col-md-6 col-lg-4 my-4">
                             <form method="POST" action="contact_post">
                                 <p>Connectez vous :</p>
@@ -47,7 +47,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
             
             <?php include("./include_footer.php"); ?>
