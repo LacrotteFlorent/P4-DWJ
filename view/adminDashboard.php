@@ -34,43 +34,43 @@
                             <div class="row">
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires</h5>
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center align-items-baseline">
                                         <p>32</p>
-                                        <i class="far fa-comment"></i>
+                                        <i class="far fa-comment ml-2"></i>
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>On aimé</h5>
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center align-items-baseline">
                                         <p>164</p>
-                                        <i class="far fa-heart"></i>
+                                        <i class="far fa-heart ml-2"></i>
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Nombre de vues</h5>
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center align-items-baseline">
                                         <p>1642</p>
-                                        <i class="far fa-eye"></i>
+                                        <i class="far fa-eye ml-2"></i>
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires à modérer</h5>
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center align-items-baseline">
                                         <p>13</p>
-                                        <i class="fas fa-comment-medical"></i>
+                                        <i class="fas fa-comment-medical ml-2"></i>
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires signalés</h5>
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center align-items-baseline">
                                         <p>2</p>
-                                        <i class="fas fa-comment-slash"></i>
+                                        <i class="fas fa-comment-slash ml-2"></i>
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Créer un article</h5>
-                                    <div class="row justify-content-center">
-                                        <i class="fas fa-feather-alt"></i>
+                                    <div class="row justify-content-center align-items-baseline">
+                                        <i class="fas fa-feather-alt ml-2 border p-2 rounded-lg"></i>
                                     </div>
                                 </div>
                             </div>
