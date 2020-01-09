@@ -33,7 +33,7 @@
                     <div class="row justify-content-center align-items-center connexionHeighty">
                         <div class="col-12 col-sm-8 col-md-6 col-lg-4 my-4">
                             <form method="POST" action="contact_post">
-                                <p>Connectez vous pour administrer :</p>
+                                <p>Connectez vous :</p>
                                 <div class="form-group">
                                     <label for="connexionIdent">Identifiant :</label>
                                     <input type="text" id="connexionIdent" name="connexionIdent" placeholder=" Identifiant" class="form-control" required />

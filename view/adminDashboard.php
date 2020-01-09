@@ -19,7 +19,7 @@
     </head>
     
     <body>
-        <div class="container-fluid">
+        <div class="container-fluid adminDashboard">
 
             <?php include("include_header.php"); ?>
 
@@ -113,7 +113,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer px-0">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center mb-0">
                                     <li class="page-item disabled">
@@ -169,7 +169,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer px-0">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center mb-0">
                                     <li class="page-item disabled">
@@ -233,7 +233,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer px-0">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center mb-0">
                                     <li class="page-item disabled">

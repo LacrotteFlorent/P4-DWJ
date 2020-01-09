@@ -3,6 +3,10 @@
     font-family: "Open sans", sans-serif;
 }
 
+.adminDashboard {
+    overflow: hidden;
+}
+
 .bubbleDashboard {
     background-color: #38435A;
     color: #FFF;
