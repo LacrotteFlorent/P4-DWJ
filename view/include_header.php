@@ -22,7 +22,7 @@
             <nav class="col-12">
                 <div class="row">
                     <div class="col-12">
-                        <a href="./host.php">ACCEUIL</a>
+                        <a href="./host.php">ACCUEIL</a>
                         <a href="./blog.php">BLOG</a>
                         <a href="./billet.php">BILLET</a>
                         <a href="./contact.php">CONTACT</a>

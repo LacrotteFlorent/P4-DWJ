@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
-                                    <h5>On aimé</h5>
+                                    <h5>Ont aimé</h5>
                                     <div class="row justify-content-center align-items-baseline">
                                         <p>164</p>
                                         <i class="far fa-heart ml-2"></i>
