@@ -1,0 +1,23 @@
+
+#adminPost {
+    font-family: "Open sans", sans-serif;
+}
+
+.adminPost {
+    overflow: hidden;
+}
+
+
+#adminPost h5 {
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+#adminPost h2 {
+    font-size: 2.7em;
+    font-weight: 900;
+}
+
+#postArea {
+    height: 80vh;
+}

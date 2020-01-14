@@ -20,7 +20,9 @@
 <link rel="stylesheet" href="../public/css/styleBillet.css" />
 <link rel="stylesheet" href="../public/css/styleAdminDashboard.css" />
 <link rel="stylesheet" href="../public/css/styleAdminConnexion.css" />
+<link rel="stylesheet" href="../public/css/styleAdminPost.css" />
 <link rel="stylesheet" href="../public/css/styleLegal.css" />
+
 <link rel="stylesheet" media="(max-width:576.00px)" href="../public/css/style-xs.css" />
 <link rel="stylesheet" media="(max-width:576.00px)" href="../public/css/styleBlog-xs.css" />
 <link rel="stylesheet" media="(max-width:576.00px)" href="../public/css/styleContact-xs.css" />
@@ -79,3 +81,10 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<!-- Tiny Mce -->
+<script src="https://cdn.tiny.cloud/1/zb7qhx3260q4w81nmqnkvit0h47o5mgauphgyr2v2ta3vozf/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+    selector: '#postArea',
+    });
+</script>
