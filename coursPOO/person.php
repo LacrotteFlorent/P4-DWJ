@@ -3,9 +3,9 @@
 
 class Person
 {
-    private $firstName;
-    private $lastName;
-    private $age;
+    public $firstName;
+    public $lastName;
+    public $age;
 
     public static $totalCount = 0;
 
