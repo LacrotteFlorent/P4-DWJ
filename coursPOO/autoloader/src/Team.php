@@ -1,5 +1,6 @@
 <?php
 
+namespace Acme;
 
 class Team
 {
@@ -18,17 +19,8 @@ class Team
         return $this->nbFan;
     }
 
+    public function favorite() {
+        $this->nbFan ++;
+    }
+
 }
-
-class League
-{
-
-}
-
-
-$barcelona = new Team("Barcelona");
-$realMadrid = new Team("Real Madrid");
-
-
-echo  $barcelona->getName() . ' a ' . $barcelona->getNbFan() . ' fans ' . PHP_EOL;
-echo  $realMadrid->getName() . ' a ' . $realMadrid->getNbFan() . ' fans ' . PHP_EOL;
