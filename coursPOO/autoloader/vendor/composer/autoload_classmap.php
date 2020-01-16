@@ -8,5 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'Acme\\League' => $baseDir . '/src/League.php',
     'Acme\\Person' => $baseDir . '/src/Person.php',
-    'Acme\\Team' => $baseDir . '/src/Team.php',
+    'Acme\\Teams\\Team' => $baseDir . '/src/Teams/Team.php',
+    'Animal' => $baseDir . '/src/Animal.php',
+    'Chat' => $baseDir . '/src/Chat.php',
+    'Chien' => $baseDir . '/src/Chien.php',
+    'Song' => $baseDir . '/song.php',
 );

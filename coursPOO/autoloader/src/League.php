@@ -2,6 +2,8 @@
 
 namespace Acme;
 
+use Acme\Teams\Team;
+
 class League
 {
     private $name;
