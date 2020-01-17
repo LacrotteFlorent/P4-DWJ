@@ -32,3 +32,7 @@
 .card-body {
     overflow-x: auto;
 }
+
+#adminDashboard .fa-pencil-alt, #adminDashboard .fa-trash-alt {
+    color: #38435A;
+}

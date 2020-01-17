@@ -70,7 +70,7 @@
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Créer un article</h5>
                                     <div class="row justify-content-center align-items-baseline">
-                                        <i class="fas fa-feather-alt ml-2 border p-2 rounded-lg"></i>
+                                        <i class="fas fa-plus-square"></i>
                                     </div>
                                 </div>
                             </div>
@@ -79,10 +79,10 @@
 
                     <div class="row articlesAdmin card mb-4">
                         <div class="col-12 card-header">
-                            <h3 class="text-left bubbleTitle m-0">Articles</h3>
+                            <h3 class="text-left bubbleTitle m-0"><i class="far fa-newspaper"></i> Articles</h3>
                         </div>
                         <div class="col-12 p-3 card-body">
-                            <table class="table">
+                            <table class="table table-striped">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">#</th>
@@ -96,19 +96,19 @@
                                         <th scope="row">1</th>
                                         <td>La route du bonheur</td>
                                         <td>43 DEC 1234</td>
-                                        <td>I B</td>
+                                        <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>La route du bonheur</td>
                                         <td>43 DEC 1234</td>
-                                        <td>I B</td>
+                                        <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
                                         <td>La route du bonheur</td>
                                         <td>43 DEC 1234</td>
-                                        <td>I B</td>
+                                        <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                     </tr>   
                                 </tbody>
                             </table>
@@ -131,10 +131,10 @@
                     </div>
                     <div class="row comAdmin card mb-4">
                         <div class="col-12 card-header">
-                            <h3 class="text-left bubbleTitle">Commentaires</h3>
+                            <h3 class="text-left bubbleTitle"><i class="far fa-comment-alt"></i> Commentaires</h3>
                         </div>
                         <div class="col-12 p-3 card-body">
-                            <table class="table">
+                            <table class="table table-striped">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">#</th>
@@ -150,21 +150,21 @@
                                         <td>Albert</td>
                                         <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
                                         <td>43 DEC 1234</td>
-                                        <td>I B</td>
+                                        <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>Albert</td>
                                         <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
                                         <td>43 DEC 1234</td>
-                                        <td>I B</td>
+                                        <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
                                         <td>Albert</td>
                                         <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
                                         <td>43 DEC 1234</td>
-                                        <td>I B</td>
+                                        <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                     </tr>   
                                 </tbody>
                             </table>
@@ -187,7 +187,7 @@
                     </div>
                     <div class="row reportedComAdmin card mb-4">
                         <div class="col-12 card-header">
-                            <h3 class="text-left bubbleTitle">Commentaires signalés</h3>
+                            <h3 class="text-left bubbleTitle"><i class="fas fa-exclamation-triangle"></i> Commentaires signalés</h3>
                         </div>
                         <div class="col-12 card-list-group my-2">
                             <form method="POST" action="" class="list-group-item">
@@ -198,7 +198,7 @@
                             </form>
                         </div>
                         <div class="col-12 p-3 card-body">
-                            <table class="table">
+                            <table class="table table-striped">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">#</th>
@@ -214,21 +214,21 @@
                                         <td>Albert</td>
                                         <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
                                         <td>43 DEC 1234</td>
-                                        <td>I B</td>
+                                        <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>Albert</td>
                                         <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
                                         <td>43 DEC 1234</td>
-                                        <td>I B</td>
+                                        <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
                                         <td>Albert</td>
                                         <td>fhqhhfoqhqnfjhqfhqkfjqfjsqfhqfh</td>
                                         <td>43 DEC 1234</td>
-                                        <td>I B</td>
+                                        <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                     </tr>   
                                 </tbody>
                             </table>

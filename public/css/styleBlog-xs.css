@@ -5,3 +5,7 @@
 #blogLastChapterPhoto img {
     max-width: 100%;
 }
+
+#blogLastChapterButton button {
+    font-size: 1.0em;
+}

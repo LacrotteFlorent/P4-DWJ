@@ -49,7 +49,7 @@
            ...
         });
     });
-    </script>
+</script>
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,800|Source+Sans+Pro:300,400,900|Gelasio:400|Roboto&display=swap" rel="stylesheet">
 <!-- Fav Icon -->

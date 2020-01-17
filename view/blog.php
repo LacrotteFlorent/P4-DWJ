@@ -53,9 +53,7 @@
                                         <div class="row">
                                             <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
                                             <div class="more col-6 col-md-6 col-lg-3 col-xl-2">
-                                                <div class="row">
-                                                    <button>Lire la suite</button>
-                                                </div>
+                                                <button>Lire la suite</button>
                                             </div>
                                             <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
                                         </div>
