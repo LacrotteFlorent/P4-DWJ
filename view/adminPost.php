@@ -71,13 +71,13 @@
                             <div class="input-group mb-3">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="inputGroupFile02">
-                                  <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choisissez un fichier</label>
+                                  <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><em class="d-none d-md-block">Selectionner une image</em></label>
                                 </div>
                                 <div class="input-group-append">
                                   <span class="input-group-text" id="inputGroupFileAddon02">Télécharger</span>
                                 </div>
                             </div>
-                            <form method="POST" action="" class="list-group-item rounded-sm mb-2">
+                            <form method="POST" action="" class="list-group-item rounded-sm mb-2 p-2">
                                 <div class="custom-control custom-checkbox">
                                     <input id="autoSuprCom" name="autoSuprCom" type="checkbox" class="custom-control-input" />
                                     <label for="autoSuprCom" class="custom-control-label">Ne pas afficher l'image dans l'article (cette image sera utilisée dans la page acceuil et blog seulement).</label>
@@ -108,7 +108,7 @@
                             <h4>Validez votre saisie</h4>
                             <p>Gérer les publications ici</p>
                             </div>
-                            <div class="col-sm-6 mt-4">
+                            <div class="col-md-6 mt-4">
                                 <div class="card cardValid">
                                     <div class="card-body">
                                         <h4 class="card-title">Sauvegarder</h4>
@@ -117,7 +117,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 mt-4">
+                            <div class="col-md-6 mt-4">
                                 <div class="card cardValid">
                                     <div class="card-body">
                                         <h4 class="card-title">Supprimer</h4>
@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 mt-4">
+                            <div class="col-md-6 mt-4">
                                 <div class="card cardValid">
                                     <div class="card-body">
                                         <h4 class="card-title">Publier maintenant</h4>
@@ -135,7 +135,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 mt-4">
+                            <div class="col-md-6 mt-4">
                                 <div class="card cardValid">
                                     <div class="card-body">
                                         <h4 class="card-title">Publier plus tard</h4>
