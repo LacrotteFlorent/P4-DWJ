@@ -26,6 +26,7 @@
             <div class="row justify-content-center" id="adminPost">
                 <div class="col-12 col-sm-10">
                     <h2 class="my-3">Editeur d'articles</h2>
+<!--
                     <div class="mb-4 row card">
                         <div class="card-header">
                             <h3><i class="far fa-hand-pointer"></i> Selecteur</h3>
@@ -46,6 +47,7 @@
                             </div>
                         </div>
                     </div>
+-->
                     <div class="mb-4 row card">
                         <div class="card-header">
                             <h3><i class="fas fa-heading"></i> Titre</h3>
@@ -77,12 +79,6 @@
                                   <span class="input-group-text" id="inputGroupFileAddon02">Télécharger</span>
                                 </div>
                             </div>
-                            <form method="POST" action="" class="list-group-item rounded-sm mb-2">
-                                <div class="custom-control custom-checkbox">
-                                    <input id="autoSuprCom" name="autoSuprCom" type="checkbox" class="custom-control-input" />
-                                    <label for="autoSuprCom" class="custom-control-label">Ne pas afficher l'image dans l'article (cette image sera utilisée dans la page acceuil et blog seulement).</label>
-                                </div>
-                            </form>
                             <p>Aperçu :</p>
                             <img src="../public/img/chapter1.jpg"  alt="photo d'illustration du chapitre 1" class="img-fluid img-thumbnail" />
                         </div>
