@@ -25,6 +25,14 @@ class ComposerStaticInit6a1fa031ea1e78dd89d56161dcacc0e0
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Dotenv\\' => 25,
         ),
+        'P' => 
+        array (
+            'Project\\' => 8,
+        ),
+        'F' => 
+        array (
+            'Framework\\' => 10,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -51,6 +59,14 @@ class ComposerStaticInit6a1fa031ea1e78dd89d56161dcacc0e0
         'Symfony\\Component\\Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/dotenv',
+        ),
+        'Project\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Framework\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
