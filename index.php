@@ -19,3 +19,16 @@ $response = $controller->index();
 $response->send();
 
 
+$router = new Framework\Router\Router($_GET['url']);
+
+$router->get('/', function(){echo "<h1>Homepage</h1>";});
+
+$router->get('/contact');
+
+$router->get('/adminConnexion');
+
+$router->get('/billet/:slug-:id', "Posts#show");
+
+$router->post('/contact/:id');
+
+$router->run();

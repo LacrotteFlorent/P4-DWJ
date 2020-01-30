@@ -12,9 +12,9 @@ class Request
 
     public function __construct(array $query, array $request, array $server)
     {
-        $this->query = $query;
-        $this->request = $request;
-        $this->server = $server;
+        $this->query = $query; //$_GET
+        $this->request = $request; //$_POST
+        $this->server = $server; //$_SERVER
     }
 
     public static function createFromGlobals(): Request
