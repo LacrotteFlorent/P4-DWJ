@@ -45,11 +45,20 @@ class Router {
     //si il y a match apelle le controller correspondant
     public function run(){
 
-        if(!isset($this->server["REQUEST_METHOD"])){
+        $requestMethod = $this->server["REQUEST_METHOD"];
+
+        if(!isset($requestMethod)){
             throw new RouterException('REQUEST_METHOD does not exist');
         }
-        if
 
+        foreach($this->routes[$requestMethod] as $route){
+            if($route->match($this->server["REQUEST_URI"])){
+                // appelle le controller
+                return print("test");
+            }
+        }
+        
+        //throw new RouterException('No matching routes');
 
     }
 }
