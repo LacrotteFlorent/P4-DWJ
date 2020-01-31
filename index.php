@@ -28,7 +28,7 @@ $router->get('/contact');
 
 $router->get('/adminConnexion');
 
-$router->get('/billet/#slug#id');
+$router->get('/billet/:id');
 
 $router->post('/contact/:id');
 
