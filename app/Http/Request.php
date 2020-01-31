@@ -21,6 +21,12 @@ class Request
     {
         return new Request ($_GET, $_POST, $_SERVER);
     }
+
+    public function getServer(){
+        return $this->server;
+    }
+
+
 }
 
 

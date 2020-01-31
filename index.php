@@ -10,6 +10,9 @@ use Project\Controller\BlogController;
 
 $request = Request::createFromGlobals();
 
+//dd($request);
+dump($request);
+
 $controller = new BlogController();
 
 $response = $controller->index();
@@ -19,15 +22,13 @@ $response = $controller->index();
 $response->send();
 
 
-$router = new Framework\Router\Router($_GET['url']);
-
-$router->get('/', function(){echo "<h1>Homepage</h1>";});
+$router = new Framework\Router\Router($request);
 
 $router->get('/contact');
 
 $router->get('/adminConnexion');
 
-$router->get('/billet/:slug-:id', "Posts#show");
+$router->get('/billet/:slug-:id');
 
 $router->post('/contact/:id');
 
