@@ -13,23 +13,28 @@ $request = Request::createFromGlobals();
 //dd($request);
 dump($request);
 
-$controller = new BlogController();
+//$controller = new BlogController();
 
-$response = $controller->index();
+//$response = $controller->index();
 
 //$response = new RedirectionResponse("http://google.fr");
 
-$response->send();
+//$response->send();
 
 
 $router = new Framework\Router\Router($request);
 
-$router->get('/contact');
+$router->addRouteGet('/BLOGNEW_P4/index.php/contact', 'Blog', "index");
 
-$router->get('/adminConnexion');
+$router->addRouteGet('/BLOGNEW_P4/index.php/adminConnexion','Blog', "index");
 
-$router->get('/billet/:id');
+$router->addRouteGet('/BLOGNEW_P4/index.php/billet/:id','Blog', "index");
 
-$router->post('/contact/:id');
+$router->addRoutePost('/BLOGNEW_P4/index.php/contactPost/:id','Blog', "index");
 
-$router->run();
+$route = $router->getRoute();
+
+$reponse = $route->call();
+
+$reponse->send();
+

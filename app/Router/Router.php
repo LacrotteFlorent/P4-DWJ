@@ -21,19 +21,19 @@ class Router {
 
 
     // crée une route pour la méthode $_GET
-    public function get($path){
-        return $this->add($path, 'GET');
+    public function addRouteGet($path, $controller, $action){
+        return $this->addRoute($path, $controller, $action, 'GET');
     }
 
     // crée une route pour la méthode $_POST
-    public function post($path){
-        return $this->add($path, 'POST');
+    public function addRoutePost($path, $controller, $action){
+        return $this->addRoute($path, $controller, $action, 'POST');
     }
 
     // crée une route et la stocke dans un tableau
-    public function add($path, $method){
+    public function addRoute($path, $controller, $action, $method){
 
-        $route = new Route($path);
+        $route = new Route($path, $controller, $action);
         $this->routes[$method][] = $route;
         dump($this->routes);
         return $route;
@@ -42,8 +42,8 @@ class Router {
     //vérifie si la var "REQUEST_METHOD" existe
     //recherche dans le tableau correspondant à la requete GET OU POST
     //lance la comparaison entres les routes et l'url
-    //si il y a match apelle le controller correspondant
-    public function run(){
+    //si il y a match on retourne la route
+    public function getRoute(){
 
         $requestMethod = $this->server["REQUEST_METHOD"];
 
@@ -52,13 +52,12 @@ class Router {
         }
 
         foreach($this->routes[$requestMethod] as $route){
-            if($route->match($this->server["REQUEST_URI"])){
-                // appelle le controller
-                return print("test");
+            if($route->match($this->server["REQUEST_URI"])){ 
+                return $route;
             }
         }
         
-        //throw new RouterException('No matching routes');
+        throw new RouterException('No matching routes');
 
     }
 }
