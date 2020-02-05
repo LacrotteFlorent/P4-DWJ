@@ -2,6 +2,8 @@
 
 namespace Framework\Router;
 
+use Symfony\Component\Yaml\Yaml;
+
 class Router {
 
     private $server;
@@ -14,6 +16,14 @@ class Router {
         $this->url = $this->server["REQUEST_URI"];
     }
 
+    // charge le fichier YAML dans lequel se trouvent les routes
+    public function loadYaml($routesFile){
+        $routes = Yaml::parseFile($routesFile);
+        foreach($routes as $route){
+            dump($route);
+            $this->addRoute($route["path"], $route["controller"], $route["action"], $route["method"]);
+        }
+    }
 
     // crée une route pour la méthode $_GET
     public function addRouteGet($path, $controller, $action){
@@ -26,7 +36,7 @@ class Router {
     }
 
     // crée une route et la stocke dans un tableau
-    public function addRoute($path, $controller, $action, $method){
+    private function addRoute($path, $controller, $action, $method){
 
         $route = new Route($path, $controller, $action);
         $this->routes[$method][] = $route;

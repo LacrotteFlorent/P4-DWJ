@@ -18,9 +18,9 @@ class Route {
 
     //revois une chaine de cractère et retourne cette chaine debarassée de la partie qui se trouve avant la regex
     public function beforeIndexCleaner($strToClean, $regexForCleanBefore){
-        $strClean  = preg_split($regexForCleanBefore, $strToClean, 0, PREG_SPLIT_OFFSET_CAPTURE);//selectionne tout ce qui se trouve avant et apres index.php
-        $strClean  = $strClean[1]; // garde uniquement la partie de l'url apres index.php (saute le premier element du tableau)
-        $strClean  = $strClean[0]; // supprime le tableau pour garder uniquement l'url restante
+        $strClean  = preg_split($regexForCleanBefore, $strToClean, 0, PREG_SPLIT_OFFSET_CAPTURE); //selectionne tout ce qui se trouve avant et apres index.php
+        $strClean  = $strClean[1]; // garde uniquement la partie de la chaine de caractère apres la regexp (saute le premier element du tableau)
+        $strClean  = $strClean[0]; // supprime le tableau pour garder uniquement la chaine de caractère restante
         return $strClean;
     }
 
@@ -43,6 +43,11 @@ class Route {
     }
 
     //ATTENTION SI ON A DES PARAMS après un ? la route n'est plus OK
+
+    // recupères les paramètres après la requete et les retournes
+    public function paramAfterRequest(){
+
+    }
 
 
     //on instancie le controller dynamiquement et on apelle la méthode correspondante

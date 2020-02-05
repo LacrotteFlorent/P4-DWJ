@@ -1,0 +1,25 @@
+contact:
+    path: /index.php/contact
+    controller: Blog
+    action: index
+    method: GET
+adminConnexion:
+    path: /index.php/adminConnexion
+    controller: Blog
+    action: index
+    method: GET
+billeterie:
+    path: /index.php/billet/:id
+    controller: Blog
+    action: index
+    method: GET
+test:
+    path: /index.php/test/:id
+    controller: Blog
+    action: index
+    method: GET
+ContactPost:
+    path: /index.php/contactPost/:id
+    controller: Blog
+    action: index
+    method: POST
