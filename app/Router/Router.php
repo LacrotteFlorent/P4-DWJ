@@ -13,7 +13,8 @@ class Router {
 
     public function __construct($request){
         $this->server = $request->getServer();
-        $this->url = $this->server["REQUEST_URI"];
+        //$this->url = $this->server["REQUEST_URI"];   //Modif PATH_INFO
+        $this->url = $request->getPathInfo();
     }
 
     // charge le fichier YAML dans lequel se trouvent les routes
@@ -44,7 +45,7 @@ class Router {
         return $route;
     }
 
-    //vérifie si la var "REQUEST_METHOD" existe
+    //vérifie si la var $_SERVER "REQUEST_METHOD" existe
     //recherche dans le tableau correspondant à la requete GET OU POST
     //lance la comparaison entres les routes et l'url
     //si il y a match on retourne la route
@@ -57,7 +58,10 @@ class Router {
         }
 
         foreach($this->routes[$requestMethod] as $route){
-            if($route->match($this->server["REQUEST_URI"])){ 
+            //if($route->match($this->server["REQUEST_URI"])){ 
+            //    return $route;
+            //}
+            if($route->match($this->url)){ 
                 return $route;
             }
         }

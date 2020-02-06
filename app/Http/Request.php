@@ -26,6 +26,10 @@ class Request
         return $this->server;
     }
 
+    public function getPathInfo(){
+        return $this->server["PATH_INFO"];
+    }
+
 
 }
 
