@@ -6,15 +6,17 @@ use Symfony\Component\Yaml\Yaml;
 
 class Router {
 
-    private $server;
+    //private $server;
+    private $requestMethod;
     private $url;
-    private $requete;
+    //private $requete;
     private $routes = [];
 
     public function __construct($request){
-        $this->server = $request->getServer();
+        //$this->server = $request->getServer();
         //$this->url = $this->server["REQUEST_URI"];   //Modif PATH_INFO
         $this->url = $request->getPathInfo();
+        $this->requestMethod = $request->getRequestMethod();
     }
 
     // charge le fichier YAML dans lequel se trouvent les routes
@@ -51,13 +53,11 @@ class Router {
     //si il y a match on retourne la route
     public function getRoute(){
 
-        $requestMethod = $this->server["REQUEST_METHOD"];
-
-        if(!isset($requestMethod)){
+        if(!isset($this->requestMethod)){
             throw new RouterException('REQUEST_METHOD does not exist');
         }
 
-        foreach($this->routes[$requestMethod] as $route){
+        foreach($this->routes[$this->requestMethod] as $route){
             //if($route->match($this->server["REQUEST_URI"])){ 
             //    return $route;
             //}

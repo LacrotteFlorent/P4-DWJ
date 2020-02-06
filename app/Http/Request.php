@@ -30,6 +30,10 @@ class Request
         return $this->server["PATH_INFO"];
     }
 
+    public function getRequestMethod(){
+        return $this->server["REQUEST_METHOD"];
+    }
+
 
 }
 
