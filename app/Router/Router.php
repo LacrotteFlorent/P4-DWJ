@@ -22,26 +22,26 @@ class Router {
     // charge le fichier YAML dans lequel se trouvent les routes
     public function loadYaml($routesFile){
         $routes = Yaml::parseFile($routesFile);
-        foreach($routes as $route){
+        foreach($routes as $name => $route){
             dump($route);
-            $this->addRoute($route["path"], $route["controller"], $route["action"], $route["method"]);
+            $this->addRoute($name, $route["path"], $route["controller"], $route["action"], $route["method"]);
         }
     }
 
     // crée une route pour la méthode $_GET
-    public function addRouteGet($path, $controller, $action){
-        return $this->addRoute($path, $controller, $action, 'GET');
+    public function addRouteGet($name, $path, $controller, $action){
+        return $this->addRoute($name, $path, $controller, $action, 'GET');
     }
 
     // crée une route pour la méthode $_POST
-    public function addRoutePost($path, $controller, $action){
-        return $this->addRoute($path, $controller, $action, 'POST');
+    public function addRoutePost($name, $path, $controller, $action){
+        return $this->addRoute($name, $path, $controller, $action, 'POST');
     }
 
     // crée une route et la stocke dans un tableau
-    private function addRoute($path, $controller, $action, $method){
+    private function addRoute($name, $path, $controller, $action, $method){
 
-        $route = new Route($path, $controller, $action);
+        $route = new Route($name, $path, $controller, $action);
         $this->routes[$method][] = $route;
         dump($this->routes);
         return $route;

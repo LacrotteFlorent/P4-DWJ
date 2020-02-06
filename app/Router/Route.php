@@ -4,18 +4,20 @@ namespace Framework\Router;
 
 class Route {
 
-    //private $name;
+    private $name;
     private $path;
     private $controller;
     private $action;
     private $matches = [];
 
-    public function __construct($path, $controller, $action){
+    public function __construct($name, $path, $controller, $action){
         $this->path = $path;
         $this->controller = $controller;
         $this->action = $action;
+        $this->name = $name;
     }
 
+    //non utilisée depuis l'utilisation du PATH_INFO
     //revois une chaine de cractère et retourne cette chaine debarassée de la partie qui se trouve avant la regex
     public function beforeIndexCleaner($strToClean, $regexForCleanBefore){
         $strClean  = preg_split($regexForCleanBefore, $strToClean, 0, PREG_SPLIT_OFFSET_CAPTURE); //selectionne tout ce qui se trouve avant et apres index.php
@@ -61,8 +63,13 @@ class Route {
         return true;
     }
 
+    private function paramMatch(){
+        
+    }
+
     //ATTENTION SI ON A DES PARAMS après un ? la route n'est plus OK
 
+    // NON NECESSAIRE DEPUIS L'UTILISATION DU PATH_INFO
     // recupères les paramètres après la requete et les retournes
     public function paramAfterRequest(){
 
