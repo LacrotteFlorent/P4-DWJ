@@ -25,6 +25,12 @@
 #    method: POST
 #MODIF PATH_INFO
 
+#ROUTING website jeanForteroche
+accueil:
+    path: /
+    controller: Blog
+    action: index
+    method: GET
 contact:
     path: /contact
     controller: Blog
@@ -35,17 +41,32 @@ adminConnexion:
     controller: Blog
     action: index
     method: GET
-billeterie:
+adminDashboard:
+    path: /adminDashboard
+    controller: Blog
+    action: index
+    method: GET
+adminPost:
+    path: /adminPost/:id
+    controller: Blog
+    action: index
+    method: GET
+billet:
     path: /billet/:id
     controller: Blog
     action: index
     method: GET
-test:
-    path: /test/:id
+blog:
+    path: /blog
     controller: Blog
     action: index
     method: GET
-ContactPost:
+legal:
+    path: /legal
+    controller: Blog
+    action: index
+    method: GET
+contactPost:
     path: /contactPost/:id
     controller: Blog
     action: index
