@@ -88,4 +88,8 @@ class Route {
     public function getPath(){
         return $this->path;
     }
+
+    public function getName(){
+        return $this->name;
+    }
 }

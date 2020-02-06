@@ -11,6 +11,7 @@ class Router {
     private $url;
     //private $requete;
     private $routes = [];
+    private $routesByName = [];
 
     public function __construct($request){
         //$this->server = $request->getServer();
@@ -43,8 +44,9 @@ class Router {
 
         $route = new Route($name, $path, $controller, $action);
         $this->routes[$method][] = $route;
+        $this->routesByName[$name][] = $name;
         dump($this->routes);
-        return $route;
+        dump($this->routesByName);
     }
 
     //vérifie si la var $_SERVER "REQUEST_METHOD" existe
@@ -69,4 +71,14 @@ class Router {
         throw new RouterException('No matching routes');
 
     }
+
+    //retourne la route si elle existe, sinon affiche une exception
+    public function getRouteByName($name){
+        if(isset($this->routesByName[$name])){
+            return $this->routesByName[$name];
+        }
+
+        throw new RouterException('This way\'s doesn\'t exist');
+    }
+
 }
