@@ -13,6 +13,7 @@ class RedirectionResponse implements ResponseInterface
 
     public function send()
     {
+        dd($this->uri);
         header("Location: " . $this->uri);
         die;
     }

@@ -34,6 +34,10 @@ class Request
         return $this->server["REQUEST_METHOD"];
     }
 
+    public function getRequestUri(){
+        return $this->server["REQUEST_URI"];
+    }
+
 
 }
 

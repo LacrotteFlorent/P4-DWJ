@@ -44,7 +44,7 @@ class Router {
 
         $route = new Route($name, $path, $controller, $action);
         $this->routes[$method][] = $route;
-        $this->routesByName[$name][] = $name;
+        $this->routesByName[$name][] = $route;
         dump($this->routes);
         dump($this->routesByName);
     }

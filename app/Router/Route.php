@@ -2,6 +2,8 @@
 
 namespace Framework\Router;
 
+use Framework\Http\Request;
+
 class Route {
 
     private $name;
@@ -78,17 +80,20 @@ class Route {
 
 
     //on instancie le controller dynamiquement et on apelle la méthode correspondante
-    public function call(){
+    public function call(Request $request){
         $controller = "Project\\Controller\\" . $this->controller . "Controller";
         dump($controller);
-        $controller = new $controller();
+        $controller = new $controller($request->getRequestUri());
         return call_user_func_array([$controller, $this->action], $this->matches);
+        // call_user_func_array appelle une methode(ici $action) d'une classe (ici $controller) et lui passe des arguments (ici $matches)
     }
 
+    // retourne le nom de la route
     public function getPath(){
         return $this->path;
     }
 
+    // retourne le chemin de la route
     public function getName(){
         return $this->name;
     }

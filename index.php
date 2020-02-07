@@ -37,9 +37,9 @@ $router->loadYaml(__DIR__."/config/routing.yml");
 
 $route = $router->getRoute();
 
-$reponse = $route->call();
+$reponse = $route->call($request);
 
-dump($router->getRouteByName("contacte"));
+dump($router->getRouteByName("contact"));
 
 
 $reponse->send();
