@@ -51,21 +51,21 @@ class Router {
      */
     private function addRoute($name, $path, $controller, $action)
     {
-        $this->routes[$name][] = new Route($name, $path, $controller, $action);
+        $this->routes[$name] = new Route($name, $path, $controller, $action);
     }
 
     /**
      * @return Route
      * @throws RouterException
      */
-    public function getRoute()
+    public function getRoute(): Route
     {
         if(!isset($this->requestMethod))
         {
             throw new RouterException('REQUEST_METHOD does not exist');
         }
 
-        foreach($this->routes[$this->requestMethod] as $route){
+        foreach($this->routes as $route){
             if($route->match($this->url)){ 
                 return $route;
             }
@@ -79,10 +79,10 @@ class Router {
      * @return Route
      * @throws RouterException
      */
-    public function getRouteByName($name)
+    public function getRouteByName(string $name): Route
     {
-        if(isset($this->routesByName[$name])){
-            return $this->routesByName[$name];
+        if(isset($this->routes[$name])){
+            return $this->routes[$name];
         }
 
         throw new RouterException('This way\'s doesn\'t exist');

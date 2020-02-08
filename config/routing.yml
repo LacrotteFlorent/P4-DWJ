@@ -4,44 +4,35 @@ accueil:
     path: /
     controller: Blog
     action: index
-    method: GET
 contact:
     path: /contact
     controller: Blog
     action: redirection
-    method: GET
 adminConnexion:
     path: /adminConnexion
     controller: Blog
     action: index
-    method: GET
 adminDashboard:
     path: /adminDashboard
     controller: Blog
     action: index
-    method: GET
 adminPost:
     path: /adminPost/:id
     controller: Blog
     action: index
-    method: GET
 billet:
     path: /billet/:id
     controller: Blog
     action: index
-    method: GET
 blog:
     path: /blog
     controller: Blog
     action: index
-    method: GET
 legal:
     path: /legal
     controller: Blog
     action: index
-    method: GET
 contactPost:
     path: /contactPost/:id
     controller: Blog
     action: index
-    method: POST
