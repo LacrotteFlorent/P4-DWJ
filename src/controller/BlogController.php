@@ -4,28 +4,48 @@ namespace Project\Controller;
 
 use Framework\Http\Response;
 use Framework\Http\RedirectionResponse;
-use Framework\Http\RedirectionResponseDebug;
+use Framework\Http\Request;
+use Framework\Router\Router;
 
 class BlogController
 {
-    private $path;
+    /**
+     * @var Request
+     */
+    private $request;
 
+    /**
+     * @var Router
+     */
+    private $router;
 
-    public function __construct($path){
-        $this->path = $path;
+    /**
+     * BlogController constructor.
+     * @param Request $request
+     * @param Router $router
+     */
+    public function __construct(Request $request, Router $router)
+    {
+        $this->request = $request;
+        $this->router = $router;
     }
 
-
-    // retourne une réponse basique
-    public function index(): Response
+    /**
+     * @param array $paramsMatches
+     * @return Response
+     */
+    public function index($paramsMatches): Response
     {
         return new Response("<h1>Blog</h1>");
     }
 
-    // redirige vers la page reçue en argument
-    public function redirection(): RedirectionResponse
+    /**
+     * @param array $paramsMatches
+     * @return RedirectionResponse
+     */
+    public function redirection($paramsMatches): RedirectionResponse
     {
-        return new RedirectionResponse($this->path);
+        return new RedirectionResponse($this->request["REQUEST_URI"]);
     }
 }
 

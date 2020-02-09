@@ -65,12 +65,13 @@ class Route {
 
     /**
      * @param Request $request
+     * @param Router $router
      * @return ResponseInterface
      */
-    public function call(Request $request): ResponseInterface
+    public function call(Request $request, Router $router): ResponseInterface
     {
         $controller = "Project\\Controller\\" . $this->controller . "Controller";
-        $controller = new $controller($request->getRequestUri());
+        $controller = new $controller($request, $router);
         return call_user_func_array([$controller, $this->action], $this->matches);
     }
 
