@@ -2,7 +2,7 @@
 
 namespace Framework\Router;
 
-USE Framework\Http\Request;
+use Framework\Http\Request;
 use Symfony\Component\Yaml\Yaml;
 
 class Router {

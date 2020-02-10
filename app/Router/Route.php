@@ -72,7 +72,11 @@ class Route {
     {
         $controller = "Project\\Controller\\" . $this->controller . "Controller";
         $controller = new $controller($request, $router);
-        return call_user_func_array([$controller, $this->action], $this->matches);
+        if($this->matches){
+            return call_user_func_array([$controller, $this->action], $this->matches);
+            dd($this->matches);
+        }
+        return call_user_func_array([$controller, $this->action], array('0'));
     }
 
     /**

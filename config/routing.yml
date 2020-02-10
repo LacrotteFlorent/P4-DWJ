@@ -23,7 +23,7 @@ adminPost:
 billet:
     path: /billet/:id
     controller: Blog
-    action: index
+    action: redirection
 blog:
     path: /blog
     controller: Blog

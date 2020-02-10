@@ -45,7 +45,7 @@ class BlogController
      */
     public function redirection($paramsMatches): RedirectionResponse
     {
-        return new RedirectionResponse($this->request["REQUEST_URI"]);
+        return new RedirectionResponse($this->request->getRequestUri());
     }
 }
 
