@@ -87,5 +87,4 @@ class Router {
 
         throw new RouterException('This way\'s doesn\'t exist');
     }
-
 }

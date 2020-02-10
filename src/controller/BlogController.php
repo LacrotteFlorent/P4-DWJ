@@ -48,6 +48,4 @@ class BlogController
         return new RedirectionResponse($this->request->getRequestUri());
     }
 }
-
-
 /// La methode d'un controller renvoie toujours une reponse

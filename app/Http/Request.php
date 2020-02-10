@@ -71,6 +71,4 @@ class Request
     {
         return $this->server["REQUEST_URI"];
     }
-
-
 }
