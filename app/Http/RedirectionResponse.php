@@ -27,5 +27,4 @@ class RedirectionResponse implements ResponseInterface
         header("Location: " . $this->uri);
         die;
     }
-
 }

@@ -25,5 +25,4 @@ class JsonResponse implements ResponseInterface
     {
         echo json_encode($this->data);
     }
-
 }

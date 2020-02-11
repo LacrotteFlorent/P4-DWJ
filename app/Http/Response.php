@@ -25,5 +25,4 @@ class Response implements ResponseInterface
     {
         echo $this->content;
     }
-
 }
