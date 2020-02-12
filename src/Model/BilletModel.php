@@ -2,7 +2,11 @@
 
 namespace Project\Model;
 
-class BilletModel{
+use Framework\ORM\Model;
+use Project\Manager\BilletManager;
+
+class BilletModel extends Model
+{
 
     /**
      * @var integer
@@ -48,12 +52,6 @@ class BilletModel{
      * @var integer
      */
     private $imageId;
-
-
-    public function __constructor()
-    {
-
-    }
 
     /**
      * @
@@ -121,11 +119,27 @@ class BilletModel{
     }
 
     /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @return string
      */
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     /**
@@ -137,11 +151,27 @@ class BilletModel{
     }
 
     /**
+     * @param string $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 
     /**
@@ -153,6 +183,14 @@ class BilletModel{
     }
 
     /**
+     * @param \DateTime $postedAt
+     */
+    public function setPostedAt($postedAt)
+    {
+        $this->postedAt = $postedAt;
+    }
+
+    /**
      * @return bool
      */
     public function getDraft()
@@ -161,7 +199,15 @@ class BilletModel{
     }
 
     /**
-     * @return integer
+     * @param bool $draft
+     */
+    public function setDraft($draft)
+    {
+        $this->draft = $draft;
+    }
+
+    /**
+     * @return int
      */
     public function getLikeCount()
     {
@@ -169,7 +215,15 @@ class BilletModel{
     }
 
     /**
-     * @return integer
+     * @param int $likeCount
+     */
+    public function setLikeCount($likeCount)
+    {
+        $this->likeCount = $likeCount;
+    }
+
+    /**
+     * @return int
      */
     public function getViewCount()
     {
@@ -177,11 +231,27 @@ class BilletModel{
     }
 
     /**
-     * @return integer
+     * @param int $viewCount
+     */
+    public function setViewCount($viewCount)
+    {
+        $this->viewCount = $viewCount;
+    }
+
+    /**
+     * @return int
      */
     public function getImageId()
     {
         return $this->imageId;
+    }
+
+    /**
+     * @param int $imageId
+     */
+    public function setImageId($imageId)
+    {
+        $this->imageId = $imageId;
     }
 
 }
