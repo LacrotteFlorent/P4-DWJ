@@ -56,7 +56,7 @@ class BilletModel extends Model
     /**
      * @
      */
-    public function metadata()
+    public static function metadata()
     {
         return [
             "table"             =>"post",

@@ -12,7 +12,7 @@ class BilletManager{
 
     public function getBilletById()
     {
-
+        
     }
 
     public function getBilletByDate()

@@ -20,6 +20,16 @@ class Controller
     private $router;
 
     /**
+     * @var \Twig_Environment
+     */
+    private $twig;
+
+    /**
+     * @var Database
+     */
+    private $database;
+
+    /**
      * BlogController constructor.
      * @param Request $request
      * @param Router $router
