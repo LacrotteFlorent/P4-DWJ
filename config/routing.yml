@@ -36,3 +36,7 @@ contactPost:
     path: /contactPost/:id
     controller: Blog
     action: index
+testBillet:
+    path: /testBillet/:id
+    controller: Billet
+    action: afficherBillet

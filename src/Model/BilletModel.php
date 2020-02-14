@@ -105,7 +105,7 @@ class BilletModel extends Model
     /**
      * @return Manager
      */
-    public function getManager()
+    public static function getManager()
     {
         return BilletManager::class;
     }

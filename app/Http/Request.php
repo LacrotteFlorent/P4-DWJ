@@ -71,4 +71,13 @@ class Request
     {
         return $this->server["REQUEST_URI"];
     }
+
+    /**
+     * @param string $varEnv
+     * @return string
+     */
+    public function getEnv($varEnv)
+    {
+        return getenv($varEnv);
+    }
 }

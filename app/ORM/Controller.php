@@ -6,6 +6,7 @@ use Framework\Http\Response;
 use Framework\Http\RedirectionResponse;
 use Framework\Http\Request;
 use Framework\Router\Router;
+use Framework\ORM\Database;
 
 class Controller
 {
@@ -38,6 +39,11 @@ class Controller
     {
         $this->request = $request;
         $this->router = $router;
+        $this->database = Database::getInstance($request);
+        $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/../../view');
+        $this->twig = new \Twig\Environment($loader, array(
+            'cache' => false
+        ));
     }
 
     /**
@@ -57,4 +63,25 @@ class Controller
     {
         return new RedirectionResponse($this->request->getRequestUri());
     }
+
+    /**
+     * @param string $filename
+     * @param array $database
+     * @return Response
+     */
+    public function render($filename, $data = []): Response
+    {
+        $view = $this->twig->load($filename);
+        $content = $view->render($data);
+        return new Response($content);
+    }
+
+    /**
+     * @return Database
+     */
+    protected function getDatabase()
+    {
+        return $this->database;
+    }
+
 }

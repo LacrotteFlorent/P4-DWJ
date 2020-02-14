@@ -11,7 +11,7 @@ use Project\Controller\BlogController;
 
 $request = Request::createFromGlobals();
 
-//dump($request);
+dump($request);
 
 $router = new Framework\Router\Router($request);
 

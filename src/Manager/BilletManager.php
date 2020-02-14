@@ -1,6 +1,6 @@
 <?php
 
-namespace Projet\Manager;
+namespace Project\Manager;
 
 class BilletManager{
 
@@ -12,7 +12,7 @@ class BilletManager{
 
     public function getBilletById()
     {
-        
+
     }
 
     public function getBilletByDate()

@@ -30,12 +30,13 @@ class Database
     public static function getInstance(Request $request) : Database
     {
         if(!self::$databaseInstance) {
-            self::$databaseInstance = new Database(
-                $request->getEnv("DB_HOST"),
-                $request->getEnv("DB_NAME"),
-                $request->getEnv("DB_USER"),
-                $request->getEnv("DB_PASSWORD")
-            );
+            self::$databaseInstance = new Database("localhost","blog","jeanftr","BDDJFTR");
+            //self::$databaseInstance = new Database(
+            //    $request->getEnv("DB_HOST"),
+            //    $request->getEnv("DB_NAME"),
+            //    $request->getEnv("DB_USER"),
+            //    $request->getEnv("DB_PASSWORD")
+            //);
         }
         return self::$databaseInstance;
     }
@@ -66,6 +67,7 @@ class Database
      */
     public function getManager($model) : Manager
     {
+        dump($model);
         $managerClass = $model::getManager();
         $this->managers[$model] = $this->managers[$model] ?? new $mangerClass($this->pdo, $model);
         return $this->managers[$model];
