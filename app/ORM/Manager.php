@@ -24,23 +24,24 @@ class Manager
     /**
      * Manager constructor.
      * @param \PDO $pdo
-     * @param $model
+     * @param string $model
      * @throws ORMException
+     * @note [Si le parent de la classe qui correspond au modèle existe
+     * @note  alors on récupère le modèle et les métadata]
      */
     public function __construct(\PDO $pdo, $model)
     {
         $this->pdo = $pdo;
         $reflectionClass = new \ReflectionClass($model);
-        if($reflectionClass->getParentClass()->getName() == Model::class) {  //si le parent de classe passée en reflexion est un modele
-            $this->model = $model;                              // Alors on recuère le modele
-            $this->metadata = $this->model::metadata();         // et on recupère les métadata
+        if($reflectionClass->getParentClass()->getName() == Model::class){
+            $this->model = $model;
+            $this->metadata = $this->model::metadata();
         }
         else {
-            throw new ORMException("Cette classe n'existe pas.");       // sinon cette classe n'existe pas
+            throw new ORMException("Cette classe n'existe pas.");
         }
         $this->model = $model;
     }
-    /////////////////////////////
 
     /**
      * @param int $id
@@ -54,15 +55,10 @@ class Manager
         $where = "id = ";
 
         $sqlQuery = sprintf($format, $select, $from, $where, $id);
-        dump($sqlQuery);
 
         $statement = $this->pdo->prepare($sqlQuery);
         $statement->execute();
         $result = $statement->fetch(\PDO::FETCH_ASSOC);
-
-        echo '<pre>';
-        print_r($result);
-        echo '</pre>';
 
         return (new $this->model())->hydrate($result);
     }

@@ -33,31 +33,31 @@ abstract class Model
         $this->originalData = $result;
 
         foreach($result as $column => $value){
-            dump($this::metadata()["columns"][$column]["type"]);
+            $dataString = sprintf("set%s", ucfirst($this::metadata()["columns"][$column]["property"]));
 
             switch ($this::metadata()["columns"][$column]["type"]) {
                 case 'string':
-                    # code...
+                    $this->{sprintf($dataString)} ($value);
                     break;
-
+                
                 case 'integer':
-                    //
+                    $this->{sprintf($dataString)} ((int) $value);
                     break;
-
+                
                 case 'bool':
-                    //
+                    $this->{sprintf($dataString)} ((bool) $value);
                     break;
 
                 case 'datetime':
-                    //
+                    $datetime = \DateTime::createFromFormat("Y-m-d H:i:s", $value);
+                    $this->{sprintf($dataString)} ($datetime);
                     break;
-
+                
                 default:
-                    throw new ORMException ("La valeur de cette colonne ne correspond à aucune métadonnées");
+                    throw new ORMException ("Ce type de variable n'est pas pris en compte");
                     break;
             }
         }
-
         return $this;
     }
     
@@ -65,43 +65,7 @@ abstract class Model
 
 ////////////////////////////////////
 
-//    /**
-//     * @param array $result
-//     * @return Model
-//     * @throws ORMException
-//     */
-//    public function hydrate($result)
-//    {
-//        if(empty($result)) {
-//            throw new ORMException("Aucun résultat n'a été trouvé !");
-//        }
-//        $this->originalData = $result;
-//        foreach($result as $column => $value) {
-//            $this->hydrateProperty($column, $value);
-//        }
-//        return $this;
-//    }
-//
-//    /**
-//     * @param string $column
-//     * @param mixed $value
-//     */
-//    private function hydrateProperty($column, $value)
-//    {
-//        switch($this::metadata()["columns"][$column]["type"]) {
-//            case "integer":
-//                $this->{sprintf("set%s", ucfirst($this::metadata()["columns"][$column]["property"]))}((int) $value);
-//                break;
-//            case "string":
-//                $this->{sprintf("set%s", ucfirst($this::metadata()["columns"][$column]["property"]))}($value);
-//                break;
-//            case "datetime":
-//                $datetime = \DateTime::createFromFormat("Y-m-d H:i:s", $value);
-//                $this->{sprintf("set%s", ucfirst($this::metadata()["columns"][$column]["property"]))}($datetime);
-//                break;
-//        }
-//    }
-//
+
 //    /**
 //     * @param string $column
 //     * @return mixed
