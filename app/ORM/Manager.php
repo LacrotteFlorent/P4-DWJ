@@ -42,7 +42,10 @@ class Manager
     }
     /////////////////////////////
 
-
+    /**
+     * @param int $id
+     * @return Model
+     */
     public function find($id)
     {
         $format = 'SELECT %s FROM %s WHERE %s%d;'; 
@@ -61,6 +64,7 @@ class Manager
         print_r($result);
         echo '</pre>';
 
+        return (new $this->model())->hydrate($result);
     }
 
 
