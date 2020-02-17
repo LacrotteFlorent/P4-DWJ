@@ -65,11 +65,11 @@ class Database
      * @param string $model
      * @return Manager
      */
-    public function getManager($model) : Manager
+    public function getManager($model)
     {
         dump($model);
         $managerClass = $model::getManager();
-        $this->managers[$model] = $this->managers[$model] ?? new $mangerClass($this->pdo, $model);
+        $this->managers[$model] = $this->managers[$model] ?? new $managerClass($this->pdo, $model);
         return $this->managers[$model];
     }
 

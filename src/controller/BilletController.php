@@ -3,6 +3,7 @@
 namespace Project\Controller;
 
 use Framework\ORM\Controller;
+use Framework\ORM\Database;
 
 class BilletController extends Controller
 {
@@ -12,7 +13,7 @@ class BilletController extends Controller
     */
     public function afficherBillet($id)
     {
-        $billet = $this->getDatabase()->getManager(BilletController::class)->find($id);
+        $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
         dd($billet);
         return $this->render("testBillet.html.twig", [
             'billet' => $billet

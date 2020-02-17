@@ -2,7 +2,9 @@
 
 namespace Project\Manager;
 
-class BilletManager{
+use Framework\ORM\Manager;
+
+class BilletManager extends Manager{
 
     
     public function __constructor()

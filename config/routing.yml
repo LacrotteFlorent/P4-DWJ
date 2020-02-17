@@ -7,7 +7,7 @@ accueil:
 contact:
     path: /contact
     controller: Blog
-    action: redirection
+    action: index
 adminConnexion:
     path: /adminConnexion
     controller: Blog
