@@ -42,7 +42,7 @@ class Controller
         $this->database = Database::getInstance($request);
         $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/../../view');
         $this->twig = new \Twig\Environment($loader, array(
-            'cache' => false
+            'cache' => false    // le temps du développement on laisse le cache à false // __DIR__ . '/tmp'
         ));
     }
 
@@ -81,7 +81,7 @@ class Controller
      */
     protected function getDatabase()
     {
-        dump($this->database);
+        //dump($this->database);
         return $this->database;
     }
 

@@ -9,15 +9,21 @@ class BilletController extends Controller
 {
    /**
     * @param string $id
-    * @return render()
+    * @return Response
     */
     public function afficherBillet($id)
     {
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
-        dd($billet);
-        return $this->render("testBillet.html.twig", [
-            'billet' => $billet
-        ]);
+        dump($billet);
+
+        return $this->render("testBillet.html.twig", ['billet' => [
+            'id'        => $billet->getId(),
+            'title'     => $billet->getTitle(),
+            'content'   => $billet->getContent(),
+            'createdAt' => $billet->getCreatedAt(),
+            'postedAt'  => $billet->getPostedAt(),
+            'imageId'   => $billet->getImageId(),
+        ]]);
     }
 
 }

@@ -54,7 +54,7 @@ class BilletModel extends Model
     private $imageId;
 
     /**
-     * @
+     * @return array
      */
     public static function metadata()
     {
