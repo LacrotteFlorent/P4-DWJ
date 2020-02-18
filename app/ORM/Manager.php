@@ -45,13 +45,13 @@ class Manager
 
     /**
      * @param int $id
+     * @param string $from
      * @return Model
      */
-    public function find($id)
+    public function findAll($id, $from)
     {
         $format = 'SELECT %s FROM %s WHERE %s%d;'; 
         $select = "*";
-        $from = "post";
         $where = "id = ";
 
         $sqlQuery = sprintf($format, $select, $from, $where, $id);
@@ -63,6 +63,9 @@ class Manager
         return (new $this->model())->hydrate($result);
     }
 
+    // créer une fcontion qui vérifie si le modèle ne comporte pas déja les mêmes données
+    // par exemple si la requete envoyée a la BDD est identique et dans un délais de 2sec,
+    // on ne relance pas la requete mais utilise la précédente
 
 }
 

@@ -13,8 +13,10 @@ class BilletController extends Controller
     */
     public function afficherBillet($id)
     {
-        $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
+        $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findAll($id, "post");
         dump($billet);
+        dump($this->pullAltImage($billet->getImageId()));
+        
         return $this->render("testBillet.html.twig", ['billet' => [
             'id'                => $billet->getId(),
             'title'             => $billet->getTitle(),
@@ -22,7 +24,8 @@ class BilletController extends Controller
             'firstCaracContent' => $this->catchFirstCarac($billet->getContent()),
             'createdAt'         => $billet->getCreatedAt(),
             'postedAt'          => $billet->getPostedAt(),
-            'imageId'           => $billet->getImageId(),
+            'imageUrl'          => "../public/img/" . $this->pullImage($billet->getImageId()),
+            'altImage'          => $this->pullAltImage($billet->getImageId())
         ]]);
     }
 
@@ -44,6 +47,26 @@ class BilletController extends Controller
     {
         $firstCarac = $content{0};
         return ucfirst($firstCarac);
+    }
+
+    /**
+     * @param int $idImage
+     * @return string
+     */
+    private function pullImage($idImage)
+    {
+        $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->findAll($idImage, "image");
+        return $imageBillet->getName();
+    }
+
+    /**
+     * @param int $idImage
+     * @return string
+     */
+    private function pullAltImage($idImage)
+    {
+        $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->findAll($idImage, "image");
+        return $imageBillet->getAlt();
     }
 
 }

@@ -36,11 +36,11 @@ class ImageModel extends Model
                     "type"      =>"integer",
                     "property"  =>"id"
                 ],
-                "name"         =>[
+                "name"          =>[
                     "type"      =>"string",
                     "property"  =>"name"
                 ],
-                "alt"       =>[
+                "alt"           =>[
                     "type"      =>"string",
                     "property"  =>"alt"
                 ]

@@ -81,7 +81,6 @@ class Controller
      */
     protected function getDatabase()
     {
-        //dump($this->database);
         return $this->database;
     }
 
