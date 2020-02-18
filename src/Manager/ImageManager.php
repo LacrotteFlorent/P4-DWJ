@@ -4,7 +4,7 @@ namespace Project\Manager;
 
 use Framework\ORM\Manager;
 
-class BilletManager extends Manager{
+class ImageManager extends Manager{
 
     public function __constructor()
     {
