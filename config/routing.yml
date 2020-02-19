@@ -40,3 +40,7 @@ testBillet:
     path: /testBillet/:id
     controller: Billet
     action: afficherBillet
+public:
+    path: /public/css/
+    controller: Blog
+    action: default

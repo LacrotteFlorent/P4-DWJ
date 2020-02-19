@@ -1,0 +1,5 @@
+TODO
+
+*Routes
+=> si un billet arrive avec aucune id (exemple= index.php/testBillet/)=> on redirige vers le billet 1  (index.php/testBillet/1)
+

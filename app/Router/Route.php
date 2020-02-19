@@ -74,7 +74,6 @@ class Route {
         $controller = new $controller($request, $router);
         if($this->matches){
             return call_user_func_array([$controller, $this->action], $this->matches);
-            dd($this->matches);
         }
         return call_user_func_array([$controller, $this->action], array('0'));
     }

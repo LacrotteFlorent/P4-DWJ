@@ -84,4 +84,6 @@ class Controller
         return $this->database;
     }
 
+    public function default(){return new Response('');}
+
 }
