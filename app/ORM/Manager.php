@@ -48,7 +48,7 @@ class Manager
      * @param string $from
      * @return Model
      */
-    public function findAll($id, $from)
+    public function find($id, $from)
     {
         $format = 'SELECT %s FROM %s WHERE %s%s;'; 
         $select = "*";
@@ -56,8 +56,9 @@ class Manager
 
         $sqlQuery = sprintf($format, $select, $from, $where, $id);
 
-        $result = $this->statement($sqlQuery);
-        return (new $this->model())->hydrate($result);
+        return $this->fetch($sqlQuery);
+
+        //return (new $this->model())->hydrate($result);
     }
 
     /**
@@ -73,22 +74,47 @@ class Manager
         $where = $nameParam . " = " . $param;
 
         $sqlQuery = sprintf($format, $select, $from, $where);
-        
-        $result = $this->statement($sqlQuery);
-        return (new $this->model())->hydrate($result);
+
+        return $this->fetchAll($sqlQuery);
     }
 
     /**
      * @param string $sqlQuery
      * @return array
      */
-    private function statement($sqlQuery)
+    private function fetch($sqlQuery)
     {
         $statement = $this->pdo->prepare($sqlQuery);
         $statement->execute();
+        dump($statement);
+        
         $result = $statement->fetch(\PDO::FETCH_ASSOC);
+        dump($result);
+
+        $result = (new $this->model())->hydrate($result);
 
         return $result;
+    }
+
+    /**
+     * @param string $sqlQuery
+     * @return array
+     */
+    private function fetchAll($sqlQuery)
+    {
+        $statement = $this->pdo->prepare($sqlQuery);
+        $statement->execute();
+        dump($statement);
+        
+        $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        dump($results);
+
+        $data = [];
+        foreach($results as $result){
+            $data = (new $this->model())->hydrate($result);
+        }
+
+        return $data;
     }
 
     // créer une fcontion qui vérifie si le modèle ne comporte pas déja les mêmes données

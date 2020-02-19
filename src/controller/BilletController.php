@@ -13,12 +13,13 @@ class BilletController extends Controller
     */
     public function showBillet($id)
     {
-        $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findAll($id, "post");
+        $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id, "post");
         dump($billet);
         dump($this->pullAltImage($billet->getImageId()));
+
+        $this->showComments($id);
         
         return $this->render("testBillet.html.twig", ['billet' => [
-            'id'                => $billet->getId(),
             'title'             => $billet->getTitle(),
             'content'           => $this->deleteFirstCarac($billet->getContent()),
             'firstCaracContent' => $this->catchFirstCarac($billet->getContent()),
@@ -27,9 +28,17 @@ class BilletController extends Controller
         ]]);
     }
 
-    private function showComments()
+    private function showComments($idPost)
     {
-        $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAll($id, "comment");
+        $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findByParam("post_id" ,$idPost, "comment");
+        dump($comments);
+
+        return $this->render("testBillet.html.twig", ['comments' => [
+            'author'            => $comments->getAuthor(),
+            'content'           => $comments->getContent(),
+            'postedAt'          => $comments->getPostedAt()
+        ]]);
+
     }
 
     /**
@@ -58,7 +67,7 @@ class BilletController extends Controller
      */
     private function pullImage($idImage)
     {
-        $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->findAll($idImage, "image");
+        $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($idImage, "image");
         return $imageBillet->getName();
     }
 
@@ -68,7 +77,7 @@ class BilletController extends Controller
      */
     private function pullAltImage($idImage)
     {
-        $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->findAll($idImage, "image");
+        $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($idImage, "image");
         return $imageBillet->getAlt();
     }
 

@@ -62,16 +62,13 @@
             </div>
             <div id="comBillet" class="row justify-content-center mb-5">
                     <div class="col-12 col-sm-10 col-md-8 shadow-lg py-4">
-                        <div class="mb-4 border p-1 rounded-sm">
-                            <h4 class="m-0 pb-1">JeanCharles Dupont</h4>
-                            <p class="">Je trouve votre façon d'écrire très interrssante malgrès le manque de d'intrigue</p>
-                            <p class="dateCom m-0">Le 23 Dec 2019</p>
-                        </div>
-                        <div class="mb-4 border p-1 rounded-sm">
-                            <h4 class="m-0 pb-1">Voltaire du 36</h4>
-                            <p>J'adore votre contenu et tout les chapitre de votre bouquin, il mérite à être connus de tous, continuez dans la même direction. Nous attendons avec impatience votre prochain chapitre !</p>
-                            <p class="dateCom m-0">Le 2 Jan 2020</p>
-                        </div>
+                        {% for comment in comments %}
+                            <div class="mb-4 border p-1 rounded-sm">
+                                <h4 class="m-0 pb-1">{{comment.author}}</h4>
+                                <p class="">{{comment.content}}</p>
+                                <p class="dateCom m-0">{{comment.postedAt}}</p>
+                            </div>
+                        {% endfor %}
                     </div>
             </div>
             
