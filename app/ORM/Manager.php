@@ -50,17 +50,45 @@ class Manager
      */
     public function findAll($id, $from)
     {
-        $format = 'SELECT %s FROM %s WHERE %s%d;'; 
+        $format = 'SELECT %s FROM %s WHERE %s%s;'; 
         $select = "*";
         $where = "id = ";
 
         $sqlQuery = sprintf($format, $select, $from, $where, $id);
 
+        $result = $this->statement($sqlQuery);
+        return (new $this->model())->hydrate($result);
+    }
+
+    /**
+     * @param string $nameParam
+     * @param mixed $param
+     * @param string $from
+     * @return Model
+     */
+    public function findByParam($nameParam, $param, $from)
+    {
+        $format = 'SELECT %s FROM %s WHERE %s';
+        $select = "*";
+        $where = $nameParam . " = " . $param;
+
+        $sqlQuery = sprintf($format, $select, $from, $where);
+        
+        $result = $this->statement($sqlQuery);
+        return (new $this->model())->hydrate($result);
+    }
+
+    /**
+     * @param string $sqlQuery
+     * @return array
+     */
+    private function statement($sqlQuery)
+    {
         $statement = $this->pdo->prepare($sqlQuery);
         $statement->execute();
         $result = $statement->fetch(\PDO::FETCH_ASSOC);
 
-        return (new $this->model())->hydrate($result);
+        return $result;
     }
 
     // créer une fcontion qui vérifie si le modèle ne comporte pas déja les mêmes données

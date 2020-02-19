@@ -11,7 +11,7 @@ class BilletController extends Controller
     * @param string $id
     * @return Response
     */
-    public function afficherBillet($id)
+    public function showBillet($id)
     {
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findAll($id, "post");
         dump($billet);
@@ -22,11 +22,14 @@ class BilletController extends Controller
             'title'             => $billet->getTitle(),
             'content'           => $this->deleteFirstCarac($billet->getContent()),
             'firstCaracContent' => $this->catchFirstCarac($billet->getContent()),
-            'createdAt'         => $billet->getCreatedAt(),
-            'postedAt'          => $billet->getPostedAt(),
             'imageUrl'          => "../public/img/" . $this->pullImage($billet->getImageId()),
             'altImage'          => $this->pullAltImage($billet->getImageId())
         ]]);
+    }
+
+    private function showComments()
+    {
+        $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAll($id, "comment");
     }
 
     /**
