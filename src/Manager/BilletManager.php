@@ -7,9 +7,21 @@ use Framework\ORM\Manager;
 class BilletManager extends Manager
 {
 
-    public function __constructor()
+    /**
+     * @param string $from
+     * @param int $limit
+     * @example requete: SELECT * FROM post ORDER BY posted_at DESC LIMIT 3
+     * @return Model
+     */
+    public function findByPostedAtWithLimit($from, $limit)
     {
+        $format = 'SELECT %s FROM %s ORDER BY posted_at DESC LIMIT %s';
 
+        $select = "*";
+
+        $sqlQuery = sprintf($format, $select, $from, $limit);
+
+        return $this->fetchAll($sqlQuery);
     }
 
 }

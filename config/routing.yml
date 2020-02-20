@@ -2,8 +2,8 @@
 #ROUTING website jeanForteroche
 accueil:
     path: /
-    controller: Blog
-    action: index
+    controller: Host
+    action: showHost
 contact:
     path: /contact
     controller: Blog

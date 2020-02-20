@@ -57,8 +57,6 @@ class Manager
         $sqlQuery = sprintf($format, $select, $from, $where, $id);
 
         return $this->fetch($sqlQuery);
-
-        //return (new $this->model())->hydrate($result);
     }
 
     /**
@@ -79,17 +77,31 @@ class Manager
     }
 
     /**
+     * @param string $from
+     * @param int $limit
+     * @return Model
+     */
+    public function findAllWithLimit($from, $limit)
+    {   
+        $format = 'SELECT %s FROM %s LIMIT %s';
+
+        $select = "*";
+
+        $sqlQuery = sprintf($format, $select, $from, $limit);
+
+        return $this->fetchAll($sqlQuery);
+    }
+
+    /**
      * @param string $sqlQuery
      * @return array
      */
-    private function fetch($sqlQuery)
+    protected function fetch($sqlQuery)
     {
         $statement = $this->pdo->prepare($sqlQuery);
         $statement->execute();
-        dump($statement);
         
         $result = $statement->fetch(\PDO::FETCH_ASSOC);
-        dump($result);
 
         $result = (new $this->model())->hydrate($result);
 
@@ -100,11 +112,10 @@ class Manager
      * @param string $sqlQuery
      * @return array
      */
-    private function fetchAll($sqlQuery)
+    protected function fetchAll($sqlQuery)
     {
         $statement = $this->pdo->prepare($sqlQuery);
         $statement->execute();
-        dump($statement);
         
         $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
         dump($results);
