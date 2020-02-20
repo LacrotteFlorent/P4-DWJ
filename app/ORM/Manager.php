@@ -118,13 +118,11 @@ class Manager
         $statement->execute();
         
         $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
-        dump($results);
 
         $data = [];
         foreach($results as $result){
-            $data = (new $this->model())->hydrate($result);
+            array_push($data, (new $this->model())->hydrate($result));
         }
-
         return $data;
     }
 

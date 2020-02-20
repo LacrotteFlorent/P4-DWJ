@@ -14,17 +14,23 @@ class HostController extends Controller
     */
     public function showHost()
     {
-        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit("post", 4);
+        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit("post", 3);
         dump($billets);
-        //dump($this->pullAltImage($billet->getImageId()));
 
-        return $this->render("host.html.twig", [
-                'billet' =>[
-                    'title'             => $billet->getTitle(),
-                    'content'           => $billet->getContent(),
-                    'imageUrl'          => "../public/img/" . $this->pullImage($billet->getImageId()),
-                    'altImage'          => $this->pullAltImage($billet->getImageId())
-        ]]);
+        $data = [];
+        foreach($billets as $billet){
+            array_push($data, [
+                'title'        => $billet->getTitle(),
+                'content'      => $billet->getContent(),
+                'imageUrl'     => ("../public/img/" . $this->pullImage($billet->getImageId())),
+                'altImage'     => $this->pullAltImage($billet->getImageId()),
+                'postedAt'     => $billet->getPostedAt()
+            ]);
+        }
+        dump($data);
+
+        dump(['billet' => $data]);
+        return $this->render("host.html.twig", ['billets' => $data]);
     }
 
     /**

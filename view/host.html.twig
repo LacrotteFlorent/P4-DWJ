@@ -1,202 +1,151 @@
 {% extends'template.html.twig' %}
 
-<html>
 
-    {% block head %}
-    <!-- Titre -->
-    <title>Accueil Jean Forteroche</title>
-    {% endblock head %}
+
+{% block head %}
+<!-- Titre -->
+<title>Accueil Jean Forteroche</title>
+{% endblock head %}
+
+{% block body %}
+<body>
+    <div class="container-fluid">
     
-    {% block body %}
-    <body>
-        <div class="container-fluid">
-        
-            {% include "include_header.html" %}
+        {% include "include_header.html" %}
 
-            <section class="row pb-4" id="topLeaf">
-                <div id="spaceLeaf" class="col-2 d-none d-sm-block"></div>
-                <div id="photoLeaf" class="col-12 col-sm-8">
-                    <div id="frameworkLeaf" class="row">
-                        <div id="textLeaf" class="col-12 mt-3 m-sm-3">
-                            <h2>"Billet simple pour l'Alaska"</h2>
-                            <p>Un roman publié en ligne</p>
-                        </div>
-                        <div id="inputLeaf" class="col-12 mb-3">
-                            <button>Dernier Chapitres</button>
-                            <button>A Propos</button>
-                            <button>Livre</button>
-                        </div>
+        <section class="row pb-4" id="topLeaf">
+            <div id="spaceLeaf" class="col-2 d-none d-sm-block"></div>
+            <div id="photoLeaf" class="col-12 col-sm-8">
+                <div id="frameworkLeaf" class="row">
+                    <div id="textLeaf" class="col-12 mt-3 m-sm-3">
+                        <h2>"Billet simple pour l'Alaska"</h2>
+                        <p>Un roman publié en ligne</p>
+                    </div>
+                    <div id="inputLeaf" class="col-12 mb-3">
+                        <button>Dernier Chapitres</button>
+                        <button>A Propos</button>
+                        <button>Livre</button>
                     </div>
                 </div>
-                <div class="spaceLeaf col-2 d-none d-sm-block"></div>
-            </section>
+            </div>
+            <div class="spaceLeaf col-2 d-none d-sm-block"></div>
+        </section>
 
-            <section class="row" id="insert">
-                <div class="col-12">
-                    <p><i>"J'ai fait le choix de partager ce livre avec vous en m'affranchissant d'un éditeur classique"</i></p>
-                    <p><i>Partagez mon aventure !</i></p>
-                    <div class="socialNetwork">
-                        <div id="facebook" class="circle d-flex justify-content-center align-items-center">
-                            <i class="fab fa-facebook-f"></i>
-                        </div>
-                        <div id="instagram" class="circle d-flex justify-content-center align-items-center">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <div id="twitter" class="circle d-flex justify-content-center align-items-center">
-                            <i class="fab fa-twitter"></i>
-                        </div>
+        <section class="row" id="insert">
+            <div class="col-12">
+                <p><i>"J'ai fait le choix de partager ce livre avec vous en m'affranchissant d'un éditeur classique"</i></p>
+                <p><i>Partagez mon aventure !</i></p>
+                <div class="socialNetwork">
+                    <div id="facebook" class="circle d-flex justify-content-center align-items-center">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div id="instagram" class="circle d-flex justify-content-center align-items-center">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div id="twitter" class="circle d-flex justify-content-center align-items-center">
+                        <i class="fab fa-twitter"></i>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section  class="row justify-content-center" id="news">
-                <div class="col-10">
-                    <h2>Derniers Chapitres</h2>
-                    <div class="splitter">
-                        <div class="row justify-content-center">
-                            <div class="split col-10"></div>
-                        </div>
-                    </div>
-                </div>
-                <div id=frameworkNews class="col-12 col-sm-10">
-                    <div class="row px-2 mt-3">
-                        <div class="chapter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                            <div class="row justify-content-center">
-                                <div class="photoChapter col-10">
-                                    <img src="../public/img/chapter1.jpg" />
-                                </div>
-                            </div>
-                            <div class="context">
-                                <h3>La route de tous les malheurs</h3>
-                                <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
-                                <p class="contentChapter">Salut, il était une fois une jolie princesse au royaumme des neiges qui rencontre un gentil bonhomme de neige Olaf ... </p>
-                            </div>
-                            <div class="more">
-                                <button>Lire la suite</button>
-                            </div>
-                            <div class="socialNetworkChapter mx-3 row">
-                                <div class="split col-3 d-none d-sm-block"></div>
-                                <div class="socialCircles col-10 col-sm-6">
-                                    <div class="row">
-                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
-                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
-                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
-                                    </div>
-                                </div>
-                                <div class="split col-3 d-none d-sm-block"></div>
-                            </div>
-                        </div>
-                        <div class="chapter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                            <div class="row justify-content-center">
-                                <div class="photoChapter col-10">
-                                    <img src="../public/img/chapter1.jpg" />
-                                </div>
-                            </div>
-                            <div class="context">
-                                <h3>La route de tous les malheurs</h3>
-                                <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
-                                <p class="contentChapter">Salut, il était une fois une jolie princesse au royaumme des neiges qui rencontre un gentil bonhomme de neige Olaf ... </p>
-                            </div>
-                            <div class="more">
-                                <button>Lire la suite</button>
-                            </div>
-                            <div class="socialNetworkChapter mx-3 row">
-                                <div class="split col-3 d-none d-sm-block"></div>
-                                <div class="socialCircles col-10 col-sm-6">
-                                    <div class="row">
-                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
-                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
-                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
-                                    </div>
-                                </div>
-                                <div class="split col-3 d-none d-sm-block"></div>
-                            </div>
-                        </div>
-                        <div class="chapter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                            <div class="row justify-content-center">
-                                <div class="photoChapter col-10">
-                                    <img src="../public/img/chapter1.jpg" />
-                                </div>
-                            </div>
-                            <div class="context">
-                                <h3>La route de tous les malheurs</h3>
-                                <p class="dateChapter">Publié le 34 décembre 2393  à 14h44</p>
-                                <p class="contentChapter">Salut, il était une fois une jolie princesse au royaumme des neiges qui rencontre un gentil bonhomme de neige Olaf ... </p>
-                            </div>
-                            <div class="more">
-                                <button>Lire la suite</button>
-                            </div>
-                            <div class="socialNetworkChapter mx-3 row">
-                                <div class="split col-3 d-none d-sm-block"></div>
-                                <div class="socialCircles col-10 col-sm-6">
-                                    <div class="row">
-                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
-                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
-                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
-                                    </div>
-                                </div>
-                                <div class="split col-3 d-none d-sm-block"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="row justify-content-center" id="about">
-                <div class="col-10">
-                    <h2>A propos</h2>
-                </div>
-                <div class="splitter col-12">
-                    <div class="row">
-                        <div class="spaceSplit col-1"></div>
+        <section  class="row justify-content-center" id="news">
+            <div class="col-10">
+                <h2>Derniers Chapitres</h2>
+                <div class="splitter">
+                    <div class="row justify-content-center">
                         <div class="split col-10"></div>
-                        <div class="spaceSplit col-1"></div>
                     </div>
                 </div>
-                <div class="col-10">
-                    <div id="book" class="inset book row">
-                        <div class="title col-12 my-lg-4">
-                            <h3>Le livre</h3>
-                            <div class="row justify-content-start">
-                                <div class="split col-6"></div>
+            </div>
+            <div id="frameworkNews" class="col-12 col-sm-10">
+                <div class="row px-2 mt-3">
+                    {% for billet in billets %}
+                        <div class="chapter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                            <div class="row justify-content-center">
+                                <div class="photoChapter col-10">
+                                    <img src="{{billet.imageUrl}}" alt="{{billet.altImage}}" />
+                                </div>
+                            </div>
+                            <div class="context">
+                                <h3>{{billet.title}}</h3>
+                                <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
+                                <p class="contentChapter">{{billet.content}}</p>
+                            </div>
+                            <div class="more">
+                                <button>Lire la suite</button>
+                            </div>
+                            <div class="socialNetworkChapter mx-3 row">
+                                <div class="split col-3 d-none d-sm-block"></div>
+                                <div class="socialCircles col-10 col-sm-6">
+                                    <div class="row">
+                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
+                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
+                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
+                                    </div>
+                                </div>
+                                <div class="split col-3 d-none d-sm-block"></div>
                             </div>
                         </div>
-                        <div class="photo col-12 col-sm-12 col-md-5">
-                            <img src="../public/img/chapter2.jpg" />
-                        </div>
-                        <div class="content col-12 col-sm-12 col-md-7">
-                            <h3 Class="my-3 m-md-0 mb-md-3">Billet simple pour l'Alaska</h3>
-                            <p>Est un roman publié par Jean Forteroche, en autopublication sur internet à partir du 34 juillon 4356.</p>
-                            <p>Le but étant de laisser libre court au préccesus créatif, aucunes barrière entre le lecteur et l'auteur.</p>
-                            <p>Il est publié sous forme de chapitres individuel que vous pouvez lire à chaque nouvelles publication.</p>
-                            <p>C'est l'histoire de ma jeunesse et des hommes et femmes que j'ai rencontré en vivant cette aventure extraordinaire, d'aller vivre en Alaska</p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
-                <div class="col-10">
-                    <div id="author" class="inset author row">
-                        <div class="title col-12 mb-lg-4">
-                            <h3>L'auteur</h3>
-                            <div class="row justify-content-end">
-                                <div class="split col-6"></div>
-                            </div>
-                        </div>
-                        <div class="content col-12 col-sm-12 col-md-7">
-                            <h3 class="mb-1 m-md-0">Jean Forteroche</h3>
-                            <p>Je me suis révélé écrivaint que tard, et heureusement j'ai eu la chance de vivre de grandes aventures.</p>
-                            <p>Ce ne sera pas mon premier roman, mais les précédent "Au pays des Merveilles - 2003" et "Dans la grande tourmante - 1999" on été publié de manière classique ches les éditions bigflammion.</p>
-                            <p>Je suis originaire de haute savoie et nés de parents explorateurs.</p>
-                        </div>
-                        <div class="photo col-12 col-sm-12 col-md-5">
-                            <img src="../public/img/jean_forteroche.jpg" />
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            {% include "include_footer.html" %}
-        </div>
-    </body>
-    {% endblock body %}
+            </div>
+        </section>
 
-</html>
+        <section class="row justify-content-center" id="about">
+            <div class="col-10">
+                <h2>A propos</h2>
+            </div>
+            <div class="splitter col-12">
+                <div class="row">
+                    <div class="spaceSplit col-1"></div>
+                    <div class="split col-10"></div>
+                    <div class="spaceSplit col-1"></div>
+                </div>
+            </div>
+            <div class="col-10">
+                <div id="book" class="inset book row">
+                    <div class="title col-12 my-lg-4">
+                        <h3>Le livre</h3>
+                        <div class="row justify-content-start">
+                            <div class="split col-6"></div>
+                        </div>
+                    </div>
+                    <div class="photo col-12 col-sm-12 col-md-5">
+                        <img src="../public/img/chapter2.jpg" />
+                    </div>
+                    <div class="content col-12 col-sm-12 col-md-7">
+                        <h3 Class="my-3 m-md-0 mb-md-3">Billet simple pour l'Alaska</h3>
+                        <p>Est un roman publié par Jean Forteroche, en autopublication sur internet à partir du 34 juillon 4356.</p>
+                        <p>Le but étant de laisser libre court au préccesus créatif, aucunes barrière entre le lecteur et l'auteur.</p>
+                        <p>Il est publié sous forme de chapitres individuel que vous pouvez lire à chaque nouvelles publication.</p>
+                        <p>C'est l'histoire de ma jeunesse et des hommes et femmes que j'ai rencontré en vivant cette aventure extraordinaire, d'aller vivre en Alaska</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10">
+                <div id="author" class="inset author row">
+                    <div class="title col-12 mb-lg-4">
+                        <h3>L'auteur</h3>
+                        <div class="row justify-content-end">
+                            <div class="split col-6"></div>
+                        </div>
+                    </div>
+                    <div class="content col-12 col-sm-12 col-md-7">
+                        <h3 class="mb-1 m-md-0">Jean Forteroche</h3>
+                        <p>Je me suis révélé écrivaint que tard, et heureusement j'ai eu la chance de vivre de grandes aventures.</p>
+                        <p>Ce ne sera pas mon premier roman, mais les précédent "Au pays des Merveilles - 2003" et "Dans la grande tourmante - 1999" on été publié de manière classique ches les éditions bigflammion.</p>
+                        <p>Je suis originaire de haute savoie et nés de parents explorateurs.</p>
+                    </div>
+                    <div class="photo col-12 col-sm-12 col-md-5">
+                        <img src="../public/img/jean_forteroche.jpg" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        {% include "include_footer.html" %}
+    </div>
+</body>
+{% endblock body %}
+

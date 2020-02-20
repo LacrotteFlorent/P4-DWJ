@@ -28,6 +28,10 @@ class BilletController extends Controller
         ]]);
     }
 
+    /**
+     * @param int $idPost
+     * @return Response
+     */
     private function showComments($idPost)
     {
         $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findByParam("post_id" ,$idPost, "comment");
