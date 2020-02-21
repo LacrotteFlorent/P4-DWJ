@@ -4,6 +4,10 @@ accueil:
     path: /
     controller: Host
     action: showHost
+accueil2:
+    path: /host
+    controller: Host
+    action: showHost
 contact:
     path: /contact
     controller: Blog
@@ -27,7 +31,7 @@ billet:
 blog:
     path: /blog
     controller: Blog
-    action: index
+    action: showBlog
 legal:
     path: /legal
     controller: Blog

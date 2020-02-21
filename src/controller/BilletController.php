@@ -17,7 +17,7 @@ class BilletController extends Controller
         dump($billet);
         dump($this->pullAltImage($billet->getImageId()));
 
-        $this->showComments($id);
+        $dataComments = $this->showComments($id);
         
         return $this->render("testBillet.html.twig", ['billet' => [
             'title'             => $billet->getTitle(),
@@ -25,24 +25,29 @@ class BilletController extends Controller
             'firstCaracContent' => $this->catchFirstCarac($billet->getContent()),
             'imageUrl'          => "../public/img/" . $this->pullImage($billet->getImageId()),
             'altImage'          => $this->pullAltImage($billet->getImageId())
-        ]]);
+            ], 
+            'comments' => $dataComments]);
     }
 
     /**
      * @param int $idPost
-     * @return Response
+     * @return array
      */
     private function showComments($idPost)
     {
         $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findByParam("post_id" ,$idPost, "comment");
-        dump($comments);
 
-        return $this->render("testBillet.html.twig", ['comments' => [
-            'author'            => $comments->getAuthor(),
-            'content'           => $comments->getContent(),
-            'postedAt'          => $comments->getPostedAt()
-        ]]);
+        $data = [];
+        foreach($comments as $comment){
+            array_push($data, [
+                'author'        => $this->replaceAuthor($comment->getAuthor()),
+                'content'       => $comment->getContent(),
+                'postedAt'      => $comment->getPostedAt()
+            ]);
+        }
 
+        dump($data);
+        return $data;
     }
 
     /**
@@ -83,6 +88,19 @@ class BilletController extends Controller
     {
         $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($idImage, "image");
         return $imageBillet->getAlt();
+    }
+
+    /**
+     * @param string $author
+     * @return string
+     */
+    private function replaceAuthor($author)
+    {
+        if(!$author){
+            $author = "Guest";
+        }
+
+        return $author;
     }
 
 }

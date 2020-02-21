@@ -46,6 +46,7 @@ class Manager
     /**
      * @param int $id
      * @param string $from
+     * @example requete: SELECT * FROM post WHERE id = 2
      * @return Model
      */
     public function find($id, $from)
@@ -63,6 +64,7 @@ class Manager
      * @param string $nameParam
      * @param mixed $param
      * @param string $from
+     * @example requete: SELECT * FROM post WHERE post_id = 3
      * @return Model
      */
     public function findByParam($nameParam, $param, $from)
@@ -79,6 +81,7 @@ class Manager
     /**
      * @param string $from
      * @param int $limit
+     * @example requete: SELECT * FROM post LIMIT 3
      * @return Model
      */
     public function findAllWithLimit($from, $limit)
@@ -90,6 +93,16 @@ class Manager
         $sqlQuery = sprintf($format, $select, $from, $limit);
 
         return $this->fetchAll($sqlQuery);
+    }
+
+    /**
+     * @param $param
+     * @example SELECT post_id, COUNT(post_id) FROM comment WHERE post_id = 2 
+     * @return int
+     */
+    public function countParam($param)
+    {
+
     }
 
     /**

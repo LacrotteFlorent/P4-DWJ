@@ -3,7 +3,7 @@
 {% block head %}
     <!-- Titre -->
     <title>Test Billet</title>
-{% endblock %}
+{% endblock head %}
 
 {% block body %}
     <body id="bodyBillet">
@@ -14,7 +14,7 @@
             <div id="billet" class="row justify-content-center my-5">
                 <div class="col-12 col-sm-10 col-md-8 text-center">
                     <div class="row justify-content-center mb-5">
-                        <img src={{billet.imageUrl}} alt='{{billet.altImage}}' />
+                        <img src="{{billet.imageUrl}}" alt='{{billet.altImage}}' />
                     </div>
                     <h2>{{billet.title}}</h2>
                     <p><span class="billetCapitalize">{{billet.firstCaracContent}}</span>{{billet.content}}</p>
@@ -66,15 +66,14 @@
                             <div class="mb-4 border p-1 rounded-sm">
                                 <h4 class="m-0 pb-1">{{comment.author}}</h4>
                                 <p class="">{{comment.content}}</p>
-                                <p class="dateCom m-0">{{comment.postedAt}}</p>
+                                <p class="dateCom m-0">{{comment.postedAt|date('d-m-Y \à H:i:s')}}</p>
                             </div>
                         {% endfor %}
                     </div>
             </div>
             
             {% include "include_footer.html" %}
-
         </div>
 
     </body>
-{% endblock %}
+{% endblock body %}
