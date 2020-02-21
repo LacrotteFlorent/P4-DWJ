@@ -97,7 +97,7 @@ class Manager
 
     /**
      * @param $param
-     * @example SELECT post_id, COUNT(post_id) FROM comment WHERE post_id = 2 
+     * @example SELECT COUNT(*) FROM comment WHERE post_id = 2 
      * @return int
      */
     public function countParam($param)
