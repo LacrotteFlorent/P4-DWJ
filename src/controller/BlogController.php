@@ -14,19 +14,20 @@ class BlogController extends Controller
     {
         $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit("post", 5);
 
-        $data = [];
-        foreach($billets as $billet){
-            array_push($data, [
-                'title'         => $billet->getTitle(),
-                'content'       => $this->reduceContent($billet->getContent(), 1000),
-                'imageUrl'      => ("../public/img/" . $this->pullImage($billet->getImageId())),
-                'altImage'      => $this->pullAltImage($billet->getImageId()),
-                'postedAt'      => $billet->getPostedAt(),
-                'nbLikes'       => $billet->getLikeCount()
-            ]);
-        }
 
-        return $this->render("blog.html.twig", ['billets' => $data]);
+        //$data = [];
+        //foreach($billets as $billet){
+        //    array_push($data, [
+        //        'title'         => $billet->getTitle(),
+        //        'content'       => $this->reduceContent($billet->getContent(), 1000),
+        //        'imageUrl'      => ("../public/img/" . $this->pullImage($billet->getImageId())),
+        //        'altImage'      => $this->pullAltImage($billet->getImageId()),
+        //        'postedAt'      => $billet->getPostedAt(),
+        //        'nbLikes'       => $billet->getLikeCount()
+        //    ]);
+        //}
+
+        return $this->render("blog.html.twig", ['billets' => $billets, 'image' => $image]);
     }
 
     /**

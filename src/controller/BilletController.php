@@ -14,19 +14,23 @@ class BilletController extends Controller
     public function showBillet($id)
     {
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id, "post");
+        $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findByParam("post_id" ,$id, "comment");
+
         dump($billet);
         dump($this->pullAltImage($billet->getImageId()));
 
-        $dataComments = $this->showComments($id);
+        //$dataComments = $this->showComments($id);
+
+        return $this->render("testBillet.html.twig", ['billet' => $billet, 'comments' => $comments]);
         
-        return $this->render("testBillet.html.twig", ['billet' => [
-            'title'             => $billet->getTitle(),
-            'content'           => $this->deleteFirstCarac($billet->getContent()),
-            'firstCaracContent' => $this->catchFirstCarac($billet->getContent()),
-            'imageUrl'          => "../public/img/" . $this->pullImage($billet->getImageId()),
-            'altImage'          => $this->pullAltImage($billet->getImageId())
-            ], 
-            'comments' => $dataComments]);
+        //return $this->render("testBillet.html.twig", ['billet' => [
+        //    'title'             => $billet->getTitle(),
+        //    'content'           => $this->deleteFirstCarac($billet->getContent()),
+        //    'firstCaracContent' => $this->catchFirstCarac($billet->getContent()),
+        //    'imageUrl'          => "../public/img/" . $this->pullImage($billet->getImageId()),
+        //    'altImage'          => $this->pullAltImage($billet->getImageId())
+        //    ], 
+        //    'comments' => $dataComments]);
     }
 
     /**
