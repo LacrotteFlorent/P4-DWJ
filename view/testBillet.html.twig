@@ -2,7 +2,7 @@
 
 {% block head %}
     <!-- Titre -->
-    <title>Test Billet</title>
+    <title>{{billet.title}}</title>
 {% endblock head %}
 
 {% block body %}
@@ -17,7 +17,7 @@
                         <img src="{{billet.imageUrl}}" alt='{{billet.altImage}}' />
                     </div>
                     <h2>{{billet.title}}</h2>
-                    <p><span class="billetCapitalize">{{billet.firstCaracContent}}</span>{{billet.content}}</p>
+                    <p><span class="billetCapitalize">{{billet.content|onlyFirstLetter}}</span>{{billet.content|deleteFirstLetter}}</p>
                 </div>
             </div>
             <div class="socialNetworkBillet row py-4">

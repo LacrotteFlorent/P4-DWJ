@@ -19,6 +19,8 @@ class PersonalFilters extends AbstractExtension
         return [
 
             new TwigFilter('troncate', [$this, 'troncate']),
+            new TwigFilter('deleteFirstLetter', [$this, 'deleteFirstLetter']),
+            new TwigFilter('onlyFirstLetter', [$this, 'onlyFirstLetter']),
 
         ];
     }
@@ -33,6 +35,26 @@ class PersonalFilters extends AbstractExtension
         $troncate = substr($content, 0, $nbCarac);
         
         return $troncate . " ...";
+    }
+
+    /**
+     * @param string $content
+     * @return string $contentWithoutFirst
+     */
+    public function deleteFirstLetter($content)
+    {
+        $stringWithoutFirst = substr($content, 1);
+        return $stringWithoutFirst;
+    }
+
+    /**
+     * @param string $caracString
+     * @return string $firstCarac
+     */
+    public function onlyFirstLetter($content)
+    {
+        $firstCarac = $content{0};
+        return ucfirst($firstCarac);
     }
 
 }

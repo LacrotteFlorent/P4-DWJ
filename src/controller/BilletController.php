@@ -16,21 +16,8 @@ class BilletController extends Controller
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id, "post");
         $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findByParam("post_id" ,$id, "comment");
 
-        dump($billet);
-        dump($this->pullAltImage($billet->getImageId()));
-
-        //$dataComments = $this->showComments($id);
-
         return $this->render("testBillet.html.twig", ['billet' => $billet, 'comments' => $comments]);
         
-        //return $this->render("testBillet.html.twig", ['billet' => [
-        //    'title'             => $billet->getTitle(),
-        //    'content'           => $this->deleteFirstCarac($billet->getContent()),
-        //    'firstCaracContent' => $this->catchFirstCarac($billet->getContent()),
-        //    'imageUrl'          => "../public/img/" . $this->pullImage($billet->getImageId()),
-        //    'altImage'          => $this->pullAltImage($billet->getImageId())
-        //    ], 
-        //    'comments' => $dataComments]);
     }
 
     /**
@@ -54,25 +41,9 @@ class BilletController extends Controller
         return $data;
     }
 
-    /**
-     * @param string $content
-     * @return string $contentWithoutFirst
-     */
-    private function deleteFirstCarac($content)
-    {
-        $stringWithoutFirst = substr($content, 1);
-        return $stringWithoutFirst;
-    }
+    
 
-    /**
-     * @param string $caracString
-     * @return string $firstCarac
-     */
-    private function catchFirstCarac($content)
-    {
-        $firstCarac = $content{0};
-        return ucfirst($firstCarac);
-    }
+    
 
     /**
      * @param int $idImage
