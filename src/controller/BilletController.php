@@ -11,7 +11,7 @@ class BilletController extends Controller
     * @param string $id
     * @return Response
     */
-    public function showBillet($id)
+    public function show($id)
     {
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id, "post");
         $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findByParam("post_id" ,$id, "comment");

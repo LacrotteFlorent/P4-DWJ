@@ -14,50 +14,50 @@
                 <!-- main section with content -->
                 <section id="blogContent" class="col-12 col-lg-9">
                     <!-- new chapter -->
-                        <section id="blogLastChapter" class="row ">
+                    <section id="blogLastChapter" class="row ">
                         {% for billet in billets %}
                             {% if loop.first %}
-                            <div id="blogLastChapterPhoto" class="col-12">
-                                <img src="{{billet.imageUrl}}"  alt="{{billet.altImage}}" />
-                            </div>
-                            <div id="blogLastChapterSocialNetwork" class="col-12">
-                                <div class="row">
-                                    <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
-                                    <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
-                                    <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
-                                    <div id="like" class="circle d-flex justify-content-center align-items-center"><i class="far fa-heart"></i></div>
+                                <div id="blogLastChapterPhoto" class="col-12">
+                                    <img src="../public/img/{{urlImage(billet.imageId)}}"  alt="{{altImage(billet.imageId)}}" />
                                 </div>
-                            </div>
-                            <div id="blogLastChapterContent" class="col-12">
-                                <div class="row justify-content-center">
-                                    <div id="blogLastChapterText" class="col-12 col-sm-10">
-                                        <h2>{{billet.title}}</h2>
-                                        <p>{{billet.content}}</p>
+                                <div id="blogLastChapterSocialNetwork" class="col-12">
+                                    <div class="row">
+                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
+                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
+                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
+                                        <div id="like" class="circle d-flex justify-content-center align-items-center"><i class="far fa-heart"></i></div>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center">
-                                    <div id="blogLastChapterButton" class="col-10">
-                                        <div class="row">
-                                            <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
-                                            <div class="more col-6 col-md-6 col-lg-3 col-xl-2">
-                                                <button>Lire la suite</button>
+                                <div id="blogLastChapterContent" class="col-12">
+                                    <div class="row justify-content-center">
+                                        <div id="blogLastChapterText" class="col-12 col-sm-10">
+                                            <h2>{{billet.title}}</h2>
+                                            <p>{{billet.content|troncate(1200)}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div id="blogLastChapterButton" class="col-10">
+                                            <div class="row">
+                                                <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
+                                                <div class="more col-6 col-md-6 col-lg-3 col-xl-2">
+                                                    <button>Lire la suite</button>
+                                                </div>
+                                                <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
                                             </div>
-                                            <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
+                                        </div>
+                                    </div>
+                                    <div id="blogLastChapterInformation" class="col-12 flex-column flex-sm-column flex-md-row">
+                                        <div>
+                                            <i class="fas fa-upload"></i><p>Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
+                                        </div>
+                                        <div>
+                                            <i class="far fa-comment"></i><p> 34 Commentaires</p>
+                                        </div>
+                                        <div>
+                                            <i class="far fa-heart"></i><p> {{billet.nbLikes}} J'aime</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="blogLastChapterInformation" class="col-12 flex-column flex-sm-column flex-md-row">
-                                    <div>
-                                        <i class="fas fa-upload"></i><p>Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
-                                    </div>
-                                    <div>
-                                        <i class="far fa-comment"></i><p> 34 Commentaires</p>
-                                    </div>
-                                    <div>
-                                        <i class="far fa-heart"></i><p> {{billet.nbLikes}} J'aime</p>
-                                    </div>
-                                </div>
-                            </div>
                                 {% endif %}
                             {% endfor %}
                         </section>
@@ -65,21 +65,21 @@
                         <section id="blogOldChapter" class="row justify-content-center">
                         {% for billet in billets %}
                             {% if not loop.first %}
-                            <div class="col-12 col-sm-10">
-                                <div class="row">
-                                    <div id="blogPhotoChapter" class="col-12 col-sm-5">
-                                        <img src="{{billet.imageUrl}}"  alt="{{billet.altImage}}" />
-                                    </div>
-                                    <div id="blogContentChapter" class="col-12 col-sm-7">
-                                        <div class="context">
-                                            <h3>{{billet.title}}</h3>
-                                            <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
-                                            <p class="contentChapter">{{billet.content}}</p>
-                                            <a href="###">Lire la suite >>></a>
+                                <div class="col-12 col-sm-10">
+                                    <div class="row">
+                                        <div id="blogPhotoChapter" class="col-12 col-sm-5">
+                                            <img src="../public/img/{{urlImage(billet.imageId)}}"  alt="{{altImage(billet.imageId)}}" />
+                                        </div>
+                                        <div id="blogContentChapter" class="col-12 col-sm-7">
+                                            <div class="context">
+                                                <h3>{{billet.title}}</h3>
+                                                <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
+                                                <p class="contentChapter">{{billet.content|troncate(1000)}}</p>
+                                                <a href="###">Lire la suite >>></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             {% endif %}
                         {% endfor %}
                         </section>

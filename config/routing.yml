@@ -3,11 +3,11 @@
 accueil:
     path: /
     controller: Host
-    action: showHost
+    action: show
 accueil2:
     path: /host
     controller: Host
-    action: showHost
+    action: show
 contact:
     path: /contact
     controller: Blog
@@ -31,7 +31,7 @@ billet:
 blog:
     path: /blog
     controller: Blog
-    action: showBlog
+    action: show
 legal:
     path: /legal
     controller: Blog
@@ -43,4 +43,4 @@ contactPost:
 testBillet:
     path: /testBillet/:id
     controller: Billet
-    action: showBillet
+    action: show

@@ -62,13 +62,13 @@
                         <div class="chapter col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
                             <div class="row justify-content-center">
                                 <div class="photoChapter col-10">
-                                    <img src="{{billet.imageUrl}}" alt="{{billet.altImage}}" />
+                                    <img src="../public/img/{{urlImage(billet.imageId)}}" alt="{{altImage(billet.imageId)}}" />
                                 </div>
                             </div>
                             <div class="context">
                                 <h3>{{billet.title}}</h3>
                                 <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
-                                <p class="contentChapter">{{billet.content}}</p>
+                                <p class="contentChapter">{{billet.content|troncate(500)}}</p>
                             </div>
                             <div class="more">
                                 <button>Lire la suite</button>

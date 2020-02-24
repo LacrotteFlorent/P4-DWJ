@@ -7,6 +7,8 @@ use Framework\Http\RedirectionResponse;
 use Framework\Http\Request;
 use Framework\Router\Router;
 use Framework\ORM\Database;
+use Project\PersonalExtendTwig\PersonalFunctions;
+use Project\PersonalExtendTwig\PersonalFilters;
 
 class Controller
 {
@@ -23,7 +25,7 @@ class Controller
     /**
      * @var \Twig_Environment
      */
-    private $twig;
+    protected $twig;
 
     /**
      * @var Database
@@ -44,6 +46,14 @@ class Controller
         $this->twig = new \Twig\Environment($loader, array(
             'cache' => false    // le temps du développement on laisse le cache à false // __DIR__ . '/tmp'
         ));
+        $this->twig->addExtension(new PersonalFunctions($this->getDatabase()));
+        $this->twig->addExtension(new PersonalFilters());
+
+        //$this->twig->addFunction(new TwigFunction('urlImage', function ($value) {
+        //    $imageBillet = $this->database->getManager('\Project\Model\ImageModel')->find($value, "image");
+        //    return $imageBillet->getName();
+        //}));
+   
     }
 
     /**
