@@ -96,13 +96,34 @@ class Manager
     }
 
     /**
-     * @param $param
-     * @example SELECT COUNT(*) FROM comment WHERE post_id = 2 
+     * @param string $from
+     * @param array $param
+     * @example SELECT COUNT(*) FROM comment
+     * @example or SELECT COUNT(*) FROM comment WHERE post_id = 2
+     * @example or SELECT COUNT(*) FROM comment WHERE post_id = 2 AND valid = 1 AND report = 0
      * @return int
      */
-    public function countParam($param)
+    public function countParam($from, $params = null)
     {
+        $select = "*";
 
+        if($params){
+            $paramSql = "";
+            foreach($params as $key => $param){
+                $paramSql = $paramSql .''. $key .''.$param. ' AND ';
+            }
+            $paramSql = substr($paramSql, 0, -5);
+            $format = 'SELECT COUNT(%s) FROM %s WHERE %s';
+            $sqlQuery = sprintf($format, $select, $from, $paramSql);
+        }
+        else{
+            $format = 'SELECT COUNT(%s) FROM %s';
+            $sqlQuery = sprintf($format, $select, $from);
+        }
+
+        $statement = $this->pdo->prepare($sqlQuery);
+        $statement->execute();
+        return $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
     /**
