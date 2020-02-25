@@ -1,28 +1,19 @@
-<!DOCTYPE HTML>
-<!-- Couleurs :
-    Blanc       #FFFFFF
-    Gris        #333
-    Gris clair  #919191
-    Gris foncé  #181A1B
-    Orangé      #542E00
-    Orang Clair #F08400
-    Bleu clair  #00A3D0
-    Bleu gris   #38435A
-    Bleu foncé  #181D27
-    -->
-<!-- Blog d'écrivain - Made by Lacrotte Florent / Projet 4 - OpenClassrooms -->
+{% extends'template.html.twig' %}
 
-<html>
-    
-    <head>
-    <?php include("./include_head.php"); ?>
-    </head>
-    
+{% block head %}
+    <!-- Titre -->
+    <title>Connexion administrateur | Jean Forteroche</title>
+    <!-- Media Queries -->
+    <link rel="stylesheet" href="/public/css/styleAdminConnexion.css" />
+    <link rel="stylesheet" media="(max-width:576.00px)" href="/public/css/styleAdminConnexion-xs.css" />
+    <link rel="stylesheet" media="(min-width:577.00px) and (max-width:768.00px)" href="/public/css/styleAdminConnexion-sm.css" />
+    <link rel="stylesheet" media="(min-width:768.00px) and (max-width:992.00px)" href="/public/css/styleAdminConnexion-md.css" />
+{% endblock head %}
+
+{% block body %}
     <body>
         <div class="container-fluid">
-
-            <?php include("./include_header.php"); ?>
-
+            {% include "include_header.html" %}
             <div id="adminConnexion" class="row justify-content-center my-3">
                 <div class="col-12 col-sm-11 col-md-10">
                     <div class="row d-none d-sm-block connexionTwenty">
@@ -48,11 +39,7 @@
                     </div>
                 </div>
             </div>
-            
-            <?php include("./include_footer.php"); ?>
-
+            {% include "include_footer.html" %}
         </div>
-
     </body>
-    
-</html>
+{% endblock body %}

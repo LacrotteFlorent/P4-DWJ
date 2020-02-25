@@ -2,15 +2,13 @@
 
 {% block head %}
 <!-- Titre -->
-<title>Accueil Jean Forteroche</title>
+<title>Accueil | Jean Forteroche</title>
 {% endblock head %}
 
 {% block body %}
 <body>
     <div class="container-fluid">
-    
         {% include "include_header.html" %}
-
         <section class="row pb-4" id="topLeaf">
             <div id="spaceLeaf" class="col-2 d-none d-sm-block"></div>
             <div id="photoLeaf" class="col-12 col-sm-8">
@@ -20,15 +18,14 @@
                         <p>Un roman publié en ligne</p>
                     </div>
                     <div id="inputLeaf" class="col-12 mb-3">
-                        <button>Dernier Chapitres</button>
-                        <button>A Propos</button>
-                        <button>Livre</button>
+                        <a href="#news"> <button>Dernier Chapitres</button></a>
+                        <a href="#about"> <button>A Propos</button></a>
+                        <a href="#author"> <button>L'auteur</button></a>
                     </div>
                 </div>
             </div>
             <div class="spaceLeaf col-2 d-none d-sm-block"></div>
         </section>
-
         <section class="row" id="insert">
             <div class="col-12">
                 <p><i>"J'ai fait le choix de partager ce livre avec vous en m'affranchissant d'un éditeur classique"</i></p>
@@ -46,7 +43,6 @@
                 </div>
             </div>
         </section>
-
         <section  class="row justify-content-center" id="news">
             <div class="col-10">
                 <h2>Derniers Chapitres</h2>
@@ -68,10 +64,10 @@
                             <div class="context">
                                 <h3>{{billet.title}}</h3>
                                 <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
-                                <p class="contentChapter">{{billet.content|troncate(500)}}</p>
+                                <p class="contentChapter">{{billet.content|troncate(500)|nl2br}}</p>
                             </div>
                             <div class="more">
-                                <button>Lire la suite</button>
+                                <a href="/billet/{{billet.id}}"> <button>Lire la suite</button></a>
                             </div>
                             <div class="socialNetworkChapter mx-3 row">
                                 <div class="split col-3 d-none d-sm-block"></div>
@@ -89,7 +85,6 @@
                 </div>
             </div>
         </section>
-
         <section class="row justify-content-center" id="about">
             <div class="col-10">
                 <h2>A propos</h2>
@@ -141,7 +136,6 @@
                 </div>
             </div>
         </section>
-        
         {% include "include_footer.html" %}
     </div>
 </body>

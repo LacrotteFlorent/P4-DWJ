@@ -7,11 +7,7 @@ use Framework\Http\RedirectionResponse;
 use Project\Controller\BlogController;
 
  
-// header('Location: ./view/host.php');
-
 $request = Request::createFromGlobals();
-
-//dump($request);
 
 $router = new Framework\Router\Router($request);
 

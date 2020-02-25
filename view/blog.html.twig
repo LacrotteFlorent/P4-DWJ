@@ -2,14 +2,18 @@
 
 {% block head %}
 <!-- Titre -->
-<title>Articles Jean Forteroche</title>
+<title>Articles | Jean Forteroche</title>
+<!-- Media Queries -->
+<link rel="stylesheet" href="/public/css/styleBlog.css" />
+<link rel="stylesheet" media="(max-width:576.00px)" href="/public/css/styleBlog-xs.css" />
+<link rel="stylesheet" media="(min-width:577.00px) and (max-width:768.00px)" href="/public/css/styleBlog-sm.css" />
+<link rel="stylesheet" media="(min-width:768.00px) and (max-width:992.00px)" href="/public/css/styleBlog-md.css" />
 {% endblock head %}
     
 {% block body %}
     <body>
         <div class="container-fluid">
             {% include "include_header.html" %}
-
             <div id="blogMainSplit" class="row">
                 <!-- main section with content -->
                 <section id="blogContent" class="col-12 col-lg-9">
@@ -32,7 +36,7 @@
                                     <div class="row justify-content-center">
                                         <div id="blogLastChapterText" class="col-12 col-sm-10">
                                             <h2>{{billet.title}}</h2>
-                                            <p>{{billet.content|troncate(1200)}}</p>
+                                            <p>{{billet.content|troncate(1200)|nl2br}}</p>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center">
@@ -40,7 +44,7 @@
                                             <div class="row">
                                                 <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
                                                 <div class="more col-6 col-md-6 col-lg-3 col-xl-2">
-                                                    <button>Lire la suite</button>
+                                                    <a href="/billet/{{billet.id}}"> <button>Lire la suite</button></a>
                                                 </div>
                                                 <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
                                             </div>
@@ -74,8 +78,8 @@
                                             <div class="context">
                                                 <h3>{{billet.title}}</h3>
                                                 <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
-                                                <p class="contentChapter">{{billet.content|troncate(800)}}</p>
-                                                <a href="###">Lire la suite >>></a>
+                                                <p class="contentChapter">{{billet.content|troncate(800)|nl2br}}</p>
+                                                <a href="/billet/{{billet.id}}">Lire la suite >>></a>
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +100,7 @@
                             </div>
                             <ul>
                                 {% for billet in billets %}
-                                    <li><a href="##">{{billet.title}}</a></li>
+                                    <li><a href="/billet/{{billet.id}}">{{billet.title}}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -146,7 +150,6 @@
                     </div>
                 </aside>
             </div>
-            
             {% include "include_footer.html" %}
         </div>
     </body>

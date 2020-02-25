@@ -51,5 +51,4 @@ class PersonalFunctions extends AbstractExtension
         return $imageBillet->getAlt();
     }
 
-
 }

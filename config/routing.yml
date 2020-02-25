@@ -10,12 +10,12 @@ accueil2:
     action: show
 contact:
     path: /contact
-    controller: Blog
-    action: index
+    controller: Contact
+    action: show
 adminConnexion:
     path: /adminConnexion
-    controller: Blog
-    action: index
+    controller: AdminConnexion
+    action: show
 adminDashboard:
     path: /adminDashboard
     controller: Blog
@@ -26,21 +26,17 @@ adminPost:
     action: index
 billet:
     path: /billet/:id
-    controller: Blog
-    action: redirection
+    controller: Billet
+    action: show
 blog:
     path: /blog
     controller: Blog
     action: show
 legal:
     path: /legal
-    controller: Blog
-    action: index
+    controller: Legal
+    action: show
 contactPost:
     path: /contactPost/:id
     controller: Blog
     action: index
-testBillet:
-    path: /testBillet/:id
-    controller: Billet
-    action: show

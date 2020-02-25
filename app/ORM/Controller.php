@@ -49,11 +49,6 @@ class Controller
         $this->twig->addExtension(new PersonalFunctions($this->getDatabase()));
         $this->twig->addExtension(new PersonalFilters());
 
-        //$this->twig->addFunction(new TwigFunction('urlImage', function ($value) {
-        //    $imageBillet = $this->database->getManager('\Project\Model\ImageModel')->find($value, "image");
-        //    return $imageBillet->getName();
-        //}));
-   
     }
 
     /**
