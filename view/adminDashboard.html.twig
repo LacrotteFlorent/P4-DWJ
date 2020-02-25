@@ -4,6 +4,7 @@
     <!-- Titre -->
     <title>Tableau de bord | Jean Forteroche</title>
     <!-- Media Queries -->
+    <link rel="stylesheet" href="/public/css/styleAdminDashboard.css" />
 {% endblock head %}
 
 {% block body %}
@@ -22,35 +23,35 @@
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires</h5>
                                     <div class="row justify-content-center align-items-baseline">
-                                        <p>32</p>
+                                        <p>{{nbComments.count}}</p>
                                         <i class="far fa-comment ml-2"></i>
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Ont aimé</h5>
                                     <div class="row justify-content-center align-items-baseline">
-                                        <p>164</p>
+                                        <p>{{totalCountLikes}}</p>
                                         <i class="far fa-heart ml-2"></i>
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Nombre de vues</h5>
                                     <div class="row justify-content-center align-items-baseline">
-                                        <p>1642</p>
+                                        <p>{{totalCountViews}}</p>
                                         <i class="far fa-eye ml-2"></i>
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires à modérer</h5>
                                     <div class="row justify-content-center align-items-baseline">
-                                        <p>13</p>
+                                        <p>{{totalCountToValid}}</p>
                                         <i class="fas fa-comment-medical ml-2"></i>
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires signalés</h5>
                                     <div class="row justify-content-center align-items-baseline">
-                                        <p>2</p>
+                                        <p>{{totalCountReport}}</p>
                                         <i class="fas fa-comment-slash ml-2"></i>
                                     </div>
                                 </div>

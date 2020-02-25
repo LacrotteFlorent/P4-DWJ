@@ -66,19 +66,63 @@ class Manager
      * @example requete: SELECT * FROM post WHERE post_id = 3
      * @return Model
      */
-    public function findByParam($params, $from)
+    public function findAllByParam($params = null, $from)
     {
         $select = "*";
-        $paramSql = "";
-        foreach ($params as $key => $param){
-            $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
+        if($params){
+            $paramSql = "";
+            foreach ($params as $key => $param){
+                $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
+            }
+            $paramSql = substr($paramSql, 0, -5);
+
+            $format = 'SELECT %s FROM %s WHERE %s';
+            $sqlQuery = sprintf($format, $select, $from, $paramSql);
         }
-        $paramSql = substr($paramSql, 0, -5);
+        else{
+            $format = 'SELECT %s FROM %s';
+            $sqlQuery = sprintf($format, $select, $from);
+        }
 
-        $format = 'SELECT %s FROM %s WHERE %s';
-        
-        $sqlQuery = sprintf($format, $select, $from, $paramSql);
+        return $this->fetchAll($sqlQuery);
+    }
 
+    /**
+     * @param array $select
+     * @param array $params
+     * @param string $from
+     * @example requete: SELECT like_count FROM comment WHERE post_id = 3
+     * @return Model
+     */
+    public function findSelectByParam($from, $selects = null, $params = null)
+    {
+        if($selects)
+        {   
+            $selectSql = "";
+            foreach ($selects as $select){
+                $selectSql = $selectSql .''.$select. ', ';
+            }
+            $selectSql = substr($selectSql, 0, -2);
+        }
+        else{
+            $selectSql = "*";
+        }
+
+        if($params){
+            $paramSql = "";
+            foreach ($params as $key => $param){
+                $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
+            }
+            $paramSql = substr($paramSql, 0, -5);
+
+            $format = 'SELECT %s FROM %s WHERE %s';
+            $sqlQuery = sprintf($format, $selectSql, $from, $paramSql);
+        }
+        else{
+            $format = 'SELECT %s FROM %s';
+            $sqlQuery = sprintf($format, $selectSql, $from);
+        }
+        dump($sqlQuery);
         return $this->fetchAll($sqlQuery);
     }
 
