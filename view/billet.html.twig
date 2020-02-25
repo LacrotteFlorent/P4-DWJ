@@ -60,7 +60,13 @@
             </div>
             <div class="row justify-content-center mt-3 mb-1">
                 <div class="col-12 col-sm-10 col-md-8">
-                    <p class="mb-0"><i class="far fa-comment"></i> 2 Commentaires</p>
+                    <p class="mb-0"><i class="far fa-comment"></i> 
+                        {% if nbComments.count > 1 %}
+                            {{nbComments.count}} Commentaires 
+                        {% else %}
+                            {{nbComments.count}} Commentaire
+                        {% endif %}
+                    </p>
                 </div>
             </div>
             <div id="comBillet" class="row justify-content-center mb-5">

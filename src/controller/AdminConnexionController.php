@@ -11,9 +11,7 @@ class AdminConnexionController extends Controller
     */
     public function show()
     {
-
         return $this->render("adminConnexion.html.twig");
-
     }
 
 }

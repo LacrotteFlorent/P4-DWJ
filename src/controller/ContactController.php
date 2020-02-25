@@ -11,9 +11,7 @@ class ContactController extends Controller
     */
     public function show()
     {
-
         return $this->render("contact.html.twig");
-
     }
 
 }

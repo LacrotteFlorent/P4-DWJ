@@ -11,9 +11,7 @@ class LegalController extends Controller
     */
     public function show()
     {
-
         return $this->render("legal.html.twig");
-
     }
 
 }

@@ -61,19 +61,23 @@ class Manager
     }
 
     /**
-     * @param string $nameParam
-     * @param mixed $param
+     * @param array $params
      * @param string $from
      * @example requete: SELECT * FROM post WHERE post_id = 3
      * @return Model
      */
-    public function findByParam($nameParam, $param, $from)
+    public function findByParam($params, $from)
     {
-        $format = 'SELECT %s FROM %s WHERE %s';
         $select = "*";
-        $where = $nameParam . " = " . $param;
+        $paramSql = "";
+        foreach ($params as $key => $param){
+            $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
+        }
+        $paramSql = substr($paramSql, 0, -5);
 
-        $sqlQuery = sprintf($format, $select, $from, $where);
+        $format = 'SELECT %s FROM %s WHERE %s';
+        
+        $sqlQuery = sprintf($format, $select, $from, $paramSql);
 
         return $this->fetchAll($sqlQuery);
     }
@@ -110,14 +114,14 @@ class Manager
         if($params){
             $paramSql = "";
             foreach($params as $key => $param){
-                $paramSql = $paramSql .''. $key .''.$param. ' AND ';
+                $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
             }
             $paramSql = substr($paramSql, 0, -5);
-            $format = 'SELECT COUNT(%s) FROM %s WHERE %s';
+            $format = 'SELECT COUNT(%s) as count FROM %s WHERE %s';
             $sqlQuery = sprintf($format, $select, $from, $paramSql);
         }
         else{
-            $format = 'SELECT COUNT(%s) FROM %s';
+            $format = 'SELECT COUNT(%s) as count FROM %s';
             $sqlQuery = sprintf($format, $select, $from);
         }
 

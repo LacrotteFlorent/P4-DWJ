@@ -14,7 +14,6 @@ class HostController extends Controller
         $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit("post", 3);
 
         return $this->render("host.html.twig", ['billets' => $billets]);
-
     }
 
 }
