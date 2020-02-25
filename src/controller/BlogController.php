@@ -7,7 +7,6 @@ use Framework\ORM\Controller;
 class BlogController extends Controller
 {
    /**
-    * @param string $id
     * @return Response
     */
     public function show()

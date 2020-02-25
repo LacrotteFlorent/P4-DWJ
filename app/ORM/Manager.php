@@ -101,6 +101,24 @@ class Manager
 
     /**
      * @param string $from
+     * @param int $limit
+     * @param int $offset
+     * @example requete: SELECT * FROM post LIMIT 3 OFFSET 4
+     * @return Model
+     */
+    public function findAllWithLimitOffset($from, $limit, $offset)
+    {   
+        $format = 'SELECT %s FROM %s LIMIT %s OFFSET %s';
+
+        $select = "*";
+
+        $sqlQuery = sprintf($format, $select, $from, $limit, $offset);
+
+        return $this->fetchAll($sqlQuery);
+    }
+
+    /**
+     * @param string $from
      * @param array $param
      * @example SELECT COUNT(*) FROM comment
      * @example or SELECT COUNT(*) FROM comment WHERE post_id = 2

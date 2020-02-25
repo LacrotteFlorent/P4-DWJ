@@ -18,8 +18,8 @@ adminConnexion:
     action: show
 adminDashboard:
     path: /adminDashboard
-    controller: Blog
-    action: index
+    controller: adminDashboard
+    action: show
 adminPost:
     path: /adminPost/:id
     controller: Blog
