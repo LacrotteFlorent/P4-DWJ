@@ -11,10 +11,10 @@ class AdminDashboardController extends Controller
     */
     public function show()
     {
-        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit("post", 10);
-        $commentsReport = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAllByParam(['report' => 1], "comment");
-        $commentsToValid = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAllByParam(['valid' => 0], "comment");
-        $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam("comment");
+        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(10);
+        $commentsReport = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAllByParam(['report' => 1]);
+        $commentsToValid = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAllByParam(['valid' => 0]);
+        $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam();
 
         $totalCountLikes = 0;
         foreach ($billets as $billet){

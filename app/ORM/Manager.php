@@ -2,8 +2,6 @@
 
 namespace Framework\ORM;
 
-use Project\Model\BilletModel;
-
 class Manager
 {
     /**
@@ -19,7 +17,7 @@ class Manager
     /**
      * @var array
      */
-    private $metadata;
+    protected $metadata;
 
     /**
      * Manager constructor.
@@ -45,12 +43,13 @@ class Manager
 
     /**
      * @param int $id
-     * @param string $from
      * @example requete: SELECT * FROM post WHERE id = 2
      * @return Model
      */
-    public function find($id, $from)
+    public function find($id)
     {
+        $from = array_values($this->metadata)[0];
+
         $format = 'SELECT %s FROM %s WHERE %s%s;'; 
         $select = "*";
         $where = "id = ";
@@ -62,13 +61,14 @@ class Manager
 
     /**
      * @param array $params
-     * @param string $from
      * @example requete: SELECT * FROM post WHERE post_id = 3
      * @return Model
      */
-    public function findAllByParam($params = null, $from)
+    public function findAllByParam($params = null)
     {
+        $from = array_values($this->metadata)[0];
         $select = "*";
+
         if($params){
             $paramSql = "";
             foreach ($params as $key => $param){
@@ -90,12 +90,13 @@ class Manager
     /**
      * @param array $select
      * @param array $params
-     * @param string $from
      * @example requete: SELECT like_count FROM comment WHERE post_id = 3
      * @return Model
      */
-    public function findSelectByParam($from, $selects = null, $params = null)
+    public function findSelectByParam($selects = null, $params = null)
     {
+        $from = array_values($this->metadata)[0];
+
         if($selects)
         {   
             $selectSql = "";
@@ -127,13 +128,14 @@ class Manager
     }
 
     /**
-     * @param string $from
      * @param int $limit
      * @example requete: SELECT * FROM post LIMIT 3
      * @return Model
      */
-    public function findAllWithLimit($from, $limit)
+    public function findAllWithLimit($limit)
     {   
+        $from = array_values($this->metadata)[0];
+
         $format = 'SELECT %s FROM %s LIMIT %s';
 
         $select = "*";
@@ -144,14 +146,15 @@ class Manager
     }
 
     /**
-     * @param string $from
      * @param int $limit
      * @param int $offset
      * @example requete: SELECT * FROM post LIMIT 3 OFFSET 4
      * @return Model
      */
-    public function findAllWithLimitOffset($from, $limit, $offset)
+    public function findAllWithLimitOffset($limit, $offset)
     {   
+        $from = array_values($this->metadata)[0];
+
         $format = 'SELECT %s FROM %s LIMIT %s OFFSET %s';
 
         $select = "*";
@@ -162,15 +165,15 @@ class Manager
     }
 
     /**
-     * @param string $from
      * @param array $param
      * @example SELECT COUNT(*) FROM comment
      * @example or SELECT COUNT(*) FROM comment WHERE post_id = 2
      * @example or SELECT COUNT(*) FROM comment WHERE post_id = 2 AND valid = 1 AND report = 0
      * @return int
      */
-    public function countParam($from, $params = null)
+    public function countParam($params = null)
     {
+        $from = array_values($this->metadata)[0];
         $select = "*";
 
         if($params){

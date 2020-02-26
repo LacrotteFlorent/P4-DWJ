@@ -27,6 +27,7 @@ class PersonalFunctions extends AbstractExtension
 
             new TwigFunction('urlImage', [$this, 'urlImage']),
             new TwigFunction('altImage', [$this, 'altImage']),
+            new TwigFunction('countParam', [$this, 'countParam']),
 
         ];
     }
@@ -49,6 +50,15 @@ class PersonalFunctions extends AbstractExtension
     {
         $imageBillet = $this->database->getManager('\Project\Model\ImageModel')->find($idImage, "image");
         return $imageBillet->getAlt();
+    }
+
+    public function countParam($arrayOfValues, $getToCount)
+    {
+        $totalCount = 0;
+        foreach ($arrayOfValues as $arrayOfValue){
+            $totalCountLikes += $arrayOfValue->$getToCount;
+        }
+        return $totalCount;
     }
 
 }

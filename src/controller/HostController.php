@@ -11,7 +11,7 @@ class HostController extends Controller
     */
     public function show()
     {
-        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit("post", 3);
+        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(3);
 
         return $this->render("host.html.twig", ['billets' => $billets]);
     }

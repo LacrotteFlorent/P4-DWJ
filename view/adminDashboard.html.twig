@@ -30,7 +30,13 @@
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Ont aimé</h5>
                                     <div class="row justify-content-center align-items-baseline">
-                                        <p>{{totalCountLikes}}</p>
+                                        <p>
+                                        {% set totalCountLikes = 0 %}
+                                        {% for billet in billets %}
+                                            {% set totalCountLikes = totalCountLikes + billet.likeCount %}
+                                        {% endfor %}
+                                        {{totalCountLikes}}
+                                        </p>
                                         <i class="far fa-heart ml-2"></i>
                                     </div>
                                 </div>
