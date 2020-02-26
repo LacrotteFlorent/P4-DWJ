@@ -12,6 +12,10 @@ contact:
     path: /contact
     controller: Contact
     action: show
+contactPost:
+    path: /contact_post
+    controller: Contact_Post
+    action: post
 adminConnexion:
     path: /adminConnexion
     controller: AdminConnexion
@@ -36,7 +40,4 @@ legal:
     path: /legal
     controller: Legal
     action: show
-contactPost:
-    path: /contactPost/:id
-    controller: Blog
-    action: index
+

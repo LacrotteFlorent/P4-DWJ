@@ -1,5 +1,7 @@
 <?php
 
+	dump($_POST);
+
 	// Ma clé privée
 	$secret = "6LfynM0UAAAAAA8uukzkdMsu6RJnQvP5Rz-vi7OM";
 	// Paramètre renvoyé par le recaptcha
@@ -16,10 +18,11 @@
 	
 	if ($decode['success'] == true) {
 		// C'est un humain
+		dump($_POST);
 	}
 	
 	else {
-		// C'est un robot ou le code de vérification est incorrecte
+		// C'est un robot ou le code de vérification est incorrect
     }
     
-    header('Location: ./view/contact.php');
+    header('Location: /contact');
