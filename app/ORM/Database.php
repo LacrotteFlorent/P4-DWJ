@@ -30,14 +30,12 @@ class Database
     public static function getInstance(Request $request) : Database
     {
         if(!self::$databaseInstance) {
-            //self::$databaseInstance = new Database("localhost","blog","jeanftr","BDDJFTR");
-            self::$databaseInstance = new Database("localhost","blog","root","");
-            //self::$databaseInstance = new Database(
-            //    $request->getEnv("DB_HOST"),
-            //    $request->getEnv("DB_NAME"),
-            //    $request->getEnv("DB_USER"),
-            //    $request->getEnv("DB_PASSWORD")
-            //);
+            self::$databaseInstance = new Database(
+                $_SERVER["DB_HOST"],
+                $_SERVER["DB_NAME"],
+                $_SERVER["DB_USER"],
+                $_SERVER["DB_PASS"]
+            );
         }
         return self::$databaseInstance;
     }
