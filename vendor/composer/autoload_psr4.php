@@ -12,7 +12,9 @@ return array(
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
+    'Symfony\\Component\\ErrorHandler\\' => array($vendorDir . '/symfony/error-handler'),
     'Symfony\\Component\\Dotenv\\' => array($vendorDir . '/symfony/dotenv'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Project\\' => array($baseDir . '/src'),
     'Framework\\' => array($baseDir . '/app'),
 );

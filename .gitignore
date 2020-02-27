@@ -10,3 +10,6 @@
 
 # On ignore le fichier d'environement local
 local.env
+
+# On ignore le dossier vendor
+vendor/

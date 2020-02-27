@@ -22,7 +22,7 @@ adminConnexion:
     action: show
 adminDashboard:
     path: /adminDashboard
-    controller: adminDashboard
+    controller: AdminDashboard
     action: show
 adminPost:
     path: /adminPost/:id
