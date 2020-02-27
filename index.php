@@ -29,11 +29,7 @@ if ($_SERVER['DEV']) {
     DebugClassLoader::enable();
 }
 
-
-
 $request = Request::createFromGlobals();
-
-dump($request);
 
 $router = new Framework\Router\Router($request);
 
