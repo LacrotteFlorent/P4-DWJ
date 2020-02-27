@@ -39,12 +39,6 @@ class AdminDashboardController extends Controller
             $totalCountToValid ++;
         }
 
-        //$billetsView = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findSelectByParam('post', ['view_count']);
-        //$totalCountLikes = 0;
-        //foreach ($billetsLikes as $billetLikes){
-        //    $totalCountLikes += $billetLikes->getLikeCount();
-        //}
-
         return $this->render("adminDashboard.html.twig", [
             'billets'           => $billets,
             'commentsReport'    => $commentsReport,

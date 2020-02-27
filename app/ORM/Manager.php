@@ -229,10 +229,50 @@ class Manager
         return $data;
     }
 
-    // créer une fcontion qui vérifie si le modèle ne comporte pas déja les mêmes données
-    // par exemple si la requete envoyée a la BDD est identique et dans un délais de 2sec,
-    // on ne relance pas la requete mais utilise la précédente
+    /**
+     * @param $string $table
+     * @param array $valuesByColumns
+     * @internal { for @param $valuesByColumns ['column' => $value]}
+     */
+    public function insert($table, $valuesByColumns)
+    {
+        $columns = array_values($valuesByColumns);
+        $values = array_keys($valuesByColumns);
+
+        $strColumns = "";
+        foreach($columns as $column){
+            $strColumns = $strColumns .''.$column. ', ';
+        }
+        $strColumns = substr($strColumns, 0, -2);
+
+        dump($strColumns);
+
+        $strValues = "";
+        foreach($values as $value){
+            $strValues = $strValues .':'.$value. ', ';
+        }
+        $strValues = substr($strValues, 0, -2);
+
+        dump($strValues);
+
+        $sqlQuery = 'INSERT INTO ' . $table . '(' . $strColumns . ') VALUES(' . $strValues .')';
+
+        dump($sqlQuery);
+
+        $statement = $this->pdo->prepare($sqlQuery);
+
+        dump($valuesByColumns);
+
+        $statement->execute($valuesByColumns);
+    }
+    // set model ?
+
+    /**
+     * @todo implémentation fonction for backOffice
+     */
+    public function update()
+    {
+
+    }
 
 }
-
-
