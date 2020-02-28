@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\ORM;
+namespace Framework;
 
 class SwiftMailer
 {
@@ -29,15 +29,13 @@ class SwiftMailer
      * @static
      * @return SwiftMailer
      */
-    public static function getInstance(int $port, string $tlsOrSsl) : SwiftMailer
+    public static function getInstance() : SwiftMailer
     {
         if(!self::$swiftMailerInstance) {
             self::$swiftMailerInstance = new SwiftMailer(
-                $_SERVER["MAIL_SMTP"],
-                $_SERVER["MAIL_USER"],
-                $_SERVER["MAIL_PASS"],
-                $port,
-                $tlsOrSsl
+                $_ENV["MAIL_SMTP"],
+                $_ENV["MAIL_USER"],
+                $_ENV["MAIL_PASS"]
             );
         }
         return self::$swiftMailerInstance;
@@ -49,10 +47,12 @@ class SwiftMailer
      * @param string $user
      * @param string $pass
      * @source https://swiftmailer.symfony.com/docs/sending.html
+     * @internal { for Gmail use 587 for tls }}
+     * @internal { for Gmail use 465 for ssl }}
      */
-    public function __construct(string $smtp, string $user, string $pass, int $port, string $tlsOrSsl)
+    public function __construct(string $smtp, string $user, string $pass)
     {
-        $this->transport = (new \Swift_SmtpTransport($smtp, $port, $tlsOrSsl))
+        $this->transport = (new \Swift_SmtpTransport($smtp, 587,'tls'))
             ->setUsername($user)
             ->setPassword($pass)
         ;

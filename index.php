@@ -23,7 +23,7 @@ $dotenv->overload(__DIR__.'/local.env');
  * @note Error Handler
  * @note Attention à la sécuritée 
  */
-if ($_SERVER['DEV']) {
+if ($_ENV['DEV'] === 'On') {
     Debug::enable();
     ErrorHandler::register();
     DebugClassLoader::enable();

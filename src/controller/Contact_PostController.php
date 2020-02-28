@@ -3,7 +3,7 @@
 namespace Project\Controller;
 
 use Framework\ORM\Controller;
-use Framework\ORM\SwiftMailer;
+use Framework\SwiftMailer;
 
 class Contact_PostController extends Controller
 {
@@ -35,8 +35,8 @@ class Contact_PostController extends Controller
 	    // 	// C'est un robot ou le code de vérification est incorrect
         // }
 
-        dump($_POST);
-        dump($_POST['contactMail']);
+        //dump($_POST);
+        //dump($_POST['contactMail']);
 
         // ATTENTION A LA SECURITEE => ENLEVER LES ENTREES EN CARAC HTLM / JS ou autre
         // Si la requete est validée plusieurs fois rapidement que faire ?
@@ -47,17 +47,16 @@ class Contact_PostController extends Controller
 
 
 
-            // on envoi un mail au destinataire pour notifier le message
-        
+            // send a email to recipent to notify it
+        $failure = null;
         $message = (new \Swift_Message('Prise de contact Site Web'))
             ->setFrom(['swift.mailer.lacrotte.florent@gmail.com' => 'Contact Site JeanForteroche'])
             ->setTo(['bralocaz@gmail.com' => 'Bralocaz'])
             ->setBody('Vous avez reçu une nouvelle demande de contact :' . $_POST['contactMessage'])
             ;
-        $result = (SwiftMailer::getInstance(587,'tls'))->getMailer()->send($message);
-
-            // on envoi un email à l'expediteur pour notifier que son message à bien été envoyé
-
+        $result = (SwiftMailer::getInstance())->getMailer()->send($message, $failure);
+            
+            // send a email to sender to notify it
         $startContentMailAuto = "
             Bonjour, \n
             Ceci est un message envoyé automatiquement via le site https://www.jean-forteroche-p4-lacrotte.fr . \n
@@ -73,14 +72,22 @@ class Contact_PostController extends Controller
             ->setTo([$_POST['contactMail'] => $_POST['contactName']])
             ->setBody($startContentMailAuto . $_POST['contactMessage'] . $endContentMailAuto)
             ;
-        $result = (SwiftMailer::getInstance(587,'tls'))->getMailer()->send($message);
+        $result = (SwiftMailer::getInstance())->getMailer()->send($message, $failure);
+        
+            // return message on the contact page
+        if($failure){
+            $infoMail = "Une erreur c'est produite, votre message n'as pas été envoyé !";
+            $bgColorInfo = "bg-danger";
+        }
+        else{
+            $infoMail = " Votre message à bien été envoyé !";
+            $bgColorInfo = "bg-success";
+        }
+        
+        
+        header('Location: /contact');
 
-            // on retourne le message suivant sur la page /contact
-
-        $infoMail = " Votre message à bien été envoyé !";
-        $bgColorInfo = "bg-success";
-
-        return $this->render("contact.html.twig", ['message' => $infoMail, 'bgColorMessage' => $bgColorInfo]);
+        return $this->render("contact.html.twig", ['message' => $infoMail, 'bgColorMessage' => $bgColorInfo]); // envoyer vers un messag flash session
     }
 
 }

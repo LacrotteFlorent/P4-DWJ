@@ -31,10 +31,10 @@ class Database
     {
         if(!self::$databaseInstance) {
             self::$databaseInstance = new Database(
-                $_SERVER["DB_HOST"],
-                $_SERVER["DB_NAME"],
-                $_SERVER["DB_USER"],
-                $_SERVER["DB_PASS"]
+                $_ENV["DB_HOST"],
+                $_ENV["DB_NAME"],
+                $_ENV["DB_USER"],
+                $_ENV["DB_PASS"]
             );
         }
         return self::$databaseInstance;
