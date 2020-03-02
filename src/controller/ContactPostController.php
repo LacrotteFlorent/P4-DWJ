@@ -4,6 +4,7 @@ namespace Project\Controller;
 
 use Framework\ORM\Controller;
 use Framework\SwiftMailer;
+use Framework\MessageFlash;
 
 class ContactPostController extends Controller
 {
@@ -84,7 +85,8 @@ class ContactPostController extends Controller
             $bgColorInfo = "bg-success";
         }
         
-        
+        $flashMessage =(MessageFlash::getInstance())->add($bgColorInfo, $infoMail);
+        dump(MessageFlash::getInstance());
         header('Location: /contact');
 
         return $this->render("contact.html.twig", ['message' => $infoMail, 'bgColorMessage' => $bgColorInfo]); // envoyer vers un messag flash session

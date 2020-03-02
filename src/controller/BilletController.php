@@ -25,6 +25,7 @@ class BilletController extends Controller
             'post_id'       => 1,
             'user_id'       => 234
             ]);
+            
         return $this->render("billet.html.twig", ['billet' => $billet, 'comments' => $comments, 'nbComments' => $nbComments]);
     }
 

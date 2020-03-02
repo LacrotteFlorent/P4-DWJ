@@ -4,6 +4,7 @@ namespace Project\PersonalExtendTwig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+use Framework\MessageFlash;
 
 class PersonalFunctions extends AbstractExtension
 {
@@ -28,6 +29,7 @@ class PersonalFunctions extends AbstractExtension
             new TwigFunction('urlImage', [$this, 'urlImage']),
             new TwigFunction('altImage', [$this, 'altImage']),
             new TwigFunction('countParam', [$this, 'countParam']),
+            new TwigFunction('flashMessageContent', [$this, 'flashMessageContent']),
 
         ];
     }
@@ -52,6 +54,9 @@ class PersonalFunctions extends AbstractExtension
         return $imageBillet->getAlt();
     }
 
+    /**
+     * 
+     */
     public function countParam($arrayOfValues, $getToCount)
     {
         $totalCount = 0;
@@ -59,6 +64,17 @@ class PersonalFunctions extends AbstractExtension
             $totalCountLikes += $arrayOfValue->$getToCount;
         }
         return $totalCount;
+    }
+
+    public function flashMessageContent()
+    {
+        $messages = (MessageFlash::getInstance());
+        dump($messages = $messages->getMessage());
+
+        dump(array_values($messages)[0]);
+        $message1 = array_values($messages)[0];
+        $message2 = array_values($messages)[1];
+        return $message1;
     }
 
 }

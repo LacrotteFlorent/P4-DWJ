@@ -29,6 +29,8 @@ if ($_ENV['DEV'] === 'On') {
     DebugClassLoader::enable();
 }
 
+session_start();
+
 $request = Request::createFromGlobals();
 
 $router = new Framework\Router\Router($request);

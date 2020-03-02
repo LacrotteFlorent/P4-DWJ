@@ -19,6 +19,9 @@
         {% block head %}{% endblock %}
     </head>
 
-    {% block body %}{% endblock %}
+    <body>
+        {% include "include_modal.html.twig" %}
+        {% block body %}{% endblock %}
+    </body>
     
 </html>

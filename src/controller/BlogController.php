@@ -3,6 +3,7 @@
 namespace Project\Controller;
 
 use Framework\ORM\Controller;
+use Framework\MessageFlash;
 
 class BlogController extends Controller
 {
@@ -14,6 +15,8 @@ class BlogController extends Controller
         $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(5);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => (array_values($billets)[0])->getId(), 'valid' => 1]);
 
+        $flashMessage =(MessageFlash::getInstance())->add("bg-success", " Votre message à bien été envoyé !");
+        //dump(MessageFlash::getInstance());
         return $this->render("blog.html.twig", ['billets' => $billets, 'nbComments' => $nbComments]);
     }
 
