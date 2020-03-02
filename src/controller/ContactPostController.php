@@ -5,7 +5,7 @@ namespace Project\Controller;
 use Framework\ORM\Controller;
 use Framework\SwiftMailer;
 
-class Contact_PostController extends Controller
+class ContactPostController extends Controller
 {
    /**
     * @return Response
@@ -58,13 +58,13 @@ class Contact_PostController extends Controller
             
             // send a email to sender to notify it
         $startContentMailAuto = "
-            Bonjour, \n
-            Ceci est un message envoyé automatiquement via le site https://www.jean-forteroche-p4-lacrotte.fr . \n
-            Vous avez fait une demande de contact avec le contenu suivant : \n
+            Bonjour, \r\n
+            Ceci est un message envoyé automatiquement via le site https://www.jean-forteroche-p4-lacrotte.fr . \r\n
+            Vous avez fait une demande de contact avec le contenu suivant : \r\n
             ";
         $endContentMailAuto = "
-            Votre message à bien été envoyé, \n
-            En vous remerciant, \n
+            Votre message à bien été envoyé, \r\n
+            En vous remerciant, \r\n
             ForteRoche Jean.
             ";
         $message = (new \Swift_Message('Contact Jean Forteroche'))

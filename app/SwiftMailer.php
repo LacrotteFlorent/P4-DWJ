@@ -35,7 +35,9 @@ class SwiftMailer
             self::$swiftMailerInstance = new SwiftMailer(
                 $_ENV["MAIL_SMTP"],
                 $_ENV["MAIL_USER"],
-                $_ENV["MAIL_PASS"]
+                $_ENV["MAIL_PASS"],
+                $_ENV["MAIL_PORT"],
+                $_ENV["MAIL_PROTOCOLE"]
             );
         }
         return self::$swiftMailerInstance;
@@ -46,13 +48,15 @@ class SwiftMailer
      * @param string $smtp
      * @param string $user
      * @param string $pass
+     * @param int $port
+     * @param string $protocole
      * @source https://swiftmailer.symfony.com/docs/sending.html
      * @internal { for Gmail use 587 for tls }}
      * @internal { for Gmail use 465 for ssl }}
      */
-    public function __construct(string $smtp, string $user, string $pass)
+    public function __construct(string $smtp, string $user, string $pass, int $port, string $protocole)
     {
-        $this->transport = (new \Swift_SmtpTransport($smtp, 587,'tls'))
+        $this->transport = (new \Swift_SmtpTransport($smtp, $port, $protocole))
             ->setUsername($user)
             ->setPassword($pass)
         ;

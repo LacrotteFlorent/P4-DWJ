@@ -14,7 +14,7 @@ contact:
     action: show
 contactPost:
     path: /contact_post
-    controller: Contact_Post
+    controller: ContactPost
     action: post
 adminConnexion:
     path: /adminConnexion
