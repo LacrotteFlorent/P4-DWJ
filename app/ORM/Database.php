@@ -49,7 +49,8 @@ class Database
      */
     public function __construct($host, $dbName, $user, $password)
     {
-        $this->pdo = new \PDO("mysql:dbname=". $dbName . ";host". $host, $user, $password);
+        $options[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
+        $this->pdo = new \PDO("mysql:dbname=". $dbName . ";host". $host, $user, $password, $options);
         $this->pdo->exec("set names utf8");
     }
 

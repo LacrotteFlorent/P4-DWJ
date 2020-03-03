@@ -45,6 +45,8 @@ class BilletController extends Controller
         $dataForm["author"] = $author;
         $dataForm["post_id"] = $id;
 
+        dump($dataForm);
+
         $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insert('comment', $dataForm);
 
         (string)$redirect = '/billet/' . $id;
