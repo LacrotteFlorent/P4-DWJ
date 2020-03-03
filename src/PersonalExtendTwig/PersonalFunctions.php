@@ -29,7 +29,7 @@ class PersonalFunctions extends AbstractExtension
             new TwigFunction('urlImage', [$this, 'urlImage']),
             new TwigFunction('altImage', [$this, 'altImage']),
             new TwigFunction('countParam', [$this, 'countParam']),
-            new TwigFunction('flashMessageContent', [$this, 'flashMessageContent']),
+            new TwigFunction('dumpTwig', [$this, 'dumpTwig']),
 
         ];
     }
@@ -66,15 +66,19 @@ class PersonalFunctions extends AbstractExtension
         return $totalCount;
     }
 
-    public function flashMessageContent()
+    public function dumpTwig($value)
     {
-        $messages = (MessageFlash::getInstance());
-        dump($messages = $messages->getMessage());
-
-        dump(array_values($messages)[0]);
-        $message1 = array_values($messages)[0];
-        $message2 = array_values($messages)[1];
-        return $message1;
+        return dump($value);
     }
+    //public function flashMessageContent()
+    //{
+    //    $messages = (MessageFlash::getInstance());
+    //    dump($messages = $messages->getMessage());
+//
+    //    dump(array_values($messages)[0]);
+    //    $message1 = array_values($messages)[0];
+    //    $message2 = array_values($messages)[1];
+    //    return $message1;
+    //}
 
 }

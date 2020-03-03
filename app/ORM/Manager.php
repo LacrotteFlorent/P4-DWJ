@@ -233,39 +233,47 @@ class Manager
      * @param $string $table
      * @param array $valuesByColumns
      * @internal { for @param $valuesByColumns ['column' => $value]}
+     * INSERT INTO comment(content, posted_at, valid, report, author, post_id)
+     *  VALUES( 'ceci est une phrase de test', '2020-01-01 08:15:10', 1, 0, 'Guesttt', 1)
      */
     public function insert($table, $valuesByColumns)
     {
-        $columns = array_values($valuesByColumns);
-        $values = array_keys($valuesByColumns);
-
+        // return columns
+        $columns = array_keys($valuesByColumns);
         $strColumns = "";
         foreach($columns as $column){
             $strColumns = $strColumns .''.$column. ', ';
         }
         $strColumns = substr($strColumns, 0, -2);
 
-        dump($strColumns);
-
+        // return data with type of model
+        $datas = (new $this->model())->hydrateForSql($valuesByColumns);
+        $values = (array)$datas;
+        array_shift($values);
+        array_pop($values);
         $strValues = "";
         foreach($values as $value){
-            $strValues = $strValues .':'.$value. ', ';
+            if($value === (int)$value){
+                $strValues = $strValues .''.$value. ', ';
+            }
+            elseif($value === true){
+                $strValues = $strValues .'1, ';
+            }
+            elseif($value === false){
+                $strValues = $strValues .'0, ';
+            }
+            elseif($value == null){
+                $strValues = $strValues;
+            }           
+            else{
+                $strValues = $strValues .'\''.$value. '\', ';
+            }
         }
         $strValues = substr($strValues, 0, -2);
 
-        dump($strValues);
-
-        $sqlQuery = 'INSERT INTO ' . $table . '(' . $strColumns . ') VALUES(' . $strValues .')';
-
-        dump($sqlQuery);
-
-        $statement = $this->pdo->prepare($sqlQuery);
-
-        dump($valuesByColumns);
-
-        $statement->execute($valuesByColumns);
+        $sql = 'INSERT INTO ' . $table . '('. $strColumns .') VALUES('. $strValues .')';
+        $this->pdo->exec($sql);
     }
-    // set model ?
 
     /**
      * @todo implémentation fonction for backOffice

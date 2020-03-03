@@ -17,6 +17,10 @@ class BlogController extends Controller
 
         $flashMessage =(MessageFlash::getInstance())->add("bg-success", " Votre message à bien été envoyé !");
         //dump(MessageFlash::getInstance());
+        //dump($_SESSION);
+        //dump($_SESSION["FLASH_MESSAGES"]);
+        //dump(($_SESSION["FLASH_MESSAGES"])->getMessage());
+        dump($_SESSION["FLASH_MESSAGES"]);
         return $this->render("blog.html.twig", ['billets' => $billets, 'nbComments' => $nbComments]);
     }
 

@@ -31,7 +31,7 @@ class MessageFlash
      */
     public function __construct()
     {
-        //$_SESSION["FLASH_MESSAGES"] = self::$messageFlashInstance;
+        $_SESSION["FLASH_MESSAGES"] = self::$messageFlashInstance;
     }
 
     /**
@@ -40,7 +40,7 @@ class MessageFlash
     public function add($type, $message)
     {
         array_push($this->messages, ['type' => $type, 'message' => $message]);
-        //$_SESSION["FLASH_MESSAGES"] = self::$messageFlashInstance;
+        $_SESSION["FLASH_MESSAGES"] = self::$messageFlashInstance;
     }
 
     /**

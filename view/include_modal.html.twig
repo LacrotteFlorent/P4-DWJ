@@ -4,7 +4,9 @@
   Launch demo modal
 </button>
     {% endif %}
-    <h1>{{flashMessageContent()}}</h1>
+    {% set msg = app.session.get('FLASH_MESSAGES') %}
+    {{ dumpTwig(app.session.get("FLASH_MESSAGES")) }}
+    <h1>{{msg}}</h1>
     <h1>test</h1>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

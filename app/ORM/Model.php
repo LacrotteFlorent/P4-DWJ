@@ -62,5 +62,52 @@ abstract class Model
         }
         return $this;
     }
-    
+
+    /**
+     * @param array $values
+     * @return Model
+     * @throws ORMException
+     */
+    public function hydrateForSql($datas)
+    {
+        if(empty($datas)){
+            throw new ORMException("Aucun résultat !");
+        }
+        $this->originalData = $datas;
+
+        foreach($datas as $column => $value){
+            $dataString = sprintf("set%s", ucfirst($this::metadata()["columns"][$column]["property"]));
+
+            if($this::metadata()["columns"][$column]["type"]){
+                switch ($this::metadata()["columns"][$column]["type"]) {
+                    case 'string':
+                        $this->{sprintf($dataString)} ($value);
+                        break;
+                    
+                    case 'integer':
+                        $this->{sprintf($dataString)} ((int) $value);
+                        break;
+                    
+                    case 'bool':
+                        $this->{sprintf($dataString)} ((bool) $value);
+                        break;
+
+                    case 'datetime':
+                        if($value instanceof \DateTime){
+                            $this->{sprintf($dataString)} ((string) $value->format("Y-m-d H:i:s"));
+                        }
+                        else{
+                            $this->{sprintf($dataString)} ((string) $value);
+                        }
+                        break;
+                    
+                    default:
+                        throw new ORMException ("Ce type de variable n'est pas pris en compte");
+                        break;
+                }
+            }
+        }
+        return $this;
+    }
+
 }
