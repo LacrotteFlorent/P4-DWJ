@@ -3,6 +3,7 @@
 namespace Project\Controller;
 
 use Framework\ORM\Controller;
+use Framework\Paginate;
 
 class BilletController extends Controller
 {
@@ -20,6 +21,8 @@ class BilletController extends Controller
         $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAllByParam(['post_id' => $id, 'valid' => 1]);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => $billet->getId(), 'valid' => 1]);
 
+        $pages = new Paginate(5, (int) $nbComments['count']);
+        dump($pages);
         return $this->render("billet.html.twig", ['billet' => $billet, 'comments' => $comments, 'nbComments' => $nbComments]);
     }
 
