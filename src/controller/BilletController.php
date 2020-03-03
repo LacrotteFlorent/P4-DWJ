@@ -33,7 +33,10 @@ class BilletController extends Controller
     private function post($id)
     {
         $dataForm = $_POST;
-        $author = array_shift($dataForm);
+        $author = addslashes(array_shift($dataForm));
+        $content = addslashes(array_shift($dataForm));
+        
+        $dataForm["content"] = $content;
 
         $date = new \Datetime;
         date_timezone_set($date, timezone_open('Europe/Paris'));
@@ -44,8 +47,6 @@ class BilletController extends Controller
         $dataForm["report"] = 0;
         $dataForm["author"] = $author;
         $dataForm["post_id"] = $id;
-
-        dump($dataForm);
 
         $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insert('comment', $dataForm);
 

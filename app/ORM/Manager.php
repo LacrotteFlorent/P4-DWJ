@@ -272,7 +272,6 @@ class Manager
         $strValues = substr($strValues, 0, -2);
 
         $sql = 'INSERT INTO ' . $table . '('. $strColumns .') VALUES('. $strValues .')';
-        dump($sql);
         $this->pdo->exec($sql);
     }
 
