@@ -20,34 +20,31 @@ class BilletController extends Controller
         $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAllByParam(['post_id' => $id, 'valid' => 1]);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => $billet->getId(), 'valid' => 1]);
 
-        //$test = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insert('comment', [
-        //    'content'       =>  'ceci est une nouvelle phrase de test',
-        //    'posted_at'     =>  '2020-01-01 08:15:10',
-        //    'valid'         =>  1,
-        //    'report'        =>  0,
-        //    'author'        => 'Guesttt',
-        //    'post_id'       => 1
-        //    ]);
-            
         return $this->render("billet.html.twig", ['billet' => $billet, 'comments' => $comments, 'nbComments' => $nbComments]);
     }
 
+    /**
+     * @param string $id
+     * @return header
+     */
     private function post($id)
     {
         $dataForm = $_POST;
         $author = array_shift($dataForm);
+
         $date = new \Datetime;
         date_timezone_set($date, timezone_open('Europe/Paris'));
         $date = $date->format("Y-m-d H:i:s");
         $dataForm["posted_at"] = $date;
+
         $dataForm["valid"] = 1;
         $dataForm["report"] = 0;
         $dataForm["author"] = $author;
         $dataForm["post_id"] = $id;
 
         $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insert('comment', $dataForm);
-        (string)$redirect = '/billet/' . $id;
 
+        (string)$redirect = '/billet/' . $id;
         header($redirect);
     }
 
