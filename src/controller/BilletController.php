@@ -13,7 +13,7 @@ class BilletController extends Controller
     */
     public function show($id)
     {
-        if(isset($_POST)){
+        if($_POST){
             $this->post($id);
         }
 
@@ -21,9 +21,9 @@ class BilletController extends Controller
         $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAllByParam(['post_id' => $id, 'valid' => 1]);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => $billet->getId(), 'valid' => 1]);
 
-        $pages = new Paginate(5, (int) $nbComments['count']);
+        $pages = new Paginate(5, (int) $nbComments['count'], 3);
         dump($pages);
-        return $this->render("billet.html.twig", ['billet' => $billet, 'comments' => $comments, 'nbComments' => $nbComments]);
+        return $this->render("billet.html.twig", ['billet' => $billet, 'comments' => $comments, 'nbComments' => $nbComments, 'pages' => $pages]);
     }
 
     /**
@@ -50,8 +50,9 @@ class BilletController extends Controller
 
         $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insert('comment', $dataForm);
 
+        $_POST = null;
         (string)$redirect = '/billet/' . $id;
-        header($redirect);
-    }
+        header('Location :' . $redirect);
+    }// Re-écrire la fonction avec prepare puis execute
 
 }

@@ -86,6 +86,23 @@
                     {% endif %}
                 </div>
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item">
+                    <a class="page-link" href="#">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                    </li>
+                    {% for page in pages.getPages %}
+                        {% if pages.getActualPage == page %}
+                            <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="/index.php/billet{{billet.id}}?pageCom={{page}}">{{page}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="page-item">
+                    <a class="page-link" href="#">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                    </li>
+                </ul>
+            </nav>
             {% include "include_footer.html" %}
         </div>
 {% endblock body %}
