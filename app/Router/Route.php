@@ -53,7 +53,7 @@ class Route {
      */
     public function match(string $requestUri): bool
     {
-        $path = preg_replace("/:(\w+)/", "([\d]+)", $this->path); 
+        $path = preg_replace("/:(\w+)/", "([\d]+)", $this->path);
         $path = str_replace("/","\/", $path);
         if(!preg_match("/^$path$/i", $requestUri, $matches)){
             return false;

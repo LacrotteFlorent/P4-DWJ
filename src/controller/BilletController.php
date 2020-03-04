@@ -4,6 +4,7 @@ namespace Project\Controller;
 
 use Framework\ORM\Controller;
 use Framework\Paginate;
+use Project\SrcControllerException;
 
 class BilletController extends Controller
 {
@@ -21,9 +22,33 @@ class BilletController extends Controller
         $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAllByParam(['post_id' => $id, 'valid' => 1]);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => $billet->getId(), 'valid' => 1]);
 
-        $pages = new Paginate(5, (int) $nbComments['count'], 3);
-        dump($pages);
-        return $this->render("billet.html.twig", ['billet' => $billet, 'comments' => $comments, 'nbComments' => $nbComments, 'pages' => $pages]);
+        // Show element by page
+        if($nbComments['count']>5){
+        if($_GET){
+            if($_GET['pageCom']){
+                $pages = new Paginate(5, (int) $nbComments['count'], $_GET['pageCom']);
+            }
+            else{
+                throw new SrcControllerException('pageCom unset');
+            }
+        }
+        else{
+            $pages = new Paginate(5, (int) $nbComments['count'], 1);
+        }
+        $commentToShow = [];
+        $i = 0;
+        foreach(($pages->getShowElements()) as $element)
+        {
+            array_push($commentToShow, array_values($comments)[(array_values(($pages->getShowElements()))[$i])]);
+            $i ++;
+        }
+        }
+        else{
+            $commentToShow = $comments;
+            $pages = null;
+        }
+
+        return $this->render("billet.html.twig", ['billet' => $billet, 'comments' => $commentToShow, 'nbComments' => $nbComments, 'pages' => $pages]);
     }
 
     /**
@@ -48,7 +73,7 @@ class BilletController extends Controller
         $dataForm["author"] = $author;
         $dataForm["post_id"] = $id;
 
-        $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insert('comment', $dataForm);
+        $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertPrepare('comment', $dataForm);
 
         $_POST = null;
         (string)$redirect = '/billet/' . $id;

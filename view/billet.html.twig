@@ -89,17 +89,21 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center mb-0">
                     <li class="page-item">
-                    <a class="page-link" href="#">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                    {% if pages != null %}
+                        <a class="page-link" href="/index.php/billet/{{billet.id}}?pageCom=1">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                    {% endif %}
                     </li>
                     {% for page in pages.getPages %}
                         {% if pages.getActualPage == page %}
                             <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
                         {% else %}
-                            <li class="page-item"><a class="page-link" href="/index.php/billet{{billet.id}}?pageCom={{page}}">{{page}}</a></li>
+                            <li class="page-item"><a class="page-link" href="/index.php/billet/{{billet.id}}?pageCom={{page}}">{{page}}</a></li>
                         {% endif %}
                     {% endfor %}
                     <li class="page-item">
-                    <a class="page-link" href="#">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                    {% if pages != null %}
+                        <a class="page-link" href="/index.php/billet/{{billet.id}}?pageCom={{pages.getLastPage}}">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                    {% endif %}
                     </li>
                 </ul>
             </nav>
