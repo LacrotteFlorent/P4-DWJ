@@ -85,8 +85,8 @@ class Paginate
      */
     private function calcShowElements()
     {
-        $showElementsMin = $this->actualPage*5;
-        $showElementsMax = ($this->actualPage*5)+4;
+        $showElementsMin = $this->actualPage*$this->nbItemByPage;
+        $showElementsMax = ($this->actualPage*$this->nbItemByPage)+($this->nbItemByPage-1);
 
         if($this->nbItemTotal < $showElementsMax){
             $showElementsMax = ($this->nbItemTotal) -1;

@@ -4,7 +4,7 @@ namespace Project\Controller;
 
 use Framework\ORM\Controller;
 use Framework\Paginate;
-use Project\SrcControllerException;
+use Project\Controller\SrcControllerException;
 
 class BilletController extends Controller
 {
@@ -22,23 +22,26 @@ class BilletController extends Controller
         $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAllByParam(['post_id' => $id, 'valid' => 1]);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => $billet->getId(), 'valid' => 1]);
 
-        // Show element by page
-        if($nbComments['count']>5){
+        // Show comments by page
+        if($nbComments['count']>$_ENV["PAGE_COMMENTS"]){
         if($_GET){
             if($_GET['pageCom']){
-                $pages = new Paginate(5, (int) $nbComments['count'], $_GET['pageCom']);
+                $pages = new Paginate($_ENV["PAGE_COMMENTS"], (int) $nbComments['count'], $_GET['pageCom']);
             }
             else{
-                throw new SrcControllerException('pageCom unset');
+                throw new SrcControllerException('Une erreur est survenue lors de la soumission de votre commentaire');
             }
         }
         else{
-            $pages = new Paginate(5, (int) $nbComments['count'], 1);
+            $pages = new Paginate($_ENV["PAGE_COMMENTS"], (int) $nbComments['count'], 1);
         }
         $commentToShow = [];
         $i = 0;
         foreach(($pages->getShowElements()) as $element)
         {
+            if(count($pages->getShowElements()) > $_ENV["PAGE_COMMENTS"]){
+                throw new SrcControllerException('Hop, hop, hop, ou allez vous ? Cette page n\'existe pas !');
+            }
             array_push($commentToShow, array_values($comments)[(array_values(($pages->getShowElements()))[$i])]);
             $i ++;
         }
