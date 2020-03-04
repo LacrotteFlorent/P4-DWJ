@@ -68,7 +68,12 @@ class Paginate
             $pageMax = $this->actualPage+2;
         }
         else{
-            $pageMax = $this->actualPage;
+            if(($this->nbPages -1) != $this->actualPage){
+                $pageMax = ($this->actualPage) +1;
+            }
+            else{
+                $pageMax = $this->actualPage;
+            }
         }
         
         $this->pageAroundActualPage = range($pageMin, $pageMax);
@@ -83,6 +88,10 @@ class Paginate
         $showElementsMin = $this->actualPage*5;
         $showElementsMax = ($this->actualPage*5)+4;
 
+        if($this->nbItemTotal < $showElementsMax){
+            $showElementsMax = ($this->nbItemTotal) -1;
+        }
+        
         $this->showElements = range($showElementsMin, $showElementsMax);
     }
 
@@ -91,7 +100,7 @@ class Paginate
      */
     public function getLastPage() : int
     {
-        return $this->nbPages;
+        return ($this->nbPages) -1;
     }
 
     /**
