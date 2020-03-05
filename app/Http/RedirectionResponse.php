@@ -16,6 +16,7 @@ class RedirectionResponse implements ResponseInterface
     public function __construct(string $uri)
     {
         $this->uri = $uri;
+        $this->send();
     }
 
     /**
@@ -23,6 +24,6 @@ class RedirectionResponse implements ResponseInterface
      */
     public function send()
     {
-        
+        return header('Location : ' . $this->uri);
     }
 }

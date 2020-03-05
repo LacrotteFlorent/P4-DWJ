@@ -4,6 +4,7 @@ namespace Project\Controller;
 
 use Framework\ORM\Controller;
 use Framework\Paginate;
+use Framework\MessageFlash;
 use Project\Controller\SrcControllerException;
 
 class BilletController extends Controller
@@ -51,12 +52,21 @@ class BilletController extends Controller
             $pages = null;
         }
 
-        return $this->render("billet.html.twig", ['billet' => $billet, 'comments' => $commentToShow, 'nbComments' => $nbComments, 'pages' => $pages]);
+        //messages
+        $flashMessages = $this->flashMessages();
+
+        return $this->render("billet.html.twig", [
+            'billet'        => $billet,
+            'comments'      => $commentToShow,
+            'nbComments'    => $nbComments,
+            'pages'         => $pages,
+            'flashMessages' => $flashMessages
+            ]);
     }
 
     /**
      * @param string $id
-     * @return header
+     * @return RedirectionResponse
      */
     private function post($id)
     {
@@ -76,11 +86,14 @@ class BilletController extends Controller
         $dataForm["author"] = $author;
         $dataForm["post_id"] = $id;
 
+        
         $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertPrepare('comment', $dataForm);
 
+        $flashMessage = (MessageFlash::getInstance())->add("bg-success", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
+
         $_POST = null;
-        (string)$redirect = '/billet/' . $id;
-        header('Location :' . $redirect);
-    }// Re-écrire la fonction avec prepare puis execute
+
+        $this->redirection('/billet/' . $id);
+    }
 
 }

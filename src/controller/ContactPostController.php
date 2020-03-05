@@ -79,15 +79,16 @@ class ContactPostController extends Controller
         if($failure){
             $infoMail = "Une erreur c'est produite, votre message n'as pas été envoyé !";
             $bgColorInfo = "bg-danger";
+            $flashMessage = (MessageFlash::getInstance())->add($bgColorInfo, $infoMail);
         }
         else{
             $infoMail = " Votre message à bien été envoyé !";
             $bgColorInfo = "bg-success";
+            $flashMessage = (MessageFlash::getInstance())->add($bgColorInfo, $infoMail);
         }
         
         header('Location: /contact');
 
-        return $this->render("contact.html.twig", ['message' => $infoMail, 'bgColorMessage' => $bgColorInfo]); // envoyer vers un messag flash session
     }
 
 }

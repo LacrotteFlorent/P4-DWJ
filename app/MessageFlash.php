@@ -16,7 +16,7 @@ class MessageFlash
     private $messages = [];
 
     /**
-     * 
+     * @return MessageFlash
      */
     public static function getInstance() : MessageFlash
     {
@@ -27,7 +27,8 @@ class MessageFlash
     }
 
     /**
-     * 
+     * MessageFlash constructor.
+     * @return MessageFlash $_SESSION
      */
     public function __construct()
     {
@@ -35,7 +36,9 @@ class MessageFlash
     }
 
     /**
-     * 
+     * @param string $type
+     * @param string $message
+     * @return MessageFlash $_SESSION
      */
     public function add($type, $message)
     {
@@ -44,11 +47,23 @@ class MessageFlash
     }
 
     /**
-     * 
+     * @return array
      */
     public function getMessage()
     {
         $affiche = array_shift($this->messages);
+        return $affiche;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMessages()
+    {
+        $affiche = [];
+        foreach($this->messages as $message){
+            array_push($affiche, array_shift($this->messages));
+        }
         return $affiche;
     }
 

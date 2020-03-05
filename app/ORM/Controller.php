@@ -9,6 +9,7 @@ use Framework\Router\Router;
 use Framework\ORM\Database;
 use Project\PersonalExtendTwig\PersonalFunctions;
 use Project\PersonalExtendTwig\PersonalFilters;
+use Framework\MessageFlash;
 
 class Controller
 {
@@ -61,12 +62,12 @@ class Controller
     }
 
     /**
-     * @param array $paramsMatches
+     * @param string $uri
      * @return RedirectionResponse
      */
-    public function redirection($paramsMatches): RedirectionResponse
+    public function redirection($uri): RedirectionResponse
     {
-        return new RedirectionResponse($this->request->getRequestUri());
+        return new RedirectionResponse($uri);
     }
 
     /**
@@ -87,6 +88,19 @@ class Controller
     protected function getDatabase()
     {
         return $this->database;
+    }
+
+    /**
+     * @return array
+     */
+    protected function flashMessages()
+    {
+        if($_SESSION["FLASH_MESSAGES"])
+        {
+            $flashMessages = ($_SESSION["FLASH_MESSAGES"])->getMessages();
+        }
+
+        return $flashMessages;
     }
     
 }

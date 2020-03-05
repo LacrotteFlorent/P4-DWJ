@@ -20,7 +20,15 @@
     </head>
 
     <body>
-        {% include "include_modal.html.twig" %}
+        {% for flashMessage in flashMessages %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 text-center align-middle {{flashMessage.type}}">
+                        <h5 class="m-1 p-0 font-italic" style="color:ivory">{{flashMessage.message}}</h5>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
         {% block body %}{% endblock %}
     </body>
     
