@@ -64,20 +64,17 @@ class Paginate
             $pageMin = 1;
         }
 
-        if($this->nbPages > ($this->actualPage+2)){
+        if($this->nbPages > ($this->actualPage+1)){
             $pageMax = $this->actualPage+2;
         }
-        else{
-            if(($this->nbPages -1) != $this->actualPage){
-                $pageMax = ($this->actualPage) +1;
-            }
-            else{
-                $pageMax = $this->actualPage;
-            }
+        elseif($this->nbPages == $this->actualPage){
+            $pageMax = $this->actualPage;
         }
-        
-        $this->pageAroundActualPage = range($pageMin, $pageMax);
+        else{
+            $pageMax = $this->actualPage+1;
+        }
 
+        $this->pageAroundActualPage = range($pageMin, $pageMax);
     }
 
     /**
@@ -85,10 +82,21 @@ class Paginate
      */
     private function calcShowElements()
     {
-        $showElementsMin = $this->actualPage*$this->nbItemByPage;
-        $showElementsMax = ($this->actualPage*$this->nbItemByPage)+($this->nbItemByPage-1);
+        if($this->actualPage == 1){
+            $showElementsMin = 0;
+        }
+        else{
+            $showElementsMin = ($this->actualPage*$this->nbItemByPage)-$this->nbItemByPage;
+        }
+        
+        if($this->actualPage == 1){
+            $showElementsMax = $this->nbItemByPage-1;
+        }
+        else{
+            $showElementsMax = ($this->actualPage*$this->nbItemByPage)-1;
+        }
 
-        if($this->nbItemTotal < $showElementsMax){
+        if($this->nbItemTotal <= $showElementsMax){
             $showElementsMax = ($this->nbItemTotal) -1;
         }
         
@@ -100,7 +108,7 @@ class Paginate
      */
     public function getLastPage() : int
     {
-        return ($this->nbPages) -1;
+        return $this->nbPages;
     }
 
     /**
