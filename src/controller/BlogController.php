@@ -38,18 +38,18 @@ class BlogController extends Controller
                 array_push($billetsToShow, array_values($billets)[(array_values(($pages->getShowElements()))[$i])]);
                 $i ++;
             }
-            }
-            else{
-                $billetsToShow = $billets;
-                $pages = null;
-            }
+        }
+        else{
+            $billetsToShow = $billets;
+            $pages = null;
+        }
 
         return $this->render("blog.html.twig", [
             'billetsToShow' => $billetsToShow,
             'billets'       => $billets,
             'nbComments'    => $nbComments,
             'pages'         => $pages
-            ]);
+        ]);
     }
 
 }

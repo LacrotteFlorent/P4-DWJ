@@ -61,7 +61,7 @@ class BilletController extends Controller
             'nbComments'    => $nbComments,
             'pages'         => $pages,
             'flashMessages' => $flashMessages
-            ]);
+        ]);
     }
 
     /**
