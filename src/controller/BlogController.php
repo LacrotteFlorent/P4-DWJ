@@ -3,6 +3,7 @@
 namespace Project\Controller;
 
 use Framework\ORM\Controller;
+use Framework\MessageFlash;
 use Framework\Paginate;
 
 class BlogController extends Controller
@@ -12,6 +13,10 @@ class BlogController extends Controller
     */
     public function show()
     {
+        if($_POST){
+            $this->post();
+        }
+
         $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(5);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => (array_values($billets)[0])->getId(), 'valid' => 1]);
 
@@ -44,12 +49,47 @@ class BlogController extends Controller
             $pages = null;
         }
 
+        $flashMessages = $this->flashMessages();
+
         return $this->render("blog.html.twig", [
             'billetsToShow' => $billetsToShow,
             'billets'       => $billets,
             'nbComments'    => $nbComments,
+            'flashMessages' => $flashMessages,
             'pages'         => $pages
         ]);
+    }
+
+    /**
+     * @return RedirectionResponse
+     */
+    private function post()
+    {
+        $dataForm = $_POST;
+        $name = addslashes(array_shift($dataForm));
+        $lastName = addslashes(array_shift($dataForm));
+        $mail = $dataForm['mail'];
+
+        $dataForm = [];
+        $dataForm["full_name"] = ($name.' : '.$lastName);
+        $dataForm["email"] = $mail;
+
+        $date = new \Datetime;
+        date_timezone_set($date, timezone_open('Europe/Paris'));
+        $date = $date->format("Y-m-d H:i:s");
+        $dataForm["signed_at"] = $date;
+
+        if(isset($userId)){
+            $dataForm["user_id"] = $userId;
+        }
+
+        $dataForm = $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertPrepare('newsletter', $dataForm);
+
+        $flashMessage = (MessageFlash::getInstance())->add("bg-success", "Vous êtes maintenant inscrit à la newsletter !");
+
+        $_POST = null;
+
+        $this->redirection('/blog');
     }
 
 }

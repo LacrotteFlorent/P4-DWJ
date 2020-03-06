@@ -153,6 +153,32 @@ INSERT INTO `post` (`id`, `title`, `content`, `created_at`, `posted_at`, `draft`
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `newsletter`
+--
+DROP TABLE IF EXISTS `newsletter`;
+CREATE TABLE IF NOT EXISTS `newsletter` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `signed_at` datetime NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `newsletter`
+--
+
+INSERT INTO `newsletter` (`id`, `full_name`, `email`, `signed_at`) VALUES
+(1, 'Albert Demonaco', 'albert@gmail.com', '2020-01-02 00:00:00'),
+(2, 'Shrek', 'albert@gmail.com', '2020-01-03 00:00:00'),
+(3, 'Le chat de shrodinger', 'albert@gmail.com', '2020-01-02 00:00:00'),
+(4, 'AnthRaven', 'albert@gmail.com', '2020-01-04 00:00:00'),
+(5, 'SightSimacti', 'albert@gmail.com', '2020-05-02 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `user`
 --
 
@@ -195,6 +221,13 @@ ALTER TABLE `comment`
 ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`);
 COMMIT;
+
+--
+-- Contraintes pour la table `newsletter`
+--
+ALTER TABLE `newsletter`
+  ADD CONSTRAINT `newsletter_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -44,7 +44,7 @@ class ContactModel extends Model
     public static function metadata()
     {
         return [
-            "table"             =>"post",
+            "table"             =>"contact",
             "primaryKey"        =>"id",
             "columns"           =>[
                 "id"            =>[

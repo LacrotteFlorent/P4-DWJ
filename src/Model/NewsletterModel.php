@@ -3,9 +3,9 @@
 namespace Project\Model;
 
 use Framework\ORM\Model;
-use Project\Manager\UserManager;
+use Project\Manager\NewsletterManager;
 
-class UserModel extends Model
+class NewsletterModel extends Model
 {
 
     /**
@@ -16,17 +16,22 @@ class UserModel extends Model
     /**
      * @var string
      */
+    private $fullName;
+
+    /**
+     * @var string
+     */
     private $email;
 
     /**
-     * @var string
+     * @var \Datetime
      */
-    private $password;
+    private $signedAt;
 
     /**
-     * @var string
+     * @var sint
      */
-    private $username;
+    private $userId;
 
     /**
      * @return array
@@ -34,24 +39,28 @@ class UserModel extends Model
     public static function metadata()
     {
         return [
-            "table"             =>"user",
+            "table"             =>"newsletter",
             "primaryKey"        =>"id",
             "columns"           =>[
                 "id"            =>[
                     "type"      =>"integer",
                     "property"  =>"id"
                 ],
+                "full_name"     =>[
+                    "type"      =>"string",
+                    "property"  =>"fullName"
+                ],
                 "email"         =>[
                     "type"      =>"string",
                     "property"  =>"email"
                 ],
-                "password"      =>[
-                    "type"      =>"string",
-                    "property"  =>"password"
+                "signed_at"     =>[
+                    "type"      =>"datetime",
+                    "property"  =>"signedAt"
                 ],
-                "username"      =>[
+                "user_id"       =>[
                     "type"      =>"string",
-                    "property"  =>"username"
+                    "property"  =>"userId"
                 ]
             ]
         ];
@@ -62,7 +71,7 @@ class UserModel extends Model
      */
     public static function getManager()
     {
-        return UserManager::class;
+        return NewsletterManager::class;
     }
 
     /**
@@ -84,6 +93,22 @@ class UserModel extends Model
     /**
      * @return string
      */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @param string $fullName
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+    }
+
+    /**
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
@@ -98,35 +123,35 @@ class UserModel extends Model
     }
 
     /**
-     * @return string
+     * @return \Datetime
      */
-    public function getPassword()
+    public function getSignedAt()
     {
-        return $this->password;
+        return $this->signedAt;
     }
 
     /**
-     * @param string $password
+     * @param \Datetime $signedAt
      */
-    public function setPassword($password)
+    public function setSignedAt($signedAt)
     {
-        $this->password = $password;
+        $this->signedAt = $signedAt;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getUsername()
+    public function getUserId()
     {
-        return $this->username;
+        return $this->userId;
     }
 
     /**
-     * @param string $username
+     * @param int $userId
      */
-    public function setUsername($username)
+    public function setUserId($userId)
     {
-        $this->username = $username;
+        $this->userId = $userId;
     }
 
 }

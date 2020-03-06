@@ -95,12 +95,12 @@ class Controller
      */
     protected function flashMessages()
     {
-        if($_SESSION["FLASH_MESSAGES"])
+        if(isset($_SESSION["FLASH_MESSAGES"]))
         {
             $flashMessages = ($_SESSION["FLASH_MESSAGES"])->getMessages();
+            return $flashMessages;
         }
 
-        return $flashMessages;
     }
     
 }
