@@ -26,6 +26,22 @@ class ContactController extends Controller
      */
     private function post()
     {
+            // insert in MYSQL
+        $dataForm = [];
+        $dataForm["full_name"] = (addslashes($_POST["contactFirstName"]) . ' : '. addslashes($_POST["contactName"]));
+        $dataForm["email"] = $_POST["contactMail"];
+        $dataForm["subject"] = addslashes($_POST["contactObject"]);
+        $dataForm["content"] = addslashes($_POST["contactMessage"]);
+
+        $date = new \Datetime;
+        date_timezone_set($date, timezone_open('Europe/Paris'));
+        $date = $date->format("Y-m-d H:i:s");
+        $dataForm["sent_at"] = $date;
+
+
+        $dataForm = $this->getDatabase()->getManager('\Project\Model\ContactModel')->insertPrepare('contact', $dataForm);
+
+            // send a email to recipent to notify it
         $failure = null;
         $message = (new \Swift_Message('Prise de contact Site Web'))
             ->setFrom(['swift.mailer.lacrotte.florent@gmail.com' => 'Contact Site JeanForteroche'])
