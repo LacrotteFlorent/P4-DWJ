@@ -38,7 +38,6 @@ class ContactController extends Controller
         $date = $date->format("Y-m-d H:i:s");
         $dataForm["sent_at"] = $date;
 
-
         $dataForm = $this->getDatabase()->getManager('\Project\Model\ContactModel')->insertPrepare('contact', $dataForm);
 
             // send a email to recipent to notify it

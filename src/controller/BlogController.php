@@ -65,14 +65,9 @@ class BlogController extends Controller
      */
     private function post()
     {
-        $dataForm = $_POST;
-        $name = addslashes(array_shift($dataForm));
-        $lastName = addslashes(array_shift($dataForm));
-        $mail = $dataForm['mail'];
-
         $dataForm = [];
-        $dataForm["full_name"] = ($name.' : '.$lastName);
-        $dataForm["email"] = $mail;
+        $dataForm["full_name"] = (addslashes($_POST["name"]) .' : '. addslashes($_POST["lastName"]));
+        $dataForm["email"] = $_POST["mail"];
 
         $date = new \Datetime;
         date_timezone_set($date, timezone_open('Europe/Paris'));
