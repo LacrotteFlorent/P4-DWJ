@@ -1,28 +1,15 @@
-<!DOCTYPE HTML>
-<!-- Couleurs :
-    Blanc       #FFFFFF
-    Gris        #333
-    Gris clair  #919191
-    Gris foncé  #181A1B
-    Orangé      #542E00
-    Orang Clair #F08400
-    Bleu clair  #00A3D0
-    Bleu gris   #38435A
-    Bleu foncé  #181D27
-    -->
-<!-- Blog d'écrivain - Made by Lacrotte Florent / Projet 4 - OpenClassrooms -->
+{% extends'template.html.twig' %}
 
-<html>
-    
-    <head>
-    <?php include("include_head.php"); ?>
-    </head>
-    
-    <body>
+{% block head %}
+    <!-- Titre -->
+    <title>Tableau de bord | Jean Forteroche</title>
+    <!-- Media Queries -->
+    <link rel="stylesheet" href="/public/css/styleAdminDashboard.css" />
+{% endblock head %}
+
+{% block body %}
         <div class="container-fluid adminPost">
-
-            <?php include("include_header.php"); ?>
-
+            {% include "include_header.html" %}
             <div class="row justify-content-center" id="adminPost">
                 <div class="col-12 col-sm-10">
                     <h2 class="my-3">Editeur d'articles</h2>
@@ -79,15 +66,6 @@
                                   <span class="input-group-text" id="inputGroupFileAddon02">Télécharger</span>
                                 </div>
                             </div>
-<<<<<<< HEAD
-=======
-                            <form method="POST" action="" class="list-group-item rounded-sm mb-2 p-2">
-                                <div class="custom-control custom-checkbox">
-                                    <input id="autoSuprCom" name="autoSuprCom" type="checkbox" class="custom-control-input" />
-                                    <label for="autoSuprCom" class="custom-control-label">Ne pas afficher l'image dans l'article (cette image sera utilisée dans la page acceuil et blog seulement).</label>
-                                </div>
-                            </form>
->>>>>>> a8bddfb6062c8640a2dbea4430d7367dae5f9669
                             <p>Aperçu :</p>
                             <img src="../public/img/chapter1.jpg"  alt="photo d'illustration du chapitre 1" class="img-fluid img-thumbnail" />
                         </div>
@@ -159,11 +137,6 @@
                     </div>
                 </div>
             </div>
-            
-            <?php include("include_footer.php"); ?>
-
+            {% include "include_footer.html" %}
         </div>
-
-    </body>
-    
-</html>
+{% endblock body %}

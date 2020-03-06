@@ -22,8 +22,8 @@ adminDashboard:
     action: show
 adminPost:
     path: /adminPost/:id
-    controller: Blog
-    action: index
+    controller: AdminPost
+    action: show
 billet:
     path: /billet/:id
     controller: Billet
