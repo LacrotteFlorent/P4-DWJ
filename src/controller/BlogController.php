@@ -13,8 +13,13 @@ class BlogController extends Controller
     */
     public function show()
     {
+        
         if($_POST){
-            $this->post();
+            if($this->testForForm(["name", "lastName", "mail", "signed_at", "acceptRGPD" ])){
+                return $this->post();
+            }
+
+            $flashMessage = (MessageFlash::getInstance())->add("bg-danger", "Vous avez mal renseigné le formulaire !");
         }
 
         $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(5);
@@ -84,7 +89,7 @@ class BlogController extends Controller
 
         $_POST = null;
 
-        $this->redirection('/blog');
+        return $this->redirection('/blog');
     }
 
 }

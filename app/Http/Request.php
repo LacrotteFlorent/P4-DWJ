@@ -73,6 +73,14 @@ class Request
     }
 
     /**
+     * @return string
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
      * @param string $varEnv
      * @return string
      */

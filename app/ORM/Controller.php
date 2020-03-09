@@ -49,7 +49,6 @@ class Controller
         ));
         $this->twig->addExtension(new PersonalFunctions($this->getDatabase()));
         $this->twig->addExtension(new PersonalFilters());
-
     }
 
     /**
@@ -101,6 +100,19 @@ class Controller
             return $flashMessages;
         }
 
+    }
+
+    /**
+     * @param array $varToBeCheck
+     */
+    protected function testForForm($varToBeCheck)
+    {
+        foreach($varToBeCheck as $var){
+            if(null === !($this->request->getRequest($var))){
+                return false;
+            }
+        }
+         return true;
     }
     
 }
