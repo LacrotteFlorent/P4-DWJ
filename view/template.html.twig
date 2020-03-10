@@ -20,6 +20,7 @@
     </head>
 
     <body>
+    <!--
         {% for flashMessage in flashMessages %}
         <div class="container-fluid">
             <div class="row">
@@ -27,23 +28,22 @@
                     <h5 class="m-1 p-0 font-italic" style="color:ivory">{{flashMessage.message}}</h5>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="container-fluid">
-                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-                    <div class="toast-header">
-                        <svg class="bd-placeholder-img rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-                            <rect width="100%" height="100%" fill="red"></rect>
-                        </svg>
-                        <div src="" class="rounded mr-2 {{flashMessage.type}}" alt="..." style = "width:21px;"> </div>
-                        <strong class="mr-auto ">Informations</strong>
-                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="toast-body">
-                      {{flashMessage.message}}
-                    </div>
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+                <div class="toast-header">
+                    <svg class="bd-placeholder-img rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                        <rect width="100%" height="100%" fill="{{flashMessage.type}}"></rect>
+                    </svg>
+                    <strong class="mr-auto ">Informations</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="toast-body">
+                    {{flashMessage.message}}
+                </div>
+            </div>
         </div>
         {% endfor %}
         {% block body %}{% endblock %}

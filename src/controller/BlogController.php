@@ -5,13 +5,14 @@ namespace Project\Controller;
 use Framework\ORM\Controller;
 use Framework\MessageFlash;
 use Framework\Paginate;
+use Project\Model\NewsletterModel;
 
 class BlogController extends Controller
 {
    /**
     * @return Response
     */
-    public function show()
+    public function show($final = 0)
     {
         $erreurs = [];
         if($this->request->getRequestMethod() === 'POST'){
@@ -66,7 +67,7 @@ class BlogController extends Controller
     /**
      * @return RedirectionResponse
      */
-    private function post()
+    public function post()
     {
         $dataForm = [];
         $dataForm["full_name"] = (addslashes($_POST["firstName"]) .' : '. addslashes($_POST["lastName"]));
@@ -80,10 +81,10 @@ class BlogController extends Controller
         if(isset($userId)){
             $dataForm["user_id"] = $userId;
         }
+        
+        $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel((new NewsletterModel())->hydrateForSql($dataForm));
 
-        //$dataForm = $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertPrepare('newsletter', $dataForm);
-
-        $flashMessage = (MessageFlash::getInstance())->add("bg-success", "Vous êtes maintenant inscrit à la newsletter !");
+        $flashMessage = (MessageFlash::getInstance())->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
 
         return $this->redirection('/blog');
     }

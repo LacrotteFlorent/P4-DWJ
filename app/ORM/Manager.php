@@ -236,52 +236,6 @@ class Manager
      * INSERT INTO comment(content, posted_at, valid, report, author, post_id)
      *  VALUES( 'ceci est une phrase de test', '2020-01-01 08:15:10', 1, 0, 'Guesttt', 1)
      */
-    public function insert($table, $valuesByColumns)
-    {
-        // return columns
-        $columns = array_keys($valuesByColumns);
-        $strColumns = "";
-        foreach($columns as $column){
-            $strColumns = $strColumns .''.$column. ', ';
-        }
-        $strColumns = substr($strColumns, 0, -2);
-
-        // return data with type of model
-        $datas = (new $this->model())->hydrateForSql($valuesByColumns);
-        $values = (array)$datas;
-        array_shift($values);
-        array_pop($values);
-        $strValues = "";
-        foreach($values as $value){
-            if($value === (int)$value){
-                $strValues = $strValues .''.$value. ', ';
-            }
-            elseif($value === true){
-                $strValues = $strValues .'1, ';
-            }
-            elseif($value === false){
-                $strValues = $strValues .'0, ';
-            }
-            elseif($value == null){
-                $strValues = $strValues;
-            }           
-            else{
-                $strValues = $strValues .'\''.$value. '\', ';
-            }
-        }
-        $strValues = substr($strValues, 0, -2);
-
-        $sql = 'INSERT INTO ' . $table . '('. $strColumns .') VALUES('. $strValues .')';
-        $this->pdo->exec($sql);
-    }
-
-    /**
-     * @param $string $table
-     * @param array $valuesByColumns
-     * @internal { for @param $valuesByColumns ['column' => $value]}
-     * INSERT INTO comment(content, posted_at, valid, report, author, post_id)
-     *  VALUES( 'ceci est une phrase de test', '2020-01-01 08:15:10', 1, 0, 'Guesttt', 1)
-     */
     public function insertPrepare($table, $valuesByColumns)
     {
         // return columns
@@ -311,6 +265,29 @@ class Manager
         }
 
         $statement->execute();
+    }
+
+    /**
+     * @param Model $model
+     */
+    public function insertByModel(Model $model)
+    {
+        $set = [];
+        $values = [];
+        $datas = [];
+        foreach(array_keys($this->metadata["columns"]) as $column)
+        {
+            $sqlValue = $model->getSQLValueByColumn($column);
+            $model->orignalData[$column] = $sqlValue;
+
+            $datas[$column] = $sqlValue;
+            $set[] = $column;
+            $values[] = sprintf(":%s", $column);
+        }
+
+        $sqlQuery = sprintf("INSERT INTO %s (%s) VALUES (%s)", $this->metadata["table"], implode(", ", $set), implode(", ", $values));
+        
+        $this->pdo->prepare($sqlQuery)->execute($datas);
     }
 
     /**

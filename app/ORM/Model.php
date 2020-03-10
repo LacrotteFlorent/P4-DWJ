@@ -77,7 +77,7 @@ abstract class Model
 
         foreach($datas as $column => $value){
             $dataString = sprintf("set%s", ucfirst($this::metadata()["columns"][$column]["property"]));
-
+            
             if($this::metadata()["columns"][$column]["type"]){
                 switch ($this::metadata()["columns"][$column]["type"]) {
                     case 'string':
@@ -108,6 +108,19 @@ abstract class Model
             }
         }
         return $this;
+    }
+
+    /**
+     * @param string $column
+     * @return mixed
+     */
+    public function getSQLValueByColumn($column)
+    {
+        $value = $this->{sprintf("get%s", ucfirst($this::metadata()["columns"][$column]["property"]))}();
+        if($value instanceof \DateTime){
+            return $value->format("Y-m-d H:i:s");
+        }
+        return $value;
     }
 
 }
