@@ -16,7 +16,7 @@ class Controller
      /**
      * @var Request
      */
-    private $request;
+    protected $request;
 
     /**
      * @var Router
@@ -104,15 +104,50 @@ class Controller
 
     /**
      * @param array $varToBeCheck
+     * @return array
      */
     protected function testForForm($varToBeCheck)
     {
+        $reponse = [];
+        $valid = true;
         foreach($varToBeCheck as $var){
-            if(null === !($this->request->getRequest($var))){
-                return false;
+            if(isset($this->request->getPost()[$var])){
+                $reponse[$var] = $this->request->getPost()[$var];
+
+                switch($var){
+                    case 'mail':
+                        if (filter_var($this->request->getPost()[$var], FILTER_VALIDATE_EMAIL)) {
+                            $reponse[$var] = $this->request->getPost()[$var];
+                        } else {
+                            $reponse[$var] = "Le mail que vous avez saisi n'est pas valide";
+                            $valid = false;
+                        }
+                        break;
+                    case 'acceptRGPD':
+                        if($this->request->getPost()[$var] === "on"){
+                            $reponse[$var] = $this->request->getPost()[$var];
+                        }
+                        else{
+                            $reponse[$var] = "Vous n'avez pas coché la case d'acceptation RGPD";
+                            $valid = false;
+                        }
+                        break;
+                    case 'message':
+                        if(strlen($var) < 255){
+                            $reponse[$var] = $this->request->getPost()[$var];
+                        }
+                        else{
+                            $reponse[$var] = "Le message que vous avez saisi est trop long";
+                            $valid = false;
+                        }
+                        break;
+                }
+            }
+            else{
+                $reponse[$var] = "Ce champ doit être renseigné";
+                $valid = false;
             }
         }
-         return true;
+        return [$valid, $reponse];
     }
-    
 }

@@ -13,13 +13,15 @@ class BlogController extends Controller
     */
     public function show()
     {
-        
-        if($_POST){
-            if($this->testForForm(["name", "lastName", "mail", "signed_at", "acceptRGPD" ])){
-                return $this->post();
+        $erreurs = [];
+        if($this->request->getRequestMethod() === 'POST'){
+            if(($this->testForForm(["firstName", "lastName", "mail", "acceptRGPD"]))[0] === true){
+                $this->post();
             }
-
-            $flashMessage = (MessageFlash::getInstance())->add("bg-danger", "Vous avez mal renseigné le formulaire !");
+            else{
+                $erreurs = ($this->testForForm(["firstName", "lastName", "mail", "acceptRGPD"]))[1];
+                $flashMessage = (MessageFlash::getInstance())->add("bg-danger", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
+            }
         }
 
         $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(5);
@@ -27,13 +29,8 @@ class BlogController extends Controller
 
         // Show comments by page
         if(count($billets)>$_ENV["PAGE_ARTICLES"]){
-            if($_GET){
-                if($_GET['page']){
-                    $pages = new Paginate($_ENV["PAGE_ARTICLES"], (int) count($billets), $_GET['page']);
-                }
-                else{
-                    throw new SrcControllerException('Une erreur est survenue lors de la soumission de votre commentaire');
-                }
+            if(isset($this->request->getQuery()['page'])){
+                $pages = new Paginate($_ENV["PAGE_ARTICLES"], (int) count($billets), $_GET['page']);
             }
             else{
                 $pages = new Paginate($_ENV["PAGE_ARTICLES"], (int) count($billets), 1);
@@ -61,7 +58,8 @@ class BlogController extends Controller
             'billets'       => $billets,
             'nbComments'    => $nbComments,
             'flashMessages' => $flashMessages,
-            'pages'         => $pages
+            'pages'         => $pages,
+            'erreurs'       => $erreurs
         ]);
     }
 
@@ -71,7 +69,7 @@ class BlogController extends Controller
     private function post()
     {
         $dataForm = [];
-        $dataForm["full_name"] = (addslashes($_POST["name"]) .' : '. addslashes($_POST["lastName"]));
+        $dataForm["full_name"] = (addslashes($_POST["firstName"]) .' : '. addslashes($_POST["lastName"]));
         $dataForm["email"] = $_POST["mail"];
 
         $date = new \Datetime;
@@ -83,11 +81,9 @@ class BlogController extends Controller
             $dataForm["user_id"] = $userId;
         }
 
-        $dataForm = $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertPrepare('newsletter', $dataForm);
+        //$dataForm = $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertPrepare('newsletter', $dataForm);
 
         $flashMessage = (MessageFlash::getInstance())->add("bg-success", "Vous êtes maintenant inscrit à la newsletter !");
-
-        $_POST = null;
 
         return $this->redirection('/blog');
     }

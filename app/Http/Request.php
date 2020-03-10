@@ -20,16 +20,22 @@ class Request
     private $server;
 
     /**
+     * @var array $post
+     */
+    private $post;
+
+    /**
      * Request constructor.
      * @param array $query
      * @param array $request
      * @param array $server
      */
-    public function __construct(array $query, array $request, array $server)
+    public function __construct(array $query, array $request, array $server, array $post)
     {
         $this->query = $query; //$_GET
-        $this->request = $request; //$_POST
+        $this->request = $request; //$_REQUEST
         $this->server = $server; //$_SERVER
+        $this->post = $post; //$_POST
     }
 
     /**
@@ -37,7 +43,7 @@ class Request
      */
     public static function createFromGlobals(): Request
     {
-        return new Request ($_GET, $_POST, $_SERVER);
+        return new Request ($_GET, $_REQUEST, $_SERVER, $_POST);
     }
 
     /**
@@ -73,11 +79,27 @@ class Request
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getRequest()
     {
         return $this->request;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * @return array
+     */
+    public function getQuery()
+    {
+        return $this->query;
     }
 
     /**

@@ -43,6 +43,15 @@ a:hover {
     box-shadow: 1px 1px 4px #555;
 }
 
+.toast.show{
+    display: block;
+    opacity: 1;
+    position: fixed;
+    z-index: 1;
+    bottom: 20px;
+    right: 20px;
+}
+
 
                             /* HEADER */
                             /* HEADER */

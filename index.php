@@ -31,6 +31,11 @@ if ($_ENV['DEV'] === 'On') {
 
 session_start();
 
+//$_POST['firstName'] = 'testPrénom';
+//$_POST['lastName'] = 'testNom';
+$_POST['mail'] = 'testMail.com';
+//$_POST['acceptRGPD'] = 'on';
+
 $request = Request::createFromGlobals();
 
 $router = new Framework\Router\Router($request);
