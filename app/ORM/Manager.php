@@ -7,12 +7,12 @@ class Manager
     /**
      * @var \PDO
      */
-    private $pdo;
+    protected $pdo;
 
     /**
      * @var string
      */
-    private $model;
+    protected $model;
 
     /**
      * @var array

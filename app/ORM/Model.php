@@ -89,7 +89,7 @@ abstract class Model
                         break;
                     
                     case 'bool':
-                        $this->{sprintf($dataString)} ((bool) $value);
+                        $this->{sprintf($dataString)} ((int) $value);
                         break;
 
                     case 'datetime':

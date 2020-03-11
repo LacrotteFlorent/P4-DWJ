@@ -5,6 +5,7 @@ namespace Project\Controller;
 use Framework\ORM\Controller;
 use Framework\MessageFlash;
 use Project\Model\BilletModel;
+use Project\Model\ImageModel;
 
 class AdminPostController extends Controller
 {
@@ -14,25 +15,36 @@ class AdminPostController extends Controller
     public function show($id)
     {   
         $erreurs = [];
+        dump($this->request->getRequestMethod());
         if($this->request->getRequestMethod() === 'POST'){
-            if(($this->testForForm(["name", "alt", "title", "content", "datePost", "timePost"]))[0] === true){
+            if(($this->testForForm(["alt", "title", "content", "datePost", "timePost"]))[0] === true){
                 $this->post();
             }
             else{
-                $erreurs = ($this->testForForm(["name", "alt", "title", "content", "datePost", "timePost"]))[1];
-                $flashMessage = (MessageFlash::getInstance())->add("bg-danger", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
+                
+                $erreurs = ($this->testForForm(["alt", "title", "content", "datePost", "timePost"]))[1];
+                dump($erreurs);
+                $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
             }
         }
 
+        //messages
+        $flashMessages = $this->flashMessages();
+
+        // Si l'id est = 0 alors c'est un nouveau post
         if($id === "0"){
-            return $this->render("adminPost.html.twig");
+            return $this->render("adminPost.html.twig", [
+                'erreurs'       => $erreurs,
+                'flashMessages' => $flashMessages
+            ]);
         }
 
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
 
         return $this->render("adminPost.html.twig", [
             'billet'        => $billet,
-            'erreurs'       => $erreurs
+            'erreurs'       => $erreurs,
+            'flashMessages' => $flashMessages
         ]);
     }
 
@@ -41,28 +53,38 @@ class AdminPostController extends Controller
      */
     public function post()
     {
+        dump($_POST);
         $dataFormImage = [];
-        $dataFormImage["name"] =  $_POST["image"];
+        $dataFormImage["name"] =  $_POST["imageToUpload"];
         $dataFormImage["alt"] =  $_POST["alt"];
-        $this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel((new ImageModel())->hydrateForSql($dataForm));
+        dump((new ImageModel())->hydrateForSql($dataFormImage));
+        $this->getDatabase()->getManager('\Project\Model\ImageModel')->insertByModel((new ImageModel())->hydrateForSql($dataFormImage));
 
         $dataFormBillet = [];
         $dataFormBillet["title"] = addslashes($_POST["title"]);
         $dataFormBillet["content"] = addslashes($_POST["content"]);
 
-        $dataFormBillet["image_id"] = $this->getDatabase()->getManager('\Project\Model\BilletModel')->idLastInsert();
+        $dataFormBillet["image_id"] = $this->getDatabase()->getManager('\Project\Model\ImageModel')->idLastInsert();
 
         $date = new \Datetime;
         date_timezone_set($date, timezone_open('Europe/Paris'));
         $date = $date->format("Y-m-d H:i:s");
         $dataFormBillet["created_at"] = $date;
 
-        $datePost = new \Datetime;
-        date_timezone_set($datePost, timezone_open('Europe/Paris'));
-        $datePost->setDate($_POST["datePost"]);
-        $datePost->setTime($_POST["timePost"]);
-        $datePost->format("Y-m-d H:i:s");
-        $dataFormBillet["posted_at"] = $datePost;
+        if($_POST["datePost"]){
+            $datePost = new \Datetime;
+            date_timezone_set($datePost, timezone_open('Europe/Paris'));
+            $datePost->setDate($_POST["datePost"]);
+            $datePost->setTime($_POST["timePost"]);
+            $datePost->format("Y-m-d H:i:s");
+            $dataFormBillet["posted_at"] = $datePost;
+        }
+        else{
+            $datePost = new \Datetime;
+            date_timezone_set($datePost, timezone_open('Europe/Paris'));
+            $datePost = $datePost->format("Y-m-d H:i:s");
+            $dataFormBillet["posted_at"] = $datePost;
+        }
 
 
         if(isset($_POST["draft"])){
@@ -77,7 +99,7 @@ class AdminPostController extends Controller
 
         dump((new BilletModel())->hydrateForSql($dataFormBillet));
         
-        $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel((new BilletModel())->hydrateForSql($dataFormBillet));
+        $this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel((new BilletModel())->hydrateForSql($dataFormBillet));
 
         $flashMessage = (MessageFlash::getInstance())->add("blue", "Vous venez de modifier un article !");
 
@@ -85,3 +107,8 @@ class AdminPostController extends Controller
     }
 
 }
+
+
+/////
+/////     TESTER ET RECUPERER LE $_FILE pour le télécharger vers le serveur
+/////
