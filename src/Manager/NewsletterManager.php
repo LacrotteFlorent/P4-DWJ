@@ -7,34 +7,9 @@ use Framework\ORM\Manager;
 class NewsletterManager extends Manager
 {
 
-    public function findLastId()
+    public function idLastInsert()
     {
-        $from = array_values($this->metadata)[0];
-
-        $format = 'SELECT MAX(id) FROM %s';
-
-        $sqlQuery = sprintf($format, $select, $from, $limit);
-
-        return $this->fetchAll($sqlQuery);
+        return $this->pdo->lastInsertId();
     }
 
 }
-
-/**
-     * @param string $from
-     * @param int $limit
-     * @example requete: SELECT * FROM post ORDER BY posted_at DESC LIMIT 3
-     * @return array
-     */
-    public function findByPostedAtWithLimit($limit)
-    {
-        $from = array_values($this->metadata)[0];
-
-        $format = 'SELECT %s FROM %s ORDER BY posted_at DESC LIMIT %s';
-
-        $select = "*";
-
-        $sqlQuery = sprintf($format, $select, $from, $limit);
-
-        return $this->fetchAll($sqlQuery);
-    }

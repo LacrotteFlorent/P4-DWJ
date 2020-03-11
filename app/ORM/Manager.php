@@ -288,6 +288,9 @@ class Manager
         $sqlQuery = sprintf("INSERT INTO %s (%s) VALUES (%s)", $this->metadata["table"], implode(", ", $set), implode(", ", $values));
         
         $this->pdo->prepare($sqlQuery)->execute($datas);
+
+        dump($this->pdo->lastInsertId());
+
     }
 
     /**

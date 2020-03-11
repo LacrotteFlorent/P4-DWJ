@@ -3,6 +3,8 @@
 namespace Project\Controller;
 
 use Framework\ORM\Controller;
+use Framework\MessageFlash;
+use Project\Model\BilletModel;
 
 class AdminPostController extends Controller
 {
@@ -42,13 +44,13 @@ class AdminPostController extends Controller
         $dataFormImage = [];
         $dataFormImage["name"] =  $_POST["image"];
         $dataFormImage["alt"] =  $_POST["alt"];
-        $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel((new ImageModel())->hydrateForSql($dataForm));
+        $this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel((new ImageModel())->hydrateForSql($dataForm));
 
         $dataFormBillet = [];
         $dataFormBillet["title"] = addslashes($_POST["title"]);
         $dataFormBillet["content"] = addslashes($_POST["content"]);
 
-        $dataFormBillet["image_id"] = //derniere id d'image ajoutée;
+        $dataFormBillet["image_id"] = $this->getDatabase()->getManager('\Project\Model\BilletModel')->idLastInsert();
 
         $date = new \Datetime;
         date_timezone_set($date, timezone_open('Europe/Paris'));
@@ -72,8 +74,10 @@ class AdminPostController extends Controller
 
         $dataFormBillet["like_count"] = 0;
         $dataFormBillet["view_count"] = 0;
+
+        dump((new BilletModel())->hydrateForSql($dataFormBillet));
         
-        $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel((new BilletModel())->hydrateForSql($dataForm));
+        $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel((new BilletModel())->hydrateForSql($dataFormBillet));
 
         $flashMessage = (MessageFlash::getInstance())->add("blue", "Vous venez de modifier un article !");
 
