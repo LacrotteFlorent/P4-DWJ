@@ -5,6 +5,13 @@
     <title>Tableau de bord | Jean Forteroche</title>
     <!-- Media Queries -->
     <link rel="stylesheet" href="/public/css/styleAdminDashboard.css" />
+    <!-- Tiny Mce -->
+    <script src="https://cdn.tiny.cloud/1/zb7qhx3260q4w81nmqnkvit0h47o5mgauphgyr2v2ta3vozf/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+        selector: '#postArea',
+        });
+    </script>
 {% endblock head %}
 
 {% block body %}
@@ -13,6 +20,7 @@
             <div class="row justify-content-center" id="adminPost">
                 <div class="col-12 col-sm-10">
                     <h2 class="my-3">Editeur d'articles</h2>
+                    <form method="POST">
 <!--
                     <div class="mb-4 row card">
                         <div class="card-header">
@@ -43,7 +51,7 @@
                             <h4>Choisissez un titre pour votre article</h4>
                             <p>Ce titre apparaitra dans l'article et dans la liste d'articles</p>
                             <div class="input-group flex-nowrap">
-                                <input type="text" class="form-control" placeholder="Entrez un titre ici" aria-label="Username" aria-describedby="addon-wrapping">
+                                <input type="text" class="form-control" name="title" value="{{billet.title}}" placeholder="Entrez un titre ici" aria-label="Username" aria-describedby="addon-wrapping">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="addon-wrapping">Titre</span>
                                 </div>
@@ -59,15 +67,23 @@
                             <p>(Taille recommandée 400x600px)</p>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="inputGroupFile02">
+                                  <input type="file" class="custom-file-input" name="image" id="inputGroupFile02">
                                   <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><em class="d-none d-md-block">Selectionner une image</em></label>
                                 </div>
                                 <div class="input-group-append">
                                   <span class="input-group-text" id="inputGroupFileAddon02">Télécharger</span>
                                 </div>
                             </div>
-                            <p>Aperçu :</p>
-                            <img src="../public/img/chapter1.jpg"  alt="photo d'illustration du chapitre 1" class="img-fluid img-thumbnail" />
+                            <div class="input-group mb-3 flex-nowrap">
+                                <input type="text" class="form-control" name="alt" value="{{altImage(billet.imageId)}}" placeholder="Entrez une description ici" aria-label="Username" aria-describedby="addon-wrapping">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="addon-wrapping">Description</span>
+                                </div>
+                            </div>
+                            {% if billet.imageId == true %}
+                                <p>Aperçu :</p>
+                                <img src="/public/img/{{urlImage(billet.imageId)}}"  alt="{{altImage(billet.imageId)}}" class="img-fluid img-thumbnail" />
+                            {% endif %}
                         </div>
                     </div>
                     <div class="mb-4 row card">
@@ -77,9 +93,7 @@
                         <div class="card-body">
                             <h4>Ajoutez du contenu à votre article</h4>
                             <p>Utilisez les fonctions de l'éditeur pour mettre en forme le texte</p>
-                            <form class="col-12 mb-4" method="post">
-                                <textarea id="postArea">Hello, World!</textarea>
-                            </form>
+                            <textarea id="postArea" name="content">{{billet.content}}</textarea>
                         </div>
                     </div>
                     <div class="mb-4 row card">
@@ -95,8 +109,8 @@
                                 <div class="card cardValid">
                                     <div class="card-body">
                                         <h4 class="card-title">Sauvegarder</h4>
-                                        <p class="card-text">Vous pourrez reprendre le brouillion via la section Selecteur</p>
-                                        <button type="button" class="btn btn-success">Enregister un brouillon</button>
+                                        <p class="card-text">Vous pourrez reprendre le brouillion via le tableau de bord</p>
+                                        <button type="submit" value="draft" class="btn btn-success">Enregister un brouillon</button>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +119,7 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Supprimer</h4>
                                         <p class="card-text">En cliquant sur le boutton vous supprimez l'article. Attention pas de retour possible.</p>
-                                        <button class="btn btn-danger">Supprimer l'article</button>
+                                        <button class="btn btn-danger" value="delete" type="submit">Supprimer l'article</button>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +128,7 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Publier maintenant</h4>
                                         <p class="card-text">Mettez votre article en ligne.</p>
-                                        <button class="btn btn-info">Publier maintenant</button>
+                                        <button class="btn btn-info" value="post" type="submit">Publier maintenant</button>
                                     </div>
                                 </div>
                             </div>
@@ -124,17 +138,18 @@
                                         <h4 class="card-title">Publier plus tard</h4>
                                         <p class="card-text">Mettez votre article en ligne à la date sélectionnée.</p>
                                         <p>
-                                            <label for="dateAdminPost">Date de publication</label>
-                                            <input type="date" id="dateAdminPost">
-                                            <label for="timeAdminPost">Heure de publication</label>
-                                            <input type="time" name="timeAdminPost">
+                                            <label for="datePost">Date de publication</label>
+                                            <input type="date" id="datePost" name="datePost">
+                                            <label for="timePost">Heure de publication</label>
+                                            <input type="time" id="timePost" name="timePost">
                                         </p>
-                                        <button class="btn btn-info">Publier plus tard</button>
+                                        <button class="btn btn-info" value="postAt" type="submit">Publier plus tard</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
             {% include "include_footer.html" %}

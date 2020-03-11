@@ -41,8 +41,11 @@ class PersonalFunctions extends AbstractExtension
      */
     public function urlImage($idImage)
     {
-        $imageBillet = $this->database->getManager('\Project\Model\ImageModel')->find($idImage, "image");
-        return $imageBillet->getName();
+        if($idImage != 0){
+            $imageBillet = $this->database->getManager('\Project\Model\ImageModel')->find($idImage, "image");
+            return $imageBillet->getName();
+        }
+        return;
     }
 
     /**
@@ -51,8 +54,11 @@ class PersonalFunctions extends AbstractExtension
      */
     public function altImage($idImage)
     {
-        $imageBillet = $this->database->getManager('\Project\Model\ImageModel')->find($idImage, "image");
-        return $imageBillet->getAlt();
+        if($idImage != 0){
+            $imageBillet = $this->database->getManager('\Project\Model\ImageModel')->find($idImage, "image");
+            return $imageBillet->getAlt();
+        }
+        return;
     }
 
     /**

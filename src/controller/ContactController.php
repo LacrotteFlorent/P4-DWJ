@@ -70,12 +70,12 @@ class ContactController extends Controller
             // return message on the contact page
         if($failure){
             $infoMail = "Une erreur c'est produite, votre message n'as pas été envoyé !";
-            $bgColorInfo = "bg-danger";
+            $bgColorInfo = "red";
             $flashMessage = (MessageFlash::getInstance())->add($bgColorInfo, $infoMail);
         }
         else{
             $infoMail = " Votre message à bien été envoyé !";
-            $bgColorInfo = "bg-success";
+            $bgColorInfo = "green";
             $flashMessage = (MessageFlash::getInstance())->add($bgColorInfo, $infoMail);
         }
 

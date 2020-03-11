@@ -11,7 +11,7 @@ class BilletManager extends Manager
      * @param string $from
      * @param int $limit
      * @example requete: SELECT * FROM post ORDER BY posted_at DESC LIMIT 3
-     * @return Model
+     * @return array
      */
     public function findByPostedAtWithLimit($limit)
     {

@@ -13,13 +13,12 @@
 <!-- Blog d'écrivain - Made by Lacrotte Florent / Projet 4 - OpenClassrooms -->
 
 <html>
-    
     <head>
         {% include "include_head.html" %}
         {% block head %}{% endblock %}
     </head>
-
     <body>
+        {% block body %}{% endblock %}
     <!--
         {% for flashMessage in flashMessages %}
         <div class="container-fluid">
@@ -46,7 +45,5 @@
             </div>
         </div>
         {% endfor %}
-        {% block body %}{% endblock %}
     </body>
-    
 </html>

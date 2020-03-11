@@ -291,9 +291,10 @@ class Manager
     }
 
     /**
-     * @todo implémentation fonction for backOffice
+     * @param Model $model
+     * @param string $where
      */
-    public function update()
+    public function update(Model $model, $where = null)
     {
 
     }

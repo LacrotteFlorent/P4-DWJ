@@ -86,7 +86,7 @@ class BilletController extends Controller
         
         $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertPrepare('comment', $dataForm);
 
-        $flashMessage = (MessageFlash::getInstance())->add("bg-success", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
+        $flashMessage = (MessageFlash::getInstance())->add("green", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
 
         $_POST = null;
 
