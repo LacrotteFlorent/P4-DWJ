@@ -20,7 +20,7 @@
             <div class="row justify-content-center" id="adminPost">
                 <div class="col-12 col-sm-10">
                     <h2 class="my-3">Editeur d'articles</h2>
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
 <!--
                     <div class="mb-4 row card">
                         <div class="card-header">
@@ -67,8 +67,9 @@
                             <p>(Taille recommandée 400x600px)</p>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
-                                  <input type="file" class="custom-file-input" name="imageToUpload" id="inputGroupFile02">
-                                  <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><em class="d-none d-md-block">Selectionner une image</em></label>
+                                    <input type="hidden" name="MAX_FILE_SIZE" value="300000">
+                                    <input type="file" class="custom-file-input" name="imageToUpload" id="inputGroupFile02">
+                                    <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><em class="d-none d-md-block">Selectionner une image</em></label>
                                 </div>
                                 <div class="input-group-append">
                                   <span class="input-group-text" id="inputGroupFileAddon02">Télécharger</span>

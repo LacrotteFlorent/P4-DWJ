@@ -14,19 +14,49 @@ class AdminPostController extends Controller
     */
     public function show($id)
     {   
+        //tests formulaire
         $erreurs = [];
-        dump($this->request->getRequestMethod());
         if($this->request->getRequestMethod() === 'POST'){
             if(($this->testForForm(["alt", "title", "content", "datePost", "timePost"]))[0] === true){
-                $this->post();
+                //test fichier upload
+                if(isset($_FILES)){
+                    dump($_FILES);
+                    if ((($_FILES["imageToUpload"]["type"] == "image/gif")
+                        || ($_FILES["imageToUpload"]["type"] == "image/jpeg")
+                        || ($_FILES["imageToUpload"]["type"] == "image/pjpeg"))
+                        && ($_FILES["imageToUpload"]["size"] < 300000)) // 3 Mo
+                        {
+                            if($_FILES["imageToUpload"]["error"] > 0){
+                                $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, il y a eu une erreur dans le téléchargement de l'image !");
+                            }
+                            else{
+                                if (file_exists("public/img/" . $_FILES["imageToUpload"]["name"]))
+                                {
+                                    $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, le fichier existe déja !");
+                                }
+                                else{
+                                    $name = basename($_FILES["imageToUpload"]["name"]);
+                                    move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], "public/img/" . $name);
+                                    $this->post();
+                                }                                
+                            }
+                        }
+                    else{
+                        $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, il y a eu une erreur, le fichier est invalide !");
+                    }
+                }
+                else{
+                    $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, il y a eu une erreur, lors de la soumission du formulaire !");
+                }
             }
             else{
                 
                 $erreurs = ($this->testForForm(["alt", "title", "content", "datePost", "timePost"]))[1];
-                dump($erreurs);
                 $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
             }
         }
+
+        
 
         //messages
         $flashMessages = $this->flashMessages();
@@ -53,12 +83,11 @@ class AdminPostController extends Controller
      */
     public function post()
     {
-        dump($_POST);
+        
         $dataFormImage = [];
-        $dataFormImage["name"] =  $_POST["imageToUpload"];
+        $dataFormImage["name"] =  $_FILES["imageToUpload"]["name"];
         $dataFormImage["alt"] =  $_POST["alt"];
-        dump((new ImageModel())->hydrateForSql($dataFormImage));
-        $this->getDatabase()->getManager('\Project\Model\ImageModel')->insertByModel((new ImageModel())->hydrateForSql($dataFormImage));
+        //$this->getDatabase()->getManager('\Project\Model\ImageModel')->insertByModel((new ImageModel())->hydrateForSql($dataFormImage));
 
         $dataFormBillet = [];
         $dataFormBillet["title"] = addslashes($_POST["title"]);
@@ -74,8 +103,8 @@ class AdminPostController extends Controller
         if($_POST["datePost"]){
             $datePost = new \Datetime;
             date_timezone_set($datePost, timezone_open('Europe/Paris'));
-            $datePost->setDate($_POST["datePost"]);
-            $datePost->setTime($_POST["timePost"]);
+            $datePost->setDate($_POST["datePost"]);// ne peux pas revoir un array
+            $datePost->setTime($_POST["timePost"]);// ne peux pas revoir un array
             $datePost->format("Y-m-d H:i:s");
             $dataFormBillet["posted_at"] = $datePost;
         }
@@ -85,7 +114,6 @@ class AdminPostController extends Controller
             $datePost = $datePost->format("Y-m-d H:i:s");
             $dataFormBillet["posted_at"] = $datePost;
         }
-
 
         if(isset($_POST["draft"])){
             $dataFormBillet["draft"] = 1;
@@ -97,9 +125,7 @@ class AdminPostController extends Controller
         $dataFormBillet["like_count"] = 0;
         $dataFormBillet["view_count"] = 0;
 
-        dump((new BilletModel())->hydrateForSql($dataFormBillet));
-        
-        $this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel((new BilletModel())->hydrateForSql($dataFormBillet));
+        //$this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel((new BilletModel())->hydrateForSql($dataFormBillet));
 
         $flashMessage = (MessageFlash::getInstance())->add("blue", "Vous venez de modifier un article !");
 
