@@ -6,7 +6,6 @@ use Framework\Http\Request;
 
 class Paging
 {
-
     /**
      * @var Request $request
      */
@@ -58,6 +57,11 @@ class Paging
     private $managerItems;
 
     /**
+     * @var bool $paginate
+     */
+    private $paginate;
+
+    /**
      * Paginate constructor
      * @param int $nbItemTotal
      * @param Manager $managerItems
@@ -66,7 +70,7 @@ class Paging
     {
         $this->paramSql = $paramSql;
         $this->request = $request;
-        $this->nbItemByPage = $_ENV["PAGE_COMMENTS"];
+        $this->nbItemByPage = (int) $_ENV["PAGE_COMMENTS"];
         $this->nbItemTotal = $nbItemTotal;
         $this->managerItems = $managerItems;
         $this->paging();
@@ -77,26 +81,23 @@ class Paging
      */
     private function paging()
     {
-        if($this->nbItemTotal > $this->nbItemByPage){
-            if($this->request->getRequestMethod() === 'GET'){
-                if($this->request->getQuery()['pageCom']){
-                    $this->actualPage = $_GET['pageCom'];
-                }
-                else{
-                    throw new \Exception('Une erreur est survenue lors de la génération de votre page');
-                }
-            }
-            else{
-                $this->actualPage = 1;
-            }
+        if(isset($this->request->getQuery()['pageCom'])){
+            $this->actualPage = $_GET['pageCom'];
+        }
+        else{
+            $this->actualPage = 1;
+        }
 
-            $this->calcPaginate();
-            $this->calcShowElements();
+        $this->calcPaginate();
+        $this->calcShowElements();
+
+        if($this->nbItemTotal > $this->nbItemByPage){
+            $this->paginate = true;
             $this->itemsToShow = $this->managerItems->findAllWithLimitOffset($this->nbItemByPage, $this->showElements[0], $this->paramSql);
         }
         else{
+            $this->paginate = false;
             $this->itemsToShow = $this->managerItems->findAllByParam($this->paramSql);
-            $this->$nbPages = null;
         }
     }
 
@@ -106,7 +107,8 @@ class Paging
     private function calcPaginate()
     {
         $this->nbPages = (int) ceil($this->nbItemTotal / $this->nbItemByPage);
-        if($this->actualPage > $this->nbPages){
+
+        if($this->actualPage > $this->nbPages || ($this->paginate === false && $this->actualPage > 1)){
             throw new \Exception("Hop, hop, hop, ou allez vous ? Cette page n'existe pas !");
         }
 
@@ -186,6 +188,14 @@ class Paging
     public function getItemsToShow() : array
     {
         return $this->itemsToShow;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPaginate() : bool
+    {
+        return $this->paginate;
     }
 
 }

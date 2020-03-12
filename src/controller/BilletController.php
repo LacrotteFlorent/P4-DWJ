@@ -20,13 +20,11 @@ class BilletController extends Controller
         }
 
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
-        $comments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->findAllByParam(['post_id' => $id, 'valid' => 1]);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => $billet->getId(), 'valid' => 1]);
 
         // pagging
         $paging = new Paging($this->request, (int) $nbComments['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), ['post_id' => $id, 'valid' => 1]);
         dump($paging);
-
         //messages
         $flashMessages = $this->flashMessages();
 
