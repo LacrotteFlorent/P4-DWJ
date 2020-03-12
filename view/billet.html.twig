@@ -70,8 +70,8 @@
             </div>
             <div id="comBillet" class="row justify-content-center mb-5">
                 <div class="col-12 col-sm-10 col-md-8 shadow-lg py-4">
-                    {% if comments %}
-                        {% for comment in comments %}
+                    {% if pages.getItemsToShow %}
+                        {% for comment in pages.getItemsToShow %}
                             <div class="mb-4 border p-1 rounded-sm">
                                 <h4 class="m-0 pb-1">{{comment.author|ifNullIsGuest}}</h4>
                                 <p class="">{{comment.content}}</p>

@@ -20,7 +20,6 @@ class AdminPostController extends Controller
             if(($this->testForForm(["alt", "title", "content", "datePost", "timePost"]))[0] === true){
                 //test fichier upload
                 if(isset($_FILES)){
-                    dump($_FILES);
                     if ((($_FILES["imageToUpload"]["type"] == "image/gif")
                         || ($_FILES["imageToUpload"]["type"] == "image/jpeg")
                         || ($_FILES["imageToUpload"]["type"] == "image/pjpeg"))
@@ -50,13 +49,10 @@ class AdminPostController extends Controller
                 }
             }
             else{
-                
                 $erreurs = ($this->testForForm(["alt", "title", "content", "datePost", "timePost"]))[1];
                 $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
             }
         }
-
-        
 
         //messages
         $flashMessages = $this->flashMessages();
@@ -103,8 +99,8 @@ class AdminPostController extends Controller
         if($_POST["datePost"]){
             $datePost = new \Datetime;
             date_timezone_set($datePost, timezone_open('Europe/Paris'));
-            $datePost->setDate($_POST["datePost"]);// ne peux pas revoir un array
-            $datePost->setTime($_POST["timePost"]);// ne peux pas revoir un array
+            $datePost->setDate($_POST["datePost"]);// ne peux pas recvoir un array
+            $datePost->setTime($_POST["timePost"]);// ne peux pas recvoir un array
             $datePost->format("Y-m-d H:i:s");
             $dataFormBillet["posted_at"] = $datePost;
         }
@@ -133,8 +129,3 @@ class AdminPostController extends Controller
     }
 
 }
-
-
-/////
-/////     TESTER ET RECUPERER LE $_FILE pour le télécharger vers le serveur
-/////

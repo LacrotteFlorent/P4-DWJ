@@ -1,0 +1,191 @@
+<?php
+
+namespace Framework;
+
+use Framework\Http\Request;
+
+class Paging
+{
+
+    /**
+     * @var Request $request
+     */
+    private $request;
+
+    /**
+     * @var int $nbItemByPage
+     */
+    private $nbItemByPage;
+
+    /**
+     * @var int $nbItemTotal
+     */
+    private $nbItemTotal;
+
+    /**
+     * @var int $nbPages
+     */
+    private $nbPages;
+
+    /**
+     * @var int $actualPage
+     */
+    private $actualPage;
+
+    /**
+     * @var array $pageAroundActualPage
+     */
+    private $pageAroundActualPage;
+
+    /**
+     * @var array $showElements
+     */
+    private $showElements;
+
+    /**
+     * @var array $itemsToShow
+     */
+    private $itemsToShow;
+
+    /**
+     * @var array $paramSql
+     */
+    private $paramSql;
+
+    /**
+     * @var Manager $managerItems
+     */
+    private $managerItems;
+
+    /**
+     * Paginate constructor
+     * @param int $nbItemTotal
+     * @param Manager $managerItems
+     */
+    public function __construct($request, $nbItemTotal, $managerItems, $paramSql)
+    {
+        $this->paramSql = $paramSql;
+        $this->request = $request;
+        $this->nbItemByPage = $_ENV["PAGE_COMMENTS"];
+        $this->nbItemTotal = $nbItemTotal;
+        $this->managerItems = $managerItems;
+        $this->paging();
+    }
+
+    /**
+     * 
+     */
+    private function paging()
+    {
+        if($this->nbItemTotal > $this->nbItemByPage){
+            if($this->request->getRequestMethod() === 'GET'){
+                if($this->request->getQuery()['pageCom']){
+                    $this->actualPage = $_GET['pageCom'];
+                }
+                else{
+                    throw new \Exception('Une erreur est survenue lors de la génération de votre page');
+                }
+            }
+            else{
+                $this->actualPage = 1;
+            }
+
+            $this->calcPaginate();
+            $this->calcShowElements();
+            $this->itemsToShow = $this->managerItems->findAllWithLimitOffset($this->nbItemByPage, $this->showElements[0], $this->paramSql);
+        }
+        else{
+            $this->itemsToShow = $this->managerItems->findAllByParam($this->paramSql);
+            $this->$nbPages = null;
+        }
+    }
+
+    /**
+     * @internal Calc $pageAroundActualPage
+     */
+    private function calcPaginate()
+    {
+        $this->nbPages = (int) ceil($this->nbItemTotal / $this->nbItemByPage);
+        if($this->actualPage > $this->nbPages){
+            throw new \Exception("Hop, hop, hop, ou allez vous ? Cette page n'existe pas !");
+        }
+
+        if($this->actualPage >= 3){
+            $pageMin = $this->actualPage-2;
+        }
+        else{
+            $pageMin = 1;
+        }
+
+        if($this->nbPages > ($this->actualPage+1)){
+            $pageMax = $this->actualPage+2;
+        }
+        elseif($this->nbPages == $this->actualPage){
+            $pageMax = $this->actualPage;
+        }
+        else{
+            $pageMax = $this->actualPage+1;
+        }
+
+        $this->pageAroundActualPage = range($pageMin, $pageMax);
+    }
+
+    /**
+     * @internal Calc $showElements
+     */
+    private function calcShowElements()
+    {
+        if($this->actualPage == 1){
+            $showElementsMin = 0;
+        }
+        else{
+            $showElementsMin = ($this->actualPage*$this->nbItemByPage)-$this->nbItemByPage;
+        }
+        
+        if($this->actualPage == 1){
+            $showElementsMax = $this->nbItemByPage-1;
+        }
+        else{
+            $showElementsMax = ($this->actualPage*$this->nbItemByPage)-1;
+        }
+
+        if($this->nbItemTotal <= $showElementsMax){
+            $showElementsMax = ($this->nbItemTotal) -1;
+        }
+        
+        $this->showElements = range($showElementsMin, $showElementsMax);
+    }
+
+    /**
+     * @return int
+     */
+    public function getLastPage() : int
+    {
+        return $this->nbPages;
+    }
+
+    /**
+     * @return int
+     */
+    public function getActualPage() : int
+    {
+        return $this->actualPage;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPages() : array
+    {
+        return $this->pageAroundActualPage;
+    }
+
+    /**
+     * @return array
+     */
+    public function getItemsToShow() : array
+    {
+        return $this->itemsToShow;
+    }
+
+}

@@ -151,15 +151,22 @@ class Manager
      * @example requete: SELECT * FROM post LIMIT 3 OFFSET 4
      * @return Model
      */
-    public function findAllWithLimitOffset($limit, $offset)
+    public function findAllWithLimitOffset($limit, $offset, $params = null)
     {   
         $from = array_values($this->metadata)[0];
 
-        $format = 'SELECT %s FROM %s LIMIT %s OFFSET %s';
+        if($params){
+            $paramSql = "";
+            foreach ($params as $key => $param){
+                $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
+            }
+            $paramSql = substr($paramSql, 0, -5);
 
-        $select = "*";
-
-        $sqlQuery = sprintf($format, $select, $from, $limit, $offset);
+            $sqlQuery = sprintf('SELECT * FROM %s WHERE %s LIMIT %s OFFSET %s', $from, $paramSql, $limit, $offset);
+        }
+        else{
+            $sqlQuery = sprintf('SELECT * FROM %s LIMIT %s OFFSET %s', $from, $limit, $offset);
+        }
 
         return $this->fetchAll($sqlQuery);
     }
