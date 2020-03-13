@@ -9,6 +9,7 @@ use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\ErrorHandler\ErrorHandler;
 use Symfony\Component\ErrorHandler\DebugClassLoader;
+use Framework\FlashBag;
 
 /**
  * @source https://symfony.com/doc/current/components/dotenv.html
@@ -35,6 +36,18 @@ session_start();
 //$_POST['lastName'] = 'testNom';
 //$_POST['mail'] = 'testMail.com';
 //$_POST['acceptRGPD'] = 'on';
+
+
+(FlashBag::getInstance())->add("red","ceci est un message long 1");
+(FlashBag::getInstance())->add("red","ceci est un message long 2");
+(FlashBag::getInstance())->add("red","ceci est un message lonnnnnnnnnnnnnnnnnnnnnnnng longggggggg 3");
+//(FlashBag::getInstance())->add("red","ceci est un message4");
+//(FlashBag::getInstance())->add("red","ceci est un message5");
+//dump($_SESSION["FLASH_MESSAGES"]);
+//foreach($_SESSION["FLASH_MESSAGES"] as $mess){
+//    dump($mess);
+//}
+//dump($_SESSION["FLASH_MESSAGES"]);
 
 $request = Request::createFromGlobals();
 

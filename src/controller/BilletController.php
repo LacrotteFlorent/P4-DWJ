@@ -4,6 +4,7 @@ namespace Project\Controller;
 
 use Framework\ORM\Controller;
 use Framework\MessageFlash;
+use Framework\FlashBag;
 use Framework\Paging;
 
 
@@ -24,15 +25,12 @@ class BilletController extends Controller
 
         // pagging
         $paging = new Paging($this->request, (int) $nbComments['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), ['post_id' => $id, 'valid' => 1]);
-        dump($paging);
-        //messages
-        $flashMessages = $this->flashMessages();
 
         return $this->render("billet.html.twig", [
             'billet'        => $billet,
             'nbComments'    => $nbComments,
             'pages'         => $paging,
-            'flashMessages' => $flashMessages
+            'flashMessages' => $_SESSION["FLASH_MESSAGES"]
         ]);
     }
 
@@ -56,9 +54,9 @@ class BilletController extends Controller
         $dataForm["author"] = addslashes($_POST["author"]);
         $dataForm["post_id"] = $id;
         
-        $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertPrepare('comment', $dataForm);
+        //$dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertPrepare('comment', $dataForm);
 
-        $flashMessage = (MessageFlash::getInstance())->add("green", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
+        $flashMessage = (FlashBag::getInstance())->add("green", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
 
         $_POST = null;
 
