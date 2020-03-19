@@ -4,7 +4,7 @@ namespace Project\Controller;
 
 use Framework\ORM\Controller;
 use Framework\SwiftMailer;
-use Framework\MessageFlash;
+use Framework\FlashBag;
 
 class ContactPostController extends Controller
 {
@@ -78,13 +78,13 @@ class ContactPostController extends Controller
             // return message on the contact page
         if($failure){
             $infoMail = "Une erreur c'est produite, votre message n'as pas été envoyé !";
-            $bgColorInfo = "bg-danger";
-            $flashMessage = (MessageFlash::getInstance())->add($bgColorInfo, $infoMail);
+            $bgColorInfo = "red";
+            $flashMessage = (FlashBag::getInstance())->add($bgColorInfo, $infoMail);
         }
         else{
             $infoMail = " Votre message à bien été envoyé !";
-            $bgColorInfo = "bg-success";
-            $flashMessage = (MessageFlash::getInstance())->add($bgColorInfo, $infoMail);
+            $bgColorInfo = "green";
+            $flashMessage = (FlashBag::getInstance())->add($bgColorInfo, $infoMail);
         }
         
         header('Location: /contact');

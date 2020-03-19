@@ -2,7 +2,7 @@
 
 namespace Framework;
 
-class FlashBag implements \Iterator
+class FlashBag implements \Countable, \Iterator
 {
 
     /**
@@ -14,6 +14,11 @@ class FlashBag implements \Iterator
      * @var array
      */
     private $messages = [];
+
+    /**
+     * @var int
+     */
+    private $position = 0;
 
     /**
      * @return FlashBag
@@ -32,7 +37,7 @@ class FlashBag implements \Iterator
      */
     public function __construct()
     {
-        $_SESSION["FLASH_MESSAGES"] = self::$flashBagInstance;
+
     }
 
     /**
@@ -43,15 +48,25 @@ class FlashBag implements \Iterator
     public function add($type, $message)
     {
         array_push($this->messages, ['type' => $type, 'message' => $message]);
-        $_SESSION["FLASH_MESSAGES"] = self::$flashBagInstance;
     }
 
     /**
-     * @todo Go head of array
+     * @inheritDoc
+     * @source https://www.php.net/manual/fr/class.countable.php
      */
-    public function rewind()
+    public function count()
     {
-        reset($this->messages);
+        return count($this->messages);
+    }
+
+    /**
+     * @source https://www.php.net/manual/fr/class.iterator.php
+     * @todo Go head of array
+     * @return void
+     */
+    public function rewind() : void
+    {
+        $this->position = 0;
     }
 
     /**
@@ -60,34 +75,33 @@ class FlashBag implements \Iterator
      */
     public function current()
     {
-        return array_shift($this->messages);//current($this->messages);
+        return array_shift($this->messages);
     }
 
     /**
-     * @todo Return key of element
-     * @return mixed $key
+     * @return mixed $position
      */
     public function key()
     {
-        return key($this->messages);
+        return $this->position;
     }
 
     /**
      * @todo Return next element
-     * @return mixed $message
+     * @return void
      */
-    public function next()
+    public function next() : void
     {
-        return current($this->messages); //next($this->messages);
+        $this->position = 0;
     }
 
     /**
      * @todo Return current position if valid
      * @return bool
      */
-    public function valid()
+    public function valid() : bool
     {
-        return (key($this->messages) !== NULL && key($this->messages) !== FALSE);
+        return isset($this->messages[$this->position]);
     }
 
 }

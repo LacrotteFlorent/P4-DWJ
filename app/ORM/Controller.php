@@ -9,6 +9,7 @@ use Framework\Router\Router;
 use Framework\ORM\Database;
 use Project\PersonalExtendTwig\PersonalFunctions;
 use Project\PersonalExtendTwig\PersonalFilters;
+use Project\PersonalExtendTwig\PersonalGlobals;
 use Framework\MessageFlash;
 
 class Controller
@@ -49,6 +50,7 @@ class Controller
         ));
         $this->twig->addExtension(new PersonalFunctions($this->getDatabase()));
         $this->twig->addExtension(new PersonalFilters());
+        $this->twig->addExtension(new PersonalGlobals());
     }
 
     /**

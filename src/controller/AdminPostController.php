@@ -3,7 +3,7 @@
 namespace Project\Controller;
 
 use Framework\ORM\Controller;
-use Framework\MessageFlash;
+use Framework\FlashBag;
 use Project\Model\BilletModel;
 use Project\Model\ImageModel;
 
@@ -26,12 +26,12 @@ class AdminPostController extends Controller
                         && ($_FILES["imageToUpload"]["size"] < 300000)) // 3 Mo
                         {
                             if($_FILES["imageToUpload"]["error"] > 0){
-                                $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, il y a eu une erreur dans le téléchargement de l'image !");
+                                $flashMessage = (FlashBag::getInstance())->add("red", "OOPS, il y a eu une erreur dans le téléchargement de l'image !");
                             }
                             else{
                                 if (file_exists("public/img/" . $_FILES["imageToUpload"]["name"]))
                                 {
-                                    $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, le fichier existe déja !");
+                                    $flashMessage = (FlashBag::getInstance())->add("red", "OOPS, le fichier existe déja !");
                                 }
                                 else{
                                     $name = basename($_FILES["imageToUpload"]["name"]);
@@ -41,27 +41,26 @@ class AdminPostController extends Controller
                             }
                         }
                     else{
-                        $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, il y a eu une erreur, le fichier est invalide !");
+                        $flashMessage = (FlashBag::getInstance())->add("red", "OOPS, il y a eu une erreur, le fichier est invalide !");
                     }
                 }
                 else{
-                    $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, il y a eu une erreur, lors de la soumission du formulaire !");
+                    $flashMessage = (FlashBag::getInstance())->add("red", "OOPS, il y a eu une erreur, lors de la soumission du formulaire !");
                 }
             }
             else{
                 $erreurs = ($this->testForForm(["alt", "title", "content", "datePost", "timePost"]))[1];
-                $flashMessage = (MessageFlash::getInstance())->add("red", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
+                $flashMessage = (FlashBag::getInstance())->add("red", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
             }
         }
 
         //messages
-        $flashMessages = $this->flashMessages();
+        //$flashMessages = $this->flashMessages();
 
         // Si l'id est = 0 alors c'est un nouveau post
         if($id === "0"){
             return $this->render("adminPost.html.twig", [
                 'erreurs'       => $erreurs,
-                'flashMessages' => $flashMessages
             ]);
         }
 
@@ -70,7 +69,6 @@ class AdminPostController extends Controller
         return $this->render("adminPost.html.twig", [
             'billet'        => $billet,
             'erreurs'       => $erreurs,
-            'flashMessages' => $flashMessages
         ]);
     }
 
@@ -123,7 +121,7 @@ class AdminPostController extends Controller
 
         //$this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel((new BilletModel())->hydrateForSql($dataFormBillet));
 
-        $flashMessage = (MessageFlash::getInstance())->add("blue", "Vous venez de modifier un article !");
+        $flashMessage = (FlashBag::getInstance())->add("blue", "Vous venez de modifier un article !");
 
         return $this->redirection('/blog');
     }

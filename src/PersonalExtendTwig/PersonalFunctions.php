@@ -4,7 +4,6 @@ namespace Project\PersonalExtendTwig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Framework\MessageFlash;
 
 class PersonalFunctions extends AbstractExtension
 {
@@ -22,16 +21,13 @@ class PersonalFunctions extends AbstractExtension
      * @note [Retourne les fonctions crées dans l'extension]
      * [fonction obligatoire pour twig]
      */
-    public function getFunctions(){
-
+    public function getFunctions()
+    {
         return [
-
             new TwigFunction('urlImage', [$this, 'urlImage']),
             new TwigFunction('altImage', [$this, 'altImage']),
             new TwigFunction('countParam', [$this, 'countParam']),
-            new TwigFunction('dumpTwig', [$this, 'dumpTwig']),
-            new TwigFunction('flashMessageContent', [$this, 'flashMessageContent']),
-
+            new TwigFunction('dumpTwig', [$this, 'dumpTwig'])
         ];
     }
 

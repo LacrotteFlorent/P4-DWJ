@@ -3,7 +3,7 @@
 namespace Project\Controller;
 
 use Framework\ORM\Controller;
-use Framework\MessageFlash;
+use Framework\FlashBag;
 use Framework\Paginate;
 use Project\Model\NewsletterModel;
 
@@ -21,7 +21,7 @@ class BlogController extends Controller
             }
             else{
                 $erreurs = ($this->testForForm(["firstName", "lastName", "mail", "acceptRGPD"]))[1];
-                $flashMessage = (MessageFlash::getInstance())->add("bg-danger", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
+                $flashMessage = (FlashBag::getInstance())->add("red", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
             }
         }
 
@@ -52,13 +52,12 @@ class BlogController extends Controller
             $pages = null;
         }
 
-        $flashMessages = $this->flashMessages();
+        //$flashMessages = $this->flashMessages();
 
         return $this->render("blog.html.twig", [
             'billetsToShow' => $billetsToShow,
             'billets'       => $billets,
             'nbComments'    => $nbComments,
-            'flashMessages' => $flashMessages,
             'pages'         => $pages,
             'erreurs'       => $erreurs
         ]);
@@ -84,7 +83,7 @@ class BlogController extends Controller
         
         $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel((new NewsletterModel())->hydrateForSql($dataForm));
 
-        $flashMessage = (MessageFlash::getInstance())->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
+        $flashMessage = (FlashBag::getInstance())->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
 
         return $this->redirection('/blog');
     }

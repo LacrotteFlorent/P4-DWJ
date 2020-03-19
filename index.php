@@ -22,7 +22,6 @@ $dotenv->overload(__DIR__.'/local.env');
 /**
  * @source https://symfony.com/doc/current/components/error_handler.html
  * @note Error Handler
- * @note Attention à la sécuritée 
  */
 if ($_ENV['DEV'] === 'On') {
     Debug::enable();
@@ -38,15 +37,17 @@ session_start();
 //$_POST['acceptRGPD'] = 'on';
 
 
-(FlashBag::getInstance())->add("red","ceci est un message long 1");
-(FlashBag::getInstance())->add("red","ceci est un message long 2");
-(FlashBag::getInstance())->add("red","ceci est un message lonnnnnnnnnnnnnnnnnnnnnnnng longggggggg 3");
-//(FlashBag::getInstance())->add("red","ceci est un message4");
-//(FlashBag::getInstance())->add("red","ceci est un message5");
+//(FlashBag::getInstance())->add("red","ceci est un message long 1");
+//(FlashBag::getInstance())->add("green","ceci est un message long 2");
+//(FlashBag::getInstance())->add("blue","ceci est un message lonnnnnnnnnnnnnnnnnnnnnnnng longggggggg 3");
+//(FlashBag::getInstance())->add("orange","ceci est un message4");
+//(FlashBag::getInstance())->add("yellow","ceci est un message5");
 //dump($_SESSION["FLASH_MESSAGES"]);
-//foreach($_SESSION["FLASH_MESSAGES"] as $mess){
+//dump(count(FlashBag::getInstance()));
+//foreach(FlashBag::getInstance() as $mess){
 //    dump($mess);
 //}
+//dump(count(FlashBag::getInstance()));
 //dump($_SESSION["FLASH_MESSAGES"]);
 
 $request = Request::createFromGlobals();

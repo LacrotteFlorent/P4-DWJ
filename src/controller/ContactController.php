@@ -3,7 +3,7 @@
 namespace Project\Controller;
 
 use Framework\ORM\Controller;
-use Framework\MessageFlash;
+use Framework\FlashBag;
 use Framework\SwiftMailer;
 
 class ContactController extends Controller
@@ -17,8 +17,8 @@ class ContactController extends Controller
             $this->post();
         }
 
-        $flashMessages = $this->flashMessages();
-        return $this->render("contact.html.twig", ['flashMessages' => $flashMessages]);
+        //$flashMessages = $this->flashMessages();
+        return $this->render("contact.html.twig");
     }
 
     /**
@@ -71,12 +71,12 @@ class ContactController extends Controller
         if($failure){
             $infoMail = "Une erreur c'est produite, votre message n'as pas été envoyé !";
             $bgColorInfo = "red";
-            $flashMessage = (MessageFlash::getInstance())->add($bgColorInfo, $infoMail);
+            $flashMessage = (FlashBag::getInstance())->add($bgColorInfo, $infoMail);
         }
         else{
             $infoMail = " Votre message à bien été envoyé !";
             $bgColorInfo = "green";
-            $flashMessage = (MessageFlash::getInstance())->add($bgColorInfo, $infoMail);
+            $flashMessage = (FlashBag::getInstance())->add($bgColorInfo, $infoMail);
         }
 
         $_POST = null;

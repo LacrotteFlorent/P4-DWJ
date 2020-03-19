@@ -30,7 +30,6 @@ class BilletController extends Controller
             'billet'        => $billet,
             'nbComments'    => $nbComments,
             'pages'         => $paging,
-            'flashMessages' => $_SESSION["FLASH_MESSAGES"]
         ]);
     }
 
