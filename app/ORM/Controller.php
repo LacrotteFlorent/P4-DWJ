@@ -2,15 +2,15 @@
 
 namespace Framework\ORM;
 
-use Framework\Http\Response;
 use Framework\Http\RedirectionResponse;
-use Framework\Http\Request;
+use Framework\Http\Response;
 use Framework\Router\Router;
+use Framework\Http\Request;
 use Framework\ORM\Database;
+use Framework\FlashBag;
 use Project\PersonalExtendTwig\PersonalFunctions;
 use Project\PersonalExtendTwig\PersonalFilters;
 use Project\PersonalExtendTwig\PersonalGlobals;
-use Framework\MessageFlash;
 
 class Controller
 {
@@ -136,6 +136,10 @@ class Controller
                 $reponse[$var] = "Ce champ doit être renseigné";
                 $valid = false;
             }
+        }
+
+        if(!$valid){
+            $flashMessage = (FlashBag::getInstance())->add("red", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
         }
         return [$valid, $reponse];
     }

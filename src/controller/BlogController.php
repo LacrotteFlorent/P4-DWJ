@@ -4,7 +4,7 @@ namespace Project\Controller;
 
 use Framework\ORM\Controller;
 use Framework\FlashBag;
-use Framework\Paginate;
+use Framework\Paginator;
 use Project\Model\NewsletterModel;
 
 class BlogController extends Controller
@@ -12,53 +12,29 @@ class BlogController extends Controller
    /**
     * @return Response
     */
-    public function show($final = 0)
+    public function show()
     {
         $erreurs = [];
         if($this->request->getRequestMethod() === 'POST'){
-            if(($this->testForForm(["firstName", "lastName", "mail", "acceptRGPD"]))[0] === true){
+            $test = ($this->testForForm(["firstName", "lastName", "mail", "acceptRGPD"]));
+            if($test[0]){
                 $this->post();
             }
             else{
-                $erreurs = ($this->testForForm(["firstName", "lastName", "mail", "acceptRGPD"]))[1];
-                $flashMessage = (FlashBag::getInstance())->add("red", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
+                $erreurs = $test[1];
             }
         }
 
         $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(5);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => (array_values($billets)[0])->getId(), 'valid' => 1]);
+        $nbBillets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->countParam();
 
-        // Show comments by page
-        if(count($billets)>$_ENV["PAGE_ARTICLES"]){
-            if(isset($this->request->getQuery()['page'])){
-                $pages = new Paginate($_ENV["PAGE_ARTICLES"], (int) count($billets), $_GET['page']);
-            }
-            else{
-                $pages = new Paginate($_ENV["PAGE_ARTICLES"], (int) count($billets), 1);
-            }
-            $billetsToShow = [];
-            $i = 0;
-            foreach(($pages->getShowElements()) as $element)
-            {
-                if(count($pages->getShowElements()) > $_ENV["PAGE_ARTICLES"]){
-                    throw new SrcControllerException('Hop, hop, hop, ou allez vous ? Cette page n\'existe pas !');
-                }
-                array_push($billetsToShow, array_values($billets)[(array_values(($pages->getShowElements()))[$i])]);
-                $i ++;
-            }
-        }
-        else{
-            $billetsToShow = $billets;
-            $pages = null;
-        }
-
-        //$flashMessages = $this->flashMessages();
+        $paginator = new Paginator($this->request, (int) $nbBillets['count'], $this->getDatabase()->getManager('\Project\Model\BilletModel'), "PAGE_ARTICLES", "page");
 
         return $this->render("blog.html.twig", [
-            'billetsToShow' => $billetsToShow,
+            'billetsToShow' => $paginator,
             'billets'       => $billets,
             'nbComments'    => $nbComments,
-            'pages'         => $pages,
             'erreurs'       => $erreurs
         ]);
     }

@@ -23,7 +23,6 @@ class BilletController extends Controller
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => $billet->getId(), 'valid' => 1]);
 
-        // paginate
         $paginator = new Paginator($this->request, (int) $nbComments['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), "PAGE_COMMENTS", "pageCom", ['post_id' => $id, 'valid' => 1]);
 
         return $this->render("billet.html.twig", [
