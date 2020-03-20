@@ -92,19 +92,6 @@ class Controller
     }
 
     /**
-     * @return array
-     */
-    protected function flashMessages()
-    {
-        if(isset($_SESSION["FLASH_MESSAGES"]))
-        {
-            $flashMessages = ($_SESSION["FLASH_MESSAGES"])->getMessages();
-            return $flashMessages;
-        }
-
-    }
-
-    /**
      * @param array $varToBeCheck
      * @return array
      */

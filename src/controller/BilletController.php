@@ -5,7 +5,7 @@ namespace Project\Controller;
 use Framework\ORM\Controller;
 use Framework\MessageFlash;
 use Framework\FlashBag;
-use Framework\Paging;
+use Framework\Paginator;
 
 
 class BilletController extends Controller
@@ -23,13 +23,13 @@ class BilletController extends Controller
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => $billet->getId(), 'valid' => 1]);
 
-        // pagging
-        $paging = new Paging($this->request, (int) $nbComments['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), ['post_id' => $id, 'valid' => 1]);
+        // paginate
+        $paginator = new Paginator($this->request, (int) $nbComments['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), "PAGE_COMMENTS", "pageCom", ['post_id' => $id, 'valid' => 1]);
 
         return $this->render("billet.html.twig", [
             'billet'        => $billet,
             'nbComments'    => $nbComments,
-            'pages'         => $paging,
+            'pages'         => $paginator,
         ]);
     }
 
@@ -53,7 +53,7 @@ class BilletController extends Controller
         $dataForm["author"] = addslashes($_POST["author"]);
         $dataForm["post_id"] = $id;
         
-        //$dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertPrepare('comment', $dataForm);
+        $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertPrepare('comment', $dataForm);
 
         $flashMessage = (FlashBag::getInstance())->add("green", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
 

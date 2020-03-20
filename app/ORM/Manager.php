@@ -123,7 +123,6 @@ class Manager
             $format = 'SELECT %s FROM %s';
             $sqlQuery = sprintf($format, $selectSql, $from);
         }
-        dump($sqlQuery);
         return $this->fetchAll($sqlQuery);
     }
 
@@ -178,10 +177,10 @@ class Manager
      * @example or SELECT COUNT(*) FROM comment WHERE post_id = 2 AND valid = 1 AND report = 0
      * @return int
      */
-    public function countParam($params = null)
+    public function countParam($params = null, $select = "*")
     {
         $from = array_values($this->metadata)[0];
-        $select = "*";
+        //$select = "*";
 
         if($params){
             $paramSql = "";
@@ -304,6 +303,14 @@ class Manager
     public function update(Model $model, $where = null)
     {
 
+    }
+
+    /**
+     * @return array $metadata
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
     }
 
 }

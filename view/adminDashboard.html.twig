@@ -30,10 +30,6 @@
                                     <h5>Ont aimé</h5>
                                     <div class="row justify-content-center align-items-baseline">
                                         <p>
-                                        {% set totalCountLikes = 0 %}
-                                        {% for billet in billets %}
-                                            {% set totalCountLikes = totalCountLikes + billet.likeCount %}
-                                        {% endfor %}
                                         {{totalCountLikes}}
                                         </p>
                                         <i class="far fa-heart ml-2"></i>
@@ -49,14 +45,14 @@
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires à modérer</h5>
                                     <div class="row justify-content-center align-items-baseline">
-                                        <p>{{totalCountToValid}}</p>
+                                        <p>{{totalCountToValid.count}}</p>
                                         <i class="fas fa-comment-medical ml-2"></i>
                                     </div>
                                 </div>
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Commentaires signalés</h5>
                                     <div class="row justify-content-center align-items-baseline">
-                                        <p>{{totalCountReport}}</p>
+                                        <p>{{totalCountReport.count}}</p>
                                         <i class="fas fa-comment-slash ml-2"></i>
                                     </div>
                                 </div>
@@ -84,9 +80,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for billet in billets %}
+                                    {% for billet in billets.getItemsToShow %}
                                         <tr>
-                                            <th scope="row">{{billet.id}}</th>
+                                            {% set comNumber = loop.index0 %}
+                                            {% for billet in billets.getShowElements|slice(comNumber, 1) %}
+                                                <th scope="row">{{billet}}</th>
+                                            {% endfor %}
                                             <td>{{billet.title}}</td>
                                             <td>{{billet.postedAt|date('d-m-Y \à H:i:s')}}</td>
                                             <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
@@ -99,20 +98,20 @@
                             <nav aria-label="Page navigation">
                                 <ul class="pagination justify-content-center mb-4">
                                     <li class="page-item">
-                                    {% if pagesBillet != null %}
+                                    {% if billets.getPaginate %}
                                         <a class="page-link" href="/index.php/adminDashboard?pageBillet=1#articles">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
                                     {% endif %}
                                     </li>
-                                    {% for page in pagesBillet.getPages %}
-                                        {% if pagesBillet.getActualPage == page %}
+                                    {% for page in billets.getPages %}
+                                        {% if billets.getActualPage == page %}
                                             <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
                                         {% else %}
                                             <li class="page-item"><a class="page-link" href="/index.php/adminDashboard?pageBillet={{page}}#articles">{{page}}</a></li>
                                         {% endif %}
                                     {% endfor %}
                                     <li class="page-item">
-                                    {% if pagesBillet != null %}
-                                        <a class="page-link" href="/index.php/adminDashboard?pageBillet={{pagesBillet.getLastPage}}#articles">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                                    {% if billets.getPaginate %}
+                                        <a class="page-link" href="/index.php/adminDashboard?pageBillet={{billets.getLastPage}}#articles">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
                                     {% endif %}
                                     </li>
                                 </ul>
@@ -135,9 +134,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for comment in comments %}
+                                    {% for comment in comments.getItemsToShow %}
                                         <tr>
-                                            <th scope="row">{{comment.id}}</th>
+                                            {% set comNumber = loop.index0 %}
+                                            {% for comment in comments.getShowElements|slice(comNumber, 1) %}
+                                                <th scope="row">{{comment}}</th>
+                                            {% endfor %}
                                             <td>{{comment.author}}</td>
                                             <td>{{comment.content|troncate(180)|nl2br}}</td>
                                             <td>{{comment.postedAt|date('d-m-Y \à H:i:s')}}</td>
@@ -151,20 +153,20 @@
                             <nav aria-label="Page navigation">
                                 <ul class="pagination justify-content-center mb-4">
                                     <li class="page-item">
-                                    {% if pagesComment != null %}
-                                        <a class="page-link" href="/index.php/adminDashboard?pagesComment=1#comments">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                                    {% if comments.getPaginate %}
+                                        <a class="page-link" href="/index.php/adminDashboard?pageCom=1#comments">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
                                     {% endif %}
                                     </li>
-                                    {% for page in pagesComment.getPages %}
-                                        {% if pagesComment.getActualPage == page %}
+                                    {% for page in comments.getPages %}
+                                        {% if comments.getActualPage == page %}
                                             <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
                                         {% else %}
-                                            <li class="page-item"><a class="page-link" href="/index.php/adminDashboard?pagesComment={{page}}#comments">{{page}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="/index.php/adminDashboard?pageCom={{page}}#comments">{{page}}</a></li>
                                         {% endif %}
                                     {% endfor %}
                                     <li class="page-item">
-                                    {% if pagesComment != null %}
-                                        <a class="page-link" href="/index.php/adminDashboard?pagesComment={{pagesComment.getLastPage}}#comments">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                                    {% if comments.getPaginate %}
+                                        <a class="page-link" href="/index.php/adminDashboard?pageCom={{comments.getLastPage}}#comments">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
                                     {% endif %}
                                     </li>
                                 </ul>
@@ -187,15 +189,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for commentReport in commentsReport %}
+                                    {% for commentReport in commentsReport.getItemsToShow %}
                                         <tr>
-                                            <th scope="row">{{commentReport.id}}</th>
+                                            {% set comNumber = loop.index0 %}
+                                            {% for commentReport in commentsReport.getShowElements|slice(comNumber, 1) %}
+                                                <th scope="row">{{commentReport}}</th>
+                                            {% endfor %}
                                             <td>{{commentReport.author}}</td>
                                             <td>{{commentReport.content|troncate(180)|nl2br}}</td>
                                             <td>{{commentReport.postedAt|date('d-m-Y \à H:i:s')}}</td>
                                             <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                         </tr>
                                     {% endfor %}
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -203,20 +209,20 @@
                             <nav aria-label="Page navigation">
                                 <ul class="pagination justify-content-center mb-4">
                                     <li class="page-item">
-                                    {% if pagesCommentReport != null %}
+                                    {% if commentsReport.getPaginate %}
                                         <a class="page-link" href="/index.php/adminDashboard?pagesCommentReport=1#commentsReport">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
                                     {% endif %}
                                     </li>
-                                    {% for page in pagesCommentReport.getPages %}
-                                        {% if pagesCommentReport.getActualPage == page %}
+                                    {% for page in commentsReport.getPages %}
+                                        {% if commentsReport.getActualPage == page %}
                                             <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
                                         {% else %}
                                             <li class="page-item"><a class="page-link" href="/index.php/adminDashboard?pagesCommentReport={{page}}#commentsReport">{{page}}</a></li>
                                         {% endif %}
                                     {% endfor %}
                                     <li class="page-item">
-                                    {% if pagesCommentReport != null %}
-                                        <a class="page-link" href="/index.php/adminDashboard?pagesCommentReport={{pagesCommentReport.getLastPage}}#commentsReport">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                                    {% if commentsReport.getPaginate %}
+                                        <a class="page-link" href="/index.php/adminDashboard?pagesCommentReport={{commentsReport.getLastPage}}#commentsReport">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
                                     {% endif %}
                                     </li>
                                 </ul>

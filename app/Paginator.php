@@ -4,7 +4,7 @@ namespace Framework;
 
 use Framework\Http\Request;
 
-class Paging
+class Paginator
 {
     /**
      * @var Request $request
@@ -66,23 +66,23 @@ class Paging
      * @param int $nbItemTotal
      * @param Manager $managerItems
      */
-    public function __construct($request, $nbItemTotal, $managerItems, $paramSql)
+    public function __construct($request, $nbItemTotal, $managerItems, $CONST_NB_PAGE, $CONST_QUERY, $paramSql = null)
     {
         $this->paramSql = $paramSql;
         $this->request = $request;
-        $this->nbItemByPage = (int) $_ENV["PAGE_COMMENTS"];
+        $this->nbItemByPage = (int) $_ENV[$CONST_NB_PAGE];
         $this->nbItemTotal = $nbItemTotal;
         $this->managerItems = $managerItems;
-        $this->paging();
+        $this->paging($CONST_QUERY);
     }
 
     /**
      * 
      */
-    private function paging()
+    private function paging($CONST_QUERY)
     {
-        if(isset($this->request->getQuery()['pageCom'])){
-            $this->actualPage = $_GET['pageCom'];
+        if(isset($this->request->getQuery()[$CONST_QUERY])){
+            $this->actualPage = $_GET[$CONST_QUERY];
         }
         else{
             $this->actualPage = 1;
@@ -196,6 +196,14 @@ class Paging
     public function getPaginate() : bool
     {
         return $this->paginate;
+    }
+
+    /**
+     * @return array
+     */
+    public function getShowElements() : array
+    {
+        return $this->showElements;
     }
 
 }
