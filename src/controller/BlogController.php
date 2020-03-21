@@ -25,11 +25,11 @@ class BlogController extends Controller
             }
         }
 
-        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(5);
+        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit();
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => (array_values($billets)[0])->getId(), 'valid' => 1]);
         $nbBillets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->countParam();
 
-        $paginator = new Paginator($this->request, (int) $nbBillets['count'], $this->getDatabase()->getManager('\Project\Model\BilletModel'), "PAGE_ARTICLES", "page");
+        $paginator = new Paginator($this->request, (int) $nbBillets['count'], $this->getDatabase()->getManager('\Project\Model\BilletModel'), "PAGE_ARTICLES", "page", null, "posted_at", true);
 
         return $this->render("blog.html.twig", [
             'billetsToShow' => $paginator,

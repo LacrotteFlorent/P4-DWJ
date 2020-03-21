@@ -47,11 +47,6 @@ class Paginator
     private $itemsToShow;
 
     /**
-     * @var array $paramSql
-     */
-    private $paramSql;
-
-    /**
      * @var Manager $managerItems
      */
     private $managerItems;
@@ -66,20 +61,19 @@ class Paginator
      * @param int $nbItemTotal
      * @param Manager $managerItems
      */
-    public function __construct($request, $nbItemTotal, $managerItems, $CONST_NB_PAGE, $CONST_QUERY, $paramSql = null)
+    public function __construct($request, $nbItemTotal, $managerItems, $CONST_NB_PAGE, $CONST_QUERY, $paramSql = null, $orderBy = null, $desc = false)
     {
-        $this->paramSql = $paramSql;
         $this->request = $request;
         $this->nbItemByPage = (int) $_ENV[$CONST_NB_PAGE];
         $this->nbItemTotal = $nbItemTotal;
         $this->managerItems = $managerItems;
-        $this->paging($CONST_QUERY);
+        $this->paging($CONST_QUERY, $paramSql, $orderBy, $desc);
     }
 
     /**
-     * 
+     * @note Use $desc Only if $orderBy is not null
      */
-    private function paging($CONST_QUERY)
+    private function paging($CONST_QUERY, $paramSql = null, $orderBy = null, $desc = false)
     {
         if(isset($this->request->getQuery()[$CONST_QUERY])){
             $this->actualPage = $_GET[$CONST_QUERY];
@@ -93,11 +87,17 @@ class Paginator
 
         if($this->nbItemTotal > $this->nbItemByPage){
             $this->paginate = true;
-            $this->itemsToShow = $this->managerItems->findAllWithLimitOffset($this->nbItemByPage, $this->showElements[0], $this->paramSql);
+            if($orderBy){
+                $this->itemsToShow = $this->managerItems->findOrderByLimitOffset($this->nbItemByPage, $this->showElements[0], $orderBy, $desc, $paramSql);
+            }
+            else{
+                $this->itemsToShow = $this->managerItems->findAllWithLimitOffset($this->nbItemByPage, $this->showElements[0], $paramSql);
+            }
         }
         else{
             $this->paginate = false;
-            $this->itemsToShow = $this->managerItems->findAllByParam($this->paramSql);
+            $this->itemsToShow = $this->managerItems->findAllByParam($paramSql);
+            // all orderBy
         }
     }
 

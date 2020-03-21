@@ -147,14 +147,17 @@ class Manager
     /**
      * @param int $limit
      * @param int $offset
+     * @param array $where
+     * @param array $orderBy
+     * @param bool $desc
      * @example requete: SELECT * FROM post LIMIT 3 OFFSET 4
      * @return Model
      */
-    public function findAllWithLimitOffset($limit, $offset, $params = null)
+    public function findAllWithLimitOffset($limit, $offset, $where = null)
     {   
         $from = array_values($this->metadata)[0];
 
-        if($params){
+        if($where){
             $paramSql = "";
             foreach ($params as $key => $param){
                 $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
@@ -165,6 +168,41 @@ class Manager
         }
         else{
             $sqlQuery = sprintf('SELECT * FROM %s LIMIT %s OFFSET %s', $from, $limit, $offset);
+        }
+
+        return $this->fetchAll($sqlQuery);
+    }
+
+    /**
+     * @param int $limit
+     * @param int $offset
+     * @param array $orderBy
+     * @param bool $desc
+     * @param array $where
+     * @example requete: SELECT * FROM post ORDER BY posted_at DESC LIMIT 3
+     * @return array
+     */
+    public function findOrderByLimitOffset($limit, $offset, $orderBy, $desc = false, $where = null)
+    {
+        $from = array_values($this->metadata)[0];
+
+        if($where){
+            if($desc){
+                $format = 'SELECT * FROM %s WHERE %s ORDER BY %s DESC LIMIT %s OFFSET %s';
+            }
+            else{
+                $format = 'SELECT * FROM %s WHERE %s ORDER BY %s LIMIT %S OFFSET %s';
+            }
+            $sqlQuery = sprintf($format, $from, $where, $orderBy, $limit, $offset);
+        }
+        else{
+            if($desc){
+                $format = 'SELECT * FROM %s ORDER BY %s DESC LIMIT %s OFFSET %s';
+            }
+            else{
+                $format = 'SELECT * FROM %s ORDER BY %s LIMIT %S OFFSET %s';
+            }
+            $sqlQuery = sprintf($format, $from, $orderBy, $limit, $offset);
         }
 
         return $this->fetchAll($sqlQuery);

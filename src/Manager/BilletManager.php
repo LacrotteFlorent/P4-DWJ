@@ -13,13 +13,18 @@ class BilletManager extends Manager
      * @example requete: SELECT * FROM post ORDER BY posted_at DESC LIMIT 3
      * @return array
      */
-    public function findByPostedAtWithLimit($limit)
+    public function findByPostedAtWithLimit($limit = null)
     {
         $from = array_values($this->metadata)[0];
 
-        $format = 'SELECT %s FROM %s ORDER BY posted_at DESC LIMIT %s';
-
         $select = "*";
+
+        if($limit){
+            $format = 'SELECT %s FROM %s ORDER BY posted_at DESC LIMIT %s';
+        }
+        else{
+            $format = 'SELECT %s FROM %s ORDER BY posted_at DESC';
+        }
 
         $sqlQuery = sprintf($format, $select, $from, $limit);
 
