@@ -14,15 +14,8 @@ class BlogController extends Controller
     */
     public function show()
     {
-        $erreurs = [];
         if($this->request->getRequestMethod() === 'POST'){
-            $test = ($this->testForForm(["firstName", "lastName", "mail", "acceptRGPD"]));
-            if($test[0]){
-                $this->post();
-            }
-            else{
-                $erreurs = $test[1];
-            }
+            $this->post();
         }
 
         $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit();
@@ -35,7 +28,7 @@ class BlogController extends Controller
             'billetsToShow' => $paginator,
             'billets'       => $billets,
             'nbComments'    => $nbComments,
-            'erreurs'       => $erreurs
+            //'erreurs'       => $erreurs  TODO // CREATION D'UNE VARIABLE GLOBALE TWIG AVEC LES ERREURS FORMULAIRES
         ]);
     }
 
@@ -45,21 +38,24 @@ class BlogController extends Controller
     public function post()
     {
         $dataForm = [];
-        $dataForm["full_name"] = (addslashes($_POST["firstName"]) .' : '. addslashes($_POST["lastName"]));
+        $dataForm["full_name"] = ($_POST["firstName"] .' : '. $_POST["lastName"]);
         $dataForm["email"] = $_POST["mail"];
 
         $date = new \Datetime;
         date_timezone_set($date, timezone_open('Europe/Paris'));
-        $date = $date->format("Y-m-d H:i:s");
+        $date = $date->format($_ENV["DATE_FORMAT"]);
         $dataForm["signed_at"] = $date;
 
         if(isset($userId)){
             $dataForm["user_id"] = $userId;
         }
         
-        $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel((new NewsletterModel())->hydrateForSql($dataForm));
+        $newsletterModel = (new NewsletterModel())->hydrateForSql($dataForm);
 
-        $flashMessage = (FlashBag::getInstance())->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
+        if($this->assertion($newsletterModel)){
+            //$this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel($newsletterModel);
+            $flashMessage = (FlashBag::getInstance())->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
+        }
 
         return $this->redirection('/blog');
     }

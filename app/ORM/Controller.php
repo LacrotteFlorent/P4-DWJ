@@ -142,16 +142,100 @@ class Controller
         if(!$valid){
             $flashMessage = (FlashBag::getInstance())->add("red", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
         }
+
         return [$valid, $reponse];
     }
 
     /**
-     * @param array $toTest
-     * @param string $errorMessage
+     * @param array $model
      * @return bool $valid
      */
-    protected function assertion($toTest, $errorMessage)
+    protected function assertion($model)
     {
-
+        foreach($model->metadata()["columns"] as $value => $column) {
+            $testValue = $model->{sprintf("get%s", $column["property"])}();
+            $testValueString = (string) 'salut';
+            $testValueInteger = 3;
+            $testValueMail = 'bralocaz@gmail.com';
+            switch ($column["assert"]) {
+                case 'integer':
+                    try {
+                        Assertion::integer($testValue, "Cette information dois être un entier");
+                    } catch(AssertionFailedException $e) {
+                        $e->getValue(); // the value that caused the failure
+                        $e->getConstraints(); // the additional constraints of the assertion.
+                        $flashMessage = (FlashBag::getInstance())->add("red", $e);
+                    }
+                    break;
+                case 'string':
+                    try {
+                        Assertion::string($testValue, "Cette information dois être une chaîne de caractère");
+                    } catch(AssertionFailedException $e) {
+                        $e->getValue(); // the value that caused the failure
+                        $e->getConstraints(); // the additional constraints of the assertion.
+                        $flashMessage = (FlashBag::getInstance())->add("red", $e);
+                    }
+                    break;
+                case 'email':
+                    try {
+                        Assertion::email($testValue, "Cette information dois être un email");
+                    } catch(AssertionFailedException $e) {
+                        $e->getValue(); // the value that caused the failure
+                        $e->getConstraints(); // the additional constraints of the assertion.
+                        $flashMessage = (FlashBag::getInstance())->add("red", $e);
+                    }
+                    break;
+                case 'null':
+                    try {
+                        Assertion::integer($testValue, "Cette information dois être nulle");
+                    } catch(AssertionFailedException $e) {
+                        $e->getValue(); // the value that caused the failure
+                        $e->getConstraints(); // the additional constraints of the assertion.
+                        $flashMessage = (FlashBag::getInstance())->add("red", $e);
+                    }
+                    break;
+                case 'integerOrNull':
+                    if($testValue != null){
+                        try {
+                            Assertion::integer($testValue, "Cette information dois être un entier");
+                        } catch(AssertionFailedException $e) {
+                            $e->getValue(); // the value that caused the failure
+                            $e->getConstraints(); // the additional constraints of the assertion.
+                            $flashMessage = (FlashBag::getInstance())->add("red", $e);
+                        }
+                    }
+                    else{
+                        try {
+                            Assertion::null($testValue, "Cette information dois être nulle");
+                        } catch(AssertionFailedException $e) {
+                            $e->getValue(); // the value that caused the failure
+                            $e->getConstraints(); // the additional constraints of the assertion.
+                            $flashMessage = (FlashBag::getInstance())->add("red", $e);
+                        }
+                    }
+                    break;
+                case 'date':
+                    try {
+                        Assertion::date($testValue, $_ENV["DATE_FORMAT"], "Cette information dois être une date et au bon format");
+                    } catch(AssertionFailedException $e) {
+                        $e->getValue(); // the value that caused the failure
+                        $e->getConstraints(); // the additional constraints of the assertion.
+                        $flashMessage = (FlashBag::getInstance())->add("red", $e);
+                    }
+                    break;
+                case 'fichier':
+                    try {
+                        Assertion::fichier($testValue, "Ce fichier n'est pas valide");
+                    } catch(AssertionFailedException $e) {
+                        $e->getValue(); // the value that caused the failure
+                        $e->getConstraints(); // the additional constraints of the assertion.
+                        $flashMessage = (FlashBag::getInstance())->add("red", $e);
+                    }
+                    break;
+                default:
+                    throw new ORMException ("Ce type de variable n'est pas pris en compte");
+                    break;
+            }
+        }
     }
 }

@@ -29,7 +29,7 @@ class NewsletterModel extends Model
     private $signedAt;
 
     /**
-     * @var sint
+     * @var int
      */
     private $userId;
 
@@ -44,23 +44,28 @@ class NewsletterModel extends Model
             "columns"           =>[
                 "id"            =>[
                     "type"      =>"integer",
-                    "property"  =>"id"
+                    "property"  =>"id",
+                    "assert"    =>"integerOrNull"
                 ],
                 "full_name"     =>[
                     "type"      =>"string",
-                    "property"  =>"fullName"
+                    "property"  =>"fullName",
+                    "assert"    =>"string"
                 ],
                 "email"         =>[
                     "type"      =>"string",
-                    "property"  =>"email"
+                    "property"  =>"email",
+                    "assert"    =>"email"
                 ],
                 "signed_at"     =>[
                     "type"      =>"datetime",
-                    "property"  =>"signedAt"
+                    "property"  =>"signedAt",
+                    "assert"    =>"date"
                 ],
                 "user_id"       =>[
                     "type"      =>"string",
-                    "property"  =>"userId"
+                    "property"  =>"userId",
+                    "assert"    =>"integerOrNull"
                 ]
             ]
         ];

@@ -65,7 +65,6 @@ class BilletModel extends Model
                 "id"            =>[
                     "type"      =>"integer",
                     "property"  =>"id",
-                    "assert"    =>"integer"
                 ],
                 "title"         =>[
                     "type"      =>"string",
