@@ -159,7 +159,7 @@ class Manager
 
         if($where){
             $paramSql = "";
-            foreach ($params as $key => $param){
+            foreach ($where as $key => $param){
                 $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
             }
             $paramSql = substr($paramSql, 0, -5);

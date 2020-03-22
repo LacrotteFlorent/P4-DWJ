@@ -17,7 +17,6 @@ class ContactController extends Controller
             $this->post();
         }
 
-        //$flashMessages = $this->flashMessages();
         return $this->render("contact.html.twig");
     }
 

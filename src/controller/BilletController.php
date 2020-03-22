@@ -3,7 +3,6 @@
 namespace Project\Controller;
 
 use Framework\ORM\Controller;
-use Framework\MessageFlash;
 use Framework\FlashBag;
 use Framework\Paginator;
 

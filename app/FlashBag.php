@@ -32,7 +32,7 @@ class FlashBag implements \Countable, \Iterator
     }
 
     /**
-     * MessageFlash constructor.
+     * FlashBag constructor.
      * @return FlashBag $_SESSION
      */
     public function __construct()

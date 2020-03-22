@@ -42,13 +42,11 @@ session_start();
 //(FlashBag::getInstance())->add("blue","ceci est un message lonnnnnnnnnnnnnnnnnnnnnnnng longggggggg 3");
 //(FlashBag::getInstance())->add("orange","ceci est un message4");
 //(FlashBag::getInstance())->add("yellow","ceci est un message5");
-//dump($_SESSION["FLASH_MESSAGES"]);
 //dump(count(FlashBag::getInstance()));
 //foreach(FlashBag::getInstance() as $mess){
 //    dump($mess);
 //}
 //dump(count(FlashBag::getInstance()));
-//dump($_SESSION["FLASH_MESSAGES"]);
 
 $request = Request::createFromGlobals();
 

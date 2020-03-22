@@ -54,9 +54,6 @@ class AdminPostController extends Controller
             }
         }
 
-        //messages
-        //$flashMessages = $this->flashMessages();
-
         // Si l'id est = 0 alors c'est un nouveau post
         if($id === "0"){
             return $this->render("adminPost.html.twig", [
@@ -81,7 +78,7 @@ class AdminPostController extends Controller
         $dataFormImage = [];
         $dataFormImage["name"] =  $_FILES["imageToUpload"]["name"];
         $dataFormImage["alt"] =  $_POST["alt"];
-        //$this->getDatabase()->getManager('\Project\Model\ImageModel')->insertByModel((new ImageModel())->hydrateForSql($dataFormImage));
+        $this->getDatabase()->getManager('\Project\Model\ImageModel')->insertByModel((new ImageModel())->hydrateForSql($dataFormImage));
 
         $dataFormBillet = [];
         $dataFormBillet["title"] = addslashes($_POST["title"]);
@@ -119,7 +116,7 @@ class AdminPostController extends Controller
         $dataFormBillet["like_count"] = 0;
         $dataFormBillet["view_count"] = 0;
 
-        //$this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel((new BilletModel())->hydrateForSql($dataFormBillet));
+        $this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel((new BilletModel())->hydrateForSql($dataFormBillet));
 
         $flashMessage = (FlashBag::getInstance())->add("blue", "Vous venez de modifier un article !");
 

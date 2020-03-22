@@ -97,7 +97,7 @@ class Paginator
         else{
             $this->paginate = false;
             $this->itemsToShow = $this->managerItems->findAllByParam($paramSql);
-            // all orderBy
+            // toDo OrderBy and DESC 
         }
     }
 
@@ -108,7 +108,7 @@ class Paginator
     {
         $this->nbPages = (int) ceil($this->nbItemTotal / $this->nbItemByPage);
 
-        if($this->actualPage > $this->nbPages || ($this->paginate === false && $this->actualPage > 1)){
+        if(($this->actualPage > $this->nbPages && $this->actualPage > 1) || ($this->paginate === false && $this->actualPage > 1)){
             throw new \Exception("Hop, hop, hop, ou allez vous ? Cette page n'existe pas !");
         }
 

@@ -2,6 +2,7 @@
 
 namespace Framework\ORM;
 
+use \Assert\Assertion;
 use Framework\Http\RedirectionResponse;
 use Framework\Http\Response;
 use Framework\Router\Router;
@@ -142,5 +143,15 @@ class Controller
             $flashMessage = (FlashBag::getInstance())->add("red", "OOPS, il y a eu une erreur dans la saisie du formulaire !");
         }
         return [$valid, $reponse];
+    }
+
+    /**
+     * @param array $toTest
+     * @param string $errorMessage
+     * @return bool $valid
+     */
+    protected function assertion($toTest, $errorMessage)
+    {
+
     }
 }
