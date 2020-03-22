@@ -4,6 +4,7 @@ namespace Project\PersonalExtendTwig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
+use Framework\ErrorForm;
 use Framework\FlashBag;
 
 class PersonalGlobals extends AbstractExtension implements GlobalsInterface
@@ -19,6 +20,7 @@ class PersonalGlobals extends AbstractExtension implements GlobalsInterface
     {
         return [    
             "FLASHBAG" => FlashBag::getInstance(),
+            "ERRORFORM"=> ErrorForm::getInstance()
         ];
     }
 
