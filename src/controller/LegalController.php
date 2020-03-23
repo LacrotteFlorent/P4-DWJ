@@ -2,7 +2,7 @@
 
 namespace Project\Controller;
 
-use Framework\ORM\Controller;
+use Framework\Controller;
 
 class LegalController extends Controller
 {

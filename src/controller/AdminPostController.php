@@ -2,7 +2,7 @@
 
 namespace Project\Controller;
 
-use Framework\ORM\Controller;
+use Framework\Controller;
 use Framework\FlashBag;
 use Project\Model\BilletModel;
 use Project\Model\ImageModel;

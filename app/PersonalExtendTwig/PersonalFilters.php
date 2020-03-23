@@ -1,6 +1,6 @@
 <?php
 
-namespace Project\PersonalExtendTwig;
+namespace Framework\PersonalExtendTwig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -15,14 +15,12 @@ class PersonalFilters extends AbstractExtension
      * [fonction obligatoire pour twig]
      */
     public function getFilters(){
-
         return [
 
-            new TwigFilter('troncate', [$this, 'troncate']),
+            new TwigFilter('truncate', [$this, 'truncate']),
             new TwigFilter('deleteFirstLetter', [$this, 'deleteFirstLetter']),
             new TwigFilter('onlyFirstLetter', [$this, 'onlyFirstLetter']),
             new TwigFilter('ifNullIsGuest', [$this, 'ifNullIsGuest']),
-
         ];
     }
 
@@ -31,7 +29,7 @@ class PersonalFilters extends AbstractExtension
      * @param int $nbCarac
      * @return string
      */
-    public function troncate($content, $nbCarac)
+    public function truncate($content, $nbCarac)
     {
         $troncate = substr($content, 0, $nbCarac);
         

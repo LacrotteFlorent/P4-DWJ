@@ -1,11 +1,14 @@
 <?php
 
-namespace Framework\ORM;
+namespace Framework;
 
 use \Assert\Assertion;
 use \Assert\SoftAssertion;
 use \Assert\LazyAssertionException;
 use \Assert\Assert;
+use Framework\PersonalExtendTwig\PersonalFunctions;
+use Framework\PersonalExtendTwig\PersonalFilters;
+use Framework\PersonalExtendTwig\PersonalGlobals;
 use Framework\Http\RedirectionResponse;
 use Framework\Http\Response;
 use Framework\Router\Router;
@@ -13,9 +16,7 @@ use Framework\Http\Request;
 use Framework\ORM\Database;
 use Framework\ErrorForm;
 use Framework\FlashBag;
-use Project\PersonalExtendTwig\PersonalFunctions;
-use Project\PersonalExtendTwig\PersonalFilters;
-use Project\PersonalExtendTwig\PersonalGlobals;
+
 
 class Controller
 {
@@ -49,7 +50,7 @@ class Controller
         $this->request = $request;
         $this->router = $router;
         $this->database = Database::getInstance($request);
-        $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/../../view');
+        $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/../view');
         $this->twig = new \Twig\Environment($loader, array(
             'cache' => false    // le temps du développement on laisse le cache à false // __DIR__ . '/tmp'
         ));
@@ -153,6 +154,7 @@ class Controller
     /**
      * @param array $model
      * @return bool $valid
+     * @source https://github.com/beberlei/assert/blob/master/README.md
      */
     protected function assertion($model)
     {
@@ -170,12 +172,12 @@ class Controller
                     break;
 
                 case 'string':
-                    $assert->that($testValueInteger, $value)->tryAll()->string();
+                    $assert->that($testValue, $value)->tryAll()->string();
                     $reload[$value] = $testValue;
                     break;
 
                 case 'email':
-                    $assert->that($testValueInteger, $value)->tryAll()->email();
+                    $assert->that($testValue, $value)->tryAll()->email();
                     $reload[$value] = $testValue;
                     break;
 
@@ -213,12 +215,14 @@ class Controller
 
         try {
             $assert->verifyNow();
+            return true;
         } catch(\Exception $e) {
             foreach($e->getErrorExceptions() as $exception){
                 $reload[$exception->getPropertyPath()] = "Erreur de saisie";
             }
             ErrorForm::getInstance()->add($reload);
             FlashBag::getInstance()->add("red", "Il y a eu une erreur dans la saisie de votre formulaire");
+            return false;
         }
     }
 
