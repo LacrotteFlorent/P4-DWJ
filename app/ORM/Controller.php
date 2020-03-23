@@ -210,7 +210,7 @@ class Controller
                     break;
             }
         }
-        
+
         try {
             $assert->verifyNow();
         } catch(\Exception $e) {
@@ -221,4 +221,9 @@ class Controller
             FlashBag::getInstance()->add("red", "Il y a eu une erreur dans la saisie de votre formulaire");
         }
     }
+
+    /**
+     * @todo Faire une methode qui fait les assertion sans model
+     */
+
 }

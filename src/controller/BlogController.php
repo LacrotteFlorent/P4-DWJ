@@ -27,8 +27,7 @@ class BlogController extends Controller
         return $this->render("blog.html.twig", [
             'billetsToShow' => $paginator,
             'billets'       => $billets,
-            'nbComments'    => $nbComments,
-            //'erreurs'       => $erreurs  TODO // CREATION D'UNE VARIABLE GLOBALE TWIG AVEC LES ERREURS FORMULAIRES
+            'nbComments'    => $nbComments
         ]);
     }
 
