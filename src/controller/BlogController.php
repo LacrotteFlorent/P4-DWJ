@@ -20,22 +20,27 @@ class BlogController extends Controller
                 "email"     => $_POST["mail"],
                 "signed_at" => date($_ENV["DATE_FORMAT"])
             ]);
-            //dump($this->request->getRequestMethod());
+            dump($this->request->getRequestMethod());
             if($this->assertion($newsletterModel)){
                 //$this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel($newsletterModel);
                 FlashBag::getInstance()->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
-                return $this->redirection('/blog');
+                //return $this->redirection('/blog');
             }
         }
 
         $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit();
+        foreach($billets as $billet){
+            $imageBillets[$billet->getId()] = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($billet->getImageId(), "image");
+        }
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => (array_values($billets)[0])->getId(), 'valid' => 1]);
         $nbBillets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->countParam();
 
+        
         $paginator = new Paginator($this->request, (int) $nbBillets['count'], $this->getDatabase()->getManager('\Project\Model\BilletModel'), "PAGE_ARTICLES", "page", null, "posted_at", true);
         return $this->render("blog.html.twig", [
             'billetsToShow' => $paginator,
             'billets'       => $billets,
+            'images'        => $imageBillets,
             'nbComments'    => $nbComments
         ]);
     }

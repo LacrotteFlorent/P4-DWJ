@@ -12,8 +12,14 @@ class HostController extends Controller
     public function show()
     {
         $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(3);
+        foreach($billets as $billet){
+            $imageBillets[$billet->getId()] = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($billet->getImageId(), "image");
+        }
 
-        return $this->render("host.html.twig", ['billets' => $billets]);
+        return $this->render("host.html.twig", [
+            'billets'   => $billets,
+            'images'    => $imageBillets
+        ]);
     }
 
 }

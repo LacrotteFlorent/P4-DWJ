@@ -54,7 +54,7 @@ class Controller
         $this->twig = new \Twig\Environment($loader, array(
             'cache' => false    // le temps du développement on laisse le cache à false // __DIR__ . '/tmp'
         ));
-        $this->twig->addExtension(new PersonalFunctions($this->getDatabase()));
+        $this->twig->addExtension(new PersonalFunctions());
         $this->twig->addExtension(new PersonalFilters());
         $this->twig->addExtension(new PersonalGlobals());
     }

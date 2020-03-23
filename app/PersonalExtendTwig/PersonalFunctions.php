@@ -8,13 +8,6 @@ use Twig\TwigFunction;
 class PersonalFunctions extends AbstractExtension
 {
 
-    private $database;
-
-    public function __construct($database)
-    {
-        $this->database = $database;
-    }
-
     /**
      * @return array
      * @source https://symfony.com/doc/current/templating/twig_extension.html
@@ -24,9 +17,6 @@ class PersonalFunctions extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('urlImage', [$this, 'urlImage']),
-            new TwigFunction('altImage', [$this, 'altImage']),
-            new TwigFunction('countParam', [$this, 'countParam']),
             new TwigFunction('dumpTwig', [$this, 'dumpTwig'])
         ];
     }
@@ -55,18 +45,6 @@ class PersonalFunctions extends AbstractExtension
             return $imageBillet->getAlt();
         }
         return;
-    }
-
-    /**
-     * 
-     */
-    public function countParam($arrayOfValues, $getToCount)
-    {
-        $totalCount = 0;
-        foreach ($arrayOfValues as $arrayOfValue){
-            $totalCountLikes += $arrayOfValue->$getToCount;
-        }
-        return $totalCount;
     }
 
     /**

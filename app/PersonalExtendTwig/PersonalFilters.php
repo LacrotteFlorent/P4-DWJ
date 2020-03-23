@@ -16,11 +16,9 @@ class PersonalFilters extends AbstractExtension
      */
     public function getFilters(){
         return [
-
             new TwigFilter('truncate', [$this, 'truncate']),
             new TwigFilter('deleteFirstLetter', [$this, 'deleteFirstLetter']),
-            new TwigFilter('onlyFirstLetter', [$this, 'onlyFirstLetter']),
-            new TwigFilter('ifNullIsGuest', [$this, 'ifNullIsGuest']),
+            new TwigFilter('onlyFirstLetter', [$this, 'onlyFirstLetter'])
         ];
     }
 
@@ -54,19 +52,6 @@ class PersonalFilters extends AbstractExtension
     {
         $firstCarac = $content{0};
         return ucfirst($firstCarac);
-    }
-
-    /**
-     * @param string $author
-     * @return string
-     */
-    public function ifNullIsGuest($author)
-    {
-        if(!$author){
-            $author = "Guest";
-        }
-
-        return $author;
     }
 
 }
