@@ -15,7 +15,6 @@ class BlogController extends Controller
     */
     public function show()
     {
-        dump($_POST);
         if($this->request->getRequestMethod() === 'POST'){
             $newsletterModel = (new NewsletterModel())->hydrateForSql([
                 "full_name" => $_POST["firstName"] .' : '. $_POST["lastName"],
@@ -30,13 +29,9 @@ class BlogController extends Controller
             //}
             $validator = new Validator;
             if($validator->assertion($newsletterModel, [
-                'name'      => [
-                    'value'     => 'florent',
-                    'assert'    => 'string'
-                ],
-                'lastName'  => [
-                    'value'     => 'lacrotte',
-                    'assert'     => 'string'
+                'rgpd'      => [
+                    'value'     => $_POST["acceptRGPD"],
+                    'assert'    => 'checkbox'
                 ]
             ])){
                 //$this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel($newsletterModel);

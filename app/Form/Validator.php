@@ -88,6 +88,9 @@ class Validator
                 $this->reload[$exception->getPropertyPath()] = "Erreur de saisie";
             }
             ErrorForm::getInstance()->add($this->reload);
+            //dump($e->getErrorExceptions());
+            //dump($asserts);
+            //dump(ErrorForm::getInstance());
             FlashBag::getInstance()->add("red", "Il y a eu une erreur dans la saisie de votre formulaire");
             return false;
         }
@@ -151,7 +154,7 @@ class Validator
                 break;
 
             case 'checkbox':
-                $this->assert->that($testValue, $nameValue)->tryAll()->string('on');
+                $this->assert->that($testValue, $nameValue)->tryAll()->string()->same("on");
                 $this->reload[$nameValue] = $testValue;
                 break;
 
