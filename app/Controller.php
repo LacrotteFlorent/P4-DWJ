@@ -226,8 +226,4 @@ class Controller
         }
     }
 
-    /**
-     * @todo Faire une methode qui fait les assertion sans model
-     */
-
 }

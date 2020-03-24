@@ -58,8 +58,14 @@ class Paginator
 
     /**
      * Paginate constructor
+     * @param Request $request
      * @param int $nbItemTotal
      * @param Manager $managerItems
+     * @param CONST $CONST_NB_PAGE
+     * @param CONST $CONST_QUERY {name of param page in GET}
+     * @param string $paramSql
+     * @param string $orderBy
+     * @param bool $desc
      */
     public function __construct($request, $nbItemTotal, $managerItems, $CONST_NB_PAGE, $CONST_QUERY, $paramSql = null, $orderBy = null, $desc = false)
     {
@@ -71,7 +77,18 @@ class Paginator
     }
 
     /**
-     * @note Use $desc Only if $orderBy is not null
+     * @internal { WARNING Use $desc Only if $orderBy is not null }
+     * 
+     * @uses $this->calcPaginate()
+     * @uses $thi->calcShowElements()
+     * 
+     * @param CONST $CONST_QUERY
+     * @param string $paramSql
+     * @param string $orderBy
+     * @param bool $desc
+     * 
+     * @internal  { Paging only retrieves the MySql data that will be
+     *              displayed according to the current page. }
      */
     private function paging($CONST_QUERY, $paramSql = null, $orderBy = null, $desc = false)
     {
@@ -97,12 +114,17 @@ class Paginator
         else{
             $this->paginate = false;
             $this->itemsToShow = $this->managerItems->findAllByParam($paramSql);
-            // toDo OrderBy and DESC 
         }
     }
 
     /**
-     * @internal Calc $pageAroundActualPage
+     * @used-by $this->paging()
+     * 
+     * @throws \Exception { if $actualPage doesn't exist}
+     * 
+     * @internal  { Calculates the number of pages based on the database,
+     *              and returns a table of numbers that corresponds to the
+     *              pages surrounding the current page. +2 and -2. }
      */
     private function calcPaginate()
     {
@@ -133,7 +155,10 @@ class Paginator
     }
 
     /**
-     * @internal Calc $showElements
+     * @used-by $this->paging()
+     * 
+     * @internal  { Retourne un tableau avec le numéro des éléments
+     *              de la base de donnée à afficher en fonction de la page actuelle. }
      */
     private function calcShowElements()
     {

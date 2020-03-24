@@ -32,18 +32,8 @@ class FlashBag implements \Countable, \Iterator
     }
 
     /**
-     * FlashBag constructor.
-     * @return FlashBag $_SESSION
-     */
-    public function __construct()
-    {
-
-    }
-
-    /**
      * @param string $type
      * @param string $message
-     * @return FlashBag $_SESSION
      */
     public function add($type, $message)
     {

@@ -32,15 +32,6 @@ class ErrorForm implements \Countable, \Iterator
     }
 
     /**
-     * ErrorForm constructor.
-     * @return ErrorForm $_SESSION
-     */
-    public function __construct()
-    {
-
-    }
-
-    /**
      * @param array $reload
      */
     public function add($reload)
