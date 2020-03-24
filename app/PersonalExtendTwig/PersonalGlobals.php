@@ -4,7 +4,7 @@ namespace Framework\PersonalExtendTwig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
-use Framework\ErrorForm;
+use Framework\Form\ErrorForm;
 use Framework\FlashBag;
 
 class PersonalGlobals extends AbstractExtension implements GlobalsInterface

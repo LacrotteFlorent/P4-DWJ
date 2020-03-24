@@ -5,6 +5,7 @@ namespace Project\Controller;
 use Framework\Controller;
 use Framework\FlashBag;
 use Framework\Paginator;
+use Framework\Form\Validator;
 use Project\Model\NewsletterModel;
 
 class BlogController extends Controller
@@ -14,14 +15,30 @@ class BlogController extends Controller
     */
     public function show()
     {
+        dump($_POST);
         if($this->request->getRequestMethod() === 'POST'){
             $newsletterModel = (new NewsletterModel())->hydrateForSql([
                 "full_name" => $_POST["firstName"] .' : '. $_POST["lastName"],
                 "email"     => $_POST["mail"],
                 "signed_at" => date($_ENV["DATE_FORMAT"])
             ]);
-            dump($this->request->getRequestMethod());
-            if($this->assertion($newsletterModel)){
+            //dump($this->request->getRequestMethod());
+            //if($this->assertion($newsletterModel)){
+            //    //$this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel($newsletterModel);
+            //    FlashBag::getInstance()->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
+            //    //return $this->redirection('/blog');
+            //}
+            $validator = new Validator;
+            if($validator->assertion($newsletterModel, [
+                'name'      => [
+                    'value'     => 'florent',
+                    'assert'    => 'string'
+                ],
+                'lastName'  => [
+                    'value'     => 'lacrotte',
+                    'assert'     => 'string'
+                ]
+            ])){
                 //$this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel($newsletterModel);
                 FlashBag::getInstance()->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
                 //return $this->redirection('/blog');

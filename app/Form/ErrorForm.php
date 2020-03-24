@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework;
+namespace Framework\Form;
 
 class ErrorForm implements \Countable, \Iterator
 {

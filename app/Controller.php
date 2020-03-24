@@ -14,7 +14,7 @@ use Framework\Http\Response;
 use Framework\Router\Router;
 use Framework\Http\Request;
 use Framework\ORM\Database;
-use Framework\ErrorForm;
+use Framework\Form\ErrorForm;
 use Framework\FlashBag;
 
 
@@ -153,8 +153,11 @@ class Controller
 
     /**
      * @param array $model
-     * @return bool $valid
+     * 
      * @source https://github.com/beberlei/assert/blob/master/README.md
+     * 
+     * @throws FormException
+     * @return bool $valid
      */
     protected function assertion($model)
     {
@@ -172,7 +175,7 @@ class Controller
                     break;
 
                 case 'string':
-                    $assert->that($testValue, $value)->tryAll()->string();
+                    $assert->that($testValueInteger, $value)->tryAll()->string();
                     $reload[$value] = $testValue;
                     break;
 
