@@ -11,11 +11,13 @@ use Project\Model\NewsletterModel;
 class BlogController extends Controller
 {
    /**
-    * @return Response
+    * @return Response|RedirectionResponse
     */
     public function show()
     {
         if($this->request->getRequestMethod() === 'POST'){
+            //dump($this->request->getRequestMethod());
+            //dump($_POST);
             $newsletterModel = (new NewsletterModel())->hydrateForSql([
                 "full_name" => $_POST["firstName"] .' : '. $_POST["lastName"],
                 "email"     => $_POST["mail"],
@@ -28,9 +30,9 @@ class BlogController extends Controller
                     'assert'    => 'checkbox'
                 ]
             ])){
-                //$this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel($newsletterModel);
                 FlashBag::getInstance()->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
-                //return $this->redirection('/blog');
+                $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel($newsletterModel);
+                return $this->redirection('/blog');
             }
         }
 

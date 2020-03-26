@@ -24,6 +24,6 @@ class RedirectionResponse implements ResponseInterface
      */
     public function send()
     {
-        return header('Location : ' . $this->uri);
+        header(sprintf("location: %s", $this->uri));
     }
 }

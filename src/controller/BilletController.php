@@ -27,7 +27,7 @@ class BilletController extends Controller
         
             if((new Validator)->assertion($commentModel)){
                 //$this->getDatabase()->getManager('\Project\Model\CommentModel')->insertByModel($commentModel);
-                $flashMessage = (FlashBag::getInstance())->add("green", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
+                (FlashBag::getInstance())->add("green", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
                 //return $this->redirection('/billet/' . $id);
             }
         }
