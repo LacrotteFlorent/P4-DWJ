@@ -16,8 +16,6 @@ class BlogController extends Controller
     public function show()
     {
         if($this->request->getRequestMethod() === 'POST'){
-            //dump($this->request->getRequestMethod());
-            //dump($_POST);
             $newsletterModel = (new NewsletterModel())->hydrateForSql([
                 "full_name" => $_POST["firstName"] .' : '. $_POST["lastName"],
                 "email"     => $_POST["mail"],

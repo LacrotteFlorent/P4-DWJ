@@ -2,9 +2,11 @@
 
 namespace Project\Controller;
 
+use Framework\Form\Validator;
 use Framework\Controller;
 use Framework\FlashBag;
 use Framework\Paginator;
+use Project\Model\CommentModel;
 
 
 class BilletController extends Controller
@@ -26,9 +28,9 @@ class BilletController extends Controller
             ]);
         
             if((new Validator)->assertion($commentModel)){
-                //$this->getDatabase()->getManager('\Project\Model\CommentModel')->insertByModel($commentModel);
+                $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertByModel($commentModel);
                 (FlashBag::getInstance())->add("green", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
-                //return $this->redirection('/billet/' . $id);
+                return $this->redirection('/billet/' . $id);
             }
         }
 

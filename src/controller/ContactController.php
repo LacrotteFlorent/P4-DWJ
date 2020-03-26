@@ -2,9 +2,11 @@
 
 namespace Project\Controller;
 
+use Framework\Form\Validator;
 use Framework\Controller;
 use Framework\FlashBag;
 use Framework\SwiftMailer;
+use Project\Model\ContactModel;
 
 class ContactController extends Controller
 {
@@ -15,15 +17,15 @@ class ContactController extends Controller
     {
         if($this->request->getRequestMethod() === 'POST'){
             $contactModel = (new ContactModel())->hydrateForSql([
-                "full_name" => $_POST["firstName"] .' : '. $_POST["lastName"],
-                "email"     => $_POST["mail"],
+                "full_name" => $_POST["contactFirstName"] .' : '. $_POST["contactName"],
+                "email"     => $_POST["contactMail"],
                 "subject"   => $_POST["contactObject"],
                 "content"   => $_POST["contactMessage"],
-                "send-at"   => date($_ENV["DATE_FORMAT"])
+                "sent_at"   => date($_ENV["DATE_FORMAT"])
             ]);
         
             if((new Validator)->assertion($contactModel)){
-                //$this->getDatabase()->getManager('\Project\Model\ContactModel')->insertByModel($contactModel);
+                $this->getDatabase()->getManager('\Project\Model\ContactModel')->insertByModel($contactModel);
 
                     // send a email to recipent to notify it
                 $failure = null;
@@ -64,7 +66,7 @@ class ContactController extends Controller
                     (FlashBag::getInstance())->add($bgColorInfo, $infoMail);
                 }
             
-                //$this->redirection('/contact');
+                $this->redirection('/contact');
             }
         }
 

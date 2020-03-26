@@ -75,12 +75,12 @@ class CommentModel extends Model
                 "valid"         =>[
                     "type"      =>"bool",
                     "property"  =>"valid",
-                    "assert"    =>"bool"
+                    "assert"    =>"integer"
                 ],
                 "report"        =>[
                     "type"      =>"bool",
                     "property"  =>"report",
-                    "assert"    =>"bool"
+                    "assert"    =>"integer"
                 ],
                 "author"        =>[
                     "type"      =>"string",
