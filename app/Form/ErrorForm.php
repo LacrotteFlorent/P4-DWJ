@@ -25,10 +25,18 @@ class ErrorForm implements \Countable, \Iterator
      */
     public static function getInstance() : ErrorForm
     {
+        if(isset($_SESSION["ERRORFORM"])){
+            self::$flashBagInstance = $_SESSION["ERRORFORM"];
+        }
+
         if(!self::$errorFormInstance) {
             self::$errorFormInstance = new ErrorForm();
         }
         return self::$errorFormInstance;
+    }
+
+    public static function pushInSession(){
+        $_SESSION["ERRORFORM"] = self::$flashBagInstance;
     }
 
     /**
@@ -37,6 +45,7 @@ class ErrorForm implements \Countable, \Iterator
     public function add($reload)
     {
         array_push($this->messages, ['reload' => $reload]);
+        $this->pushInSession();
     }
 
     /**

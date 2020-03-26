@@ -59,14 +59,14 @@ class ContactController extends Controller
                     $infoMail = "Une erreur c'est produite, votre message n'as pas été envoyé !";
                     $bgColorInfo = "red";
                     (FlashBag::getInstance())->add($bgColorInfo, $infoMail);
+                    return $this->redirection('/contact');
                 }
                 else{
                     $infoMail = " Votre message à bien été envoyé !";
                     $bgColorInfo = "green";
                     (FlashBag::getInstance())->add($bgColorInfo, $infoMail);
+                    return $this->redirection('/contact');
                 }
-            
-                $this->redirection('/contact');
             }
         }
 
