@@ -10,6 +10,7 @@ use Project\Model\NewsletterModel;
 
 class BlogController extends Controller
 {
+    
    /**
     * @return Response|RedirectionResponse
     */

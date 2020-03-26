@@ -25,10 +25,19 @@ class FlashBag implements \Countable, \Iterator
      */
     public static function getInstance() : FlashBag
     {
+            
+        if(isset($_SESSION["FLASHBAG"])){
+            self::$flashBagInstance = $_SESSION["FLASHBAG"];
+        }
+
         if(!self::$flashBagInstance) {
             self::$flashBagInstance = new FlashBag();
         }
         return self::$flashBagInstance;
+    }
+
+    public static function pushInSession(){
+        $_SESSION["FLASHBAG"] = self::$flashBagInstance;
     }
 
     /**
@@ -38,6 +47,7 @@ class FlashBag implements \Countable, \Iterator
     public function add($type, $message)
     {
         array_push($this->messages, ['type' => $type, 'message' => $message]);
+        $this->pushInSession();
     }
 
     /**
@@ -65,6 +75,7 @@ class FlashBag implements \Countable, \Iterator
      */
     public function current()
     {
+
         return array_shift($this->messages);
     }
 
