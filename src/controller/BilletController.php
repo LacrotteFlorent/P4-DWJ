@@ -16,7 +16,20 @@ class BilletController extends Controller
     public function show($id)
     {
         if($this->request->getRequestMethod() === 'POST'){
-            $this->post($id);
+            $commentModel = (new CommentModel())->hydrateForSql([
+                "content"   => $_POST["content"],
+                "posted_at" => date($_ENV["DATE_FORMAT"]),
+                "valid"     => 1,
+                "report"    => 0,
+                "author"    => $_POST["author"],
+                "post_id"   => $id
+            ]);
+        
+            if((new Validator)->assertion($commentModel)){
+                //$this->getDatabase()->getManager('\Project\Model\CommentModel')->insertByModel($commentModel);
+                $flashMessage = (FlashBag::getInstance())->add("green", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
+                //return $this->redirection('/billet/' . $id);
+            }
         }
 
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
@@ -31,35 +44,6 @@ class BilletController extends Controller
             'nbComments'    => $nbComments,
             'pages'         => $paginator,
         ]);
-    }
-
-    /**
-     * @param string $id
-     * @return RedirectionResponse
-     */
-    private function post($id)
-    {
-            // insert in MYSQL
-        $dataForm = [];
-        $dataForm["content"] = addslashes($_POST["content"]);
-
-        $date = new \Datetime;
-        date_timezone_set($date, timezone_open('Europe/Paris'));
-        $date = $date->format("Y-m-d H:i:s");
-        $dataForm["posted_at"] = $date;
-
-        $dataForm["valid"] = 1;
-        $dataForm["report"] = 0;
-        $dataForm["author"] = addslashes($_POST["author"]);
-        $dataForm["post_id"] = $id;
-        
-        $dataForm = $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertPrepare('comment', $dataForm);
-
-        $flashMessage = (FlashBag::getInstance())->add("green", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");
-
-        $_POST = null;
-
-        $this->redirection('/billet/' . $id);
     }
 
 }

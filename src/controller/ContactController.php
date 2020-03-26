@@ -14,7 +14,7 @@ class ContactController extends Controller
     public function show()
     {
         if($this->request->getRequestMethod() === 'POST'){
-            $newsletterModel = (new ContactModel())->hydrateForSql([
+            $contactModel = (new ContactModel())->hydrateForSql([
                 "full_name" => $_POST["firstName"] .' : '. $_POST["lastName"],
                 "email"     => $_POST["mail"],
                 "subject"   => $_POST["contactObject"],
@@ -22,8 +22,8 @@ class ContactController extends Controller
                 "send-at"   => date($_ENV["DATE_FORMAT"])
             ]);
         
-            if((new Validator)->assertion($newsletterModel)){
-                //$this->getDatabase()->getManager('\Project\Model\ContactModel')->insertByModel($newsletterModel);
+            if((new Validator)->assertion($contactModel)){
+                //$this->getDatabase()->getManager('\Project\Model\ContactModel')->insertByModel($contactModel);
 
                     // send a email to recipent to notify it
                 $failure = null;
