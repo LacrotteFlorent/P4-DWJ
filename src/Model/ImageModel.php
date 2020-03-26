@@ -34,15 +34,18 @@ class ImageModel extends Model
             "columns"           =>[
                 "id"            =>[
                     "type"      =>"integer",
-                    "property"  =>"id"
+                    "property"  =>"id",
+                    "assert"    =>"integerOrNull"
                 ],
                 "name"          =>[
                     "type"      =>"string",
-                    "property"  =>"name"
+                    "property"  =>"name",
+                    "assert"    =>"string"
                 ],
                 "alt"           =>[
                     "type"      =>"string",
-                    "property"  =>"alt"
+                    "property"  =>"alt",
+                    "assert"    =>"string"
                 ]
             ]
         ];

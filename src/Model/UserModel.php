@@ -39,19 +39,23 @@ class UserModel extends Model
             "columns"           =>[
                 "id"            =>[
                     "type"      =>"integer",
-                    "property"  =>"id"
+                    "property"  =>"id",
+                    "assert"    =>"integerOrNull"
                 ],
                 "email"         =>[
                     "type"      =>"string",
-                    "property"  =>"email"
+                    "property"  =>"email",
+                    "assert"    =>"email"
                 ],
                 "password"      =>[
                     "type"      =>"string",
-                    "property"  =>"password"
+                    "property"  =>"password",
+                    "assert"    =>"string"
                 ],
                 "username"      =>[
                     "type"      =>"string",
-                    "property"  =>"username"
+                    "property"  =>"username",
+                    "assert"    =>"string"
                 ]
             ]
         ];

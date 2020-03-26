@@ -21,14 +21,8 @@ class BlogController extends Controller
                 "email"     => $_POST["mail"],
                 "signed_at" => date($_ENV["DATE_FORMAT"])
             ]);
-            //dump($this->request->getRequestMethod());
-            //if($this->assertion($newsletterModel)){
-            //    //$this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel($newsletterModel);
-            //    FlashBag::getInstance()->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
-            //    //return $this->redirection('/blog');
-            //}
-            $validator = new Validator;
-            if($validator->assertion($newsletterModel, [
+        
+            if((new Validator)->assertion($newsletterModel, [
                 'rgpd'      => [
                     'value'     => $_POST["acceptRGPD"],
                     'assert'    => 'checkbox'

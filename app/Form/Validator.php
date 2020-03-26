@@ -6,6 +6,7 @@ use \Assert\Assert;
 use \Assert\Assertion;
 use \Assert\SoftAssertion;
 use \Assert\LazyAssertionException;
+use Framework\Form\ExtendAssertion;
 use Framework\Form\FormException;
 use Framework\Form\ErrorForm;
 use Framework\FlashBag;
@@ -34,16 +35,21 @@ class Validator
     /**
      * @source https://github.com/beberlei/assert/blob/master/README.md
      * 
-     * @internal  
-     *   Checks the data of a form according to a Model and
-     *   a data table if the model is not sufficient.
-     * 
      * @uses $this->check()
      * @uses ErrorForm
      * @uses Flashbag
      * 
      * @param array $model
      * @param array $asserts
+     * 
+     * @internal 
+     *  Checks the data of a form according to a Model and
+     *  a data table if the model is not sufficient.
+     * 
+     *  To test an image, add in the image array: 1 parameter (string) name,
+     *  1 parameter (array) formats, 1 parameter (int) size.
+     * 
+     *  Fill in the $asserts table like this:
      * 
      * @example 
      *  asserts[
@@ -54,24 +60,31 @@ class Validator
      *      age => [
      *          'value' => $ageFormulaire,
      *          'assert => 'int'
+     *          ],
+     *   image1 => [
+     *          'value' => $_FILES["imageToUpload"],
+     *          'assert => 'image',
+     *          'size'  => 1300000   // 13Mo
      *          ]
-     *  ]
+     *   ]
      * 
      * @throws FormException
      * 
      * @return bool $valid
      */
-    public function assertion($model, $asserts = null)
+    public function assertion($model = null, $asserts = null)
     {
-        foreach($model->metadata()["columns"] as $value => $column) {
-            $testValue = $model->{sprintf("get%s", $column["property"])}();
-            $this->check($column["assert"], $testValue, $value);
+        if($model){
+            foreach($model->metadata()["columns"] as $value => $column) {
+                $testValue = $model->{sprintf("get%s", $column["property"])}();
+                $this->check($column["assert"], $testValue, $value);
+            }
         }
 
         if($asserts){
             foreach($asserts as $nameValue => $assert) {
                 if(isset($assert["value"], $assert["assert"])){
-                    $this->check($assert["assert"], $assert["value"], $nameValue);
+                    $this->check($assert["assert"], $assert["value"], $nameValue, $assert);
                 }
                 else{
                     throw new FormException('The $asserts table of the assertion method is poorly implemented.');
@@ -88,7 +101,7 @@ class Validator
                 $this->reload[$exception->getPropertyPath()] = "Erreur de saisie";
             }
             ErrorForm::getInstance()->add($this->reload);
-            //dump($e->getErrorExceptions());
+            dump($e->getErrorExceptions());
             //dump($asserts);
             //dump(ErrorForm::getInstance());
             FlashBag::getInstance()->add("red", "Il y a eu une erreur dans la saisie de votre formulaire");
@@ -102,10 +115,13 @@ class Validator
      * @param string $assert
      * @param mixed $testValue
      * @param string $nameValue
+     * @param array $params
+     * 
+     * @global SIZE_IMG
      * 
      * @throws FormException
      */
-    private function check($assert, $testValue, $nameValue)
+    private function check($assert, $testValue, $nameValue, $params = null)
     {
         $testValueString = (string) 'salut';
         $testValueInteger = 3;
@@ -148,13 +164,17 @@ class Validator
                 $this->reload[$nameValue] = $testValue;
                 break;
 
-            case 'fichier':
-                $this->assert->that($testValue, $nameValue)->tryAll()->fichier();
-                $this->reload[$nameValue] = $testValue;
+            case 'image':
+                $this->assert->that($testValue, $nameValue)->tryAll()->image($params['size']);
                 break;
 
             case 'checkbox':
                 $this->assert->that($testValue, $nameValue)->tryAll()->string()->same("on");
+                $this->reload[$nameValue] = $testValue;
+                break;
+            
+            case 'bool':
+                $this->assert->that($testValue, $nameValue)->tryAll()->boolean();
                 $this->reload[$nameValue] = $testValue;
                 break;
 

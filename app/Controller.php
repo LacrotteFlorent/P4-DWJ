@@ -2,10 +2,6 @@
 
 namespace Framework;
 
-use \Assert\Assertion;
-use \Assert\SoftAssertion;
-use \Assert\LazyAssertionException;
-use \Assert\Assert;
 use Framework\PersonalExtendTwig\PersonalFunctions;
 use Framework\PersonalExtendTwig\PersonalFilters;
 use Framework\PersonalExtendTwig\PersonalGlobals;
@@ -14,9 +10,7 @@ use Framework\Http\Response;
 use Framework\Router\Router;
 use Framework\Http\Request;
 use Framework\ORM\Database;
-use Framework\Form\ErrorForm;
 use Framework\FlashBag;
-
 
 class Controller
 {
@@ -149,84 +143,6 @@ class Controller
         }
 
         return [$valid, $reponse];
-    }
-
-    /**
-     * @param array $model
-     * 
-     * @source https://github.com/beberlei/assert/blob/master/README.md
-     * 
-     * @throws FormException
-     * @return bool $valid
-     */
-    protected function assertion($model)
-    {
-        $assert = Assert::lazy();
-        $reload = [];
-        foreach($model->metadata()["columns"] as $value => $column) {
-            $testValue = $model->{sprintf("get%s", $column["property"])}();
-            $testValueString = (string) 'salut';
-            $testValueInteger = 3;
-            $testValueMail = 'bralocaz@gmail.com';
-            switch ($column["assert"]) {
-                case 'integer':
-                    $assert->that($testValue, $value)->tryAll()->integer();
-                    $reload[$value] = $testValue;
-                    break;
-
-                case 'string':
-                    $assert->that($testValueInteger, $value)->tryAll()->string();
-                    $reload[$value] = $testValue;
-                    break;
-
-                case 'email':
-                    $assert->that($testValue, $value)->tryAll()->email();
-                    $reload[$value] = $testValue;
-                    break;
-
-                case 'null':
-                    $assert->that($testValue, $value)->tryAll()->null();
-                    $reload[$value] = $testValue;
-                    break;
-
-                case 'integerOrNull':
-                    if($testValue != null){
-                        $assert->that($testValue, $value)->tryAll()->integer();
-                        $reload[$value] = $testValue;
-                    }
-                    else{
-                        $assert->that($testValue, $value)->tryAll()->null();
-                        $reload[$value] = $testValue;
-                    }
-                    break;
-
-                case 'date':
-                    $assert->that($testValue, $value)->tryAll()->date($_ENV["DATE_FORMAT"]);
-                    $reload[$value] = $testValue;
-                    break;
-
-                case 'fichier':
-                    $assert->that($testValue, $value)->tryAll()->fichier();
-                    $reload[$value] = $testValue;
-                    break;
-
-                default:
-                    throw new ORMException ("Ce type de variable n'est pas pris en compte");
-                    break;
-            }
-        }
-
-        try {
-            $assert->verifyNow();
-            return true;
-        } catch(\Exception $e) {
-            foreach($e->getErrorExceptions() as $exception){
-                $reload[$exception->getPropertyPath()] = "Erreur de saisie";
-            }
-            ErrorForm::getInstance()->add($reload);
-            FlashBag::getInstance()->add("red", "Il y a eu une erreur dans la saisie de votre formulaire");
-            return false;
-        }
     }
 
 }

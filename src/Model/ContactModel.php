@@ -49,27 +49,33 @@ class ContactModel extends Model
             "columns"           =>[
                 "id"            =>[
                     "type"      =>"integer",
-                    "property"  =>"id"
+                    "property"  =>"id",
+                    "assert"    =>"integerOrNull"
                 ],
                 "full_name"     =>[
                     "type"      =>"string",
-                    "property"  =>"fullName"
+                    "property"  =>"fullName",
+                    "assert"    =>"string"
                 ],
                 "email"         =>[
                     "type"      =>"string",
-                    "property"  =>"email"
+                    "property"  =>"email",
+                    "assert"    =>"email"
                 ],
                 "subject"       =>[
                     "type"      =>"string",
-                    "property"  =>"subject"
+                    "property"  =>"subject",
+                    "assert"    =>"string"
                 ],
                 "content"       =>[
                     "type"      =>"string",
-                    "property"  =>"content"
+                    "property"  =>"content",
+                    "assert"    =>"string"
                 ],
                 "sent_at"       =>[
                     "type"      =>"datetime",
-                    "property"  =>"sentAt"
+                    "property"  =>"sentAt",
+                    "assert"    =>"date"
                 ]
             ]
         ];

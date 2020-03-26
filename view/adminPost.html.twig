@@ -67,23 +67,23 @@
                             <p>(Taille recommandée 400x600px)</p>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
-                                    <input type="hidden" name="MAX_FILE_SIZE" value="300000">
+                                    <input type="hidden" name="MAX_FILE_SIZE" value="150000">
                                     <input type="file" class="custom-file-input" name="imageToUpload" id="inputGroupFile02">
-                                    <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><em class="d-none d-md-block">Selectionner une image</em></label>
+                                    <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><em class="d-none d-md-block">Selectionnez une image</em></label>
                                 </div>
                                 <div class="input-group-append">
                                   <span class="input-group-text" id="inputGroupFileAddon02">Télécharger</span>
                                 </div>
                             </div>
                             <div class="input-group mb-3 flex-nowrap">
-                                <input type="text" class="form-control" name="alt" value="{{altImage(billet.imageId)}}" placeholder="Entrez une description ici" aria-label="Username" aria-describedby="addon-wrapping">
+                                <input type="text" class="form-control" name="alt" value="{{image.getAlt}}" placeholder="Entrez une description ici" aria-label="Username" aria-describedby="addon-wrapping">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="addon-wrapping">Description</span>
                                 </div>
                             </div>
                             {% if billet.imageId == true %}
                                 <p>Aperçu :</p>
-                                <img src="/public/img/{{urlImage(billet.imageId)}}"  alt="{{altImage(billet.imageId)}}" class="img-fluid img-thumbnail" />
+                                <img src="/public/img/{{image.getName}}"  alt="{{image.getAlt}}" class="img-fluid img-thumbnail" />
                             {% endif %}
                         </div>
                     </div>

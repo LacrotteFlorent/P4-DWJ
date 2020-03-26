@@ -65,38 +65,47 @@ class BilletModel extends Model
                 "id"            =>[
                     "type"      =>"integer",
                     "property"  =>"id",
+                    "assert"    =>"integerOrNull"
                 ],
                 "title"         =>[
                     "type"      =>"string",
-                    "property"  =>"title"
+                    "property"  =>"title",
+                    "assert"    =>"string"
                 ],
                 "content"       =>[
                     "type"      =>"string",
-                    "property"  =>"content"
+                    "property"  =>"content",
+                    "assert"    =>"string"
                 ],
                 "created_at"    =>[
                     "type"      =>"datetime",
-                    "property"  =>"createdAt"
+                    "property"  =>"createdAt",
+                    "assert"    =>"date"
                 ],
                 "posted_at"     =>[
                     "type"      =>"datetime",
-                    "property"  =>"postedAt"
+                    "property"  =>"postedAt",
+                    "assert"    =>"date"
                 ],
                 "draft"         =>[
                     "type"      =>"bool",
-                    "property"  =>"draft"
+                    "property"  =>"draft",
+                    "assert"    =>"integer"
                 ],
                 "like_count"    =>[
                     "type"      =>"integer",
-                    "property"  =>"likeCount"
+                    "property"  =>"likeCount",
+                    "assert"    =>"integer"
                 ],
                 "view_count"    =>[
                     "type"      =>"integer",
-                    "property"  =>"viewCount"
+                    "property"  =>"viewCount",
+                    "assert"    =>"integer"
                 ],
                 "image_id"            =>[
                     "type"      =>"integer",
-                    "property"  =>"imageId"
+                    "property"  =>"imageId",
+                    "assert"    =>"integerOrNull"
                 ]
             ]
         ];

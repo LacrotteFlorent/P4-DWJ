@@ -59,35 +59,43 @@ class CommentModel extends Model
             "columns"           =>[
                 "id"            =>[
                     "type"      =>"integer",
-                    "property"  =>"id"
+                    "property"  =>"id",
+                    "assert"    =>"integerOrNull"
                 ],
                 "content"       =>[
                     "type"      =>"string",
-                    "property"  =>"content"
+                    "property"  =>"content",
+                    "assert"    =>"string"
                 ],
                 "posted_at"     =>[
                     "type"      =>"datetime",
-                    "property"  =>"postedAt"
+                    "property"  =>"postedAt",
+                    "assert"    =>"date"
                 ],
                 "valid"         =>[
                     "type"      =>"bool",
-                    "property"  =>"valid"
+                    "property"  =>"valid",
+                    "assert"    =>"bool"
                 ],
                 "report"        =>[
                     "type"      =>"bool",
-                    "property"  =>"report"
+                    "property"  =>"report",
+                    "assert"    =>"bool"
                 ],
                 "author"        =>[
                     "type"      =>"string",
-                    "property"  =>"author"
+                    "property"  =>"author",
+                    "assert"    =>"string"
                 ],
                 "post_id"       =>[
                     "type"      =>"integer",
-                    "property"  =>"postId"
+                    "property"  =>"postId",
+                    "assert"    =>"integer"
                 ],
                 "user_id"       =>[
                     "type"      =>"integer",
-                    "property"  =>"userId"
+                    "property"  =>"userId",
+                    "assert"    =>"integerOrNull"
                 ]
             ]
         ];

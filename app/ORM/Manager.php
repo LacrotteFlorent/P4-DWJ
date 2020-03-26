@@ -312,6 +312,14 @@ class Manager
     }
 
     /**
+     * @return int
+     */
+    public function lastInsertId()
+    {
+        return $this->pdo->lastInsertId();
+    }
+
+    /**
      * @param Model $model
      */
     public function insertByModel(Model $model)
@@ -322,7 +330,7 @@ class Manager
         foreach(array_keys($this->metadata["columns"]) as $column)
         {
             $sqlValue = $model->getSQLValueByColumn($column);
-            $model->orignalData[$column] = $sqlValue;
+            $model->originalData[$column] = $sqlValue;
 
             $datas[$column] = $sqlValue;
             $set[] = $column;
@@ -331,7 +339,7 @@ class Manager
 
         $sqlQuery = sprintf("INSERT INTO %s (%s) VALUES (%s)", $this->metadata["table"], implode(", ", $set), implode(", ", $values));
         
-        $this->pdo->prepare($sqlQuery)->execute($datas);
+        return $this->pdo->prepare($sqlQuery)->execute($datas);
     }
 
     /**
