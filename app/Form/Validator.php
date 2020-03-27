@@ -21,6 +21,11 @@ class Validator
     private $assert;
 
     /**
+     * @var ExtendAssert
+     */
+    private $extendAssert;
+
+    /**
      * @var array
      */
     private $reload = [];
@@ -31,6 +36,7 @@ class Validator
     public function __construct()
     {
         $this->assert = Assert::lazy();
+        $this->extendAssert = ExtendAssert::lazy();
     }
 
     /**
@@ -95,6 +101,7 @@ class Validator
 
         try {
             $this->assert->verifyNow();
+            $this->extendAssert->verifyNow();
             return true;
         } catch(\Exception $e) {
             foreach($e->getErrorExceptions() as $exception){
@@ -165,10 +172,10 @@ class Validator
                 break;
 
             case 'image':
-                (ExtendAssert::lazy())->that($testValue, $nameValue)->tryAll()->image($params['size']);
-                //(new ExtendAssertion)->that($testValue, $nameValue)->tryAll()->image($params['size']);
-                //$this->assert->
-                //$this->assert->that($testValue, $nameValue)->tryAll()->image($params['size']);
+                if(!empty($params['name']) && !empty($params['size']) && !empty($params['type']) && !empty($params['tmp_name'])){
+                    $this->extendAssert->that($testValue, $nameValue)->tryAll()->image($params['size']);
+                    $this->reload[$nameValue] = $testValue;
+                }
                 break;
 
             case 'checkbox':

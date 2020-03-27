@@ -49,6 +49,9 @@ class AdminPostController extends Controller
                     ]);
 
                     $name = basename($_FILES["imageToUpload"]["name"]);
+                    if(is_file("public/img/" . $name)){
+                        unlink("public/img/" . $name);
+                        }
                     move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], "public/img/" . $name);
                     
                     if($id != "0"){
@@ -67,7 +70,12 @@ class AdminPostController extends Controller
                     }
                 }
                 else{
-                    return $this->redirection('/adminPost/0'); 
+                    if($id != "0"){
+                        return $this->redirection('/adminPost/' . $id);
+                    }
+                    if($id === "0"){
+                        return $this->redirection('/adminPost/0');
+                    }
                 }
             }
         }

@@ -4,7 +4,6 @@ namespace Framework\Form;
 
 use \Assert\Assertion;
 use \Assert\LazyAssertion;
-use Framework\Flashbag;
 
 class ExtendAssertion extends Assertion
 {
@@ -32,9 +31,9 @@ class ExtendAssertion extends Assertion
                     || ($value['type'] == "image/jpeg")
                     || ($value['type'] == "image/pjpeg")
                     || ($value['type'] == "image/png"))
-                    && ($value['size'] < $value['size']))
+                    && ($value['size'] < $size))
                     {
-                        if($value["error"] > 0){
+                        if($value["error"] > 0 ){
                             $message = \sprintf(
                                 static::generateMessage($message ?: 'Path "%s" was expected, there was an error uploading the image'),
                                 static::stringify($value)
