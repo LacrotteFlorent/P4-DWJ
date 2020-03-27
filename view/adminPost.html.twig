@@ -67,7 +67,7 @@
                             <p>(Taille recommandée 400x600px)</p>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
-                                    <input type="hidden" name="MAX_FILE_SIZE" value="150000">
+                                    <input type="hidden" name="MAX_FILE_SIZE" value="15728640">
                                     <input type="file" class="custom-file-input" name="imageToUpload" id="inputGroupFile02">
                                     <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><em class="d-none d-md-block">Selectionnez une image</em></label>
                                 </div>
@@ -111,7 +111,7 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Sauvegarder</h4>
                                         <p class="card-text">Vous pourrez reprendre le brouillion via le tableau de bord</p>
-                                        <button type="submit" value="draft" class="btn btn-success">Enregister un brouillon</button>
+                                        <button type="submit" name="submit" value="draft" class="btn btn-success">Enregister un brouillon</button>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Supprimer</h4>
                                         <p class="card-text">En cliquant sur le boutton vous supprimez l'article. Attention pas de retour possible.</p>
-                                        <button class="btn btn-danger" value="delete" type="submit">Supprimer l'article</button>
+                                        <button class="btn btn-danger" name="submit" value="delete" type="submit">Supprimer l'article</button>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Publier maintenant</h4>
                                         <p class="card-text">Mettez votre article en ligne.</p>
-                                        <button class="btn btn-info" value="post" type="submit">Publier maintenant</button>
+                                        <button class="btn btn-info" name="submit" value="post" type="submit">Publier maintenant</button>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                                             <label for="timePost">Heure de publication</label>
                                             <input type="time" id="timePost" name="timePost">
                                         </p>
-                                        <button class="btn btn-info" value="postAt" type="submit">Publier plus tard</button>
+                                        <button class="btn btn-info" name="submit" value="postAt" type="submit">Publier plus tard</button>
                                     </div>
                                 </div>
                             </div>

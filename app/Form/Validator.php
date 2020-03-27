@@ -6,6 +6,7 @@ use \Assert\Assert;
 use \Assert\Assertion;
 use \Assert\SoftAssertion;
 use \Assert\LazyAssertionException;
+use Framework\Form\ExtendAssert;
 use Framework\Form\ExtendAssertion;
 use Framework\Form\FormException;
 use Framework\Form\ErrorForm;
@@ -164,6 +165,9 @@ class Validator
                 break;
 
             case 'image':
+                (ExtendAssert::lazy())->that($testValue, $nameValue)->tryAll()->image($params['size']);
+                //(new ExtendAssertion)->that($testValue, $nameValue)->tryAll()->image($params['size']);
+                //$this->assert->
                 //$this->assert->that($testValue, $nameValue)->tryAll()->image($params['size']);
                 break;
 

@@ -2,6 +2,7 @@
 
 namespace Project\Controller;
 
+use Framework\Form\ExtendAssertion;
 use Framework\Form\Validator;
 use Framework\Controller;
 use Framework\FlashBag;
@@ -16,6 +17,7 @@ class AdminPostController extends Controller
     public function show($id)
     {   
         if($this->request->getRequestMethod() === 'POST'){
+            //dd($_POST);
             if(((new Validator)->assertion(null, [
                 'image'     => [
                     'value'     => $_FILES["imageToUpload"],
@@ -24,6 +26,10 @@ class AdminPostController extends Controller
                 ],
                 'alt'       => [
                     'value'     => $_POST["alt"],
+                    'assert'    => 'string'
+                ],
+                'submit'    => [
+                    'value'     => $_POST["submit"],
                     'assert'    => 'string'
                 ]
             ]))){
