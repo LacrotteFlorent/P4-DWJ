@@ -24,7 +24,12 @@ class ContactController extends Controller
                 "sent_at"   => date($_ENV["DATE_FORMAT"])
             ]);
         
-            if((new Validator)->assertion($contactModel)){
+            if((new Validator)->assertion($contactModel, [
+                'rgpd'      => [
+                    'value'     => $_POST["acceptRGPD_contact"],
+                    'assert'    => 'checkbox'
+                ]
+            ])){
                 $this->getDatabase()->getManager('\Project\Model\ContactModel')->insertByModel($contactModel);
 
                     // send a email to recipent to notify it

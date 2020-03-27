@@ -46,8 +46,7 @@ class Validator
      *  Checks the data of a form according to a Model and
      *  a data table if the model is not sufficient.
      * 
-     *  To test an image, add in the image array: 1 parameter (string) name,
-     *  1 parameter (array) formats, 1 parameter (int) size.
+     *  To test an image, add in the image array 1 parameter (int) size.
      * 
      *  Fill in the $asserts table like this:
      * 
@@ -165,7 +164,7 @@ class Validator
                 break;
 
             case 'image':
-                $this->assert->that($testValue, $nameValue)->tryAll()->image($params['size']);
+                //$this->assert->that($testValue, $nameValue)->tryAll()->image($params['size']);
                 break;
 
             case 'checkbox':

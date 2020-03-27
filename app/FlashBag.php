@@ -21,6 +21,7 @@ class FlashBag implements \Countable, \Iterator
     private $position = 0;
 
     /**
+     * @global $_SESSION['FLASHBAG'] => Stores the instance in session
      * @return FlashBag
      */
     public static function getInstance() : FlashBag

@@ -16,8 +16,6 @@ class AdminPostController extends Controller
     public function show($id)
     {   
         if($this->request->getRequestMethod() === 'POST'){
-            dump($_POST);
-            dump($_FILES);
             if(((new Validator)->assertion(null, [
                 'image'     => [
                     'value'     => $_FILES["imageToUpload"],
@@ -44,19 +42,26 @@ class AdminPostController extends Controller
                         "alt"       => $_POST["alt"]
                     ]);
 
-                    $name = basename($params['value']["name"]);
-                    move_uploaded_file($params['value']["tmp_name"], "public/img/" . $name);
+                    $name = basename($_FILES["imageToUpload"]["name"]);
+                    move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], "public/img/" . $name);
                     
-                    $this->getDatabase()->getManager('\Project\Model\ImageModel')->insertByModel($imageModel);
-                    $billetModel->hydrateForSql(['image_id'=>$this->getDatabase()->getManager('\Project\Model\ImageModel')->lastInsertID()]);
-                        dump($imageModel);
-                        dump($billetModel);
-                    $this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel($billetModel);
-                    FlashBag::getInstance()->add("blue", "Votre article à été actualisé!");
-                    //return $this->redirection('/adminDashboard');
+                    if($id != "0"){
+                        $this->getDatabase()->getManager('\Project\Model\ImageModel')->update($imageModel, ['id'=>3]);
+                        $billetModel->hydrateForSql(['image_id'=>3]);
+                        $this->getDatabase()->getManager('\Project\Model\BilletModel')->update($billetModel, ["id"=>$id]);
+                        FlashBag::getInstance()->add("violet", "Votre article à été mis à jour !");
+                        return $this->redirection('/adminDashboard');
+                    }
+                    if($id === "0"){
+                        $this->getDatabase()->getManager('\Project\Model\ImageModel')->insertByModel($imageModel);
+                        $billetModel->hydrateForSql(['image_id'=>$this->getDatabase()->getManager('\Project\Model\ImageModel')->lastInsertID()]);
+                        $this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel($billetModel);
+                        FlashBag::getInstance()->add("blue", "Votre article à été créer!");
+                        return $this->redirection('/adminDashboard');
+                    }
                 }
                 else{
-                    //return $this->redirection('/adminPost/0); // adminPost/ l'id en cours
+                    return $this->redirection('/adminPost/0'); 
                 }
             }
         }

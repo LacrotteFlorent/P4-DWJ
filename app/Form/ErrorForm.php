@@ -21,12 +21,13 @@ class ErrorForm implements \Countable, \Iterator
     private $position = 0;
 
     /**
+     * @global $_SESSION['ERRORFORM'] => Stores the instance in session
      * @return ErrorForm
      */
     public static function getInstance() : ErrorForm
     {
         if(isset($_SESSION["ERRORFORM"])){
-            self::$flashBagInstance = $_SESSION["ERRORFORM"];
+            self::$errorFormInstance = $_SESSION["ERRORFORM"];
         }
 
         if(!self::$errorFormInstance) {
@@ -36,7 +37,7 @@ class ErrorForm implements \Countable, \Iterator
     }
 
     public static function pushInSession(){
-        $_SESSION["ERRORFORM"] = self::$flashBagInstance;
+        $_SESSION["ERRORFORM"] = self::$errorFormInstance;
     }
 
     /**

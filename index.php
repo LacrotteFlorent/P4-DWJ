@@ -30,7 +30,7 @@ if ($_ENV['DEV'] === 'On') {
 }
 
 session_start();
-FlashBag::getInstance();
+//FlashBag::getInstance();
 //dump($_SESSION);
 
 //$_POST['firstName'] = 'testPrénom';

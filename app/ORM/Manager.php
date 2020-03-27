@@ -344,10 +344,35 @@ class Manager
 
     /**
      * @param Model $model
-     * @param string $where
+     * @param array $where  @exemple ['id' = 1]
      */
-    public function update(Model $model, $where = null)
+    public function update(Model $model, $wheres)
     {
+        foreach(array_keys($this->metadata["columns"]) as $column)
+        {
+            $sqlValue = $model->getSQLValueByColumn($column);
+            $model->originalData[$column] = $sqlValue;
+
+            $datas[$column] = $sqlValue;
+        }
+        foreach($datas as $key => $data){
+            if(!empty($data)){
+                $set[] = sprintf("%s = '%s'", $key, $data);
+            }
+        }
+        foreach($wheres as $key => $where){
+            $whereValues[] = sprintf("%s = '%s'", $key, $where);
+        }
+        $sqlQuery = sprintf("UPDATE %s SET %s WHERE %s", $this->metadata["table"], implode(", ", $set), implode(", ", $whereValues));
+
+        return $this->pdo->prepare($sqlQuery)->execute($datas);
+    }
+
+    /**
+     * @param Model $model
+     * @param array $where  @exemple ['id' = 1]
+     */
+    public function delete(Model $model, $wheres){
 
     }
 
