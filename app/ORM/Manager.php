@@ -324,9 +324,9 @@ class Manager
      */
     public function insertByModel(Model $model)
     {
-        $set = [];
-        $values = [];
-        $datas = [];
+        //$set = [];
+        //$values = [];
+        //$datas = [];
         foreach(array_keys($this->metadata["columns"]) as $column)
         {
             $sqlValue = $model->getSQLValueByColumn($column);
@@ -352,7 +352,6 @@ class Manager
         {
             $sqlValue = $model->getSQLValueByColumn($column);
             $model->originalData[$column] = $sqlValue;
-
             $datas[$column] = $sqlValue;
         }
         foreach($datas as $key => $data){
@@ -365,15 +364,22 @@ class Manager
         }
         $sqlQuery = sprintf("UPDATE %s SET %s WHERE %s", $this->metadata["table"], implode(", ", $set), implode(", ", $whereValues));
 
-        return $this->pdo->prepare($sqlQuery)->execute($datas);
+        return $this->pdo->prepare($sqlQuery)->execute();
     }
 
     /**
      * @param Model $model
      * @param array $where  @exemple ['id' = 1]
      */
-    public function delete(Model $model, $wheres){
+    public function delete(Model $model, $wheres)
+    {
+        foreach($wheres as $key => $where){
+            $whereValues[] = sprintf("%s = '%s'", $key, $where);
+        }
+        $sqlQuery = sprintf("DELETE FROM %s WHERE %s", $this->metadata["table"], implode(", ", $whereValues));
+        dd($sqlQuery);
 
+        return $this->pdo->prepare($sqlQuery)->execute();
     }
 
     /**
