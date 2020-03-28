@@ -20,10 +20,26 @@ adminDashboard:
     path: /adminDashboard
     controller: AdminDashboard
     action: show
+virginAdminPost:
+    path: /virginAdminPost
+    controller: AdminPost
+    action: showVirgin
 adminPost:
     path: /adminPost/:id
     controller: AdminPost
     action: show
+updateAdminPost:
+    path: /updateAdminPost/:id
+    controller: AdminPost
+    action: update
+createAdminPost:
+    path: /createAdminPost
+    controller: AdminPost
+    action: create
+deleteAdminPost:
+    path: /deleteAdminPost/:id
+    controller: AdminPost
+    action: delete
 billet:
     path: /billet/:id
     controller: Billet

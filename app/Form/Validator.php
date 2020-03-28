@@ -46,8 +46,8 @@ class Validator
      * @uses ErrorForm
      * @uses Flashbag
      * 
-     * @param array $model
-     * @param array $asserts
+     * @param array|null $model
+     * @param array|null $asserts
      * 
      * @internal 
      *  Checks the data of a form according to a Model and

@@ -59,7 +59,9 @@
                                 <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                     <h5>Créer un article</h5>
                                     <div class="row justify-content-center align-items-baseline">
-                                        <i class="fas fa-plus-square"></i>
+                                        <form method="POST">
+                                            <button type="submit" formaction="/virginAdminPost" class="bg-transparent border-0"><i class="fas fa-plus-square"></i></button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +69,9 @@
                     </div>
                     <div class="row articlesAdmin card mb-4" id="articles">
                         <div class="col-12 card-header">
-                            <h3 class="text-left bubbleTitle m-0"><i class="far fa-newspaper"></i> Articles</h3>
+                            <form method="POST">
+                                <h3 class="text-left bubbleTitle m-0"><button type="submit" formaction="/virginAdminPost" class="bg-transparent border-0"><i class="far fa-newspaper"></i></button> Articles</h3>
+                            </form>
                         </div>
                         <div class="col-12 p-3 card-body">
                             <table class="table table-striped">
@@ -88,7 +92,9 @@
                                             {% endfor %}
                                             <td>{{billet.title}}</td>
                                             <td>{{billet.postedAt|date('d-m-Y \à H:i:s')}}</td>
-                                            <td><a href="#"><i class="fas fa-pencil-alt"></i></a><button class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
+                                            <form method="POST">
+                                            <td><button type="submit" formaction="/adminPost/{{billet.getId}}" class="bg-transparent border-0"><i class="fas fa-pencil-alt"></i></button><button type="submit" formaction="/deleteAdminPost/{{billet.getId}}" class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
+                                            </form>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

@@ -100,6 +100,13 @@
                     <div class="mb-4 row card">
                         <div class="card-header">
                             <h3><i class="fas fa-check"></i> Validation</h3>
+                            {% if billet == false %}
+                            <p class="text-danger" ><strong>ETAT : Non crée</strong></p>
+                            {% elseif billet.getDraft == 1 %}
+                            <p class="text-primary" ><strong>ETAT : Brouillon</strong></p>
+                            {% else %}
+                            <p class="text-success" ><strong>ETAT : Publié</strong></p>
+                            {% endif %}
                         </div>
                         <div class="row p-4">
                             <div class="col-sm-12">
@@ -109,9 +116,21 @@
                             <div class="col-md-6 mt-4">
                                 <div class="card cardValid">
                                     <div class="card-body">
+                                    {% if billet == false %}
                                         <h4 class="card-title">Sauvegarder</h4>
-                                        <p class="card-text">Vous pourrez reprendre le brouillion via le tableau de bord</p>
-                                        <button type="submit" name="submit" value="draft" class="btn btn-success">Enregister un brouillon</button>
+                                    {% elseif billet.getDraft == 1 %}
+                                        <h4 class="card-title">Sauvegarder votre brouillon</h4>
+                                    {% else %}
+                                        <h4 class="card-title">Transformer en brouillon</h4>
+                                    {% endif %}
+                                        <p class="card-text">Vous pourrez reprendre le brouillion via le tableau de bord.</p>
+                                        {% if billet == true %}
+                                        <button type="submit" name="submit" value="draft" class="btn btn-success" formaction="/updateAdminPost/{{billet.getId}}">Transformer en brouillon</button>
+                                        {% elseif billet.getDraft == 1 %}
+                                        <button type="submit" name="submit" value="draft" class="btn btn-success" formaction="/updateAdminPost/{{billet.getId}}">Sauvegarder le brouillon</button>
+                                        {% else %}
+                                        <button type="submit" name="submit" value="draft" class="btn btn-success" formaction="/createAdminPost">Enregister en brouillon</button>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -119,17 +138,40 @@
                                 <div class="card cardValid">
                                     <div class="card-body">
                                         <h4 class="card-title">Supprimer</h4>
-                                        <p class="card-text">En cliquant sur le boutton vous supprimez l'article. Attention pas de retour possible.</p>
-                                        <button class="btn btn-danger" name="submit" value="delete" type="submit">Supprimer l'article</button>
+                                    {% if billet == true and billet.getDraft == 0 %}
+                                        <p class="card-text">En cliquant sur le boutton vous supprimez l'article.</p> 
+                                        <p class="card-text">Attention pas de retour possible.</p>
+                                        <button class="btn btn-danger" name="submit" value="delete" type="submit" formaction="/deleteAdminPost/{{billet.getId}}">Supprimer</button>
+                                    {% elseif billet.getDraft == 1 %}
+                                        <p class="card-text">En cliquant sur le boutton vous supprimez le brouillon.</p>
+                                        <p class="card-text">Attention pas de retour possible.</p>
+                                        <button class="btn btn-danger" name="submit" value="delete" type="submit" formaction="/deleteAdminPost/{{billet.getId}}">Supprimer</button>
+                                    {% else %}
+                                        <p class="card-text">L'article n'est pas encore crée.</p>
+                                    {% endif %}
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 mt-4">
                                 <div class="card cardValid">
                                     <div class="card-body">
+                                    {% if billet == false %}
                                         <h4 class="card-title">Publier maintenant</h4>
+                                    {% elseif billet.getDraft == 1 %}
+                                        <h4 class="card-title">Publier maintenant</h4>
+                                    {% else %}
+                                        <h4 class="card-title">Modifier</h4>
+                                    {% endif %}
+                                    {% if billet == false %}
                                         <p class="card-text">Mettez votre article en ligne.</p>
-                                        <button class="btn btn-info" name="submit" value="post" type="submit">Publier maintenant</button>
+                                        <button class="btn btn-info" name="submit" value="post" type="submit" formaction="/createAdminPost">Publier maintenant</button>
+                                    {% elseif billet.getDraft == 1 %}
+                                        <p class="card-text">Publie le brouillon maintenant.</p>
+                                        <button class="btn btn-info" name="submit" value="post" type="submit" formaction="/updateAdminPost/{{billet.getId}}">Modifier maintenant</button>
+                                    {% else %}
+                                        <p class="card-text">Modifie l'article.</p>
+                                        <button class="btn btn-info" name="submit" value="post" type="submit" formaction="/updateAdminPost/{{billet.getId}}">Modifier maintenant</button>
+                                    {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -137,6 +179,7 @@
                                 <div class="card cardValid">
                                     <div class="card-body">
                                         <h4 class="card-title">Publier plus tard</h4>
+                                        {% if billet == false %}
                                         <p class="card-text">Mettez votre article en ligne à la date sélectionnée.</p>
                                         <p>
                                             <label for="datePost">Date de publication</label>
@@ -144,7 +187,19 @@
                                             <label for="timePost">Heure de publication</label>
                                             <input type="time" id="timePost" name="timePost">
                                         </p>
-                                        <button class="btn btn-info" name="submit" value="postAt" type="submit">Publier plus tard</button>
+                                        <button class="btn btn-info" name="submit" value="postAt" type="submit" formaction="/createAdminPost">Publier plus tard</button>
+                                        {% elseif billet.getDraft == 1 %}
+                                        <p class="card-text">Mettez votre brouillon en ligne à la date sélectionnée.</p>
+                                        <p>
+                                            <label for="datePost">Date de publication</label>
+                                            <input type="date" id="datePost" name="datePost">
+                                            <label for="timePost">Heure de publication</label>
+                                            <input type="time" id="timePost" name="timePost">
+                                        </p>
+                                        <button class="btn btn-info" name="submit" value="postAt" type="submit" formaction="/createAdminPost">Publier plus tard</button>
+                                        {% else %}
+                                        <p class="card-text">L'article est déja publié, ou le sera à la date prévue.</p>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

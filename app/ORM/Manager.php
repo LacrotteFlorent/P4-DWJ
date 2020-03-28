@@ -83,7 +83,6 @@ class Manager
             $format = 'SELECT %s FROM %s';
             $sqlQuery = sprintf($format, $select, $from);
         }
-
         return $this->fetchAll($sqlQuery);
     }
 
@@ -218,7 +217,6 @@ class Manager
     public function countParam($params = null, $select = "*")
     {
         $from = array_values($this->metadata)[0];
-        //$select = "*";
 
         if($params){
             $paramSql = "";
@@ -241,7 +239,7 @@ class Manager
 
     /**
      * @param string $sqlQuery
-     * @return array
+     * @return Model
      */
     protected function fetch($sqlQuery)
     {
@@ -344,7 +342,7 @@ class Manager
 
     /**
      * @param Model $model
-     * @param array $where  @exemple ['id' = 1]
+     * @param array $where  @exemple ['id' => 1]
      */
     public function update(Model $model, $wheres)
     {
@@ -369,15 +367,14 @@ class Manager
 
     /**
      * @param Model $model
-     * @param array $where  @exemple ['id' = 1]
+     * @param array $where  @exemple ['id' => 1]
      */
-    public function delete(Model $model, $wheres)
+    public function delete($wheres)
     {
         foreach($wheres as $key => $where){
             $whereValues[] = sprintf("%s = '%s'", $key, $where);
         }
         $sqlQuery = sprintf("DELETE FROM %s WHERE %s", $this->metadata["table"], implode(", ", $whereValues));
-        dd($sqlQuery);
 
         return $this->pdo->prepare($sqlQuery)->execute();
     }
