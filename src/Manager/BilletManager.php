@@ -11,19 +11,24 @@ class BilletManager extends Manager
      * @param string $from
      * @param int $limit
      * @param array $params
+     * @param string $operator
      * @example requete: SELECT * FROM post ORDER BY posted_at DESC LIMIT 3
      * @return array
      */
-    public function findByPostedAtWithLimit($limit = null, $params = null)
+    public function findByPostedAtWithLimit($limit = null, $params = null, $operator = null)
     {
         $from = array_values($this->metadata)[0];
 
         $select = "*";
 
+        if(!$operator){
+            $operator = '=';
+        }
+
         if($params){
             $paramSql = "";
             foreach ($params as $key => $param){
-                $paramSql = $paramSql .''. $key .'  '.$param. ' AND ';
+                $paramSql = $paramSql .''. $key .' ' . $operator .' \''.$param. '\' AND ';
             }
             $paramSql = substr($paramSql, 0, -5);
 
@@ -45,8 +50,6 @@ class BilletManager extends Manager
             }
             $sqlQuery = sprintf($format, $select, $from, $limit);
         }
-        dump($params);
-        dump($sqlQuery);
         return $this->fetchAll($sqlQuery);
     }
 

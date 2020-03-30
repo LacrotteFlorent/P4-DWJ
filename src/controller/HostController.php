@@ -11,7 +11,7 @@ class HostController extends Controller
     */
     public function show()
     {
-        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findOrderByLimitOffset("3", "0", "posted_at", null, ["draft" => 0]);//->findByPostedAtWithLimit(3);
+        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findOrderByLimitOffset("3", "0", "posted_at", null, ["draft" => 0, "posted_at" => date($_ENV["DATE_FORMAT"])], '<=');
         foreach($billets as $billet){
             $imageBillets[$billet->getId()] = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($billet->getImageId(), "image");
         }

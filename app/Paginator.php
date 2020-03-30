@@ -66,14 +66,15 @@ class Paginator
      * @param string $paramSql
      * @param string $orderBy
      * @param bool $desc
+     * @param string $operator
      */
-    public function __construct($request, $nbItemTotal, $managerItems, $CONST_NB_PAGE, $CONST_QUERY, $paramSql = null, $orderBy = null, $desc = false)
+    public function __construct($request, $nbItemTotal, $managerItems, $CONST_NB_PAGE, $CONST_QUERY, $paramSql = null, $orderBy = null, $desc = false, $operator = null)
     {
         $this->request = $request;
         $this->nbItemByPage = (int) $_ENV[$CONST_NB_PAGE];
         $this->nbItemTotal = $nbItemTotal;
         $this->managerItems = $managerItems;
-        $this->paging($CONST_QUERY, $paramSql, $orderBy, $desc);
+        $this->paging($CONST_QUERY, $paramSql, $orderBy, $desc, $operator);
     }
 
     /**
@@ -86,11 +87,12 @@ class Paginator
      * @param string $paramSql
      * @param string $orderBy
      * @param bool $desc
+     * @param string $operator
      * 
      * @internal  { Paging only retrieves the MySql data that will be
      *              displayed according to the current page. }
      */
-    private function paging($CONST_QUERY, $paramSql = null, $orderBy = null, $desc = false)
+    private function paging($CONST_QUERY, $paramSql = null, $orderBy = null, $desc = false, $operator = null)
     {
         if(isset($this->request->getQuery()[$CONST_QUERY])){
             $this->actualPage = $_GET[$CONST_QUERY];
@@ -105,10 +107,10 @@ class Paginator
         if($this->nbItemTotal > $this->nbItemByPage){
             $this->paginate = true;
             if($orderBy){
-                $this->itemsToShow = $this->managerItems->findOrderByLimitOffset($this->nbItemByPage, $this->showElements[0], $orderBy, $desc, $paramSql);
+                $this->itemsToShow = $this->managerItems->findOrderByLimitOffset($this->nbItemByPage, $this->showElements[0], $orderBy, $desc, $paramSql, $operator);
             }
             else{
-                $this->itemsToShow = $this->managerItems->findAllWithLimitOffset($this->nbItemByPage, $this->showElements[0], $paramSql);
+                $this->itemsToShow = $this->managerItems->findAllWithLimitOffset($this->nbItemByPage, $this->showElements[0], $paramSql, $operator);
             }
         }
         else{

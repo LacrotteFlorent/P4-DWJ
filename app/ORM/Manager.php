@@ -147,19 +147,22 @@ class Manager
      * @param int $limit
      * @param int $offset
      * @param array $where
-     * @param array $orderBy
-     * @param bool $desc
+     * @param string $operator
      * @example requete: SELECT * FROM post LIMIT 3 OFFSET 4
      * @return Model
      */
-    public function findAllWithLimitOffset($limit, $offset, $where = null)
+    public function findAllWithLimitOffset($limit, $offset, $where = null, $operator = null)
     {   
         $from = array_values($this->metadata)[0];
+
+        if(!$operator){
+            $operator = '=';
+        }
 
         if($where){
             $paramSql = "";
             foreach ($where as $key => $param){
-                $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
+                $paramSql = $paramSql .''. $key .' '. $operator .' \''.$param. '\' AND ';
             }
             $paramSql = substr($paramSql, 0, -5);
 
@@ -178,17 +181,22 @@ class Manager
      * @param array $orderBy
      * @param bool $desc
      * @param array $where
+     * @param string $operator
      * @example requete: SELECT * FROM post ORDER BY posted_at DESC LIMIT 3
      * @return array
      */
-    public function findOrderByLimitOffset($limit, $offset, $orderBy, $desc = false, $where = null)
+    public function findOrderByLimitOffset($limit, $offset, $orderBy, $desc = false, $where = null, $operator = null)
     {
         $from = array_values($this->metadata)[0];
+
+        if(!$operator){
+            $operator = '=';
+        }
 
         if($where){
             $paramSql = "";
             foreach ($where as $key => $param){
-                $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
+                $paramSql = $paramSql .''. $key .' '. $operator .' \''.$param. '\' AND ';
             }
             $paramSql = substr($paramSql, 0, -5);
             if($desc){
@@ -213,19 +221,27 @@ class Manager
 
     /**
      * @param array $param
+     * @param string $select
+     * @param string $operator
      * @example SELECT COUNT(*) FROM comment
      * @example or SELECT COUNT(*) FROM comment WHERE post_id = 2
      * @example or SELECT COUNT(*) FROM comment WHERE post_id = 2 AND valid = 1 AND report = 0
      * @return int
      */
-    public function countParam($params = null, $select = "*")
+    public function countParam($params = null, $select = null , $operator = null)
     {
         $from = array_values($this->metadata)[0];
-
+        if(!$operator){
+            $operator = '=';
+        }
+        if(!$select){
+            $select = '*';
+        }
+        
         if($params){
             $paramSql = "";
             foreach($params as $key => $param){
-                $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
+                $paramSql = $paramSql .''. $key .' ' . $operator . ' \''.$param. '\' AND ';
             }
             $paramSql = substr($paramSql, 0, -5);
             $format = 'SELECT COUNT(%s) as count FROM %s WHERE %s';
@@ -235,7 +251,6 @@ class Manager
             $format = 'SELECT COUNT(%s) as count FROM %s';
             $sqlQuery = sprintf($format, $select, $from);
         }
-
         $statement = $this->pdo->prepare($sqlQuery);
         $statement->execute();
         return $statement->fetch(\PDO::FETCH_ASSOC);
