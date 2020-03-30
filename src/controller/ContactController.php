@@ -29,7 +29,7 @@ class ContactController extends Controller
                     'value'     => $_POST["acceptRGPD_contact"],
                     'assert'    => 'checkbox'
                 ]
-            ])){
+                ], true)){
                 $this->getDatabase()->getManager('\Project\Model\ContactModel')->insertByModel($contactModel);
 
                     // send a email to recipent to notify it

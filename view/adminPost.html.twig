@@ -12,6 +12,16 @@
         selector: '#postArea',
         });
     </script>
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33', { action: 'contact' }).then(function (token) {
+                var recaptchaResponse = document.getElementById('recaptchaResponse');
+                recaptchaResponse.value = token;
+            });
+        });
+    </script>
 {% endblock head %}
 
 {% block body %}
@@ -21,6 +31,7 @@
                 <div class="col-12 col-sm-10">
                     <h2 class="my-3">Editeur d'articles</h2>
                     <form method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
                     <div class="mb-4 row card">
                         <div class="card-header">
                             <h3><i class="fas fa-heading"></i> Titre</h3>

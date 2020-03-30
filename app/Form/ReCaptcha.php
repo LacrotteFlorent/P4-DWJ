@@ -24,11 +24,10 @@ class ReCaptcha
             $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
             $recaptcha_secret = $_ENV['API_KEY_RECAPTCHA'];
             $recaptcha_response = $_POST['recaptcha_response'];
-            dump($recaptcha_response);
+
             // Make and decode POST request:
             $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
             $recaptcha = json_decode($recaptcha);
-            dump($recaptcha);
 
             // Take action based on the score returned:
             if ($recaptcha->score >= 0.5) {
@@ -37,6 +36,7 @@ class ReCaptcha
                 return false;
             }
         }
+        return false;
     }
 
 }

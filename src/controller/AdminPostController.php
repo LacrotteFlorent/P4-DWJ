@@ -61,7 +61,7 @@ class AdminPostController extends Controller
                     "like_count"    => 0,
                     "view_count"    => 0,
                 ]);
-                if((new Validator)->assertion($billetModel)){
+                if((new Validator)->assertion($billetModel, null, true)){
                     $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
 
                     if(!empty($_FILES["name"])){
@@ -121,7 +121,7 @@ class AdminPostController extends Controller
                     "like_count"    => 0,
                     "view_count"    => 0,
                 ]);
-                if((new Validator)->assertion($billetModel)){
+                if((new Validator)->assertion($billetModel, null, true)){
                     $imageModel = (new ImageModel)->hydrateForSql([
                         "name"      => $_FILES["imageToUpload"]['name'],
                         "alt"       => $_POST["alt"]

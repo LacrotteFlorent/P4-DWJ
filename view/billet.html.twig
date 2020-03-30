@@ -8,6 +8,16 @@
     <link rel="stylesheet" media="(max-width:576.00px)" href="/public/css/styleBillet-xs.css" />
     <link rel="stylesheet" media="(min-width:577.00px) and (max-width:768.00px)" href="/public/css/styleBillet-sm.css" />
     <link rel="stylesheet" media="(min-width:768.00px) and (max-width:992.00px)" href="/public/css/styleBillet-md.css" />
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33', { action: 'contact' }).then(function (token) {
+                var recaptchaResponse = document.getElementById('recaptchaResponse');
+                recaptchaResponse.value = token;
+            });
+        });
+    </script>
 {% endblock head %}
 
 {% block body %}
@@ -52,6 +62,7 @@
                             <label for="billetComMsg">Message :</label>
                             <textarea id="billetComMsg" name="content" class="form-control rounded-sm border-0" cols="30" rows="6" placeholder=" Ecrivez votre commentaire"></textarea>
                             <div class="w-50 my-2">
+                                <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
                                 <button type="submit" value="Envoyer" class="btn rounded-sm border-0">Envoyer</button>
                             </div>
                         </div>

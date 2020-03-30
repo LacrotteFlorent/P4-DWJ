@@ -8,6 +8,16 @@
     <link rel="stylesheet" media="(max-width:576.00px)" href="/public/css/styleAdminConnexion-xs.css" />
     <link rel="stylesheet" media="(min-width:577.00px) and (max-width:768.00px)" href="/public/css/styleAdminConnexion-sm.css" />
     <link rel="stylesheet" media="(min-width:768.00px) and (max-width:992.00px)" href="/public/css/styleAdminConnexion-md.css" />
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33', { action: 'contact' }).then(function (token) {
+                var recaptchaResponse = document.getElementById('recaptchaResponse');
+                recaptchaResponse.value = token;
+            });
+        });
+    </script>
 {% endblock head %}
 
 {% block body %}
@@ -32,6 +42,7 @@
                                     <label for="connexionMDP">Mot de passe :</label>
                                     <input type="text" id="connexionMDP" name="connexionMDP" placeholder=" ############" class="form-control" required />
                                 </div>
+                                <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
                                 <button class="btn" type="submit" value="Envoyer"><i class="fas fa-sign-in-alt mx-2"></i> Se connecter</button>
                             </form>
                         </div>
