@@ -186,13 +186,18 @@ class Manager
         $from = array_values($this->metadata)[0];
 
         if($where){
+            $paramSql = "";
+            foreach ($where as $key => $param){
+                $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
+            }
+            $paramSql = substr($paramSql, 0, -5);
             if($desc){
                 $format = 'SELECT * FROM %s WHERE %s ORDER BY %s DESC LIMIT %s OFFSET %s';
             }
             else{
                 $format = 'SELECT * FROM %s WHERE %s ORDER BY %s LIMIT %S OFFSET %s';
             }
-            $sqlQuery = sprintf($format, $from, $where, $orderBy, $limit, $offset);
+            $sqlQuery = sprintf($format, $from, $paramSql, $orderBy, $limit, $offset);
         }
         else{
             if($desc){
@@ -353,7 +358,7 @@ class Manager
             $datas[$column] = $sqlValue;
         }
         foreach($datas as $key => $data){
-            if(!empty($data)){
+            if(isset($data)){
                 $set[] = sprintf("%s = '%s'", $key, $data);
             }
         }

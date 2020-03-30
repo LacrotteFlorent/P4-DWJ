@@ -166,9 +166,41 @@ class Validator
                 }
                 break;
 
+            case 'integerOrNullOrZero':
+                if($testValue != null){
+                    $this->assert->that($testValue, $nameValue)->tryAll()->integer();
+                    $this->reload[$nameValue] = $testValue;
+                }
+                elseif($testValue === 0){
+                    $this->assert->that($testValue, $nameValue)->tryAll()->integer();
+                    $this->reload[$nameValue] = $testValue;
+                }
+                else{
+                    $this->assert->that($testValue, $nameValue)->tryAll()->null();
+                    $this->reload[$nameValue] = $testValue;
+                }
+                break;
+                
+            case 'stringOrNull':
+                if($testValue != null || $testValue === ""){
+                    $this->assert->that($testValue, $nameValue)->tryAll()->string();
+                    $this->reload[$nameValue] = $testValue;
+                }
+                else{
+                    $this->assert->that($testValue, $nameValue)->tryAll()->null();
+                    $this->reload[$nameValue] = $testValue;
+                }
+                break;
+    
             case 'date':
-                $this->assert->that($testValue, $nameValue)->tryAll()->date($_ENV["DATE_FORMAT"]);
-                $this->reload[$nameValue] = $testValue;
+                if(is_object($testValue)){
+                    $this->assert->that($testValue, $nameValue)->tryAll()->objectOrClass();;
+                    $this->reload[$nameValue] = $testValue;
+                }
+                else{
+                    $this->assert->that($testValue, $nameValue)->tryAll()->date($_ENV["DATE_FORMAT"]);
+                    $this->reload[$nameValue] = $testValue;
+                }
                 break;
 
             case 'image':

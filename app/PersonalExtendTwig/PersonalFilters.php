@@ -30,26 +30,30 @@ class PersonalFilters extends AbstractExtension
     public function truncate($content, $nbCarac)
     {
         $troncate = substr($content, 0, $nbCarac);
-        
-        return $troncate . " ...";
+        return sprintf(" %s ...", $troncate);
+    }
+
+    /**
+     * @param string $content
+     * @return string
+     * @internal
+     *  Removes the first letter but keeps the html tags
+     */
+    public function deleteFirstLetter($content)
+    {
+        $contentStrip = strip_tags($content);
+        $firstCarac = $contentStrip{0};
+        $stringWithoutFirst = explode($firstCarac, $content, 2);
+        return $stringWithoutFirst[1];
     }
 
     /**
      * @param string $content
      * @return string
      */
-    public function deleteFirstLetter($content)
-    {
-        $stringWithoutFirst = substr($content, 1);
-        return $stringWithoutFirst;
-    }
-
-    /**
-     * @param string $caracString
-     * @return string
-     */
     public function onlyFirstLetter($content)
     {
+        $content = strip_tags($content);
         $firstCarac = $content{0};
         return ucfirst($firstCarac);
     }

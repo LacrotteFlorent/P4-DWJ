@@ -20,6 +20,18 @@ adminDashboard:
     path: /adminDashboard
     controller: AdminDashboard
     action: show
+validAdminComment:
+    path: /validAdminComment/:id
+    controller: AdminComment
+    action: valid
+deleteAdminComment:
+    path: /deleteAdminComment/:id
+    controller: AdminComment
+    action: delete
+reportAdminComment:
+    path: /reportAdminComment/:id
+    controller: AdminComment
+    action: report
 virginAdminPost:
     path: /virginAdminPost
     controller: AdminPost

@@ -33,7 +33,7 @@ class AdminDashboardController extends Controller
         }
 
         $paginatorBillet = new Paginator($this->request, (int) $nbBillets['count'], $this->getDatabase()->getManager('\Project\Model\BilletModel'), "PAGE_DASHBOARD", "pageBillet");
-        $paginatorComments = new Paginator($this->request, (int) $nbCommentsWithoutReport['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), "PAGE_DASHBOARD", "pageCom", ['report' => 0]);
+        $paginatorComments = new Paginator($this->request, (int) $nbCommentsWithoutReport['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), "PAGE_DASHBOARD", "pageCom", ['report' => 0], "posted_at", true);
         $paginatorCommentsReport = new Paginator($this->request, (int) $nbCommentsReport['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), "PAGE_DASHBOARD", "pagesCommentReport", ['report' => 1]);
         
         return $this->render("adminDashboard.html.twig", [
@@ -44,7 +44,8 @@ class AdminDashboardController extends Controller
             'totalCountLikes'   => $totalCountLikes,
             'totalCountViews'   => $totalCountView,
             'totalCountReport'  => $nbCommentsReport,
-            'totalCountToValid' => $nbCommentsInvalid
+            'totalCountToValid' => $nbCommentsInvalid,
+            'date'              => date($_ENV["DATE_FORMAT"])
         ]);
     }
 

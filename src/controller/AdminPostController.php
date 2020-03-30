@@ -15,7 +15,6 @@ class AdminPostController extends Controller
     */
     public function show($id)
     {   
-        dump($_POST);
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
         $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($billet->getImageId(), "image");
         return $this->render("adminPost.html.twig", [
@@ -57,27 +56,29 @@ class AdminPostController extends Controller
                     "title"         => $_POST["title"],
                     "content"       => $_POST["content"],
                     "created_at"    => date($_ENV["DATE_FORMAT"]),
-                    "posted_at"     => !empty($_POST["datePost"]) ? ($_POST["datePost"] . $_POST["timePost"]) : date($_ENV["DATE_FORMAT"]),
+                    "posted_at"     => !empty($_POST["datePost"]) ? ($_POST["datePost"] . " " . $_POST["timePost"] . ":00") : date($_ENV["DATE_FORMAT"]),
                     "draft"         => $_POST["submit"] === "draft" ? 1 : 0,
                     "like_count"    => 0,
                     "view_count"    => 0,
                 ]);
                 if((new Validator)->assertion($billetModel)){
-                    $imageModel = (new ImageModel)->hydrateForSql([
-                        "name"      => $_FILES["imageToUpload"]['name'],
-                        "alt"       => $_POST["alt"]
-                    ]);
+                    $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
 
                     if(!empty($_FILES["name"])){
+                        $imageModel = (new ImageModel)->hydrateForSql([
+                            "name"      => $_FILES["imageToUpload"]['name'],
+                            "alt"       => $_POST["alt"]
+                        ]);
                         $name = basename($_FILES["imageToUpload"]["name"]);
                         if(is_file("public/img/" . $name)){
                             unlink("public/img/" . $name);
                             }
                         move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], "public/img/" . $name);
+                        
+                        $this->getDatabase()->getManager('\Project\Model\ImageModel')->update($imageModel, ['id'=>$billet->getImageId()]);
                     }
 
-                    $this->getDatabase()->getManager('\Project\Model\ImageModel')->update($imageModel, ['id'=>3]);
-                    $billetModel->hydrateForSql(['image_id'=>3]);
+                    $billetModel->hydrateForSql(['image_id'=> $billet->getImageId()]);
                     $this->getDatabase()->getManager('\Project\Model\BilletModel')->update($billetModel, ["id"=>$id]);
                     FlashBag::getInstance()->add("violet", "Votre article à été mis à jour !");
                     return $this->redirection('/adminDashboard');

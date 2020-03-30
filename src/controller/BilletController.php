@@ -21,7 +21,7 @@ class BilletController extends Controller
             $commentModel = (new CommentModel())->hydrateForSql([
                 "content"   => $_POST["content"],
                 "posted_at" => date($_ENV["DATE_FORMAT"]),
-                "valid"     => 1,
+                "valid"     => 0,
                 "report"    => 0,
                 "author"    => $_POST["author"],
                 "post_id"   => $id

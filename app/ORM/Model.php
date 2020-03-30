@@ -45,6 +45,15 @@ abstract class Model
                         $this->{sprintf($dataString)} ((int) $value);
                         break;
                     
+                    case 'integerOrNull':
+                        if(empty($value)){
+                            $this->{sprintf($dataString)} (null);
+                        }
+                        else{
+                            $this->{sprintf($dataString)} ((int) $value);
+                        }
+                        break;    
+                    
                     case 'bool':
                         $this->{sprintf($dataString)} ((bool) $value);
                         break;
@@ -87,6 +96,15 @@ abstract class Model
                     case 'integer':
                         $this->{sprintf($dataString)} ((int) $value);
                         break;
+                    
+                    case 'integerOrNull':
+                        if(empty($value)){
+                            $this->{sprintf($dataString)} (null);
+                        }
+                        else{
+                            $this->{sprintf($dataString)} ((int) $value);
+                        }
+                        break; 
                     
                     case 'bool':
                         $this->{sprintf($dataString)} ((int) $value);

@@ -63,7 +63,7 @@
                             <div class="context">
                                 <h3>{{billet.title}}</h3>
                                 <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
-                                <p class="contentChapter">{{billet.content|truncate(500)|nl2br}}</p>
+                                <div class="contentChapter">{{billet.content|truncate(500)|raw}}</div>
                             </div>
                             <div class="more">
                                 <a href="/billet/{{billet.id}}"> <button>Lire la suite</button></a>

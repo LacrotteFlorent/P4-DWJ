@@ -19,7 +19,8 @@
                         <img src="/public/img/{{image.getName}}" alt='{{image.getAlt}}' />
                     </div>
                     <h2>{{billet.title}}</h2>
-                    <p><span class="billetCapitalize">{{billet.content|onlyFirstLetter}}</span>{{billet.content|deleteFirstLetter|nl2br}}</p>
+                    {% set billetRaW = billet.content %}
+                    <p><span class="billetCapitalize">{{billet.content|onlyFirstLetter}}</span>{{billet.content|deleteFirstLetter|raw}}</p>
                 </div>
             </div>
             <div class="socialNetworkBillet row py-4">
@@ -75,7 +76,12 @@
                             <div class="mb-4 border p-1 rounded-sm">
                                 <h4 class="m-0 pb-1">{{comment.author is empty ? "Guest" : comment.author}}</h4>
                                 <p class="">{{comment.content}}</p>
-                                <p class="dateCom m-0">{{comment.postedAt|date('d-m-Y \à H:i:s')}}</p>
+                                <div class="d-flex justify-content-start align-self-center">
+                                    <p class="dateCom m-0 align-self-center">{{comment.postedAt|date('d-m-Y \à H:i:s')}}</p>
+                                    <form method="POST" class="align-middle">
+                                        <button type="submit" formaction="/reportAdminComment/{{comment.getId}}" name="idBillet" value="{{billet.id}}" class="btn text-muted"><i class="fas fa-exclamation-triangle"></i></button>
+                                    </form>
+                                </div>
                             </div>
                         {% endfor %}
                     {% else %}

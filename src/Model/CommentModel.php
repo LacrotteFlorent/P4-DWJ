@@ -85,7 +85,7 @@ class CommentModel extends Model
                 "author"        =>[
                     "type"      =>"string",
                     "property"  =>"author",
-                    "assert"    =>"string"
+                    "assert"    =>"stringOrNull"
                 ],
                 "post_id"       =>[
                     "type"      =>"integer",
@@ -93,9 +93,9 @@ class CommentModel extends Model
                     "assert"    =>"integer"
                 ],
                 "user_id"       =>[
-                    "type"      =>"integer",
+                    "type"      =>"integerOrNull",
                     "property"  =>"userId",
-                    "assert"    =>"integerOrNull"
+                    "assert"    =>"integerOrNullOrZero"
                 ]
             ]
         ];

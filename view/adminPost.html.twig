@@ -2,7 +2,7 @@
 
 {% block head %}
     <!-- Titre -->
-    <title>Tableau de bord | Jean Forteroche</title>
+    <title>Editeur d'articles | Jean Forteroche</title>
     <!-- Media Queries -->
     <link rel="stylesheet" href="/public/css/styleAdminDashboard.css" />
     <!-- Tiny Mce -->
@@ -21,28 +21,6 @@
                 <div class="col-12 col-sm-10">
                     <h2 class="my-3">Editeur d'articles</h2>
                     <form method="POST" enctype="multipart/form-data">
-<!--
-                    <div class="mb-4 row card">
-                        <div class="card-header">
-                            <h3><i class="far fa-hand-pointer"></i> Selecteur</h3>
-                        </div>
-                        <div class="card-body">
-                            <h4>Selectionnez un article à modifier ou créez un nouveau</h4>
-                            <p>Pour selectionner un article utilisez la liste déroulante</p>
-                            <div class="input-group mb-3">
-                                <select class="custom-select" id="inputGroupSelect02">
-                                  <option selected>Selectionnner un article</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
-                                <div class="input-group-append">
-                                  <label class="input-group-text" for="inputGroupSelect02">Articles</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
--->
                     <div class="mb-4 row card">
                         <div class="card-header">
                             <h3><i class="fas fa-heading"></i> Titre</h3>
@@ -94,7 +72,7 @@
                         <div class="card-body">
                             <h4>Ajoutez du contenu à votre article</h4>
                             <p>Utilisez les fonctions de l'éditeur pour mettre en forme le texte</p>
-                            <textarea id="postArea" name="content">{{billet.content}}</textarea>
+                            <textarea id="postArea" name="content">{{billet.content|raw}}</textarea>
                         </div>
                     </div>
                     <div class="mb-4 row card">
@@ -124,7 +102,8 @@
                                         <h4 class="card-title">Transformer en brouillon</h4>
                                     {% endif %}
                                         <p class="card-text">Vous pourrez reprendre le brouillion via le tableau de bord.</p>
-                                        {% if billet == true %}
+                                        <p class="card-text">Attention l'article ne sera plus visible par les internautes.</p>
+                                        {% if billet == true and billet.getDraft == 0 %}
                                         <button type="submit" name="submit" value="draft" class="btn btn-success" formaction="/updateAdminPost/{{billet.getId}}">Transformer en brouillon</button>
                                         {% elseif billet.getDraft == 1 %}
                                         <button type="submit" name="submit" value="draft" class="btn btn-success" formaction="/updateAdminPost/{{billet.getId}}">Sauvegarder le brouillon</button>
@@ -167,7 +146,7 @@
                                         <button class="btn btn-info" name="submit" value="post" type="submit" formaction="/createAdminPost">Publier maintenant</button>
                                     {% elseif billet.getDraft == 1 %}
                                         <p class="card-text">Publie le brouillon maintenant.</p>
-                                        <button class="btn btn-info" name="submit" value="post" type="submit" formaction="/updateAdminPost/{{billet.getId}}">Modifier maintenant</button>
+                                        <button class="btn btn-info" name="submit" value="post" type="submit" formaction="/updateAdminPost/{{billet.getId}}">Publier maintenant</button>
                                     {% else %}
                                         <p class="card-text">Modifie l'article.</p>
                                         <button class="btn btn-info" name="submit" value="post" type="submit" formaction="/updateAdminPost/{{billet.getId}}">Modifier maintenant</button>
@@ -196,7 +175,7 @@
                                             <label for="timePost">Heure de publication</label>
                                             <input type="time" id="timePost" name="timePost">
                                         </p>
-                                        <button class="btn btn-info" name="submit" value="postAt" type="submit" formaction="/createAdminPost">Publier plus tard</button>
+                                        <button class="btn btn-info" name="submit" value="postAt" type="submit" formaction="/updateAdminPost/{{billet.getId}}">Publier plus tard</button>
                                         {% else %}
                                         <p class="card-text">L'article est déja publié, ou le sera à la date prévue.</p>
                                         {% endif %}
