@@ -201,6 +201,7 @@ body {
 #blogLastChapterText h2 {
     font-size: 3rem;
     font-weight: 800;
+    color: #181D27;
 }
 
 #blogLastChapterText p {
@@ -296,6 +297,7 @@ body {
     font-weight: 800;
     font-size: 1.6em;
     margin-bottom: 15px;
+    color: #181D27;
 }
 
 #blogOldChapter a {

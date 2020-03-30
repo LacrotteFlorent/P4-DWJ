@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="context">
-                                <h3>{{billet.title}}</h3>
+                                <a href="/billet/{{billet.id}}"><h3>{{billet.title}}</h3></a>
                                 <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
                                 <div class="contentChapter">{{billet.content|truncate(500)|raw}}</div>
                             </div>

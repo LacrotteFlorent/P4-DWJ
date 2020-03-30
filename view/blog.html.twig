@@ -34,7 +34,7 @@
                                 <div id="blogLastChapterContent" class="col-12">
                                     <div class="row justify-content-center">
                                         <div id="blogLastChapterText" class="col-12 col-sm-10">
-                                            <h2>{{billet.title}}</h2>
+                                            <a href="/billet/{{billet.id}}"><h2>{{billet.title}}</h2></a>
                                             <p>{{billet.content|truncate(1200)|raw}}</p>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                         </div>
                                         <div id="blogContentChapter" class="col-12 col-sm-7">
                                             <div class="context">
-                                                <h3>{{billet.title}}</h3>
+                                                <a href="/billet/{{billet.id}}"><h3>{{billet.title}}</h3></a>
                                                 <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
                                                 <p class="contentChapter">{{billet.content|truncate(800)|raw}}</p>
                                                 <a href="/billet/{{billet.id}}">Lire la suite >>></a>
