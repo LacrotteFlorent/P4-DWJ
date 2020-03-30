@@ -195,7 +195,7 @@ class Manager
                 $format = 'SELECT * FROM %s WHERE %s ORDER BY %s DESC LIMIT %s OFFSET %s';
             }
             else{
-                $format = 'SELECT * FROM %s WHERE %s ORDER BY %s LIMIT %S OFFSET %s';
+                $format = 'SELECT * FROM %s WHERE %s ORDER BY %s LIMIT %s OFFSET %s';
             }
             $sqlQuery = sprintf($format, $from, $paramSql, $orderBy, $limit, $offset);
         }
@@ -208,7 +208,6 @@ class Manager
             }
             $sqlQuery = sprintf($format, $from, $orderBy, $limit, $offset);
         }
-
         return $this->fetchAll($sqlQuery);
     }
 
