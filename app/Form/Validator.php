@@ -10,6 +10,7 @@ use Framework\Form\ExtendAssert;
 use Framework\Form\ExtendAssertion;
 use Framework\Form\FormException;
 use Framework\Form\ErrorForm;
+use Framework\Form\ReCaptcha;
 use Framework\FlashBag;
 
 class Validator
@@ -48,6 +49,7 @@ class Validator
      * 
      * @param array|null $model
      * @param array|null $asserts
+     * @param bool|null $recaptcha
      * 
      * @internal 
      *  Checks the data of a form according to a Model and
@@ -78,7 +80,7 @@ class Validator
      * 
      * @return bool $valid
      */
-    public function assertion($model = null, $asserts = null)
+    public function assertion($model = null, $asserts = null, $recaptcha = null)
     {
         if($model){
             foreach($model->metadata()["columns"] as $value => $column) {
@@ -99,11 +101,21 @@ class Validator
             }
         }
 
+        if($recaptcha){
+            $value = null;
+            if(((new ReCaptcha)->test()) === false){
+                $value = false;
+            }
+            $this->assert->that($value, "ReCAPTCHA")->tryAll()->null();
+            $this->reload[$nameValue] = $testValue;
+        }
+
         try {
             $this->assert->verifyNow();
             $this->extendAssert->verifyNow();
             return true;
         } catch(\Exception $e) {
+            dump($e->getErrorExceptions());
             foreach($e->getErrorExceptions() as $exception){
                 $this->reload[$exception->getPropertyPath()] = "Erreur de saisie";
             }

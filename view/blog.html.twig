@@ -8,6 +8,16 @@
 <link rel="stylesheet" media="(max-width:576.00px)" href="/public/css/styleBlog-xs.css" />
 <link rel="stylesheet" media="(min-width:577.00px) and (max-width:768.00px)" href="/public/css/styleBlog-sm.css" />
 <link rel="stylesheet" media="(min-width:768.00px) and (max-width:992.00px)" href="/public/css/styleBlog-md.css" />
+<!-- reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33', { action: 'contact' }).then(function (token) {
+            var recaptchaResponse = document.getElementById('recaptchaResponse');
+            recaptchaResponse.value = token;
+        });
+    });
+</script>
 {% endblock head %}
     
 {% block body %}
@@ -186,6 +196,7 @@
                                                 <input required type="checkbox" id="acceptRGPD" name="acceptRGPD" class="custom-control-input" />
                                                 <label for="acceptRGPD" class="custom-control-label">Je reconnais avoir pris connaissance de ces droits.</label>
                                             </div>
+                                            <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
                                             <button type="submit" value="S'inscrire" id="register_newsletter_blog" class="btn">S'inscrire</button>
                                         </div>
                                     {% endif %}

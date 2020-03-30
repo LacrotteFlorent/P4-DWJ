@@ -28,7 +28,7 @@ class BlogController extends Controller
                     'value'     => $_POST["acceptRGPD"],
                     'assert'    => 'checkbox'
                 ]
-            ])){
+                ], true)){
                 FlashBag::getInstance()->add("blue", "Vous êtes maintenant inscrit à la newsletter !");
                 $this->getDatabase()->getManager('\Project\Model\NewsletterModel')->insertByModel($newsletterModel);
                 return $this->redirection('/blog');

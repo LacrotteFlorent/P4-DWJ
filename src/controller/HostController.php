@@ -6,6 +6,7 @@ use Framework\Controller;
 
 class HostController extends Controller
 {
+    
    /**
     * @return Response
     */
