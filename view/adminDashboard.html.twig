@@ -79,6 +79,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Titre</th>
+                                    <th scope="col">Date de modification</th>
                                     <th scope="col">Date de publication</th>
                                     <th scope="col">Etat</th>
                                     <th scope="col">Actions</th>
@@ -92,7 +93,12 @@
                                         <th scope="row">{{billet}}</th>
                                         {% endfor %}
                                         <td>{{billet.title}}</td>
+                                        <td>{{billet.createdAt|date('d-m-Y \à H:i:s')}}</td>
+                                        {% if billet.draft == 1 %}
+                                        <td></td>
+                                        {% else %}
                                         <td>{{billet.postedAt|date('d-m-Y \à H:i:s')}}</td>
+                                        {% endif %}
                                         {% if billet.draft == 1 %}
                                         <td><p class="text-warning"><strong>Brouillon</strong></p></td>
                                         {% elseif billet.postedAt|date('d-m-Y \à H:i:s') > date|date('d-m-Y \à H:i:s') %}

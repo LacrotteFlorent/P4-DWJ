@@ -62,7 +62,6 @@ class AdminPostController extends Controller
             else{
                 return $this->redirection('/adminPost/' . $id);
             }
-            
         }
         return $this->redirection('/adminPost/' . $id);
     }
@@ -94,7 +93,6 @@ class AdminPostController extends Controller
             else{
                 return $this->redirection('/adminPost/0');
             }
-            
         }
         return $this->redirection('/adminPost/0');
     }

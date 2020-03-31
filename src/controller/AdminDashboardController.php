@@ -32,7 +32,7 @@ class AdminDashboardController extends Controller
             $totalCountView += $billet->getViewCount();
         }
 
-        $paginatorBillet = new Paginator($this->request, (int) $nbBillets['count'], $this->getDatabase()->getManager('\Project\Model\BilletModel'), "PAGE_DASHBOARD", "pageBillet");
+        $paginatorBillet = new Paginator($this->request, (int) $nbBillets['count'], $this->getDatabase()->getManager('\Project\Model\BilletModel'), "PAGE_DASHBOARD", "pageBillet", null, "created_at", true);
         $paginatorComments = new Paginator($this->request, (int) $nbCommentsWithoutReport['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), "PAGE_DASHBOARD", "pageCom", ['report' => 0], "posted_at", true);
         $paginatorCommentsReport = new Paginator($this->request, (int) $nbCommentsReport['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), "PAGE_DASHBOARD", "pagesCommentReport", ['report' => 1]);
         
