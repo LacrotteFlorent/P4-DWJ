@@ -119,7 +119,7 @@ class Validator
                 $this->reload[$exception->getPropertyPath()] = "Erreur de saisie";
             }
             ErrorForm::getInstance()->add($this->reload);
-            dump($e->getErrorExceptions());
+            //dump($e->getErrorExceptions());
             FlashBag::getInstance()->add("red", "Il y a eu une erreur dans la saisie de votre formulaire");
             return false;
         }
@@ -139,9 +139,9 @@ class Validator
      */
     private function check($assert, $testValue, $nameValue, $params = null)
     {
-        $testValueString = (string) 'salut';
-        $testValueInteger = 3;
-        $testValueMail = 'bralocaz@gmail.com';
+        //$testValueString = (string) 'salut';
+        //$testValueInteger = 3;
+        //$testValueMail = 'bralocaz@gmail.com';
 
         switch ($assert) {
             case 'integer':
