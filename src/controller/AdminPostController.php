@@ -97,21 +97,7 @@ class AdminPostController extends Controller
     public function create()
     {   
         if($this->request->getRequestMethod() === 'POST'){
-            if(((new Validator)->assertion(null, [
-                'image'     => [
-                    'value'     => $_FILES["imageToUpload"],
-                    'assert'    => 'image',
-                    'size'      => $_ENV["SIZE_IMG"],
-                ],
-                'alt'       => [
-                    'value'     => $_POST["alt"],
-                    'assert'    => 'string'
-                ],
-                'submit'    => [
-                    'value'     => $_POST["submit"],
-                    'assert'    => 'string'
-                ]
-            ]))){
+            
                 $billetModel = (new BilletModel())->hydrateForSql([
                     "title"         => $_POST["title"],
                     "content"       => $_POST["content"],
@@ -121,7 +107,20 @@ class AdminPostController extends Controller
                     "like_count"    => 0,
                     "view_count"    => 0,
                 ]);
-                if((new Validator)->assertion($billetModel, null, true)){
+                if((new Validator)->assertion($billetModel, [
+                    'image'     => [
+                        'value'     => $_FILES["imageToUpload"],
+                        'assert'    => 'image',
+                        'size'      => $_ENV["SIZE_IMG"],
+                    ],
+                    'alt'       => [
+                        'value'     => $_POST["alt"],
+                        'assert'    => 'string'
+                    ],
+                    'submit'    => [
+                        'value'     => $_POST["submit"],
+                        'assert'    => 'string'
+                    ]], true)){
                     $imageModel = (new ImageModel)->hydrateForSql([
                         "name"      => $_FILES["imageToUpload"]['name'],
                         "alt"       => $_POST["alt"]
@@ -142,7 +141,7 @@ class AdminPostController extends Controller
                 else{
                     return $this->redirection('/adminPost/0');
                 }
-            }
+            
         }
         return $this->redirection('/adminPost/0');
     }

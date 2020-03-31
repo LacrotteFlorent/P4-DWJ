@@ -341,9 +341,6 @@ class Manager
      */
     public function insertByModel(Model $model)
     {
-        //$set = [];
-        //$values = [];
-        //$datas = [];
         foreach(array_keys($this->metadata["columns"]) as $column)
         {
             $sqlValue = $model->getSQLValueByColumn($column);
