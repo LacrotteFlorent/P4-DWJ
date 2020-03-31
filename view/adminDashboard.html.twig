@@ -95,7 +95,7 @@
                                         <td>{{billet.title}}</td>
                                         <td>{{billet.createdAt|date('d-m-Y \à H:i:s')}}</td>
                                         {% if billet.draft == 1 %}
-                                        <td></td>
+                                        <td>--</td>
                                         {% else %}
                                         <td>{{billet.postedAt|date('d-m-Y \à H:i:s')}}</td>
                                         {% endif %}

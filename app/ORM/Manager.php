@@ -70,11 +70,7 @@ class Manager
         $select = "*";
 
         if($params){
-            $paramSql = "";
-            foreach ($params as $key => $param){
-                $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
-            }
-            $paramSql = substr($paramSql, 0, -5);
+            $paramSql = $this->where($params);
 
             $format = 'SELECT %s FROM %s WHERE %s';
             $sqlQuery = sprintf($format, $select, $from, $paramSql);
@@ -98,22 +94,14 @@ class Manager
 
         if($selects)
         {   
-            $selectSql = "";
-            foreach ($selects as $select){
-                $selectSql = $selectSql .''.$select. ', ';
-            }
-            $selectSql = substr($selectSql, 0, -2);
+            $selectSql = $this->where($selects, false);
         }
         else{
             $selectSql = "*";
         }
 
         if($params){
-            $paramSql = "";
-            foreach ($params as $key => $param){
-                $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
-            }
-            $paramSql = substr($paramSql, 0, -5);
+            $selectSql = $this->where($params);
 
             $format = 'SELECT %s FROM %s WHERE %s';
             $sqlQuery = sprintf($format, $selectSql, $from, $paramSql);
@@ -160,11 +148,7 @@ class Manager
         }
 
         if($where){
-            $paramSql = "";
-            foreach ($where as $key => $param){
-                $paramSql = $paramSql .''. $key .' '. $operator .' \''.$param. '\' AND ';
-            }
-            $paramSql = substr($paramSql, 0, -5);
+            $paramSql = $this->where($where);
 
             $sqlQuery = sprintf('SELECT * FROM %s WHERE %s LIMIT %s OFFSET %s', $from, $paramSql, $limit, $offset);
         }
@@ -239,11 +223,8 @@ class Manager
         }
         
         if($params){
-            $paramSql = "";
-            foreach($params as $key => $param){
-                $paramSql = $paramSql .''. $key .' ' . $operator . ' \''.$param. '\' AND ';
-            }
-            $paramSql = substr($paramSql, 0, -5);
+            $paramSql = $this->where($params, true, $operator);
+
             $format = 'SELECT COUNT(%s) as count FROM %s WHERE %s';
             $sqlQuery = sprintf($format, $select, $from, $paramSql);
         }
@@ -288,44 +269,6 @@ class Manager
             array_push($data, (new $this->model())->hydrate($result));
         }
         return $data;
-    }
-
-    /**
-     * @param $string $table
-     * @param array $valuesByColumns
-     * @internal { for @param $valuesByColumns ['column' => $value]}
-     * INSERT INTO comment(content, posted_at, valid, report, author, post_id)
-     *  VALUES( 'ceci est une phrase de test', '2020-01-01 08:15:10', 1, 0, 'Guesttt', 1)
-     */
-    public function insertPrepare($table, $valuesByColumns)
-    {
-        // return columns
-        $columns = array_keys($valuesByColumns);
-        $strColumns = "";
-        foreach($columns as $column){
-            $strColumns = $strColumns .''.$column. ', ';
-        }
-        $strColumns = substr($strColumns, 0, -2);
-
-        //return values
-        $values = array_keys($valuesByColumns);
-        $strValues = "";
-        $arrayValues = [];
-        foreach($columns as $column){
-            $strValues = $strValues .':'.$column. ', ';
-            $arrayValues[':'.$column] = $valuesByColumns[$column];
-        }
-        $strValues = substr($strValues, 0, -2);
-        
-        $sql = 'INSERT INTO ' . $table . '('. $strColumns .') VALUES('. $strValues .')';
-
-        $statement = $this->pdo->prepare($sql);
-
-        foreach($arrayValues as $key => $value){
-            $statement->bindValue($key, $value);
-        }
-
-        $statement->execute();
     }
 
     /**
@@ -401,6 +344,42 @@ class Manager
     public function getMetadata()
     {
         return $this->metadata;
+    }
+
+    /**
+     * @param array $arrayValues
+     * @param bool $key
+     * @param string $operator
+     * @return string
+     */
+    private function where($arrayValues, $key = true, $operator = null)
+    {
+        if(!$key){
+            $selectSql = "";
+            foreach ($arrayValues as $select){
+                $selectSql = $selectSql .''.$select. ', ';
+            }
+            $selectSql = substr($selectSql, 0, -2);
+            return $selectSql;
+        }
+        else{
+            if($operator){
+                $paramSql = "";
+                foreach ($arrayValues as $key => $param){
+                    $paramSql = $paramSql .''. $key .' '. $operator .' \''.$param. '\' AND ';
+                }
+                $paramSql = substr($paramSql, 0, -5);
+                return $paramSql;
+            }
+            else{
+                $paramSql = "";
+                foreach ($arrayValues as $key => $param){
+                    $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
+                }
+                $paramSql = substr($paramSql, 0, -5);
+                return $paramSql;
+            }
+        }
     }
 
 }
