@@ -193,6 +193,26 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6 mt-4">
+                                <div class="card cardValid">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Retour au Tableau de bord</h4>
+                                    {% if billet == true and billet.getDraft == 0 %}
+                                        <p class="card-text">En cliquant sur le boutton vous retournez au tableau de bord.</p> 
+                                        <p class="card-text">Attention votre article ne sera pas modifié.</p>
+                                        <button class="btn btn-warning" name="submit" value="return" type="submit" formaction="/AdminDashboard">Tableau de bord</button>
+                                    {% elseif billet.getDraft == 1 %}
+                                        <p class="card-text">En cliquant sur le boutton vous retournez au tableau de bord.</p>
+                                        <p class="card-text">Attention votre brouillon ne sera pas modifié.</p>
+                                        <button class="btn btn-warning" name="submit" value="return" type="submit" formaction="/AdminDashboard">Tableau de bord</button>
+                                    {% else %}
+                                        <p class="card-text">En cliquant sur le boutton vous retournez au tableau de bord.</p>
+                                        <p class="card-text">Attention votre article ne sera pas crée.</p>
+                                        <button class="btn btn-warning" name="submit" value="return" type="submit" formaction="/AdminDashboard">Tableau de bord</button>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     </form>

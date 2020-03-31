@@ -37,56 +37,32 @@ class AdminPostController extends Controller
     public function update($id)
     {   
         if($this->request->getRequestMethod() === 'POST'){
-            if(((new Validator)->assertion(null, [
-                'image'     => [
-                    'value'     => $_FILES["imageToUpload"],
-                    'assert'    => 'image',
-                    'size'      => $_ENV["SIZE_IMG"],
-                ],
-                'alt'       => [
-                    'value'     => $_POST["alt"],
-                    'assert'    => 'string'
-                ],
-                'submit'    => [
-                    'value'     => $_POST["submit"],
-                    'assert'    => 'string'
-                ]
-            ]))){
-                $billetModel = (new BilletModel())->hydrateForSql([
-                    "title"         => $_POST["title"],
-                    "content"       => $_POST["content"],
-                    "created_at"    => date($_ENV["DATE_FORMAT"]),
-                    "posted_at"     => !empty($_POST["datePost"]) ? ($_POST["datePost"] . " " . $_POST["timePost"] . ":00") : date($_ENV["DATE_FORMAT"]),
-                    "draft"         => $_POST["submit"] === "draft" ? 1 : 0,
-                    "like_count"    => 0,
-                    "view_count"    => 0,
-                ]);
-                if((new Validator)->assertion($billetModel, null, true)){
-                    $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
+            if($billetModel = $this->testDatas()){
+                $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
 
-                    if(!empty($_FILES["name"])){
-                        $imageModel = (new ImageModel)->hydrateForSql([
-                            "name"      => $_FILES["imageToUpload"]['name'],
-                            "alt"       => $_POST["alt"]
-                        ]);
-                        $name = basename($_FILES["imageToUpload"]["name"]);
-                        if(is_file("public/img/" . $name)){
-                            unlink("public/img/" . $name);
-                            }
-                        move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], "public/img/" . $name);
-                        
-                        $this->getDatabase()->getManager('\Project\Model\ImageModel')->update($imageModel, ['id'=>$billet->getImageId()]);
-                    }
+                if(!empty($_FILES["name"])){
+                    $imageModel = (new ImageModel)->hydrateForSql([
+                        "name"      => $_FILES["imageToUpload"]['name'],
+                        "alt"       => $_POST["alt"]
+                    ]);
+                    $name = basename($_FILES["imageToUpload"]["name"]);
+                    if(is_file("public/img/" . $name)){
+                        unlink("public/img/" . $name);
+                        }
+                    move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], "public/img/" . $name);
+                    
+                    $this->getDatabase()->getManager('\Project\Model\ImageModel')->update($imageModel, ['id'=>$billet->getImageId()]);
+                }
 
-                    $billetModel->hydrateForSql(['image_id'=> $billet->getImageId()]);
-                    $this->getDatabase()->getManager('\Project\Model\BilletModel')->update($billetModel, ["id"=>$id]);
-                    FlashBag::getInstance()->add("violet", "Votre article à été mis à jour !");
-                    return $this->redirection('/adminDashboard');
-                }
-                else{
-                    return $this->redirection('/adminPost/' . $id);
-                }
+                $billetModel->hydrateForSql(['image_id'=> $billet->getImageId()]);
+                $this->getDatabase()->getManager('\Project\Model\BilletModel')->update($billetModel, ["id"=>$id]);
+                FlashBag::getInstance()->add("violet", "Votre article à été mis à jour !");
+                return $this->redirection('/adminDashboard');
             }
+            else{
+                return $this->redirection('/adminPost/' . $id);
+            }
+            
         }
         return $this->redirection('/adminPost/' . $id);
     }
@@ -97,50 +73,27 @@ class AdminPostController extends Controller
     public function create()
     {   
         if($this->request->getRequestMethod() === 'POST'){
-            
-                $billetModel = (new BilletModel())->hydrateForSql([
-                    "title"         => $_POST["title"],
-                    "content"       => $_POST["content"],
-                    "created_at"    => date($_ENV["DATE_FORMAT"]),
-                    "posted_at"     => !empty($_POST["datePost"]) ? ($_POST["datePost"] . " " . $_POST["timePost"] . ":00") : date($_ENV["DATE_FORMAT"]),
-                    "draft"         => $_POST["submit"] === "draft" ? 1 : 0,
-                    "like_count"    => 0,
-                    "view_count"    => 0,
+            if($billetModel = $this->testDatas()){
+                $imageModel = (new ImageModel)->hydrateForSql([
+                    "name"      => $_FILES["imageToUpload"]['name'],
+                    "alt"       => $_POST["alt"]
                 ]);
-                if((new Validator)->assertion($billetModel, [
-                    'image'     => [
-                        'value'     => $_FILES["imageToUpload"],
-                        'assert'    => 'image',
-                        'size'      => $_ENV["SIZE_IMG"],
-                    ],
-                    'alt'       => [
-                        'value'     => $_POST["alt"],
-                        'assert'    => 'string'
-                    ],
-                    'submit'    => [
-                        'value'     => $_POST["submit"],
-                        'assert'    => 'string'
-                    ]], true)){
-                    $imageModel = (new ImageModel)->hydrateForSql([
-                        "name"      => $_FILES["imageToUpload"]['name'],
-                        "alt"       => $_POST["alt"]
-                    ]);
 
-                    $name = basename($_FILES["imageToUpload"]["name"]);
-                    if(is_file("public/img/" . $name)){
-                        unlink("public/img/" . $name);
-                        }
-                    move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], "public/img/" . $name);
-                    
-                    $this->getDatabase()->getManager('\Project\Model\ImageModel')->insertByModel($imageModel);
-                    $billetModel->hydrateForSql(['image_id'=>$this->getDatabase()->getManager('\Project\Model\ImageModel')->lastInsertID()]);
-                    $this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel($billetModel);
-                    FlashBag::getInstance()->add("blue", "Votre article à été crée !");
-                    return $this->redirection('/adminDashboard');
-                }
-                else{
-                    return $this->redirection('/adminPost/0');
-                }
+                $name = basename($_FILES["imageToUpload"]["name"]);
+                if(is_file("public/img/" . $name)){
+                    unlink("public/img/" . $name);
+                    }
+                move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], "public/img/" . $name);
+                
+                $this->getDatabase()->getManager('\Project\Model\ImageModel')->insertByModel($imageModel);
+                $billetModel->hydrateForSql(['image_id'=>$this->getDatabase()->getManager('\Project\Model\ImageModel')->lastInsertID()]);
+                $this->getDatabase()->getManager('\Project\Model\BilletModel')->insertByModel($billetModel);
+                FlashBag::getInstance()->add("blue", "Votre article à été crée !");
+                return $this->redirection('/adminDashboard');
+            }
+            else{
+                return $this->redirection('/adminPost/0');
+            }
             
         }
         return $this->redirection('/adminPost/0');
@@ -166,6 +119,41 @@ class AdminPostController extends Controller
             return $this->redirection('/adminDashboard');
         }
         return $this->redirection('/adminPost/' . $id);
+    }
+
+    /**
+     * @internal Hydrates and tests POST data
+     * @return bool|BilletModel
+     */
+    private function testDatas()
+    {
+        $billetModel = (new BilletModel())->hydrateForSql([
+            "title"         => $_POST["title"],
+            "content"       => $_POST["content"],
+            "created_at"    => date($_ENV["DATE_FORMAT"]),
+            "posted_at"     => !empty($_POST["datePost"]) ? ($_POST["datePost"] . " " . $_POST["timePost"] . ":00") : date($_ENV["DATE_FORMAT"]),
+            "draft"         => $_POST["submit"] === "draft" ? 1 : 0,
+            "like_count"    => 0,
+            "view_count"    => 0,
+        ]);
+        if((new Validator)->assertion($billetModel, [
+            'image'     => [
+                'value'     => $_FILES["imageToUpload"],
+                'assert'    => 'image',
+                'size'      => $_ENV["SIZE_IMG"],
+            ],
+            'alt'       => [
+                'value'     => $_POST["alt"],
+                'assert'    => 'string'
+            ],
+            'submit'    => [
+                'value'     => $_POST["submit"],
+                'assert'    => 'string'
+            ]], true)){
+
+            return $billetModel;
+        }
+        return false;
     }
 
 }
