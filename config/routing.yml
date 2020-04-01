@@ -12,6 +12,10 @@ contact:
     path: /contact
     controller: Contact
     action: show
+contactContact:
+    path: /contactContact
+    controller: Contact
+    action: contact
 signUpConnexion:
     path: /signUpConnexion
     controller: SignUpConnexion

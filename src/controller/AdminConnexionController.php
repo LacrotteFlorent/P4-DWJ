@@ -62,7 +62,7 @@ class AdminConnexionController extends Controller
     {
         session_unset();
         FlashBag::getInstance()->add("blue", "Vous êtes maintenant deconnecté");
-        return $this->redirection('/adminConnexion');
+        return $this->redirection('/');
     }
 
 }
