@@ -1,5 +1,7 @@
 <?php 
 
+use Framework\FlashBag;
+
 namespace Framework\Form;
 
 /**
@@ -33,6 +35,7 @@ class ReCaptcha
             if ($recaptcha->score >= 0.5) {
                 return true;
             } else {
+                FlashBag::getInstance()->add("red", "Seriez vous un robot ? Si ce n'est pas le cas sachez que nous, nous en doutons ! :)");
                 return false;
             }
         }

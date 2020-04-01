@@ -40,11 +40,11 @@ class SignUpConnexionController extends Controller
             ]], true)){
                     $connectUser = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['username' => $_POST["login"]]))['count']));
                     $connectMail = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['email' => $_POST["mail"]]))['count']));
-                    if($connectUser === "1" || $connectMail === "1"){
+                    if($connectUser === "1" && $connectMail === "1"){
                         FlashBag::getInstance()->add("orange", "Cet identifiant / mail existe déja.");
                         return $this->redirection('/signUpConnexion');
                     }
-                    elseif($connectUser === "0" || $connectMail === "0"){
+                    elseif($connectUser === "0" && $connectMail === "0"){
                         $this->getDatabase()->getManager('\Project\Model\UserModel')->insertByModel($userModel);
                         FlashBag::getInstance()->add("green", "Vous êtes maitenant inscrit");
 

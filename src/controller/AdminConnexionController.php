@@ -32,55 +32,19 @@ class AdminConnexionController extends Controller
                 'value'     => $_POST["submit"],
                 'assert'    => 'string'
             ]], true)){
-                    $connect = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['password' => md5($_POST["password"]), 'username' => $_POST["login"]]))['count']));
-                    if($connect === "1"){
+                    $connectUser = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['password' => md5($_POST["password"]), 'username' => $_POST["login"]]))['count']));
+                    $connectMail = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['password' => md5($_POST["password"]), 'email' => $_POST["login"]]))['count']));
+                    if($connectUser === "1" || $connectMail === "1"){
                         $_SESSION['login'] = $_POST['login'];
                         FlashBag::getInstance()->add("green", "Vous êtes maintenant connecté");
                     }
-                    elseif($connect === "0"){
+                    elseif($connectUser === "0" && $connectMail === "0"){
                         FlashBag::getInstance()->add("red", "Mot de passe / identifiants inconu.");
                     }
                     else{
                         throw new SrcControllerException("Two users have the same couple user mdp");
                     }
-                    return $this->redirection('/adminConnexion');
-                }
-            else{
-                return $this->redirection('/adminConnexion');
-                FlashBag::getInstance()->add("red", "Il y a eu une erreur inconnue lors de votre connexion!");
-            }
-        }
-        FlashBag::getInstance()->add("red", "Il y a eu une erreur inconnue lors de votre connexion!");
-        return $this->redirection('/adminConnexion');
-    }
-
-    /**
-    * @return RedirectionResponse
-    */
-    public function signUp()
-    {
-        if($this->request->getRequestMethod() === 'POST'){
-            $userModel = (new UserModel())->hydrateForSql([
-                "password"      => $_POST["password"],
-                "username"      => $_POST["login"],
-                "email"         => $_POST["email"]
-            ]);
-            if((new Validator)->assertion($userModel, [
-            'submit'    => [
-                'value'     => $_POST["submit"],
-                'assert'    => 'string'
-            ]], true)){
-                    $connect = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['username' => $_POST["login"]]))['count']));
-                    if($connect === "1"){
-                        FlashBag::getInstance()->add("green", "Cet identifiant existe déja.");
-                    }
-                    elseif($connect === "0"){
-                        // faire un input
-                    }
-                    else{
-                        throw new SrcControllerException("FATAL ERROR : Two users have the same couple user mdp");
-                    }
-                    return $this->redirection('/adminConnexion');
+                    return $this->redirection('/');
                 }
             else{
                 return $this->redirection('/adminConnexion');
@@ -97,7 +61,6 @@ class AdminConnexionController extends Controller
     public function disconnect()
     {
         session_unset();
-        
         FlashBag::getInstance()->add("blue", "Vous êtes maintenant deconnecté");
         return $this->redirection('/adminConnexion');
     }
