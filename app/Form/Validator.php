@@ -119,7 +119,7 @@ class Validator
                 $this->reload[$exception->getPropertyPath()] = "Erreur de saisie";
             }
             ErrorForm::getInstance()->add($this->reload);
-            //dump($e->getErrorExceptions());
+            dump($e->getErrorExceptions());
             FlashBag::getInstance()->add("red", "Il y a eu une erreur dans la saisie de votre formulaire");
             return false;
         }
@@ -157,6 +157,17 @@ class Validator
             case 'email':
                 $this->assert->that($testValue, $nameValue)->tryAll()->email();
                 $this->reload[$nameValue] = $testValue;
+                break;
+            
+            case 'emailOrNull':
+                if($testValue != null){
+                    $this->assert->that($testValue, $nameValue)->tryAll()->email();
+                    $this->reload[$nameValue] = $testValue;
+                }
+                else{
+                    $this->assert->that($testValue, $nameValue)->tryAll()->null();
+                    $this->reload[$nameValue] = $testValue;
+                }
                 break;
 
             case 'null':

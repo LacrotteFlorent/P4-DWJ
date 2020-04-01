@@ -45,7 +45,7 @@ class UserModel extends Model
                 "email"         =>[
                     "type"      =>"string",
                     "property"  =>"email",
-                    "assert"    =>"null"
+                    "assert"    =>"emailOrNull"
                 ],
                 "password"      =>[
                     "type"      =>"string",

@@ -12,6 +12,14 @@ contact:
     path: /contact
     controller: Contact
     action: show
+signUpConnexion:
+    path: /signUpConnexion
+    controller: SignUpConnexion
+    action: show
+signSignUpConnexion:
+    path: /signSignUpConnexion
+    controller: SignUpConnexion
+    action: sign
 adminConnexion:
     path: /adminConnexion
     controller: AdminConnexion
@@ -24,10 +32,6 @@ disconnectAdminConnexion:
     path: /disconnectAdminConnexion
     controller: AdminConnexion
     action: disconnect
-signUpAdminConnexion:
-    path: /signUpAdminConnexion
-    controller: AdminConnexion
-    action: signUp
 adminDashboard:
     path: /adminDashboard
     controller: AdminDashboard

@@ -35,7 +35,7 @@ session_start();
 
 //$_POST['firstName'] = 'testPrénom';
 //$_POST['lastName'] = 'testNom';
-$_POST['mail'] = 'testMail.com';
+//$_POST['mail'] = 'testMail.com';
 //$_POST['acceptRGPD'] = 'on';
 //dump($_SESSION);
 

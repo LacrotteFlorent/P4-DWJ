@@ -59,7 +59,36 @@ class AdminConnexionController extends Controller
     */
     public function signUp()
     {
-        //TODO
+        if($this->request->getRequestMethod() === 'POST'){
+            $userModel = (new UserModel())->hydrateForSql([
+                "password"      => $_POST["password"],
+                "username"      => $_POST["login"],
+                "email"         => $_POST["email"]
+            ]);
+            if((new Validator)->assertion($userModel, [
+            'submit'    => [
+                'value'     => $_POST["submit"],
+                'assert'    => 'string'
+            ]], true)){
+                    $connect = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['username' => $_POST["login"]]))['count']));
+                    if($connect === "1"){
+                        FlashBag::getInstance()->add("green", "Cet identifiant existe déja.");
+                    }
+                    elseif($connect === "0"){
+                        // faire un input
+                    }
+                    else{
+                        throw new SrcControllerException("FATAL ERROR : Two users have the same couple user mdp");
+                    }
+                    return $this->redirection('/adminConnexion');
+                }
+            else{
+                return $this->redirection('/adminConnexion');
+                FlashBag::getInstance()->add("red", "Il y a eu une erreur inconnue lors de votre connexion!");
+            }
+        }
+        FlashBag::getInstance()->add("red", "Il y a eu une erreur inconnue lors de votre connexion!");
+        return $this->redirection('/adminConnexion');
     }
 
     /**

@@ -32,3 +32,18 @@
 #adminConnexion .connexionHeighty {
     height: 90%;
 }
+
+#divRGPD {
+    display: flex;
+    font-size: 0.8em;
+    margin-bottom: 20px;
+}
+
+#pRGPD{
+    font-size: 0.6em !important;
+}
+
+#divRGPD input{
+    margin: 0px;
+}
+
