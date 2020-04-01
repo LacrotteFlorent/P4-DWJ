@@ -36,14 +36,14 @@
                                 <p>Connectez vous :</p>
                                 <div class="form-group">
                                     <label for="connexionIdent">Identifiant :</label>
-                                    <input type="text" id="connexionIdent" name="connexionIdent" placeholder=" Identifiant" class="form-control" required />
+                                    <input type="text" id="connexionIdent" name="login" placeholder=" Identifiant" class="form-control" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="connexionMDP">Mot de passe :</label>
-                                    <input type="text" id="connexionMDP" name="connexionMDP" placeholder=" ############" class="form-control" required />
+                                    <input type="password" id="connexionMDP" name="password" placeholder=" ############" class="form-control" required />
                                 </div>
                                 <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
-                                <button class="btn" type="submit" value="Envoyer"><i class="fas fa-sign-in-alt mx-2"></i> Se connecter</button>
+                                <button class="btn" type="submit" name="submit" value="connect" formaction="/connectAdminConnexion"><i class="fas fa-sign-in-alt mx-2"></i> Se connecter</button>
                             </form>
                         </div>
                     </div>

@@ -16,6 +16,18 @@ adminConnexion:
     path: /adminConnexion
     controller: AdminConnexion
     action: show
+connectAdminConnexion:
+    path: /connectAdminConnexion
+    controller: AdminConnexion
+    action: connect
+disconnectAdminConnexion:
+    path: /disconnectAdminConnexion
+    controller: AdminConnexion
+    action: disconnect
+signUpAdminConnexion:
+    path: /signUpAdminConnexion
+    controller: AdminConnexion
+    action: signUp
 adminDashboard:
     path: /adminDashboard
     controller: AdminDashboard

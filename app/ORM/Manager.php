@@ -210,7 +210,7 @@ class Manager
      * @example SELECT COUNT(*) FROM comment
      * @example or SELECT COUNT(*) FROM comment WHERE post_id = 2
      * @example or SELECT COUNT(*) FROM comment WHERE post_id = 2 AND valid = 1 AND report = 0
-     * @return int
+     * @return array
      */
     public function countParam($params = null, $select = null , $operator = null)
     {
@@ -221,7 +221,6 @@ class Manager
         if(!$select){
             $select = '*';
         }
-        
         if($params){
             $paramSql = $this->where($params, true, $operator);
 

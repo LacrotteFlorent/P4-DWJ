@@ -3,10 +3,6 @@
                             /* GENERAL */
 
 
-.blockToast{
-    z-index: 100;
-}
-
 a {
     text-decoration: none;
     color: #FFF;
@@ -50,6 +46,7 @@ a:hover {
     position: fixed;
     bottom: 20px;
     left: calc(100% - 370px);
+    z-index: 100;
 }
 
 .toast.show{
@@ -58,6 +55,13 @@ a:hover {
     position: relative;
     z-index: 1;
     right: 15px;
+}
+
+#connect{
+    position: fixed;
+    top: 0px;
+    left: calc(100% - 225px);
+    z-index: 100;
 }
 
 

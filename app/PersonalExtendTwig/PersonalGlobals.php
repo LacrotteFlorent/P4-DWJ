@@ -16,10 +16,19 @@ class PersonalGlobals extends AbstractExtension implements GlobalsInterface
       */
     public function getGlobals() : array
     {
-        return [    
-            "FLASHBAG" => FlashBag::getInstance(),
-            "ERRORFORM"=> ErrorForm::getInstance()
-        ];
+        if(!empty($_SESSION['login'])){
+            return [    
+                "FLASHBAG"  => FlashBag::getInstance(),
+                "ERRORFORM" => ErrorForm::getInstance(),
+                "LOGIN"     => $_SESSION['login']
+            ];
+        }
+        else{
+            return [    
+                "FLASHBAG"  => FlashBag::getInstance(),
+                "ERRORFORM" => ErrorForm::getInstance()
+            ];
+        }
     }
 
 }
