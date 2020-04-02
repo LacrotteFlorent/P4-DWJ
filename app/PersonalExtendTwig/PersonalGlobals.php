@@ -4,7 +4,7 @@ namespace Framework\PersonalExtendTwig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
-use Framework\Form\ErrorForm;
+use Framework\Form\Reloader;
 use Framework\FlashBag;
 
 class PersonalGlobals extends AbstractExtension implements GlobalsInterface
@@ -19,14 +19,14 @@ class PersonalGlobals extends AbstractExtension implements GlobalsInterface
         if(!empty($_SESSION['login'])){
             return [    
                 "FLASHBAG"  => FlashBag::getInstance(),
-                "ERRORFORM" => ErrorForm::getInstance(),
+                "RELOAD" => Reloader::getInstance(),
                 "LOGIN"     => $_SESSION['login']
             ];
         }
         else{
             return [    
                 "FLASHBAG"  => FlashBag::getInstance(),
-                "ERRORFORM" => ErrorForm::getInstance()
+                "RELOAD" => Reloader::getInstance()
             ];
         }
     }

@@ -44,14 +44,14 @@ class AdminConnexionController extends Controller
                     else{
                         throw new SrcControllerException("Two users have the same couple user mdp");
                     }
-                    return $this->redirection('/');
+                    return $this->redirection('/host');
                 }
             else{
                 return $this->redirection('/adminConnexion');
-                FlashBag::getInstance()->add("red", "Il y a eu une erreur inconnue lors de votre connexion!");
+                FlashBag::getInstance()->add("red", "Il y a eu une erreur inconnue lors de votre connexion !");
             }
         }
-        FlashBag::getInstance()->add("red", "Il y a eu une erreur inconnue lors de votre connexion!");
+        FlashBag::getInstance()->add("red", "Il y a eu une erreur inconnue lors de votre connexion !");
         return $this->redirection('/adminConnexion');
     }
 
@@ -62,7 +62,7 @@ class AdminConnexionController extends Controller
     {
         session_unset();
         FlashBag::getInstance()->add("blue", "Vous êtes maintenant deconnecté");
-        return $this->redirection('/');
+        return $this->redirection('/host');
     }
 
 }

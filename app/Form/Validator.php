@@ -9,7 +9,7 @@ use \Assert\LazyAssertionException;
 use Framework\Form\ExtendAssert;
 use Framework\Form\ExtendAssertion;
 use Framework\Form\FormException;
-use Framework\Form\ErrorForm;
+use Framework\Form\Reloader;
 use Framework\Form\ReCaptcha;
 use Framework\FlashBag;
 
@@ -118,7 +118,7 @@ class Validator
             foreach($e->getErrorExceptions() as $exception){
                 $this->reload[$exception->getPropertyPath()] = "Erreur de saisie";
             }
-            ErrorForm::getInstance()->add($this->reload);
+            Reloader::getInstance()->add($this->reload);
             //dump($e->getErrorExceptions());
             FlashBag::getInstance()->add("red", "Il y a eu une erreur dans la saisie de votre formulaire");
             return false;

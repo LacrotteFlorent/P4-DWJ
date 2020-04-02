@@ -62,11 +62,11 @@ class Paginator
      * @param int $nbItemTotal
      * @param Manager $managerItems
      * @param CONST $CONST_NB_PAGE
-     * @param CONST $CONST_QUERY {name of param page in GET}
-     * @param string $paramSql
-     * @param string $orderBy
-     * @param bool $desc
-     * @param string $operator
+     * @param CONST $CONST_QUERY name of param page in GET
+     * @param string|null $paramSql
+     * @param string|null $orderBy
+     * @param bool|null $desc
+     * @param string|null $operator
      */
     public function __construct($request, $nbItemTotal, $managerItems, $CONST_NB_PAGE, $CONST_QUERY, $paramSql = null, $orderBy = null, $desc = false, $operator = null)
     {
@@ -78,19 +78,21 @@ class Paginator
     }
 
     /**
-     * @internal { WARNING Use $desc Only if $orderBy is not null }
+     * @internal
+     *  WARNING Use $desc Only if $orderBy is not null
      * 
      * @uses $this->calcPaginate()
      * @uses $thi->calcShowElements()
      * 
      * @param CONST $CONST_QUERY
-     * @param string $paramSql
-     * @param string $orderBy
-     * @param bool $desc
-     * @param string $operator
+     * @param string|null $paramSql
+     * @param string|null $orderBy
+     * @param bool|null $desc
+     * @param string|null $operator
      * 
-     * @internal  { Paging only retrieves the MySql data that will be
-     *              displayed according to the current page. }
+     * @internal 
+     *  Paging only retrieves the MySql data that will be
+     *  displayed according to the current page.
      */
     private function paging($CONST_QUERY, $paramSql = null, $orderBy = null, $desc = false, $operator = null)
     {
@@ -122,11 +124,12 @@ class Paginator
     /**
      * @used-by $this->paging()
      * 
-     * @throws \Exception { if $actualPage doesn't exist}
+     * @throws \Exception  if $actualPage doesn't exist
      * 
-     * @internal  { Calculates the number of pages based on the database,
-     *              and returns a table of numbers that corresponds to the
-     *              pages surrounding the current page. +2 and -2. }
+     * @internal
+     *  Calculates the number of pages based on the database,
+     *  and returns a table of numbers that corresponds to the
+     *  pages surrounding the current page. +2 and -2.
      */
     private function calcPaginate()
     {
@@ -159,8 +162,9 @@ class Paginator
     /**
      * @used-by $this->paging()
      * 
-     * @internal  { Retourne un tableau avec le numéro des éléments
-     *              de la base de donnée à afficher en fonction de la page actuelle. }
+     * @internal 
+     * Retourne un tableau avec le numéro des éléments
+     * de la base de donnée à afficher en fonction de la page actuelle.
      */
     private function calcShowElements()
     {
