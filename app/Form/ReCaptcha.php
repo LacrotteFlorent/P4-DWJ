@@ -32,14 +32,18 @@ class ReCaptcha
             $recaptcha = json_decode($recaptcha);
 
             // Take action based on the score returned:
-
-            dump($recaptcha->score);
-            if ($recaptcha->score >= 0.5) {
-                return true;
-            } else {
-                FlashBag::getInstance()->add("red", "Seriez vous un robot ? Si ce n'est pas le cas sachez que nous, nous en doutons ! :)");
-                return false;
+            if(isset($recaptcha->score)){
+                if ($recaptcha->score >= 0.5) {
+                    return true;
+                } else {
+                    FlashBag::getInstance()->add("red", "Seriez vous un robot ? En êtes vous VRAIMENT sûr ? :)");
+                    return false;
+                }
             }
+            else{
+                FlashBag::getInstance()->add("red", "Seriez vous un robot ? En êtes vous VRAIMENT sûr ? :)");
+                return false;
+            }            
         }
         return false;
     }

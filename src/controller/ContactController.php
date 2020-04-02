@@ -38,7 +38,7 @@ class ContactController extends Controller
     }
 
    /**
-    * @return Response
+    * @return Redirection
     */
     public function contact()
     {
@@ -92,7 +92,7 @@ class ContactController extends Controller
         else{
             (FlashBag::getInstance())->add("red", "Une erreur inconnue c'est produite !");
         }
-        return $this->render("contact.html.twig");
+        return $this->redirection('/contact');
     }
 
 }
