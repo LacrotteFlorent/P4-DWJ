@@ -56,14 +56,14 @@
                             <div class="row w-50">
                                 <div class="col-12 d-flex flex-column">
                                     <label class="pb-0 mt-0" for="billetComPseudo">Pseudo :</label>
-                                    <input type="text" id="billetComPseudo" name="author" placeholder=" Votre pseudo" class="form-control rounded-sm border-0" />
+                                    <input type="text" id="billetComPseudo" name="author" placeholder=" Votre pseudo" class="form-control rounded-sm border-0" value="{{RELOAD.getMessages.0.author}}" />
                                 </div>
                             </div>
                             <label for="billetComMsg">Message :</label>
-                            <textarea id="billetComMsg" name="content" class="form-control rounded-sm border-0" cols="30" rows="6" placeholder=" Ecrivez votre commentaire"></textarea>
+                            <textarea id="billetComMsg" name="content" class="form-control rounded-sm border-0" cols="30" rows="6" placeholder=" Ecrivez votre commentaire">{{RELOAD.getMessages.0.content}}</textarea>
                             <div class="w-50 my-2">
                                 <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
-                                <button type="submit" value="Envoyer" class="btn rounded-sm border-0">Envoyer</button>
+                                <button type="submit" name="submit" value="sent" class="btn rounded-sm border-0">Envoyer</button>
                             </div>
                         </div>
                     </form>

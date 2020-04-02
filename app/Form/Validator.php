@@ -106,8 +106,10 @@ class Validator
             if(((new ReCaptcha)->test()) === false){
                 $value = false;
             }
-            $this->assert->that($value, "ReCAPTCHA")->tryAll()->null();
-            $this->reload["ReCAPTCHA"] = $value;
+            else{
+                $this->assert->that($value, "ReCAPTCHA")->tryAll()->null();
+                $this->reload["ReCAPTCHA"] = $value;
+            }
         }
 
         try {
@@ -119,7 +121,7 @@ class Validator
                 $this->reload[$exception->getPropertyPath()] = "Erreur de saisie";
             }
             Reloader::getInstance()->add($this->reload);
-            //dump($e->getErrorExceptions());
+            dump($e->getErrorExceptions());
             FlashBag::getInstance()->add("red", "Il y a eu une erreur dans la saisie de votre formulaire");
             return false;
         }

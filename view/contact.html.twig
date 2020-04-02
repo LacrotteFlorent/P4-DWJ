@@ -33,24 +33,24 @@
                         <div class="form row">
                             <div class="form-group col-md-6 col-12">
                                 <label for="contactName">Nom : </label> 
-                                <input type="text" id="contactName" name="contactName" placeholder=" Votre nom" class="form-control" required />
+                                <input type="text" id="contactName" name="contactName" placeholder=" Votre nom" class="form-control" required value="{{RELOAD.getMessages.0.full_name}}" />
                             </div>
                             <div class="form-group col-md-6 col-12">
                                 <label for="contactFirstName">Prénom :</label>
-                                <input type="text" id="contactFirstName" name="contactFirstName" placeholder=" Votre prénom" class="form-control" required />
+                                <input type="text" id="contactFirstName" name="contactFirstName" placeholder=" Votre prénom" class="form-control" required  value="{{RELOAD.getMessages.0.full_name}}" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="contactMail" class="pb-0" >Addresse mail :</label>
-                            <input type="text" id="contactMail" name="contactMail" placeholder=" Votre adresse mail" class="form-control" required />
+                            <input type="mail" id="contactMail" name="contactMail" placeholder=" Votre adresse mail" class="form-control" required value="{{RELOAD.getMessages.0.email}}" />
                         </div>
                         <div class="form-group">
                             <label for="contactObject">Objet du message :</label>
-                            <input type="text" id="contactObject" name="contactObject" placeholder=" L'objet de votre message" class="form-control" required />
+                            <input type="text" id="contactObject" name="contactObject" placeholder=" L'objet de votre message" class="form-control" required value="{{RELOAD.getMessages.0.subject}}" />
                         </div>
                         <div class="form-group">
                             <label for="contactMessage">Message : (255 caractères max)</label>
-                            <textarea id="contactMessage" name="contactMessage" cols="30" rows="10" class="form-control" placeholder=" Votre message ici" required></textarea>
+                            <textarea id="contactMessage" name="contactMessage" cols="30" rows="10" class="form-control" placeholder=" Votre message ici" required >{{RELOAD.getMessages.0.content}}</textarea>
                         </div>
                         <div class="form row">
                             <div class="form-group col-md-6 col-12">
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
-                        <button class="btn mb-3" type="submit" name="sent" value="Envoyer" formaction="/contactContact"><i class="far fa-paper-plane mx-2"></i> Envoyer</button>
+                        <button class="btn mb-3" type="submit" name="submit" value="sent" formaction="/contactContact"><i class="far fa-paper-plane mx-2"></i> Envoyer</button>
                     </form>
                 </div>
             </div>

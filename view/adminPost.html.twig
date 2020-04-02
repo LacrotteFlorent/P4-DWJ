@@ -40,7 +40,7 @@
                             <h4>Choisissez un titre pour votre article</h4>
                             <p>Ce titre apparaitra dans l'article et dans la liste d'articles</p>
                             <div class="input-group flex-nowrap">
-                                <input type="text" class="form-control" name="title" value="{{billet.title}}" placeholder="Entrez un titre ici" aria-label="Username" aria-describedby="addon-wrapping">
+                                <input type="text" class="form-control" name="title" value="{{billet.title}}" value="{{RELOAD.getMessages.0.title}}" placeholder="Entrez un titre ici" aria-label="Username" aria-describedby="addon-wrapping">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="addon-wrapping">Titre</span>
                                 </div>
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="input-group mb-3 flex-nowrap">
-                                <input type="text" class="form-control" name="alt" value="{{image.getAlt}}" placeholder="Entrez une description ici" aria-label="Username" aria-describedby="addon-wrapping">
+                                <input type="text" class="form-control" name="alt" value="{{image.getAlt}}" value="{{RELOAD.getMessages.0.alt}}" placeholder="Entrez une description ici" aria-label="Username" aria-describedby="addon-wrapping">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="addon-wrapping">Description</span>
                                 </div>
@@ -83,7 +83,7 @@
                         <div class="card-body">
                             <h4>Ajoutez du contenu à votre article</h4>
                             <p>Utilisez les fonctions de l'éditeur pour mettre en forme le texte</p>
-                            <textarea id="postArea" name="content">{{billet.content|raw}}</textarea>
+                            <textarea id="postArea" name="content">{{billet.content|raw}}{{RELOAD.getMessages.0.content}}</textarea>
                         </div>
                     </div>
                     <div class="mb-4 row card">

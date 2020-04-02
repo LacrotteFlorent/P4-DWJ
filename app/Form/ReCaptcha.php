@@ -32,6 +32,8 @@ class ReCaptcha
             $recaptcha = json_decode($recaptcha);
 
             // Take action based on the score returned:
+
+            dump($recaptcha->score);
             if ($recaptcha->score >= 0.5) {
                 return true;
             } else {

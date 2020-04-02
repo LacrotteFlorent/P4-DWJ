@@ -40,6 +40,7 @@ class AdminConnexionController extends Controller
                     }
                     elseif($connectUser === "0" && $connectMail === "0"){
                         FlashBag::getInstance()->add("red", "Mot de passe / identifiants inconu.");
+                        return $this->redirection('/adminConnexion');
                     }
                     else{
                         throw new SrcControllerException("Two users have the same couple user mdp");

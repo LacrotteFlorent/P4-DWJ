@@ -13,8 +13,7 @@ class Reloader implements \Countable
     /**
      * @var array
      */
-    private $messages = [];
-
+    private static $messages = [];
 
     /**
      * @global $_SESSION['RELOAD'] => Stores the instance in session
@@ -28,7 +27,7 @@ class Reloader implements \Countable
 
         if(!self::$reloaderInstance) {
             self::$reloaderInstance = new Reloader();
-            $this->messages[0] ="";
+            self::$messages[0] ="";
         }
         return self::$reloaderInstance;
     }
@@ -42,7 +41,7 @@ class Reloader implements \Countable
      */
     public function add($reload)
     {
-        $this->messages[0] = $reload;
+        self::$messages[0] = $reload;
         $this->pushInSession();
     }
 
@@ -51,7 +50,7 @@ class Reloader implements \Countable
      */
     public function getMessages()
     {
-        return $this->messages;
+        return self::$messages;
     }
 
     /**
@@ -60,7 +59,7 @@ class Reloader implements \Countable
      */
     public function count()
     {
-        return count($this->messages);
+        return count(self::$messages);
     }
 
 }

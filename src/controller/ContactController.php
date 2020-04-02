@@ -89,7 +89,9 @@ class ContactController extends Controller
                 return $this->redirection('/contact');
             }
         }
-        (FlashBag::getInstance())->add("red", "Une erreur inconnue c'est produite !");
+        else{
+            (FlashBag::getInstance())->add("red", "Une erreur inconnue c'est produite !");
+        }
         return $this->render("contact.html.twig");
     }
 
