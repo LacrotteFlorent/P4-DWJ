@@ -71,7 +71,6 @@ class Manager
 
         if($params){
             $paramSql = $this->where($params);
-
             $format = 'SELECT %s FROM %s WHERE %s';
             $sqlQuery = sprintf($format, $select, $from, $paramSql);
         }
@@ -88,21 +87,17 @@ class Manager
      * @example requete: SELECT like_count FROM comment WHERE post_id = 3
      * @return Model
      */
-    public function findSelectByParam($selects = null, $params = null)
+    public function findSelectByParam($selects = '*', $params = null)
     {
         $from = array_values($this->metadata)[0];
 
-        if($selects)
+        if($selects != '*')
         {   
-            $selectSql = $this->where($selects, false);
-        }
-        else{
-            $selectSql = "*";
+            $selectSql = $this->select($selects);
         }
 
         if($params){
             $selectSql = $this->where($params);
-
             $format = 'SELECT %s FROM %s WHERE %s';
             $sqlQuery = sprintf($format, $selectSql, $from, $paramSql);
         }
@@ -121,11 +116,8 @@ class Manager
     public function findAllWithLimit($limit)
     {   
         $from = array_values($this->metadata)[0];
-
         $format = 'SELECT %s FROM %s LIMIT %s';
-
         $select = "*";
-
         $sqlQuery = sprintf($format, $select, $from, $limit);
 
         return $this->fetchAll($sqlQuery);
@@ -142,13 +134,8 @@ class Manager
     public function findAllWithLimitOffset($limit, $offset, $where = null, $operator = null)
     {   
         $from = array_values($this->metadata)[0];
-
-        if(!$operator){
-            $operator = '=';
-        }
-
         if($where){
-            $paramSql = $this->where($where);
+            $paramSql = $this->where($where, $operator);
 
             $sqlQuery = sprintf('SELECT * FROM %s WHERE %s LIMIT %s OFFSET %s', $from, $paramSql, $limit, $offset);
         }
@@ -172,17 +159,8 @@ class Manager
     public function findOrderByLimitOffset($limit, $offset, $orderBy, $desc = false, $where = null, $operator = null)
     {
         $from = array_values($this->metadata)[0];
-
-        if(!$operator){
-            $operator = '=';
-        }
-
         if($where){
-            $paramSql = "";
-            foreach ($where as $key => $param){
-                $paramSql = $paramSql .''. $key .' '. $operator .' \''.$param. '\' AND ';
-            }
-            $paramSql = substr($paramSql, 0, -5);
+            $paramSql = $this->where($where, $operator);
             if($desc){
                 $format = 'SELECT * FROM %s WHERE %s ORDER BY %s DESC LIMIT %s OFFSET %s';
             }
@@ -215,15 +193,11 @@ class Manager
     public function countParam($params = null, $select = null , $operator = null)
     {
         $from = array_values($this->metadata)[0];
-        if(!$operator){
-            $operator = '=';
-        }
         if(!$select){
             $select = '*';
         }
         if($params){
-            $paramSql = $this->where($params, true, $operator);
-
+            $paramSql = $this->where($params, $operator);
             $format = 'SELECT COUNT(%s) as count FROM %s WHERE %s';
             $sqlQuery = sprintf($format, $select, $from, $paramSql);
         }
@@ -310,15 +284,10 @@ class Manager
             $model->originalData[$column] = $sqlValue;
             $datas[$column] = $sqlValue;
         }
-        foreach($datas as $key => $data){
-            if(isset($data)){
-                $set[] = sprintf("%s = '%s'", $key, $data);
-            }
-        }
-        foreach($wheres as $key => $where){
-            $whereValues[] = sprintf("%s = '%s'", $key, $where);
-        }
-        $sqlQuery = sprintf("UPDATE %s SET %s WHERE %s", $this->metadata["table"], implode(", ", $set), implode(", ", $whereValues));
+        
+        $set = $this->where($datas);
+        $whereValues = $this->where($wheres);
+        $sqlQuery = sprintf("UPDATE %s SET %s WHERE %s", $this->metadata["table"], $set, $whereValues);
 
         return $this->pdo->prepare($sqlQuery)->execute();
     }
@@ -329,11 +298,8 @@ class Manager
      */
     public function delete($wheres)
     {
-        foreach($wheres as $key => $where){
-            $whereValues[] = sprintf("%s = '%s'", $key, $where);
-        }
-        $sqlQuery = sprintf("DELETE FROM %s WHERE %s", $this->metadata["table"], implode(", ", $whereValues));
-
+        $whereValues = $this->where($wheres);
+        $sqlQuery = sprintf("DELETE FROM %s WHERE %s", $this->metadata["table"], $whereValues);
         return $this->pdo->prepare($sqlQuery)->execute();
     }
 
@@ -346,39 +312,33 @@ class Manager
     }
 
     /**
-     * @param array $arrayValues
-     * @param bool $key
+     * @param array $wheres
      * @param string $operator
      * @return string
      */
-    private function where($arrayValues, $key = true, $operator = null)
+    private function where($wheres, $operator = null)
     {
-        if(!$key){
-            $selectSql = "";
-            foreach ($arrayValues as $select){
-                $selectSql = $selectSql .''.$select. ', ';
-            }
-            $selectSql = substr($selectSql, 0, -2);
-            return $selectSql;
+        if(!$operator){
+            $operator = '=';
         }
-        else{
-            if($operator){
-                $paramSql = "";
-                foreach ($arrayValues as $key => $param){
-                    $paramSql = $paramSql .''. $key .' '. $operator .' \''.$param. '\' AND ';
-                }
-                $paramSql = substr($paramSql, 0, -5);
-                return $paramSql;
-            }
-            else{
-                $paramSql = "";
-                foreach ($arrayValues as $key => $param){
-                    $paramSql = $paramSql .''. $key .' = '.$param. ' AND ';
-                }
-                $paramSql = substr($paramSql, 0, -5);
-                return $paramSql;
-            }
+        foreach($wheres as $key => $where){
+            $whereValues[] = sprintf("%s %s '%s'", $key, $operator, $where);
         }
+        return implode(" AND ", $whereValues);
+    }
+
+    /**
+     * @param array $arrayValues
+     * @return string
+     */
+    private function select($arrayValues)
+    {
+        $selectSql = "";
+        foreach ($arrayValues as $select){
+            $selectSql = $selectSql .''.$select. ', ';
+        }
+        $selectSql = substr($selectSql, 0, -2);
+        return $selectSql;
     }
 
 }
