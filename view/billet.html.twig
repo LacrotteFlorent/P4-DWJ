@@ -21,107 +21,107 @@
 {% endblock head %}
 
 {% block body %}
-        <div class="container-fluid" id="bodyBillet">
-            {% include "include_header.html" %}
-            <div id="billet" class="row justify-content-center my-5">
-                <div class="col-12 col-sm-10 col-md-8 text-center">
-                    <div class="row justify-content-center mb-5">
-                        <img src="/public/img/{{image.getName}}" alt='{{image.getAlt}}' />
-                    </div>
-                    <h2>{{billet.title}}</h2>
-                    {% set billetRaW = billet.content %}
-                    <p><span class="billetCapitalize">{{billet.content|onlyFirstLetter}}</span>{{billet.content|deleteFirstLetter|raw}}</p>
+    <div class="container-fluid" id="bodyBillet">
+        {% include "include_header.html" %}
+        <div id="billet" class="row justify-content-center my-5">
+            <div class="col-12 col-sm-10 col-md-8 text-center">
+                <div class="row justify-content-center mb-5">
+                    <img src="/public/img/{{image.getName}}" alt='{{image.getAlt}}' />
                 </div>
+                <h2>{{billet.title}}</h2>
+                {% set billetRaW = billet.content %}
+                <p><span class="billetCapitalize">{{billet.content|onlyFirstLetter}}</span>{{billet.content|deleteFirstLetter|raw}}</p>
             </div>
-            <div class="socialNetworkBillet row py-4">
-                <div class="socialCircles col-12">
-                    <div class="row justify-content-center">
-                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
-                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
-                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
-                        <div id="like" class="circle d-flex justify-content-center align-items-center"><i class="far fa-heart"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div id="splitBillet" class="row">
-                <div class="spaceSplit col-1"></div>
-                <div class="split col-10"></div>
-                <div class="spaceSplit col-1"></div>
-            </div>
-            <div id="newComBillet" class="row justify-content-center">
-                <div class="col-12 col-sm-10 col-md-8 shadow-lg">
-                    <h3 class="pt-3">Faites moi part de votre avis</h3>
-                    <form method="POST" class="row">
-                        <div class="form-group col-12 d-flex flex-column pb-3">
-                            <div class="row w-50">
-                                <div class="col-12 d-flex flex-column">
-                                    <label class="pb-0 mt-0" for="billetComPseudo">Pseudo :</label>
-                                    <input type="text" id="billetComPseudo" name="author" placeholder=" Votre pseudo" class="form-control rounded-sm border-0" value="{{RELOAD.getMessages.0.author}}" />
-                                </div>
-                            </div>
-                            <label for="billetComMsg">Message :</label>
-                            <textarea id="billetComMsg" name="content" class="form-control rounded-sm border-0" cols="30" rows="6" placeholder=" Ecrivez votre commentaire">{{RELOAD.getMessages.0.content}}</textarea>
-                            <div class="w-50 my-2">
-                                <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
-                                <button type="submit" name="submit" value="sent" class="btn rounded-sm border-0">Envoyer</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row justify-content-center mt-3 mb-1">
-                <div class="col-12 col-sm-10 col-md-8">
-                    <p class="mb-0"><i class="far fa-comment"></i> 
-                        {% if nbComments.count > 1 %}
-                            {{nbComments.count}} Commentaires 
-                        {% else %}
-                            {{nbComments.count}} Commentaire
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-            <div id="comBillet" class="row justify-content-center mb-5">
-                <div class="col-12 col-sm-10 col-md-8 shadow-lg py-4">
-                    {% if pages.getItemsToShow %}
-                        {% for comment in pages.getItemsToShow %}
-                            <div class="mb-4 border p-1 rounded-sm">
-                                <h4 class="m-0 pb-1">{{comment.author is empty ? "Guest" : comment.author}}</h4>
-                                <p class="">{{comment.content}}</p>
-                                <div class="d-flex justify-content-start align-self-center">
-                                    <p class="dateCom m-0 align-self-center">{{comment.postedAt|date('d-m-Y \à H:i:s')}}</p>
-                                    <form method="POST" class="align-middle">
-                                        <button type="submit" formaction="/reportAdminComment/{{comment.getId}}" name="idBillet" value="{{billet.id}}" class="btn text-muted"><i class="fas fa-exclamation-triangle"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% else %}
-                        <div class="mb-4 border p-1 rounded-sm">
-                            <h4 class="m-0 pb-1">Il n'y a aucun commentaire</h4>
-                            <p class="">Soit le premier à donner ton avis !</p>
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center mb-4">
-                    {% if pages.getPaginate %}
-                        <li class="page-item">
-                            <a class="page-link" href="/index.php/billet/{{billet.id}}?pageCom=1#comBillet">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
-                        </li>
-                        {% for page in pages.getPages %}
-                            {% if pages.getActualPage == page %}
-                                <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
-                            {% else %}
-                                <li class="page-item"><a class="page-link" href="/index.php/billet/{{billet.id}}?pageCom={{page}}#comBillet">{{page}}</a></li>
-                            {% endif %}
-                        {% endfor %}
-                        <li class="page-item">
-                            <a class="page-link" href="/index.php/billet/{{billet.id}}?pageCom={{pages.getLastPage}}#comBillet">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
-                        </li>
-                    {% endif %}
-                </ul>
-            </nav>
-            {% include "include_footer.html" %}
         </div>
+        <div class="socialNetworkBillet row py-4">
+            <div class="socialCircles col-12">
+                <div class="row justify-content-center">
+                    <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
+                    <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
+                    <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
+                    <div id="like" class="circle d-flex justify-content-center align-items-center"><i class="far fa-heart"></i></div>
+                </div>
+            </div>
+        </div>
+        <div id="splitBillet" class="row">
+            <div class="spaceSplit col-1"></div>
+            <div class="split col-10"></div>
+            <div class="spaceSplit col-1"></div>
+        </div>
+        <div id="newComBillet" class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 shadow-lg">
+                <h3 class="pt-3">Faites moi part de votre avis</h3>
+                <form method="POST" class="row">
+                    <div class="form-group col-12 d-flex flex-column pb-3">
+                        <div class="row w-50">
+                            <div class="col-12 d-flex flex-column">
+                                <label class="pb-0 mt-0" for="billetComPseudo">Pseudo :</label>
+                                <input type="text" id="billetComPseudo" name="author" placeholder=" Votre pseudo" class="form-control rounded-sm border-0" value="{{RELOAD.getMessages.0.author}}" />
+                            </div>
+                        </div>
+                        <label for="billetComMsg">Message :</label>
+                        <textarea id="billetComMsg" name="content" class="form-control rounded-sm border-0" cols="30" rows="6" placeholder=" Ecrivez votre commentaire">{{RELOAD.getMessages.0.content}}</textarea>
+                        <div class="w-50 my-2">
+                            <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
+                            <button type="submit" name="submit" value="sent" class="btn rounded-sm border-0">Envoyer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3 mb-1">
+            <div class="col-12 col-sm-10 col-md-8">
+                <p class="mb-0"><i class="far fa-comment"></i> 
+                    {% if nbComments.count > 1 %}
+                        {{nbComments.count}} Commentaires 
+                    {% else %}
+                        {{nbComments.count}} Commentaire
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        <div id="comBillet" class="row justify-content-center mb-5">
+            <div class="col-12 col-sm-10 col-md-8 shadow-lg py-4">
+                {% if pages.getItemsToShow %}
+                    {% for comment in pages.getItemsToShow %}
+                        <div class="mb-4 border p-1 rounded-sm">
+                            <h4 class="m-0 pb-1">{{comment.author is empty ? "Guest" : comment.author}}</h4>
+                            <p class="">{{comment.content}}</p>
+                            <div class="d-flex justify-content-start align-self-center">
+                                <p class="dateCom m-0 align-self-center">{{comment.postedAt|date('d-m-Y \à H:i:s')}}</p>
+                                <form method="POST" class="align-middle">
+                                    <button title="Signaler le commentaire" type="submit" formaction="/reportAdminComment/{{comment.getId}}" name="idBillet" value="{{billet.id}}" class="btn text-muted"><i class="fas fa-exclamation-triangle"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="mb-4 border p-1 rounded-sm">
+                        <h4 class="m-0 pb-1">Il n'y a aucun commentaire</h4>
+                        <p class="">Soit le premier à donner ton avis !</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center mb-4">
+                {% if pages.getPaginate %}
+                    <li class="page-item">
+                        <a class="page-link" href="/index.php/billet/{{billet.id}}?pageCom=1#comBillet">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                    </li>
+                    {% for page in pages.getPages %}
+                        {% if pages.getActualPage == page %}
+                            <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="/index.php/billet/{{billet.id}}?pageCom={{page}}#comBillet">{{page}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="page-item">
+                        <a class="page-link" href="/index.php/billet/{{billet.id}}?pageCom={{pages.getLastPage}}#comBillet">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% include "include_footer.html" %}
+    </div>
 {% endblock body %}

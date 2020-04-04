@@ -36,3 +36,7 @@
 #adminDashboard .fa-pencil-alt, #adminDashboard .fa-trash-alt, #adminDashboard .fa-check-square {
     color: #38435A;
 }
+
+.bubbleDashboard button {
+    color: #FFF;
+}
