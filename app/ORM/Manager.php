@@ -285,10 +285,9 @@ class Manager
             $datas[$column] = $sqlValue;
         }
         
-        $set = $this->where($datas);
+        $set = $this->where($datas, null, ',');
         $whereValues = $this->where($wheres);
         $sqlQuery = sprintf("UPDATE %s SET %s WHERE %s", $this->metadata["table"], $set, $whereValues);
-
         return $this->pdo->prepare($sqlQuery)->execute();
     }
 
@@ -314,17 +313,23 @@ class Manager
     /**
      * @param array $wheres
      * @param string $operator
+     * @param string $separator
      * @return string
      */
-    private function where($wheres, $operator = null)
+    private function where($wheres, $operator = null, $separator = null)
     {
         if(!$operator){
             $operator = '=';
         }
-        foreach($wheres as $key => $where){
-            $whereValues[] = sprintf("%s %s '%s'", $key, $operator, $where);
+        if(!$separator){
+            $separator = 'AND';
         }
-        return implode(" AND ", $whereValues);
+        foreach($wheres as $key => $where){
+            if(isset($where)){
+                $whereValues[] = sprintf("%s %s '%s'", $key, $operator, $where);
+            }
+        }
+        return implode(" $separator ", $whereValues);
     }
 
     /**

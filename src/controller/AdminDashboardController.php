@@ -37,6 +37,7 @@ class AdminDashboardController extends Controller
         $paginatorCommentsReport = new Paginator($this->request, (int) $nbCommentsReport['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), "PAGE_DASHBOARD", "pagesCommentReport", ['report' => 1]);
         
         return $this->render("adminDashboard.html.twig", [
+            'nbBillets'         => $nbBillets,
             'billets'           => $paginatorBillet,
             'commentsReport'    => $paginatorCommentsReport,
             'nbComments'        => $nbComments,

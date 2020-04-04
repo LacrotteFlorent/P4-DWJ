@@ -97,7 +97,6 @@ class Validator
                 else{
                     throw new FormException('The $asserts table of the assertion method is poorly implemented.');
                 }
-                
             }
         }
 
