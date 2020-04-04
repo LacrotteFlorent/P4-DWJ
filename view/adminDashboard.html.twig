@@ -101,7 +101,7 @@
                                         {% endif %}
                                         {% if billet.draft == 1 %}
                                         <td><p class="text-warning"><strong>Brouillon</strong></p></td>
-                                        {% elseif billet.postedAt|date('d-m-Y \à H:i:s') > date|date('d-m-Y \à H:i:s') %}
+                                        {% elseif date(billet.postedAt|date('F j, Y')) > date(date|date('F j, Y')) %}
                                         <td><p class="text-info"><strong>Sera publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</strong></p></td>
                                         {% else %}
                                         <td><p class="text-success"><strong>Publié</strong></p></td>
