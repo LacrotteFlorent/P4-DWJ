@@ -1,0 +1,127 @@
+@media screen and (min-width: 992px) {
+    
+
+ 
+                            /* BLOG & ACCUEIL */
+                            /* BLOG & ACCUEIL */
+                            /* BLOG & ACCUEIL */
+
+#blogOldChapter .row, #news .chapter {
+    transition: transform 0.5s ease-out;
+    transform: scale(1.00);
+    -webkit-transition: transform 0.5s ease-out;
+    -moz-transition: transform 0.5s ease-out;
+    -ms-transition: transform 0.5s ease-out;
+    -o-transition: transform 0.5s ease-out;
+    -webkit-transform: scale(1.00);
+    -moz-transform: scale(1.00);
+    -ms-transform: scale(1.00);
+    -o-transform: scale(1.00);
+}
+
+#blogOldChapter .row:hover, #news .chapter:hover {
+    transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    -o-transform: scale(1.01);
+}
+
+#blogAsideSummary a {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 1.0em;
+    transition: font-size 0.5s ease-out;
+    -webkit-transition: font-size 0.5s ease-out;
+    -moz-transition: font-size 0.5s ease-out;
+    -ms-transition: font-size 0.5s ease-out;
+    -o-transition: font-size 0.5s ease-out;
+}
+
+#blogAsideSummary a:hover {
+    color: rgb(173, 173, 173);
+    font-size: 1.2em;
+}
+
+
+                            /* DASHBOARD */
+                            /* DASHBOARD */
+                            /* DASHBOARD */
+
+#adminDashboard tr:hover {
+    background-color: rgb(211, 207, 207) !important;
+}
+
+.bubbleDashboardButton{
+    transition: background-color 0.5s ease-out, color 0.5s ease-out;
+    -webkit-transition: background-color 0.5s ease-out, color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out, color 0.5s ease-out;
+    -ms-transition: background-color 0.5s ease-out, color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out, color 0.5s ease-out;
+}
+
+.bubbleDashboardButton:hover{
+    background-color: rgb(211,207,207)!important;
+    color: #343a40 !important;
+}
+
+
+                            /* HEADER & FOOTER */
+                            /* HEADER & FOOTER */
+                            /* HEADER & FOOTER */
+
+.headband nav a, .footband a {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 1.0em;
+    transition: font-size 0.5s ease-out;
+    -webkit-transition: font-size 0.5s ease-out;
+    -moz-transition: font-size 0.5s ease-out;
+    -ms-transition: font-size 0.5s ease-out;
+    -o-transition: font-size 0.5s ease-out;
+}
+
+.headband nav a:hover, .footband a:hover {
+    color: rgb(173, 173, 173);
+    font-size: 1.4em;
+}
+
+
+
+                            /* CONNECT */
+                            /* CONNECT */
+                            /* CONNECT */
+
+.connect{
+    position: fixed;
+    top: -5vh;
+    z-index: 100;
+    transition: top 0.5s ease-out;
+    -webkit-transition: top 0.5s ease-out;
+    -moz-transition: top 0.5s ease-out;
+    -ms-transition: top 0.5s ease-out;
+    -o-transition: top 0.5s ease-out;
+}
+
+.connect:hover{
+    top: 0vh;
+}
+
+}
+
+
+
+@media  (min-width: 0px) and (max-width: 992px) {
+
+.connect{
+    position: fixed;
+    top: 0vh;
+    z-index: 100;
+    transition: top 0.5s ease-out;
+    -webkit-transition: top 0.5s ease-out;
+    -moz-transition: top 0.5s ease-out;
+    -ms-transition: top 0.5s ease-out;
+    -o-transition: top 0.5s ease-out;
+}
+
+}

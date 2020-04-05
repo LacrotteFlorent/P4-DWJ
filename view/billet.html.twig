@@ -90,7 +90,7 @@
                             <div class="d-flex justify-content-start align-self-center">
                                 <p class="dateCom m-0 align-self-center">{{comment.postedAt|date('d-m-Y \à H:i:s')}}</p>
                                 <form method="POST" class="align-middle">
-                                    <button title="Signaler le commentaire" type="submit" formaction="/reportAdminComment/{{comment.getId}}" name="idBillet" value="{{billet.id}}" class="btn text-muted"><i class="fas fa-exclamation-triangle"></i></button>
+                                    <button title="Signaler le commentaire" type="submit" formaction="/reportAdminComment/{{comment.getId}}?#comBillet" name="idBillet" value="{{billet.id}}" class="btn text-muted"><i class="fas fa-exclamation-triangle"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -123,5 +123,8 @@
             </ul>
         </nav>
         {% include "include_footer.html" %}
+    </div>
+    <div class="progress fixed-top bg-warning" style="height: 2px;">
+        <div class="progress-bar" role="progressbar" style="" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 {% endblock body %}

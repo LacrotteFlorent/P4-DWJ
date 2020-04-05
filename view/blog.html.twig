@@ -25,13 +25,15 @@
             {% include "include_header.html" %}
             <div id="blogMainSplit" class="row">
                 <!-- main section with content -->
-                <section id="blogContent" class="col-12 col-lg-9">
+                <section id="blogContent" class="col-12 col-lg-9  animated fadeInLeft delay-1s">
                     <!-- new chapter -->
                     <section id="blogLastChapter" class="row ">
                         {% for billet in billetsToShow.getItemsToShow %}
                             {% if loop.first %}
-                                <div id="blogLastChapterPhoto" class="col-12">
-                                    <img src="/public/img/{{images[billet.getId].getName}}"  alt="{{images[billet.getId].getAlt}}" />
+                                <div id="blogLastChapterPhoto" class="col-12 text-center">
+                                    <a href="/billet/{{billet.id}}">
+                                        <img src="/public/img/{{images[billet.getId].getName}}" alt="{{images[billet.getId].getAlt}}" />
+                                    </a>
                                 </div>
                                 <div id="blogLastChapterSocialNetwork" class="col-12">
                                     <div class="row">
@@ -87,8 +89,10 @@
                             {% if not loop.first %}
                                 <div class="col-12 col-sm-10">
                                     <div class="row">
-                                        <div id="blogPhotoChapter" class="col-12 col-sm-5">
-                                            <img src="/public/img/{{images[billet.getId].getName}}"  alt="{{images[billet.getId].getAlt}}" />
+                                        <div id="blogPhotoChapter" class="col-12 col-sm-5 text-center">
+                                            <a href="/billet/{{billet.id}}">
+                                                <img src="/public/img/{{images[billet.getId].getName}}"  alt="{{images[billet.getId].getAlt}}" />
+                                            </a>
                                         </div>
                                         <div id="blogContentChapter" class="col-12 col-sm-7">
                                             <div class="context">
@@ -126,7 +130,7 @@
                         </nav>
                     </section>
                 <!-- aside section from right -->
-                <aside id="blogAside" class="col-12 col-lg-3 ">
+                <aside id="blogAside" class="col-12 col-lg-3 animated fadeInRight delay-1s">
                     <div class="row">
                         <!-- summary -->
                         <div id="blogAsideSummary" class="col-12">

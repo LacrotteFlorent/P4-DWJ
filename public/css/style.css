@@ -9,7 +9,8 @@ a {
 }
 
 a:hover {
-    color: #905105;
+    text-decoration: none;
+    color: #FFF;
 }
 
 .socialNetwork {
@@ -57,14 +58,6 @@ a:hover {
     right: 15px;
 }
 
-#connect{
-    position: fixed;
-    top: 0px;
-    left: calc(100% - 225px);
-    z-index: 100;
-}
-
-
 
                             /* HEADER */
                             /* HEADER */
@@ -72,6 +65,8 @@ a:hover {
 
 header {
     background-color: #181D27;
+    z-index: 10;
+    position: relative;
 }
 
 .headband {
@@ -242,6 +237,8 @@ header a {
     margin-top: 60px;
 }
 
+
+
 #news .photoChapter img {
     max-width: 100%;
     height: auto;
@@ -370,6 +367,8 @@ footer {
     color: #FFF;
     background-color: #181D27;
     text-align: center;
+    z-index: 10;
+    position: relative;
 }
 
 footer a, footer p {

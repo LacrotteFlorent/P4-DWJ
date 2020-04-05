@@ -40,7 +40,14 @@
         </div>
         {% if LOGIN != empty %}
             <div id="connect" class="container-fluid">
-                <span class="badge badge-info p-2">Vous êtes connecté</span><a href="/disconnectAdminConnexion" class="badge badge-dark p-2">Déconnexion</a>
+                <div class="row">
+                    <div class="d-flex flex-column align-items-end w-100">
+                        <div class="connect d-flex flex-column align-items-end">
+                        <a href="/disconnectAdminConnexion" class="badge badge-dark p-3 rounded-0">Déconnexion</a>
+                        <span class="badge badge-success p-3 rounded-0 d-none d-lg-block w-50 "><i class="fas fa-power-off"></i></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         {% endif %}
     </body>

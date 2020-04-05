@@ -19,12 +19,14 @@
                     </div>
                     <div class="col-12 mb-4 p-3">
                         <div class="row">
-                            <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
-                                <a href="#comments"><h5>Commentaires</h5></a>
-                                <div class="row justify-content-center align-items-baseline">
-                                    <p>{{nbComments.count}}</p>
-                                    <i class="far fa-comment ml-2"></i>
-                                </div>
+                            <div class="bubbleDashboard bubbleDashboardButton col-12 col-sm-6 col-md-4 border p-2 text-center">
+                                <a href="#comments">
+                                    <h5>Commentaires</h5>
+                                    <div class="row justify-content-center align-items-baseline">
+                                        <p>{{nbComments.count}}</p>
+                                        <i class="far fa-comment ml-2"></i>
+                                    </div>
+                                </a>
                             </div>
                             <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
                                 <h5>Ont aimé</h5>
@@ -40,30 +42,32 @@
                                     <i class="far fa-eye ml-2"></i>
                                 </div>
                             </div>
-                            <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
-                                <a href="#comments"><h5>Commentaires à modérer</h5></a>
-                                <div class="row justify-content-center align-items-baseline">
-                                    <p>{{totalCountToValid.count}}</p>
-                                    <i class="fas fa-comment-medical ml-2"></i>
-                                </div>
+                            <div class="bubbleDashboard bubbleDashboardButton col-12 col-sm-6 col-md-4 border p-2 text-center">
+                                <a href="#comments">
+                                    <h5>Commentaires à modérer</h5>
+                                    <div class="row justify-content-center align-items-baseline">
+                                        <p>{{totalCountToValid.count}}</p>
+                                        <i class="fas fa-comment-medical ml-2"></i>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
-                                <a href="#commentsReport"><h5>Commentaires signalés</h5></a>
-                                <div class="row justify-content-center align-items-baseline">
-                                    <p>{{totalCountReport.count}}</p>
-                                    <i class="fas fa-comment-slash ml-2"></i>
-                                </div>
+                            <div class="bubbleDashboard bubbleDashboardButton col-12 col-sm-6 col-md-4 border p-2 text-center">
+                                <a href="#commentsReport">
+                                    <h5>Commentaires signalés</h5>
+                                    <div class="row justify-content-center align-items-baseline">
+                                        <p>{{totalCountReport.count}}</p>
+                                        <i class="fas fa-comment-slash ml-2"></i>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="bubbleDashboard col-12 col-sm-6 col-md-4 border p-2 text-center">
-                                <form method="POST">
-                                    <button type="submit" formaction="/virginAdminPost" class="bg-transparent border-0"><h5>Créer un article</h5></button>
-                                </form>
-                                <div class="row justify-content-center align-items-baseline">
-                                    <form method="POST">
-                                        <button type="submit" formaction="/virginAdminPost" class="bg-transparent border-0"><i class="fas fa-plus-square"></i></button>
-                                    </form>
-                                </div>
-                            </div>
+                            <form method="POST" class="bubbleDashboard bubbleDashboardButton col-12 col-sm-6 col-md-4 border p-2 text-center">
+                                <button type="submit" formaction="/virginAdminPost" class="bg-transparent border-0">
+                                    <h5>Créer un article</h5>
+                                    <div class="row justify-content-center align-items-baseline">
+                                        <i class="fas fa-plus-square"></i>
+                                    </div>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

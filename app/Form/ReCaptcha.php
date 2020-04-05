@@ -1,8 +1,8 @@
 <?php 
 
-use Framework\FlashBag;
-
 namespace Framework\Form;
+
+use Framework\FlashBag;
 
 /**
  * @source 
@@ -36,12 +36,12 @@ class ReCaptcha
                 if ($recaptcha->score >= 0.5) {
                     return true;
                 } else {
-                    FlashBag::getInstance()->add("red", "Seriez vous un robot ? En êtes vous VRAIMENT sûr ? :)");
+                    FlashBag::getInstance()->add("red", "ReCAPTCHA detecte la présence d'un robot. Vous n'en êtes pas un ? êtes vous VRAIMENT sûr ? :). Rechargez la page");
                     return false;
                 }
             }
             else{
-                FlashBag::getInstance()->add("red", "Seriez vous un robot ? En êtes vous VRAIMENT sûr ? :)");
+                FlashBag::getInstance()->add("red", "ReCAPTCHA detecte la présence d'un robot. Vous n'en êtes pas un ? êtes vous VRAIMENT sûr ? :). Rechargez la page");
                 return false;
             }            
         }

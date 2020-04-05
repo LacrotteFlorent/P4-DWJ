@@ -4,6 +4,7 @@
 
 body {
     font-family: "Source Sans Pro", sans-serif;
+    overflow-x: hidden;
 }
 
 #blogContent {
@@ -38,15 +39,6 @@ body {
 
 #blogAsideSummary h4 {
     margin-top: 10px;
-}
-
-#blogAsideSummary a {
-    text-decoration: none;
-    font-size: 1.0em;
-}
-
-#blogAsideSummary a:hover {
-    color: #F08400;
 }
 
 #blogAsideSummary ul {
@@ -274,6 +266,8 @@ body {
     color: #FFF;
 }
 
+
+
                             /* SECTION OLD CHAPTER */
                             /* SECTION OLD CHAPTER */
                             /* SECTION OLD CHAPTER */
@@ -304,7 +298,16 @@ body {
     color: #542E00;
 }
 
-
 #blogOldChapter div {
     margin-bottom: 15px;
+}
+
+#blogOldChapter img {
+    height: max-content;
+    box-shadow:3px 3px 10px #333;
+    border-radius: 3px;
+}
+
+#blogAside{
+    box-shadow:-3px 0px 6px 4px #656565;
 }

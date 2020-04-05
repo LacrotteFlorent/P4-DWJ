@@ -3,6 +3,11 @@
     font-family: "Open sans", sans-serif;
 }
 
+#adminDashboard a, #adminDashboard button{
+    text-decoration: none;
+    color: inherit;
+}
+
 .adminDashboard {
     overflow: hidden;
 }
@@ -40,3 +45,4 @@
 .bubbleDashboard button {
     color: #FFF;
 }
+
