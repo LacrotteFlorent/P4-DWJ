@@ -51,7 +51,7 @@ class Database
     {
         $options[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
         try {
-        $this->pdo = new \PDO("mysql:dbname=". $dbName . ";host". $host, $user, $password, $options);
+        $this->pdo = new \PDO("mysql:dbname=". $dbName . ";host=". $host, $user, $password, $options);
         } catch (ORMException $e){
             throw new ORMException($e);
         }

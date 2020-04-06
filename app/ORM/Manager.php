@@ -64,13 +64,13 @@ class Manager
      * @example requete: SELECT * FROM post WHERE post_id = 3
      * @return Model
      */
-    public function findAllByParam($params = null)
+    public function findAllByParam($params = null, $operator = null)
     {
         $from = array_values($this->metadata)[0];
         $select = "*";
 
         if($params){
-            $paramSql = $this->where($params);
+            $paramSql = $this->where($params, $operator);
             $format = 'SELECT %s FROM %s WHERE %s';
             $sqlQuery = sprintf($format, $select, $from, $paramSql);
         }

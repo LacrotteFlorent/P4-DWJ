@@ -117,7 +117,7 @@ class Paginator
         }
         else{
             $this->paginate = false;
-            $this->itemsToShow = $this->managerItems->findAllByParam($paramSql);
+            $this->itemsToShow = $this->managerItems->findAllByParam($paramSql, $operator);
         }
     }
 
