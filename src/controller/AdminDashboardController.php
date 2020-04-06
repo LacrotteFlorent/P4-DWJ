@@ -4,6 +4,7 @@ namespace Project\Controller;
 
 use Framework\Controller;
 use Framework\Paginator;
+use Framework\FlashBag;
 
 
 class AdminDashboardController extends Controller
@@ -13,6 +14,11 @@ class AdminDashboardController extends Controller
     */
     public function show()
     {
+        if(!$this->denyAccessUnlessGranted("admin")){
+            FlashBag::getInstance()->add("red", "Vous n'avez pas les droits pour acceder à cette page.");
+            return $this->redirection('/host');
+        };
+
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam();
         $nbCommentsReport = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['report' => 1]);
         $nbCommentsWithoutReport = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['report' => 0]);

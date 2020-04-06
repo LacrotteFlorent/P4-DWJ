@@ -29,6 +29,11 @@ class UserModel extends Model
     private $username;
 
     /**
+     * @var string
+     */
+    private $role;
+
+    /**
      * @return array
      */
     public static function metadata()
@@ -56,6 +61,11 @@ class UserModel extends Model
                     "type"      =>"string",
                     "property"  =>"username",
                     "assert"    =>"string"
+                ],
+                "role"          =>[
+                    "type"      =>"string",
+                    "property"  =>"role",
+                    "assert"    =>"stringOrNull"
                 ]
             ]
         ];
@@ -131,6 +141,22 @@ class UserModel extends Model
     public function setUsername($username)
     {
         $this->username = $username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
 }

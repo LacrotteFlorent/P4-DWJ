@@ -27,7 +27,8 @@ class SignUpConnexionController extends Controller
             $userModel = (new UserModel())->hydrateForSql([
                 "password"      => password_hash(($_POST["password"]), PASSWORD_DEFAULT),
                 "username"      => $_POST["login"],
-                "email"         => $_POST["mail"]
+                "email"         => $_POST["mail"],
+                "role"          => "ROLE_USER"
             ]);
             if((new Validator)->assertion($userModel, [
                 'rgpd'      => [

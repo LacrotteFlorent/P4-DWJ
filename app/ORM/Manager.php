@@ -326,7 +326,7 @@ class Manager
         }
         foreach($wheres as $key => $where){
             if(isset($where)){
-                $whereValues[] = sprintf("%s %s '%s'", $key, $operator, $where);
+                $whereValues[] = sprintf('%s %s "%s"', $key, $operator, $where);
             }
         }
         return implode(" $separator ", $whereValues);

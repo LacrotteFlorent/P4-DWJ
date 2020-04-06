@@ -54,19 +54,10 @@ class Controller
     }
 
     /**
-     * @param array $paramsMatches
-     * @return Response
-     */
-    public function index($paramsMatches): Response
-    {
-        return new Response("<h1>Reponse</h1>");
-    }
-
-    /**
      * @param string $uri
      * @return RedirectionResponse
      */
-    public function redirection($uri): RedirectionResponse
+    protected function redirection($uri): RedirectionResponse
     {
         return new RedirectionResponse($uri);
     }
@@ -76,7 +67,7 @@ class Controller
      * @param array $database
      * @return Response
      */
-    public function render($filename, $data = []): Response
+    protected function render($filename, $data = []): Response
     {
         $view = $this->twig->load($filename);
         $content = $view->render($data);
@@ -89,6 +80,31 @@ class Controller
     protected function getDatabase()
     {
         return $this->database;
+    }
+
+    /**
+     * @param string $userAccessGranted {'admin' or 'user'}
+     * @internal
+     *  $userAccessGranted
+     *  Allows access to the page for admin OR admin and user
+     * @return RedirectionResponse
+     */
+    protected function denyAccessUnlessGranted($userAccessGranted)
+    {
+        if(isset($_SESSION['login'])){
+            $role = ($this->getDatabase()->getManager('\Project\Model\UserModel')->findSelectByParam('*', ['email' => $_SESSION["login"]]))[0]->getRole();
+            if($userAccessGranted = "admin"){
+                if($role === "ROLE_ADMIN"){
+                    return true;
+                }
+            }
+            elseif($userAccessGranted = "user"){
+                if($role === "ROLE_ADMIN" || $role === "ROLE_USER"){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
