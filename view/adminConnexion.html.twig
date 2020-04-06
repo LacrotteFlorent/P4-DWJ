@@ -30,13 +30,20 @@
                             <h2 class="my-3">Page de connexion</h2>
                         </div>
                     </div>
+                    {% if login == true %}
+                    <div class="row justify-content-center align-items-center connexionHeighty">
+                        <div class="col-12 col-sm-8 col-md-6 col-lg-4 my-4">
+                            <p>Vous êtes connecté</p>
+                        </div>
+                    </div>
+                    {% else %}
                     <div class="row justify-content-center align-items-center connexionHeighty">
                         <div class="col-12 col-sm-8 col-md-6 col-lg-4 my-4">
                             <form method="POST" action="contact_post">
                                 <p>Connectez vous :</p>
                                 <div class="form-group">
-                                    <label for="connexionIdent">Identifiant :</label>
-                                    <input type="text" id="connexionIdent" name="login" placeholder=" Identifiant" class="form-control" required value="{{RELOAD.getMessages.0.username}}" />
+                                    <label for="connexionIdent">Adresse mail :</label>
+                                    <input type="email" id="connexionIdent" name="login" placeholder=" Identifiant" class="form-control" required value="{{RELOAD.getMessages.0.username}}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="connexionMDP">Mot de passe :</label>
@@ -47,6 +54,7 @@
                             </form>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             {% include "include_footer.html" %}

@@ -2,6 +2,9 @@
                             /* GENERAL */
                             /* GENERAL */
 
+.grecaptcha-badge {
+    z-index: 20;
+}
 
 a {
     text-decoration: none;

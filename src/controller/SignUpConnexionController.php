@@ -25,7 +25,7 @@ class SignUpConnexionController extends Controller
     {
         if($this->request->getRequestMethod() === 'POST'){
             $userModel = (new UserModel())->hydrateForSql([
-                "password"      => md5($_POST["password"]),
+                "password"      => password_hash(($_POST["password"]), PASSWORD_DEFAULT),
                 "username"      => $_POST["login"],
                 "email"         => $_POST["mail"]
             ]);
@@ -40,11 +40,11 @@ class SignUpConnexionController extends Controller
             ]], true)){
                     $connectUser = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['username' => $_POST["login"]]))['count']));
                     $connectMail = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['email' => $_POST["mail"]]))['count']));
-                    if($connectUser === "1" && $connectMail === "1"){
+                    if($connectUser + $connectMail >= 2 ){
                         FlashBag::getInstance()->add("orange", "Cet identifiant / mail existe déja.");
                         return $this->redirection('/signUpConnexion');
                     }
-                    elseif($connectUser === "0" && $connectMail === "0"){
+                    else{
                         $this->getDatabase()->getManager('\Project\Model\UserModel')->insertByModel($userModel);
                         FlashBag::getInstance()->add("green", "Vous êtes maitenant inscrit");
 
@@ -52,14 +52,11 @@ class SignUpConnexionController extends Controller
                         $failure = null;
                         $message = (new \Swift_Message('Prise de contact Site Web'))
                         ->setFrom(['swift.mailer.lacrotte.florent@gmail.com' => 'Inscription Site JeanForteroche'])
-                        ->setTo([$_POST['mail'] => $_POST['login']])
+                        ->setTo([$_POST['mail'] => $_POST['mail']])
                         ->setBody("Vous êtes maintenant inscrit sur l'espace membre de JeanForteroche")
                         ;
                         (SwiftMailer::getInstance())->getMailer()->send($message, $failure);
                         return $this->redirection('/adminConnexion');
-                    }
-                    else{
-                        throw new SrcControllerException("FATAL ERROR : Two users have the same couple user mdp");
                     }
                     return $this->redirection('/adminConnexion');
                 }

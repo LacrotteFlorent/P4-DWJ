@@ -47,7 +47,7 @@ class SwiftMailer
     {
         $this->transport = (new \Swift_SmtpTransport($_ENV["MAIL_SMTP"], $_ENV["MAIL_PORT"], $_ENV["MAIL_PROTOCOLE"]))
             ->setUsername($_ENV["MAIL_USER"])
-            ->setPassword(["MAIL_PASS"])
+            ->setPassword($_ENV["MAIL_PASS"])
         ;
         $this->mailer = new \Swift_Mailer($this->transport);
     }

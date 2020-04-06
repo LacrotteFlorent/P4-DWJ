@@ -14,7 +14,9 @@ class AdminConnexionController extends Controller
     */
     public function show()
     {
-        return $this->render("adminConnexion.html.twig");
+        return $this->render("adminConnexion.html.twig",[
+            'login'    => !empty($_SESSION['login']) ? true : false,
+        ]);
     }
 
     /**
@@ -25,25 +27,21 @@ class AdminConnexionController extends Controller
         if($this->request->getRequestMethod() === 'POST'){
             $userModel = (new UserModel())->hydrateForSql([
                 "password"      => $_POST["password"],
-                "username"      => $_POST["login"]
+                "username"      => 'unknown',
+                "email"         => $_POST["login"]
             ]);
             if((new Validator)->assertion($userModel, [
             'submit'    => [
                 'value'     => $_POST["submit"],
                 'assert'    => 'string'
             ]], true)){
-                    $connectUser = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['password' => md5($_POST["password"]), 'username' => $_POST["login"]]))['count']));
-                    $connectMail = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['password' => md5($_POST["password"]), 'email' => $_POST["login"]]))['count']));
-                    if($connectUser === "1" || $connectMail === "1"){
+                    $userPass = ($this->getDatabase()->getManager('\Project\Model\UserModel')->findSelectByParam('*', ['email' => $_POST["login"]]))[0]->getPassword();
+                    if (password_verify($_POST["password"], $userPass)) {
                         $_SESSION['login'] = $_POST['login'];
                         FlashBag::getInstance()->add("green", "Vous êtes maintenant connecté");
-                    }
-                    elseif($connectUser === "0" && $connectMail === "0"){
+                    } else {
                         FlashBag::getInstance()->add("red", "Mot de passe / identifiants inconu.");
                         return $this->redirection('/adminConnexion');
-                    }
-                    else{
-                        throw new SrcControllerException("Two users have the same couple user mdp");
                     }
                     return $this->redirection('/host');
                 }
@@ -61,7 +59,7 @@ class AdminConnexionController extends Controller
     */
     public function disconnect()
     {
-        session_unset();
+        unset($_SESSION['login']);
         FlashBag::getInstance()->add("blue", "Vous êtes maintenant deconnecté");
         return $this->redirection('/host');
     }

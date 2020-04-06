@@ -93,17 +93,17 @@ class Manager
 
         if($selects != '*')
         {   
-            $selectSql = $this->select($selects);
+            $selects = $this->select($selects);
         }
 
         if($params){
-            $selectSql = $this->where($params);
+            $paramSql = $this->where($params);
             $format = 'SELECT %s FROM %s WHERE %s';
-            $sqlQuery = sprintf($format, $selectSql, $from, $paramSql);
+            $sqlQuery = sprintf($format, $selects, $from, $paramSql);
         }
         else{
             $format = 'SELECT %s FROM %s';
-            $sqlQuery = sprintf($format, $selectSql, $from);
+            $sqlQuery = sprintf($format, $selects, $from);
         }
         return $this->fetchAll($sqlQuery);
     }
