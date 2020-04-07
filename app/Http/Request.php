@@ -59,7 +59,11 @@ class Request
      */
     public function getPathInfo()
     {
-        return $this->server["PATH_INFO"];
+        $pathInfo = substr($this->server["REQUEST_URI"], 0, strpos($this->server["REQUEST_URI"], "?"));
+        if(empty($pathInfo)){
+            $pathInfo = $this->server["REQUEST_URI"];
+        }
+        return $pathInfo;  // path_info
     }
 
     /**

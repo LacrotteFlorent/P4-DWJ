@@ -110,19 +110,19 @@
                             <ul class="pagination justify-content-center mb-4">
                                 <li class="page-item">
                                 {% if billetsToShow.getPaginate %}
-                                    <a class="page-link" href="/index.php/blog?page=1">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                                    <a class="page-link" href="/blog?page=1">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
                                 {% endif %}
                                 </li>
                                 {% for page in billetsToShow.getPages %}
                                     {% if billetsToShow.getActualPage == page %}
                                         <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
                                     {% else %}
-                                        <li class="page-item"><a class="page-link" href="/index.php/blog?page={{page}}">{{page}}</a></li>
+                                        <li class="page-item"><a class="page-link" href="/blog?page={{page}}">{{page}}</a></li>
                                     {% endif %}
                                 {% endfor %}
                                 <li class="page-item">
                                 {% if billetsToShow.getPaginate %}
-                                    <a class="page-link" href="/index.php/blog?page={{billetsToShow.getLastPage}}">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                                    <a class="page-link" href="/blog?page={{billetsToShow.getLastPage}}">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
                                 {% endif %}
                                 </li>
                             </ul>

@@ -123,19 +123,19 @@
                             <ul class="pagination justify-content-center mb-4">
                                 <li class="page-item">
                                 {% if billets.getPaginate %}
-                                    <a class="page-link" href="/index.php/adminDashboard?pageBillet=1#articles">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                                    <a class="page-link" href="/adminDashboard?pageBillet=1#articles">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
                                 {% endif %}
                                 </li>
                                 {% for page in billets.getPages %}
                                     {% if billets.getActualPage == page %}
                                         <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
                                     {% else %}
-                                        <li class="page-item"><a class="page-link" href="/index.php/adminDashboard?pageBillet={{page}}#articles">{{page}}</a></li>
+                                        <li class="page-item"><a class="page-link" href="/adminDashboard?pageBillet={{page}}#articles">{{page}}</a></li>
                                     {% endif %}
                                 {% endfor %}
                                 <li class="page-item">
                                 {% if billets.getPaginate %}
-                                    <a class="page-link" href="/index.php/adminDashboard?pageBillet={{billets.getLastPage}}#articles">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                                    <a class="page-link" href="/adminDashboard?pageBillet={{billets.getLastPage}}#articles">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
                                 {% endif %}
                                 </li>
                             </ul>
@@ -190,19 +190,19 @@
                             <ul class="pagination justify-content-center mb-4">
                                 <li class="page-item">
                                 {% if comments.getPaginate %}
-                                    <a class="page-link" href="/index.php/adminDashboard?pageCom=1#comments">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                                    <a class="page-link" href="/adminDashboard?pageCom=1#comments">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
                                 {% endif %}
                                 </li>
                                 {% for page in comments.getPages %}
                                     {% if comments.getActualPage == page %}
                                         <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
                                     {% else %}
-                                        <li class="page-item"><a class="page-link" href="/index.php/adminDashboard?pageCom={{page}}#comments">{{page}}</a></li>
+                                        <li class="page-item"><a class="page-link" href="/adminDashboard?pageCom={{page}}#comments">{{page}}</a></li>
                                     {% endif %}
                                 {% endfor %}
                                 <li class="page-item">
                                 {% if comments.getPaginate %}
-                                    <a class="page-link" href="/index.php/adminDashboard?pageCom={{comments.getLastPage}}#comments">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                                    <a class="page-link" href="/adminDashboard?pageCom={{comments.getLastPage}}#comments">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
                                 {% endif %}
                                 </li>
                             </ul>
@@ -252,19 +252,19 @@
                             <ul class="pagination justify-content-center mb-4">
                                 <li class="page-item">
                                 {% if commentsReport.getPaginate %}
-                                    <a class="page-link" href="/index.php/adminDashboard?pagesCommentReport=1#commentsReport">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                                    <a class="page-link" href="/adminDashboard?pagesCommentReport=1#commentsReport">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
                                 {% endif %}
                                 </li>
                                 {% for page in commentsReport.getPages %}
                                     {% if commentsReport.getActualPage == page %}
                                         <li class="page-item"><strong class="page-link text-dark">{{page}}</strong></li>
                                     {% else %}
-                                        <li class="page-item"><a class="page-link" href="/index.php/adminDashboard?pagesCommentReport={{page}}#commentsReport">{{page}}</a></li>
+                                        <li class="page-item"><a class="page-link" href="/adminDashboard?pagesCommentReport={{page}}#commentsReport">{{page}}</a></li>
                                     {% endif %}
                                 {% endfor %}
                                 <li class="page-item">
                                 {% if commentsReport.getPaginate %}
-                                    <a class="page-link" href="/index.php/adminDashboard?pagesCommentReport={{commentsReport.getLastPage}}#commentsReport">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                                    <a class="page-link" href="/adminDashboard?pagesCommentReport={{commentsReport.getLastPage}}#commentsReport">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
                                 {% endif %}
                                 </li>
                             </ul>
