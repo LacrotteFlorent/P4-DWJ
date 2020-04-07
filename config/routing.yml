@@ -76,6 +76,10 @@ billet:
     path: /billet/:id
     controller: Billet
     action: show
+likeBillet:
+    path: /likeBillet/:id
+    controller: Billet
+    action: like
 blog:
     path: /blog
     controller: Blog

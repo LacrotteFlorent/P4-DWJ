@@ -19,14 +19,16 @@ class PersonalGlobals extends AbstractExtension implements GlobalsInterface
         if(!empty($_SESSION['login'])){
             return [    
                 "FLASHBAG"  => FlashBag::getInstance(),
-                "RELOAD" => Reloader::getInstance(),
-                "LOGIN"     => $_SESSION['login']
+                "RELOAD"    => Reloader::getInstance(),
+                "LOGIN"     => $_SESSION['login'],
+                "SESSION"   => $_SESSION,
             ];
         }
         else{
             return [    
                 "FLASHBAG"  => FlashBag::getInstance(),
-                "RELOAD" => Reloader::getInstance()
+                "RELOAD"    => Reloader::getInstance(),
+                "SESSION"   => $_SESSION,
             ];
         }
     }

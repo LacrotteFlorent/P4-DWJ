@@ -7,6 +7,7 @@ use Framework\Controller;
 use Framework\FlashBag;
 use Framework\Paginator;
 use Project\Model\CommentModel;
+use Project\Model\BilletModel;
 
 
 class BilletController extends Controller
@@ -50,6 +51,34 @@ class BilletController extends Controller
             'nbComments'    => $nbComments,
             'pages'         => $paginator,
         ]);
+    }
+
+    /**
+     * 
+     */
+    public function like($id)
+    {
+        $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
+        $likes = $billet->getLikeCount();
+        if($this->request->getRequestMethod() === 'POST'){
+            $billetModel = (new BilletModel())->hydrateForSql([
+                "like_count"   => ($billet->getLikeCount())+1,
+            ]);
+            $this->getDatabase()->getManager('\Project\Model\BilletModel')->update($billetModel, ["id"=>$id]);
+            $_SESSION['like'] = $id;
+            //dump($_SESSION);
+            (FlashBag::getInstance())->add("blue", "Vous avez aimé le billet !");
+            return $this->redirection('/billet/'. $id);
+        }
+        return $this->redirection('/blog');
+    }
+
+    /**
+     * 
+     */
+    private function view($id)
+    {
+        
     }
 
 }
