@@ -38,13 +38,51 @@
                 </div>
             {% endfor %}
         </div>
-        {% if LOGIN != empty %}
+        {% if SESSION.login != empty %}
             <div id="connect" class="container-fluid">
                 <div class="row">
                     <div class="d-flex flex-column align-items-end w-100">
                         <div class="connect d-flex flex-column align-items-end">
                         <a href="/disconnectAdminConnexion" class="badge badge-dark p-3 rounded-0">Déconnexion</a>
                         <span class="badge badge-success p-3 rounded-0 d-none d-lg-block w-50 "><i class="fas fa-power-off"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if SESSION.cookies == empty %}
+            <div id="cookiesConscent" class="container-fluid">
+                <div class="row">
+                    <div class="col-12 mx-2 sm-mx-5 my-4">
+                        <p>
+                            En naviguant sur le site, vous allez utiliser des cookies pour améliorer votre expérience.
+                             (rechagement des données saisies dans les formulaire & popup de messages d'informations & connexion a l'espace membre)
+                        </p>
+                        <p>
+                            Pour continuer à naviguer dans les meilleures conditions vous acceptez l'utilisations des cookies. <a href="/legal#cookies">Plus d'infos.</a>
+                        </p>
+                        <p>
+                            En continuant à naviguer sur le site vous acceptez l'utilisations des cookies.
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <form method="POST" class="bubbleDashboard bubbleDashboardButton col-6 text-center" id="cookiesAccept">
+                                <button type="submit" formaction="/acceptCookies" class="bg-transparent border-0 mx-2">
+                                    <div class="row d-flex justify-content-center">
+                                        <h5 class="mt-2">Accepter les cookies</h5>
+                                        <i class="fas fa-cookie-bite mt-2 mb-3 ml-3"></i>
+                                    </div>
+                                </button>
+                            </form>
+                            <form method="POST" class="bubbleDashboard bubbleDashboardButton col-6 text-center" id="cookiesDeny">
+                                <button type="submit" formaction="/refusedCookies" class="bg-transparent border-0 mx-2">
+                                    <div class="row d-flex justify-content-center">
+                                        <h5 class="mt-2">Refuser les cookies</h5>
+                                        <i class="fas fa-cookie-bite mt-2 mb-3 ml-3"></i>
+                                    </div>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

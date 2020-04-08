@@ -64,3 +64,5 @@ $reponse = $route->call($request, $router);
 
 $reponse->send();
 
+//session_destroy();
+

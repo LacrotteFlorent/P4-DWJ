@@ -1,0 +1,51 @@
+
+
+                            /* COOKIES CONSCENT */
+                            /* COOKIES CONSCENT */
+                            /* COOKIES CONSCENT */
+
+#cookiesConscent {
+    position: fixed;
+    bottom: 0px;
+    height: auto;
+    background-color: rgba(040, 040, 040, 0.9);
+    z-index: 11;
+    /* border: 2px solid black; */
+}
+
+#cookiesConscent p {
+    color: snow;;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+#cookiesConscent h5 {
+    color: rgba(040, 040, 040);
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+#cookiesConscent form {
+    background-color: rgba(999, 999, 999, 0.9);
+    /* border-top: 2px solid black; */
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+#cookiesConscent a {
+    color: #5F9EA0;
+}
+
+#cookiesConscent a:hover {
+    text-decoration: underline;
+}
+
+#cookiesAccept .fa-cookie-bite {
+    color: #006400;
+    font-size: 1.5em;
+}
+
+#cookiesDeny .fa-cookie-bite {
+    color: #800000;
+    font-size: 1.5em;
+}

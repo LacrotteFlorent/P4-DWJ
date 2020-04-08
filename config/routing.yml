@@ -1,5 +1,6 @@
 
 #ROUTING website jeanForteroche
+
 accueil:
     path: /
     controller: Host
@@ -88,4 +89,12 @@ legal:
     path: /legal
     controller: Legal
     action: show
+acceptCookies:
+    path: /acceptCookies
+    controller: Cookies
+    action: valid
+refusedCookies:
+    path: /refusedCookies
+    controller: Cookies
+    action: refused
 
