@@ -108,6 +108,16 @@
     -o-transition: top 0.5s ease-out;
 }
 
+#connect a {
+    align-items: center;
+    height: 5vh;
+    display: flex;
+}
+
+#connect a {
+    height: auto;
+}
+
 .connect:hover{
     top: 0vh;
 }

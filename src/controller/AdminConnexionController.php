@@ -35,7 +35,14 @@ class AdminConnexionController extends Controller
                 'value'     => $_POST["submit"],
                 'assert'    => 'string'
             ]], true)){
-                    $userPass = ($this->getDatabase()->getManager('\Project\Model\UserModel')->findSelectByParam('*', ['email' => $_POST["login"]]))[0]->getPassword();
+                    $userPass = ($this->getDatabase()->getManager('\Project\Model\UserModel')->findSelectByParam('*', ['email' => $_POST["login"]]));
+                    if(isset($userPass[0])){
+                        $userPass = $userPass[0]->getPassword();
+                    }
+                    else{
+                        FlashBag::getInstance()->add("red", "Mot de passe / identifiants inconu.");
+                        return $this->redirection('/adminConnexion');
+                    }
                     if (password_verify($_POST["password"], $userPass)) {
                         $_SESSION['login'] = $_POST['login'];
                         FlashBag::getInstance()->add("green", "Vous êtes maintenant connecté");
