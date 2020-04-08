@@ -15,7 +15,7 @@ class AdminDashboardController extends Controller
     public function show()
     {
         if(!$this->denyAccessUnlessGranted("admin")){
-            FlashBag::getInstance()->add("red", "Vous n'avez pas les droits pour acceder à cette page.");
+            FlashBag::getInstance()->add("red", "Vous devez être connecté en tant qu'administrateur pour acceder à cette page.");
             return $this->redirection('/host');
         };
 
