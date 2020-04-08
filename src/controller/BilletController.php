@@ -66,7 +66,6 @@ class BilletController extends Controller
             ]);
             $this->getDatabase()->getManager('\Project\Model\BilletModel')->update($billetModel, ["id"=>$id]);
             $_SESSION['like'] = $id;
-            //dump($_SESSION);
             (FlashBag::getInstance())->add("blue", "Vous avez aimé le billet !");
             return $this->redirection('/billet/'. $id);
         }

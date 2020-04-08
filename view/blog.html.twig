@@ -37,9 +37,9 @@
                                 </div>
                                 <div id="blogLastChapterSocialNetwork" class="col-12">
                                     <div class="row">
-                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-facebook-f"></i></div>
-                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-instagram"></i></div>
-                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><i class="fab fa-twitter"></i></div>
+                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-facebook-f"></i></a></div>
+                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-instagram"></i></a></div>
+                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-twitter"></i></a></div>
                                     </div>
                                 </div>
                                 <div id="blogLastChapterContent" class="col-12">
@@ -54,7 +54,7 @@
                                             <div class="row">
                                                 <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
                                                 <div class="more col-6 col-md-6 col-lg-3 col-xl-2">
-                                                    <a href="/billet/{{billet.id}}"> <button>Lire la suite</button></a>
+                                                    <a href="/billet/{{billet.id}}"><button>Lire la suite</button></a>
                                                 </div>
                                                 <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
                                             </div>
@@ -68,14 +68,14 @@
                                             <i class="far fa-comment"></i>
                                             <p>
                                                 {% if nbComments.count > 1 %}
-                                                    {{nbComments.count}} Commentaires 
+                                                    <a href="/billet/{{billet.id}}#newComBillet">{{nbComments.count}}<p class="pl-1">Commentaires</p></a>
                                                 {% else %}
-                                                    {{nbComments.count}} Commentaire
+                                                    <a href="/billet/{{billet.id}}#newComBillet">{{nbComments.count}}<p class="pl-1">Commentaire</p></a>
                                                 {% endif %}
                                             </p>
                                         </div>
                                         <div>
-                                            <i class="far fa-heart"></i><p> {{billet.nbLikes}} J'aime</p>
+                                            <a href="/billet/{{billet.id}}"><i class="far fa-heart"></i><p>J'aime</p></a>
                                         </div>
                                     </div>
                                 </div>

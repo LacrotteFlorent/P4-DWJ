@@ -251,7 +251,7 @@ body {
     justify-content: space-around;
 }
 
-#blogLastChapterInformation div {
+#blogLastChapterInformation div, #blogLastChapterInformation a  {
     display: flex;
     color: #38435A;
     text-align: left;
