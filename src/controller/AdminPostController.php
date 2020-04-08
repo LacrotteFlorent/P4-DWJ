@@ -15,6 +15,11 @@ class AdminPostController extends Controller
     */
     public function show($id)
     {   
+        if(!$this->denyAccessUnlessGranted("admin")){
+            FlashBag::getInstance()->add("red", "Vous n'avez pas les droits pour acceder à cette page.");
+            return $this->redirection('/host');
+        };
+
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
         $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($billet->getImageId(), "image");
         return $this->render("adminPost.html.twig", [
@@ -28,6 +33,11 @@ class AdminPostController extends Controller
     */
     public function showVirgin()
     {   
+        if(!$this->denyAccessUnlessGranted("admin")){
+            FlashBag::getInstance()->add("red", "Vous n'avez pas les droits pour acceder à cette page.");
+            return $this->redirection('/host');
+        };
+
         return $this->render("adminPost.html.twig");
     }
 
@@ -36,6 +46,11 @@ class AdminPostController extends Controller
     */
     public function update($id)
     {   
+        if(!$this->denyAccessUnlessGranted("admin")){
+            FlashBag::getInstance()->add("red", "Vous n'avez pas les droits pour acceder à cette page.");
+            return $this->redirection('/host');
+        };
+
         if($this->request->getRequestMethod() === 'POST'){
             if($billetModel = $this->testDatas()){
                 $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
@@ -71,6 +86,11 @@ class AdminPostController extends Controller
     */
     public function create()
     {   
+        if(!$this->denyAccessUnlessGranted("admin")){
+            FlashBag::getInstance()->add("red", "Vous n'avez pas les droits pour acceder à cette page.");
+            return $this->redirection('/host');
+        };
+
         if($this->request->getRequestMethod() === 'POST'){
             if($billetModel = $this->testDatas()){
                 $imageModel = (new ImageModel)->hydrateForSql([
@@ -102,6 +122,11 @@ class AdminPostController extends Controller
     */
     public function delete($id)
     {   
+        if(!$this->denyAccessUnlessGranted("admin")){
+            FlashBag::getInstance()->add("red", "Vous n'avez pas les droits pour acceder à cette page.");
+            return $this->redirection('/host');
+        };
+        
         if($this->request->getRequestMethod() === 'POST'){
             $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
             $image = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($billet->getImageId());

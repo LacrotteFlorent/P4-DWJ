@@ -15,6 +15,11 @@ class AdminCommentController extends Controller
     */
     public function valid($id)
     {   
+        if(!$this->denyAccessUnlessGranted("admin")){
+            FlashBag::getInstance()->add("red", "Vous n'avez pas les droits pour acceder à cette page.");
+            return $this->redirection('/host');
+        };
+
         if($this->request->getRequestMethod() === 'POST'){
             $commentModel = $this->getDatabase()->getManager('\Project\Model\CommentModel')->find($id);
             $commentModel = $commentModel->hydrateForSql([
@@ -55,6 +60,11 @@ class AdminCommentController extends Controller
     */
     public function delete($id)
     {   
+        if(!$this->denyAccessUnlessGranted("admin")){
+            FlashBag::getInstance()->add("red", "Vous n'avez pas les droits pour acceder à cette page.");
+            return $this->redirection('/host');
+        };
+        
         if($this->request->getRequestMethod() === 'POST'){
             $this->getDatabase()->getManager('\Project\Model\CommentModel')->delete(['id' => $id]);
             FlashBag::getInstance()->add("orange", "Le commentaire à été supprimé !");
