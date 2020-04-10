@@ -2,7 +2,9 @@
 
 namespace Project\Controller;
 
-use Framework\Form\Validator;
+use Framework\Form\Validation\CheckboxConstraint;
+use Framework\Form\Validation\StringConstraint;
+use Framework\Form\Validation\Validator;
 use Framework\Controller;
 use Framework\FlashBag;
 use Framework\SwiftMailer;
@@ -53,12 +55,12 @@ class ContactController extends Controller
         
             if((new Validator)->assertion($contactModel, [
                 'rgpd'      => [
-                    'value'     => $_POST["acceptRGPD_contact"],
-                    'assert'    => 'checkbox'
+                    'value'         => $_POST["acceptRGPD_contact"],
+                    "constraints"   => [new CheckboxConstraint()]
                 ],
                 'submit'    => [
-                    'value'     => $_POST["submit"],
-                    'assert'    => 'string'
+                    'value'         => $_POST["submit"],
+                    "constraints"   => [new StringConstraint()]
                 ]], true)){
                 $this->getDatabase()->getManager('\Project\Model\ContactModel')->insertByModel($contactModel);
 

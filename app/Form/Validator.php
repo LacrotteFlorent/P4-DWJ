@@ -215,7 +215,7 @@ class Validator
     
             case 'date':
                 if(is_object($testValue)){
-                    $this->assert->that($testValue, $nameValue)->tryAll()->objectOrClass();;
+                    $this->assert->that($testValue, $nameValue)->tryAll()->objectOrClass();
                     $this->reload[$nameValue] = $testValue;
                 }
                 else{

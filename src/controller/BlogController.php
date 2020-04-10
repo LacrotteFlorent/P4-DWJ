@@ -2,10 +2,11 @@
 
 namespace Project\Controller;
 
+use Framework\Form\Validation\CheckboxConstraint;
+use Framework\Form\Validation\Validator;
 use Framework\Controller;
 use Framework\FlashBag;
 use Framework\Paginator;
-use Framework\Form\Validator;
 use Project\Model\NewsletterModel;
 
 class BlogController extends Controller
@@ -25,8 +26,8 @@ class BlogController extends Controller
         
             if((new Validator)->assertion($newsletterModel, [
                 'rgpd'      => [
-                    'value'     => $_POST["acceptRGPD"],
-                    'assert'    => 'checkbox'
+                    'value'         => $_POST["acceptRGPD"],
+                    "constraints"   => [new CheckboxConstraint()]
                 ]
                 ], true)){
                 FlashBag::getInstance()->add("blue", "Vous êtes maintenant inscrit à la newsletter !");

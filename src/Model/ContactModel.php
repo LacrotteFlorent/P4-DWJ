@@ -2,6 +2,11 @@
 
 namespace Project\Model;
 
+use Framework\Form\Validation\IntegerOrNullConstraint;
+use Framework\Form\Validation\NotBlankConstraint;
+use Framework\Form\Validation\StringConstraint;
+use Framework\Form\Validation\EmailConstraint;
+use Framework\Form\Validation\DateConstraint;
 use Framework\ORM\Model;
 use Project\Manager\ContactManager;
 
@@ -48,34 +53,34 @@ class ContactModel extends Model
             "primaryKey"        =>"id",
             "columns"           =>[
                 "id"            =>[
-                    "type"      =>"integer",
-                    "property"  =>"id",
-                    "assert"    =>"integerOrNull"
+                    "type"          =>"integer",
+                    "property"      =>"id",
+                    "constraints"   => [new IntegerOrNullConstraint()]
                 ],
                 "full_name"     =>[
-                    "type"      =>"string",
-                    "property"  =>"fullName",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"fullName",
+                    "constraints"   => [new StringConstraint()]
                 ],
                 "email"         =>[
-                    "type"      =>"string",
-                    "property"  =>"email",
-                    "assert"    =>"email"
+                    "type"          =>"string",
+                    "property"      =>"email",
+                    "constraints"   => [new EmailConstraint()]
                 ],
                 "subject"       =>[
-                    "type"      =>"string",
-                    "property"  =>"subject",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"subject",
+                    "constraints"   => [new StringConstraint()]
                 ],
                 "content"       =>[
-                    "type"      =>"string",
-                    "property"  =>"content",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"content",
+                    "constraints"   => [new StringConstraint()]
                 ],
                 "sent_at"       =>[
-                    "type"      =>"datetime",
-                    "property"  =>"sentAt",
-                    "assert"    =>"date"
+                    "type"          =>"datetime",
+                    "property"      =>"sentAt",
+                    "constraints"   => [new DateConstraint($_ENV["DATE_FORMAT"]), new NotBlankConstraint()]
                 ]
             ]
         ];

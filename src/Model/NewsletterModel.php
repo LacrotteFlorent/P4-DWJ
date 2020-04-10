@@ -2,6 +2,10 @@
 
 namespace Project\Model;
 
+use Framework\Form\Validation\IntegerOrNullConstraint;
+use Framework\Form\Validation\StringConstraint;
+use Framework\Form\Validation\EmailConstraint;
+use Framework\Form\Validation\DateConstraint;
 use Framework\ORM\Model;
 use Project\Manager\NewsletterManager;
 
@@ -43,29 +47,29 @@ class NewsletterModel extends Model
             "primaryKey"        =>"id",
             "columns"           =>[
                 "id"            =>[
-                    "type"      =>"integer",
-                    "property"  =>"id",
-                    "assert"    =>"integerOrNull"
+                    "type"          =>"integer",
+                    "property"      =>"id",
+                    "constraints"   => [new IntegerOrNullConstraint()]
                 ],
                 "full_name"     =>[
-                    "type"      =>"string",
-                    "property"  =>"fullName",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"fullName",
+                    "constraints"   => [new StringConstraint()]
                 ],
                 "email"         =>[
-                    "type"      =>"string",
-                    "property"  =>"email",
-                    "assert"    =>"email"
+                    "type"          =>"string",
+                    "property"      =>"email",
+                    "constraints"   => [new EmailConstraint()]
                 ],
                 "signed_at"     =>[
-                    "type"      =>"datetime",
-                    "property"  =>"signedAt",
-                    "assert"    =>"date"
+                    "type"          =>"datetime",
+                    "property"      =>"signedAt",
+                    "constraints"   => [new DateConstraint($_ENV["DATE_FORMAT"]), new NotBlankConstraint()]
                 ],
                 "user_id"       =>[
-                    "type"      =>"string",
-                    "property"  =>"userId",
-                    "assert"    =>"integerOrNull"
+                    "type"          =>"string",
+                    "property"      =>"userId",
+                    "constraints"   => [new IntegerOrNullConstraint()]
                 ]
             ]
         ];

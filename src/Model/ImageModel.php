@@ -2,6 +2,8 @@
 
 namespace Project\Model;
 
+use Framework\Form\Validation\IntegerOrNullConstraint;
+use Framework\Form\Validation\StringConstraint;
 use Framework\ORM\Model;
 use Project\Manager\ImageManager;
 
@@ -33,19 +35,19 @@ class ImageModel extends Model
             "primaryKey"        =>"id",
             "columns"           =>[
                 "id"            =>[
-                    "type"      =>"integer",
-                    "property"  =>"id",
-                    "assert"    =>"integerOrNull"
+                    "type"          =>"integer",
+                    "property"      =>"id",
+                    "constraints"   => [new IntegerOrNullConstraint()]
                 ],
                 "name"          =>[
-                    "type"      =>"string",
-                    "property"  =>"name",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"name",
+                    "constraints"   => [new StringConstraint()]
                 ],
                 "alt"           =>[
-                    "type"      =>"string",
-                    "property"  =>"alt",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"alt",
+                    "constraints"   => [new StringConstraint()]
                 ]
             ]
         ];

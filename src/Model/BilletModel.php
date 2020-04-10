@@ -2,6 +2,11 @@
 
 namespace Project\Model;
 
+use Framework\Form\Validation\IntegerOrNullConstraint;
+use Framework\Form\Validation\NotBlankConstraint;
+use Framework\Form\Validation\IntegerConstraint;
+use Framework\Form\Validation\StringConstraint;
+use Framework\Form\Validation\DateConstraint;
 use Framework\ORM\Model;
 use Project\Manager\BilletManager;
 
@@ -63,49 +68,49 @@ class BilletModel extends Model
             "primaryKey"        =>"id",
             "columns"           =>[
                 "id"            =>[
-                    "type"      =>"integer",
-                    "property"  =>"id",
-                    "assert"    =>"integerOrNull"
+                    "type"          =>"integer",
+                    "property"      =>"id",
+                    "constraints"   => [new IntegerOrNullConstraint()]
                 ],
                 "title"         =>[
-                    "type"      =>"string",
-                    "property"  =>"title",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"title",
+                    "constraints"   => [new StringConstraint()]
                 ],
                 "content"       =>[
-                    "type"      =>"string",
-                    "property"  =>"content",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"content",
+                    "constraints"   => [new StringConstraint()]
                 ],
                 "created_at"    =>[
-                    "type"      =>"datetime",
-                    "property"  =>"createdAt",
-                    "assert"    =>"date"
+                    "type"          =>"datetime",
+                    "property"      =>"createdAt",
+                    "constraints"   => [new DateConstraint($_ENV["DATE_FORMAT"]), new NotBlankConstraint()]
                 ],
                 "posted_at"     =>[
-                    "type"      =>"datetime",
-                    "property"  =>"postedAt",
-                    "assert"    =>"date"
+                    "type"          =>"datetime",
+                    "property"      =>"postedAt",
+                    "constraints"   => [new DateConstraint($_ENV["DATE_FORMAT"]), new NotBlankConstraint()]
                 ],
                 "draft"         =>[
-                    "type"      =>"bool",
-                    "property"  =>"draft",
-                    "assert"    =>"integer"
+                    "type"          =>"bool",
+                    "property"      =>"draft",
+                    "constraints"   => [new IntegerConstraint(), new NotBlankConstraint()]
                 ],
                 "like_count"    =>[
-                    "type"      =>"integer",
-                    "property"  =>"likeCount",
-                    "assert"    =>"integer"
+                    "type"          =>"integer",
+                    "property"      =>"likeCount",
+                    "constraints"   => [new IntegerConstraint(), new NotBlankConstraint()]
                 ],
                 "view_count"    =>[
-                    "type"      =>"integer",
-                    "property"  =>"viewCount",
-                    "assert"    =>"integer"
+                    "type"          =>"integer",
+                    "property"      =>"viewCount",
+                    "constraints"   => [new IntegerConstraint(), new NotBlankConstraint()]
                 ],
-                "image_id"            =>[
-                    "type"      =>"integer",
-                    "property"  =>"imageId",
-                    "assert"    =>"integerOrNull"
+                "image_id"      =>[
+                    "type"          =>"integer",
+                    "property"      =>"imageId",
+                    "constraints"   => [new IntegerOrNullConstraint()]
                 ]
             ]
         ];

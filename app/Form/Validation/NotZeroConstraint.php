@@ -11,7 +11,7 @@ use Framework\Form\ExtendAssert;
 use Framework\Form\ExtendAssertion;
 use Framework\Form\FormException;
 
-class EmailConstraint extends Constraint
+class NotZeroConstraint extends Constraint
 {
 
     /**
@@ -21,7 +21,7 @@ class EmailConstraint extends Constraint
      */
     public function test($testValue, $nameValue) : bool
     {
-        if(self::$assert->that($testValue, $nameValue)->tryAll()->email()){
+        if(self::$assert->that($testValue, $nameValue)->tryAll()->notSame($testValue, 0)){
             return true;
         }
         return false;

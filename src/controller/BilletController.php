@@ -2,10 +2,12 @@
 
 namespace Project\Controller;
 
-use Framework\Form\Validator;
+use Framework\Form\Validation\StringConstraint;
+use Framework\Form\Validation\SameConstraint;
+use Framework\Form\Validation\Validator;
 use Framework\Controller;
-use Framework\FlashBag;
 use Framework\Paginator;
+use Framework\FlashBag;
 use Project\Model\CommentModel;
 use Project\Model\BilletModel;
 
@@ -30,8 +32,8 @@ class BilletController extends Controller
         
             if((new Validator)->assertion($commentModel, [
                 'submit'    => [
-                    'value'     => $_POST["submit"],
-                    'assert'    => 'string'
+                    'value'         => $_POST["submit"],
+                    "constraints"   => [new StringConstraint(), new SameConstraint('sent')]
                 ]], true)){
                 $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertByModel($commentModel);
                 (FlashBag::getInstance())->add("green", " Votre commentaire à bien été envoyé ! Il est maintenant en attente de validation.");

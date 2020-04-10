@@ -11,8 +11,20 @@ use Framework\Form\ExtendAssert;
 use Framework\Form\ExtendAssertion;
 use Framework\Form\FormException;
 
-class EmailConstraint extends Constraint
+class SameConstraint extends Constraint
 {
+
+    /**
+     * @var mixed
+     */
+    private $baseValue;
+
+    public function __construct($baseValue)
+    {
+        $this->baseValue = $baseValue;
+        self::$assert = Assert::lazy();
+        self::$extendAssert = ExtendAssert::lazy();
+    }
 
     /**
      * @param mixed $testValue
@@ -21,7 +33,7 @@ class EmailConstraint extends Constraint
      */
     public function test($testValue, $nameValue) : bool
     {
-        if(self::$assert->that($testValue, $nameValue)->tryAll()->email()){
+        if(self::$assert->that($testValue, $nameValue)->tryAll()->same($this->baseValue)){
             return true;
         }
         return false;

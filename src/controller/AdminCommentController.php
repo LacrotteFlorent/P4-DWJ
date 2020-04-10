@@ -2,7 +2,7 @@
 
 namespace Project\Controller;
 
-use Framework\Form\Validator;
+use Framework\Form\Validation\Validator;
 use Framework\Controller;
 use Framework\FlashBag;
 use Project\Model\CommentModel;

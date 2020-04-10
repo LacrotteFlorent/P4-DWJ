@@ -31,7 +31,7 @@ if ($_ENV['DEV'] === 'On') {
 
 session_start();
 
-//$_POST['mail'] = 'testMail.com';
+//$_POST['submit'] = 2;
 
 $request = Request::createFromGlobals();
 

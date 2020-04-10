@@ -11,7 +11,7 @@ use Framework\Form\ExtendAssert;
 use Framework\Form\ExtendAssertion;
 use Framework\Form\FormException;
 
-class EmailConstraint extends Constraint
+class IntegerOrNullConstraint extends Constraint
 {
 
     /**
@@ -21,7 +21,12 @@ class EmailConstraint extends Constraint
      */
     public function test($testValue, $nameValue) : bool
     {
-        if(self::$assert->that($testValue, $nameValue)->tryAll()->email()){
+        if($testValue != null){
+            self::$assert->that($testValue, $nameValue)->tryAll()->integer();
+            return true;
+        }
+        else{
+            self::$assert->that($testValue, $nameValue)->tryAll()->null();
             return true;
         }
         return false;

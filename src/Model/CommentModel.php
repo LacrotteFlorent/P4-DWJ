@@ -2,6 +2,11 @@
 
 namespace Project\Model;
 
+use Framework\Form\Validation\IntegerOrNullConstraint;
+use Framework\Form\Validation\NotBlankConstraint;
+use Framework\Form\Validation\IntegerConstraint;
+use Framework\Form\Validation\StringConstraint;
+use Framework\Form\Validation\DateConstraint;
 use Framework\ORM\Model;
 use Project\Manager\CommentManager;
 
@@ -58,44 +63,44 @@ class CommentModel extends Model
             "primaryKey"        =>"id",
             "columns"           =>[
                 "id"            =>[
-                    "type"      =>"integer",
-                    "property"  =>"id",
-                    "assert"    =>"integerOrNull"
+                    "type"          =>"integer",
+                    "property"      =>"id",
+                    "constraints"   => [new IntegerOrNullConstraint()]
                 ],
                 "content"       =>[
-                    "type"      =>"string",
-                    "property"  =>"content",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"content",
+                    "constraints"   => [new StringConstraint(), new NotBlankConstraint()]
                 ],
                 "posted_at"     =>[
-                    "type"      =>"datetime",
-                    "property"  =>"postedAt",
-                    "assert"    =>"date"
+                    "type"          =>"datetime",
+                    "property"      =>"postedAt",
+                    "constraints"   => [new DateConstraint($_ENV["DATE_FORMAT"]), new NotBlankConstraint()]
                 ],
                 "valid"         =>[
-                    "type"      =>"bool",
-                    "property"  =>"valid",
-                    "assert"    =>"integer"
+                    "type"          =>"bool",
+                    "property"      =>"valid",
+                    "constraints"   => [new IntegerConstraint(), new NotBlankConstraint()]
                 ],
                 "report"        =>[
-                    "type"      =>"bool",
-                    "property"  =>"report",
-                    "assert"    =>"integer"
+                    "type"          =>"bool",
+                    "property"      =>"report",
+                    "constraints"   => [new IntegerConstraint(), new NotBlankConstraint()]
                 ],
                 "author"        =>[
-                    "type"      =>"string",
-                    "property"  =>"author",
-                    "assert"    =>"stringOrNull"
+                    "type"          =>"string",
+                    "property"      =>"author",
+                    "constraints"   => [new StringConstraint()]
                 ],
                 "post_id"       =>[
-                    "type"      =>"integer",
-                    "property"  =>"postId",
-                    "assert"    =>"integer"
+                    "type"          =>"integer",
+                    "property"      =>"postId",
+                    "constraints"   => [new IntegerConstraint(), new NotBlankConstraint()]
                 ],
                 "user_id"       =>[
-                    "type"      =>"integerOrNull",
-                    "property"  =>"userId",
-                    "assert"    =>"integerOrNullOrZero"
+                    "type"          =>"integerOrNull",
+                    "property"      =>"userId",
+                    "constraints"   => [new IntegerOrNullConstraint()]
                 ]
             ]
         ];

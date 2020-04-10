@@ -2,6 +2,9 @@
 
 namespace Project\Model;
 
+use Framework\Form\Validation\IntegerOrNullConstraint;
+use Framework\Form\Validation\StringConstraint;
+use Framework\Form\Validation\EmailConstraint;
 use Framework\ORM\Model;
 use Project\Manager\UserManager;
 
@@ -43,29 +46,29 @@ class UserModel extends Model
             "primaryKey"        =>"id",
             "columns"           =>[
                 "id"            =>[
-                    "type"      =>"integer",
-                    "property"  =>"id",
-                    "assert"    =>"integerOrNull"
+                    "type"          =>"integer",
+                    "property"      =>"id",
+                    "constraints"   => [new IntegerOrNullConstraint()]
                 ],
                 "email"         =>[
-                    "type"      =>"string",
-                    "property"  =>"email",
-                    "assert"    =>"emailOrNull"
+                    "type"          =>"string",
+                    "property"      =>"email",
+                    "constraints"   => [new EmailConstraint()]
                 ],
                 "password"      =>[
-                    "type"      =>"string",
-                    "property"  =>"password",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"password",
+                    "constraints"   => [new StringConstraint()]
                 ],
                 "username"      =>[
-                    "type"      =>"string",
-                    "property"  =>"username",
-                    "assert"    =>"string"
+                    "type"          =>"string",
+                    "property"      =>"username",
+                    "constraints"   => [new StringConstraint()]
                 ],
                 "role"          =>[
-                    "type"      =>"string",
-                    "property"  =>"role",
-                    "assert"    =>"stringOrNull"
+                    "type"          =>"string",
+                    "property"      =>"role",
+                    "constraints"   => [new StringConstraint()]
                 ]
             ]
         ];

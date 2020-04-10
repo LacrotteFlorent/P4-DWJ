@@ -2,7 +2,10 @@
 
 namespace Project\Controller;
 
-use Framework\Form\Validator;
+use Framework\Form\Validation\UploadFileConstraint;
+use Framework\Form\Validation\StringConstraint;
+use Framework\Form\Validation\SameConstraint;
+use Framework\Form\Validation\Validator;
 use Framework\Controller;
 use Framework\FlashBag;
 use Project\Model\BilletModel;
@@ -161,17 +164,17 @@ class AdminPostController extends Controller
         ]);
         if((new Validator)->assertion($billetModel, [
             'image'     => [
-                'value'     => $_FILES["imageToUpload"],
-                'assert'    => 'image',
-                'size'      => $_ENV["SIZE_IMG"],
+                'value'         => $_FILES["imageToUpload"],
+                'assert'        => 'image',
+                "constraints"   => [new UploadFileConstraint($_FILES["imageToUpload"]['size'],$_FILES["imageToUpload"]['name'],$_FILES["imageToUpload"]['type'],$_FILES["imageToUpload"]['tmp_name'])],
             ],
             'alt'       => [
-                'value'     => $_POST["alt"],
-                'assert'    => 'string'
+                'value'         => $_POST["alt"],
+                "constraints"   => [new StringConstraint()]
             ],
             'submit'    => [
-                'value'     => $_POST["submit"],
-                'assert'    => 'string'
+                'value'         => $_POST["submit"],
+                "constraints"   => [new StringConstraint()]
             ]], true)){
 
             return $billetModel;

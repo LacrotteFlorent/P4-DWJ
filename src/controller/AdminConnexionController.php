@@ -2,8 +2,10 @@
 
 namespace Project\Controller;
 
+use Framework\Form\Validation\StringConstraint;
+use Framework\Form\Validation\SameConstraint;
+use Framework\Form\Validation\Validator;
 use Framework\Controller;
-use Framework\Form\Validator;
 use Framework\FlashBag;
 use Project\Model\UserModel;
 
@@ -28,12 +30,13 @@ class AdminConnexionController extends Controller
             $userModel = (new UserModel())->hydrateForSql([
                 "password"      => $_POST["password"],
                 "username"      => 'unknown',
-                "email"         => $_POST["login"]
+                "email"         => $_POST["login"],
+                "role"          => 'unknown'
             ]);
             if((new Validator)->assertion($userModel, [
             'submit'    => [
-                'value'     => $_POST["submit"],
-                'assert'    => 'string'
+                'value'         => $_POST["submit"],
+                "constraints"   => [new StringConstraint(), new SameConstraint('connect')]
             ]], true)){
                     $userPass = ($this->getDatabase()->getManager('\Project\Model\UserModel')->findSelectByParam('*', ['email' => $_POST["login"]]));
                     if(isset($userPass[0])){

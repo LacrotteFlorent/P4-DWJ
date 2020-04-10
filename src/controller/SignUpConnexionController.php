@@ -2,10 +2,12 @@
 
 namespace Project\Controller;
 
-use Framework\Controller;
-use Framework\Form\Validator;
-use Framework\FlashBag;
+use Framework\Form\Validation\CheckboxConstraint;
+use Framework\Form\Validation\StringConstraint;
+use Framework\Form\Validation\Validator;
 use Framework\SwiftMailer;
+use Framework\Controller;
+use Framework\FlashBag;
 use Project\Model\UserModel;
 
 class SignUpConnexionController extends Controller
@@ -33,11 +35,11 @@ class SignUpConnexionController extends Controller
             if((new Validator)->assertion($userModel, [
                 'rgpd'      => [
                     'value'     => $_POST["acceptRGPD"],
-                    'assert'    => 'checkbox'
+                    "constraints"   => [new CheckboxConstraint()]
                 ],
                 'submit'    => [
-                    'value'     => $_POST["submit"],
-                    'assert'    => 'string'
+                    'value'         => $_POST["submit"],
+                    "constraints"   => [new StringConstraint()]
             ]], true)){
                     $connectUser = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['username' => $_POST["login"]]))['count']));
                     $connectMail = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['email' => $_POST["mail"]]))['count']));
