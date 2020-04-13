@@ -53,4 +53,14 @@ class BilletManager extends Manager
         return $this->fetchAll($sqlQuery);
     }
 
+    /**
+     * @param int | string $idBillet
+     * @return 
+     */
+    public function updateView($idBillet)
+    {
+        $sqlQuery = sprintf("UPDATE %s SET view_count = view_count + 1 WHERE id = %s", $this->metadata["table"], $idBillet);
+        return $this->pdo->prepare($sqlQuery)->execute();
+    }
+
 }

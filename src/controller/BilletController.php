@@ -41,6 +41,7 @@ class BilletController extends Controller
             }
         }
 
+        $this->getDatabase()->getManager('\Project\Model\BilletModel')->updateView($id); // adds 1 to the number of views of the post 
         $billet = $this->getDatabase()->getManager('\Project\Model\BilletModel')->find($id);
         $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($billet->getImageId(), "image");
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => $billet->getId(), 'valid' => 1]);
@@ -56,7 +57,8 @@ class BilletController extends Controller
     }
 
     /**
-     * 
+     * @param int | string $id
+     * @return RedirectionResponse
      */
     public function like($id)
     {
@@ -72,14 +74,6 @@ class BilletController extends Controller
             return $this->redirection('/billet/'. $id);
         }
         return $this->redirection('/blog');
-    }
-
-    /**
-     * 
-     */
-    private function view($id)
-    {
-        
     }
 
 }

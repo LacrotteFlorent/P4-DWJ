@@ -86,6 +86,8 @@
                                     <th scope="col">Date de modification</th>
                                     <th scope="col">Date de publication</th>
                                     <th scope="col">Etat</th>
+                                    <th scope="col">Vues</th>
+                                    <th scope="col">Likes</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
@@ -110,6 +112,8 @@
                                         {% else %}
                                         <td><p class="text-success"><strong>Publié</strong></p></td>
                                         {% endif %}
+                                        <td><p>{{billet.viewCount}}</p></td>
+                                        <td><p>{{billet.likeCount}}</p></td>
                                         <form method="POST">
                                             <td><button title="Modifier le billet" type="submit" formaction="/adminPost/{{billet.getId}}" class="bg-transparent border-0"><i class="fas fa-pencil-alt"></i></button><button title="Supprimer le billet" type="submit" formaction="/deleteAdminPost/{{billet.getId}}?#articles" class="bg-transparent border-0"><i class="far fa-trash-alt"></i></button></td>
                                         </form>

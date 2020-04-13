@@ -25,7 +25,7 @@ class CookiesController extends Controller
     public function refused()
     {   
         if($this->request->getRequestMethod() === 'POST'){
-            session_destroy();
+            $_SESSION['cookies'] = true;
             return $this->redirection('/host');
         }
         return $this->redirection('/host');

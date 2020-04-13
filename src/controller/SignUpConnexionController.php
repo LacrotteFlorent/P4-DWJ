@@ -43,7 +43,7 @@ class SignUpConnexionController extends Controller
             ]], true)){
                     $connectUser = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['username' => $_POST["login"]]))['count']));
                     $connectMail = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['email' => $_POST["mail"]]))['count']));
-                    if($connectUser + $connectMail >= 2 ){
+                    if($connectUser + $connectMail >= 1){
                         FlashBag::getInstance()->add("orange", "Cet identifiant / mail existe déja.");
                         return $this->redirection('/signUpConnexion');
                     }
