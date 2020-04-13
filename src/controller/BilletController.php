@@ -46,7 +46,7 @@ class BilletController extends Controller
         $imageBillet = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($billet->getImageId(), "image");
         $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => $billet->getId(), 'valid' => 1]);
 
-        $paginator = new Paginator($this->request, (int) $nbComments['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), "PAGE_COMMENTS", "pageCom", ['post_id' => $id, 'valid' => 1]);
+        $paginator = new Paginator($this->request, (int) $nbComments['count'], $this->getDatabase()->getManager('\Project\Model\CommentModel'), "PAGE_COMMENTS", "pageCom", ['post_id' => $id, 'valid' => 1], "posted_at", true);
 
         return $this->render("billet.html.twig", [
             'billet'        => $billet,
