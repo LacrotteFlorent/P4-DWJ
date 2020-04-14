@@ -17,6 +17,27 @@ class BlogController extends Controller
     */
     public function show()
     {
+        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(null, ["draft" => '= 0', "posted_at" => date($_ENV["DATE_FORMAT"])], '<=');
+        foreach($billets as $billet){
+            $imageBillets[$billet->getId()] = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($billet->getImageId(), "image");
+        }
+        $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => (array_values($billets)[0])->getId(), 'valid' => 1]);
+        $nbBillets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->countParam(["draft" => 0, "posted_at" => date($_ENV["DATE_FORMAT"])], null, '<=');
+        $paginator = new Paginator($this->request, (int) $nbBillets['count'], $this->getDatabase()->getManager('\Project\Model\BilletModel'), "PAGE_ARTICLES", "page", ["draft" => 0, "posted_at" => date($_ENV["DATE_FORMAT"])], "posted_at", true, '<=');
+        
+        return $this->render("blog.html.twig", [
+            'billetsToShow' => $paginator,
+            'billets'       => $billets,
+            'images'        => $imageBillets,
+            'nbComments'    => $nbComments
+        ]);
+    }
+
+    /**
+     * @return RedirectionResponse
+     */
+    public function newsletterSubscription()
+    {
         if($this->request->getRequestMethod() === 'POST'){
             $newsletterModel = (new NewsletterModel())->hydrateForSql([
                 "full_name" => $_POST["firstName"] .' : '. $_POST["lastName"],
@@ -35,20 +56,6 @@ class BlogController extends Controller
                 return $this->redirection('/blog');
             }
         }
-
-        $billets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->findByPostedAtWithLimit(null, ["draft" => '= 0', "posted_at" => date($_ENV["DATE_FORMAT"])], '<=');
-        foreach($billets as $billet){
-            $imageBillets[$billet->getId()] = $this->getDatabase()->getManager('\Project\Model\ImageModel')->find($billet->getImageId(), "image");
-        }
-        $nbComments = $this->getDatabase()->getManager('\Project\Model\CommentModel')->countParam(['post_id' => (array_values($billets)[0])->getId(), 'valid' => 1]);
-        $nbBillets = $this->getDatabase()->getManager('\Project\Model\BilletModel')->countParam(["draft" => 0, "posted_at" => date($_ENV["DATE_FORMAT"])], null, '<=');
-        $paginator = new Paginator($this->request, (int) $nbBillets['count'], $this->getDatabase()->getManager('\Project\Model\BilletModel'), "PAGE_ARTICLES", "page", ["draft" => 0, "posted_at" => date($_ENV["DATE_FORMAT"])], "posted_at", false, '<=');
-        return $this->render("blog.html.twig", [
-            'billetsToShow' => $paginator,
-            'billets'       => $billets,
-            'images'        => $imageBillets,
-            'nbComments'    => $nbComments
-        ]);
     }
 
 }

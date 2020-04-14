@@ -163,8 +163,8 @@ class Paginator
      * @used-by $this->paging()
      * 
      * @internal 
-     * Retourne un tableau avec le numéro des éléments
-     * de la base de donnée à afficher en fonction de la page actuelle.
+     * Returns an array with element numbers of the database
+     * to be displayed according to the current page.
      */
     private function calcShowElements()
     {

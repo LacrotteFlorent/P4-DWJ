@@ -54,13 +54,23 @@ class BilletManager extends Manager
     }
 
     /**
-     * @param int | string $idBillet
-     * @return 
+     * @param int|string $idBillet
      */
     public function updateView($idBillet)
     {
         $sqlQuery = sprintf("UPDATE %s SET view_count = view_count + 1 WHERE id = %s", $this->metadata["table"], $idBillet);
         return $this->pdo->prepare($sqlQuery)->execute();
+    }
+
+    /**
+     * SELECT * FROM post WHERE draft <= "0" AND posted_at <= "2020-04-13 13:49:38" AND content like "% necem %" ORDER BY posted_at DESC LIMIT 4 OFFSET 0 
+     * @param string $keyWord
+     * @return array
+     */
+    public function search($keyWord)
+    {
+        $sqlQuery = sprintf('SELECT * FROM %s WHERE draft = "0" AND posted_at <= "%s" AND content LIKE "%% %s %%"', $this->metadata["table"], date($_ENV["DATE_FORMAT"]), $keyWord);
+        return $this->fetchAll($sqlQuery);
     }
 
 }

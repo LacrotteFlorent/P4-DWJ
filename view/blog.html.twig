@@ -152,9 +152,10 @@
                                 <div class="spaceSplit col-6"></div>
                             </div>
                             <p>Retrouvez facilement votre chapitre</p>
-                            <form method="POST" action="search-blog-post">
+                            <form method="POST">
                                 <div class="form-group">
-                                    <input id="search_input_blog" type="text" placeholder=" Rechercher" class="form-control" />
+                                    <input required id="search_input_blog" type="text" placeholder=" Rechercher" class="form-control" name="keyWord" />
+                                    <button formaction="/blogSearch" title="Rechercher" type="submit" class="btn mt-2">Rechercher</button>
                                 </div>
                             </form>
                         </div>
@@ -181,7 +182,7 @@
                                             <input required type="checkbox" id="acceptRGPD" name="acceptRGPD" class="custom-control-input" />
                                             <label for="acceptRGPD" class="custom-control-label">Je reconnais avoir pris connaissance de ces droits.</label>
                                         </div>
-                                        <button type="submit" value="S'inscrire" id="register_newsletter_blog" class="btn">S'inscrire</button>
+                                        <button type="submit" value="S'inscrire" id="register_newsletter_blog" class="btn" formaction="/blogNewsletterSubscription">S'inscrire</button>
                                     </div>
                                     </form>
                                 </div>

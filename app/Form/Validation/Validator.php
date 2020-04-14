@@ -92,7 +92,7 @@ class Validator
                         $constrt->test($constraint["value"], $nameValue);
                         $this->assert = $constrt->getAssert();
                     }
-                    $this->reload[$value] = $constraint["value"];
+                    $this->reload[$nameValue] = $constraint["value"];
                 }
                 else{
                     throw new FormException('The $asserts table of the assertion method is poorly implemented.');
@@ -120,7 +120,7 @@ class Validator
                 $this->reload[$exception->getPropertyPath()] = "Erreur de saisie";
             }
             Reloader::getInstance()->add($this->reload);
-            dump($e->getErrorExceptions());
+            //dump($e->getErrorExceptions());
             FlashBag::getInstance()->add("red", "Il y a eu une erreur dans la saisie de votre formulaire");
             return false;
         }

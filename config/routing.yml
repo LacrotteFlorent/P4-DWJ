@@ -85,6 +85,14 @@ blog:
     path: /blog
     controller: Blog
     action: show
+blogNewsletter:
+    path: /blogNewsletterSubscription
+    controller: Blog
+    action: newsletterSubscription
+blogSearch:
+    path: /blogSearch
+    controller: SearchBlog
+    action: search
 legal:
     path: /legal
     controller: Legal
@@ -97,4 +105,3 @@ refusedCookies:
     path: /refusedCookies
     controller: Cookies
     action: refused
-

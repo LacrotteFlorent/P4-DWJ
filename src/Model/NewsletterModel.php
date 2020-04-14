@@ -3,6 +3,7 @@
 namespace Project\Model;
 
 use Framework\Form\Validation\IntegerOrNullConstraint;
+use Framework\Form\Validation\NotBlankConstraint;
 use Framework\Form\Validation\StringConstraint;
 use Framework\Form\Validation\EmailConstraint;
 use Framework\Form\Validation\DateConstraint;

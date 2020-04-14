@@ -1,0 +1,130 @@
+{% extends'template.html.twig' %}
+
+{% block head %}
+<!-- Titre -->
+<title>Articles | Jean Forteroche</title>
+<!-- Media Queries -->
+<link rel="stylesheet" href="/public/css/styleBlog.css" />
+<link rel="stylesheet" media="(max-width:576.00px)" href="/public/css/styleBlog-xs.css" />
+<link rel="stylesheet" media="(min-width:577.00px) and (max-width:768.00px)" href="/public/css/styleBlog-sm.css" />
+<link rel="stylesheet" media="(min-width:768.00px) and (max-width:992.00px)" href="/public/css/styleBlog-md.css" />
+<!-- reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LfynM0UAAAAAMraccr7e9exuZanOtoNp7B42y33', { action: 'contact' }).then(function (token) {
+            var recaptchaResponse = document.getElementById('recaptchaResponse');
+            recaptchaResponse.value = token;
+        });
+    });
+</script>
+{% endblock head %}
+    
+{% block body %}
+        <div class="container-fluid">
+            {% include "include_header.html" %}
+            <div id="blogMainSplit" class="row">
+            {% if billetsToShow %}
+                <section id="blogContent" class="col-12 col-lg-9 animated fadeInLeft delay-1s">
+                    <section id="blogOldChapter" class="row justify-content-center">
+                    <form method="POST" class='my-5'>
+                        <h3 class="">Resultats de la recherche : "{{search}}"</h3>
+                        <button formaction="/blog" title="Fermer" type="submit" class="btn mt-2">Retour au blog</button>
+                    </form>
+                    {% for billet in billetsToShow %}
+                        <div class="col-12 col-sm-10">
+                            <div class="row">
+                                <div id="blogPhotoChapter" class="col-12 col-sm-5 text-center">
+                                    <a href="/billet/{{billet.id}}">
+                                        <img src="/public/img/{{images[billet.getId].getName}}" alt="{{images[billet.getId].getAlt}}" />
+                                    </a>
+                                </div>
+                                <div id="blogContentChapter" class="col-12 col-sm-7">
+                                    <div class="context">
+                                        <a href="/billet/{{billet.id}}"><h3>{{billet.title}}</h3></a>
+                                        <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
+                                        <p class="contentChapter">{{billet.content|truncate(800)|raw}}</p>
+                                        <a href="/billet/{{billet.id}}">Lire la suite >>></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </section>
+                </section>
+                {% else %}
+                <section id="blogContent" class="col-12 col-lg-9 animated fadeInLeft delay-1s">
+                    <section id="blogOldChapter" class="row justify-content-center">
+                    <form method="POST" class='my-5'>
+                        <h3 class="">Aucuns resultats pour la recherche : "{{search}}"</h3>
+                        <button formaction="/blog" title="Fermer" type="submit" class="btn mt-2">Retour au blog</button>
+                    </form>
+                    </section>
+                </section>
+                {% endif %}
+                <!-- aside section from right -->
+                <aside id="blogAside" class="col-12 col-lg-3 animated fadeInRight delay-1s">
+                    <div class="row">
+                        <!-- summary -->
+                        <div id="blogAsideSummary" class="col-12">
+                            <h4>Sommaire</h4>
+                            <div class="row splitRow">
+                                <div class="split col-6"></div>
+                                <div class="spaceSplit col-6"></div>
+                            </div>
+                            <ul>
+                                {% for billet in billets %}
+                                    <li><a href="/billet/{{billet.id}}">{{billet.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- search -->
+                        <div id="blogAsideSearch" class="col-12">
+                            <h4>Rechercher</h4>
+                            <div class="row splitRow">
+                                <div class="split col-6"></div>
+                                <div class="spaceSplit col-6"></div>
+                            </div>
+                            <p>Retrouvez facilement votre chapitre</p>
+                            <form method="POST">
+                                <div class="form-group">
+                                    <input required id="search_input_blog" type="text" placeholder=" Rechercher" class="form-control" name="keyWord" />
+                                    <button formaction="/blogSearch" title="Rechercher" type="submit" class="btn mt-2">Rechercher</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- newsletter -->
+                        <div id="blogAsideNewsletter" class="col-12">
+                            <h4>Newsletter</h4>
+                            <div class="row splitRow">
+                                <div class="split col-6"></div>
+                                <div class="spaceSplit col-6"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>Inscrivez vous pour être informé de la sortie des derniers chapitres.</p>
+                                    <form method="POST">
+                                    <div class="form-group">
+                                        <label for="prenom_newsletter_blog">Prénom :</label>
+                                        <input required type="text" id="prenom__newsletter_blog" name="firstName" placeholder=" Entrez votre prénom" class="form-control" value="{{RELOAD.getMessages.0.full_name}}" />
+                                        <label for="nom_newsletter_blog">Nom :</label>
+                                        <input required type="text" id="nom_newsletter_blog" name="lastName" placeholder=" Entrez votre nom" class="form-control" value="{{RELOAD.getMessages.0.full_name}}" />
+                                        <label for="mail_newsletter_blog">Addresse mail :</label>
+                                        <input required type="email" id="mail_newsletter_blog" name="mail" placeholder=" Entrez votre email" class="form-control" value="{{RELOAD.getMessages.0.email}}" />
+                                        <p>Les données à caractère personnel que vous nous communiquez feront l'objet d'un traitement automatisé aux fins de gestion de votre demande. Vous disposez d'un droit d'accès, de rectification, de suppression, de limitation et d'opposition conformément à la réglementation sur la protection des données à caractère personnel.</p>
+                                        <div id="divRGPD" class="custom-control custom-checkbox">
+                                            <input required type="checkbox" id="acceptRGPD" name="acceptRGPD" class="custom-control-input" />
+                                            <label for="acceptRGPD" class="custom-control-label">Je reconnais avoir pris connaissance de ces droits.</label>
+                                        </div>
+                                        <button type="submit" value="S'inscrire" id="register_newsletter_blog" class="btn" formaction="/blogNewsletterSubscription">S'inscrire</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            {% include "include_footer.html" %}
+        </div>
+{% endblock body %}
