@@ -28,17 +28,17 @@ class AdminConnexionController extends Controller
     {
         if($this->request->getRequestMethod() === 'POST'){
             $userModel = (new UserModel())->hydrateForSql([
-                "password"      => $_POST["password"],
+                "password"      => $this->request->getPost()["password"],
                 "username"      => 'unknown',
-                "email"         => $_POST["login"],
+                "email"         => $this->request->getPost()["login"],
                 "role"          => 'unknown'
             ]);
             if((new Validator)->assertion($userModel, [
             'submit'    => [
-                'value'         => $_POST["submit"],
+                'value'         => $this->request->getPost()["submit"],
                 "constraints"   => [new StringConstraint(), new SameConstraint('connect')]
             ]], true)){
-                    $userPass = ($this->getDatabase()->getManager('\Project\Model\UserModel')->findSelectByParam('*', ['email' => $_POST["login"]]));
+                    $userPass = ($this->getDatabase()->getManager('\Project\Model\UserModel')->findSelectByParam('*', ['email' => $this->request->getPost()["login"]]));
                     if(isset($userPass[0])){
                         $userPass = $userPass[0]->getPassword();
                     }
@@ -46,8 +46,8 @@ class AdminConnexionController extends Controller
                         FlashBag::getInstance()->add("red", "Mot de passe / identifiants inconu.");
                         return $this->redirection('/adminConnexion');
                     }
-                    if (password_verify($_POST["password"], $userPass)) {
-                        $_SESSION['login'] = $_POST['login'];
+                    if (password_verify($this->request->getPost()["password"], $userPass)) {
+                        $_SESSION['login'] = $this->request->getPost()['login'];
                         FlashBag::getInstance()->add("green", "Vous êtes maintenant connecté");
                     } else {
                         FlashBag::getInstance()->add("red", "Mot de passe / identifiants inconu.");

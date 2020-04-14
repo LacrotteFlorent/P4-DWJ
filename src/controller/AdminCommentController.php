@@ -49,7 +49,7 @@ class AdminCommentController extends Controller
             if((new Validator)->assertion($commentModel)){
                 $this->getDatabase()->getManager('\Project\Model\CommentModel')->update($commentModel, ["id"=>$id]);
                 (FlashBag::getInstance())->add("orange", "Le commentaire à été signalé !");
-                return $this->redirection('/billet/'. $_POST["idBillet"]);
+                return $this->redirection('/billet/'. $this->request->getPost()["idBillet"]);
             }
         }
         return $this->redirection('/adminDashboard');

@@ -22,17 +22,17 @@ class BilletController extends Controller
     {
         if($this->request->getRequestMethod() === 'POST'){
             $commentModel = (new CommentModel())->hydrateForSql([
-                "content"   => $_POST["content"],
+                "content"   => $this->request->getPost()["content"],
                 "posted_at" => date($_ENV["DATE_FORMAT"]),
                 "valid"     => 0,
                 "report"    => 0,
-                "author"    => $_POST["author"],
+                "author"    => $this->request->getPost()["author"],
                 "post_id"   => $id
             ]);
         
             if((new Validator)->assertion($commentModel, [
                 'submit'    => [
-                    'value'         => $_POST["submit"],
+                    'value'         => $this->request->getPost()["submit"],
                     "constraints"   => [new StringConstraint(), new SameConstraint('sent')]
                 ]], true)){
                 $this->getDatabase()->getManager('\Project\Model\CommentModel')->insertByModel($commentModel);

@@ -61,7 +61,7 @@ class AdminPostController extends Controller
                 if(!empty($_FILES["name"])){
                     $imageModel = (new ImageModel)->hydrateForSql([
                         "name"      => $_FILES["imageToUpload"]['name'],
-                        "alt"       => $_POST["alt"]
+                        "alt"       => $this->request->getPost()["alt"]
                     ]);
                     $name = basename($_FILES["imageToUpload"]["name"]);
                     if(is_file("public/img/" . $name)){
@@ -98,7 +98,7 @@ class AdminPostController extends Controller
             if($billetModel = $this->testDatas()){
                 $imageModel = (new ImageModel)->hydrateForSql([
                     "name"      => $_FILES["imageToUpload"]['name'],
-                    "alt"       => $_POST["alt"]
+                    "alt"       => $this->request->getPost()["alt"]
                 ]);
 
                 $name = basename($_FILES["imageToUpload"]["name"]);
@@ -154,11 +154,11 @@ class AdminPostController extends Controller
     private function testDatas()
     {
         $billetModel = (new BilletModel())->hydrateForSql([
-            "title"         => $_POST["title"],
-            "content"       => $_POST["content"],
+            "title"         => $this->request->getPost()["title"],
+            "content"       => $this->request->getPost()["content"],
             "created_at"    => date($_ENV["DATE_FORMAT"]),
-            "posted_at"     => !empty($_POST["datePost"]) ? ($_POST["datePost"] . " " . $_POST["timePost"] . ":00") : date($_ENV["DATE_FORMAT"]),
-            "draft"         => $_POST["submit"] === "draft" ? 1 : 0,
+            "posted_at"     => !empty($this->request->getPost()["datePost"]) ? ($this->request->getPost()["datePost"] . " " . $this->request->getPost()["timePost"] . ":00") : date($_ENV["DATE_FORMAT"]),
+            "draft"         => $this->request->getPost()["submit"] === "draft" ? 1 : 0,
             "like_count"    => 0,
             "view_count"    => 0,
         ]);
@@ -169,11 +169,11 @@ class AdminPostController extends Controller
                 "constraints"   => [new UploadFileConstraint($_FILES["imageToUpload"]['size'],$_FILES["imageToUpload"]['name'],$_FILES["imageToUpload"]['type'],$_FILES["imageToUpload"]['tmp_name'])],
             ],
             'alt'       => [
-                'value'         => $_POST["alt"],
+                'value'         => $this->request->getPost()["alt"],
                 "constraints"   => [new StringConstraint()]
             ],
             'submit'    => [
-                'value'         => $_POST["submit"],
+                'value'         => $this->request->getPost()["submit"],
                 "constraints"   => [new StringConstraint()]
             ]], true)){
 

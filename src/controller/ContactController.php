@@ -46,20 +46,20 @@ class ContactController extends Controller
     {
         if($this->request->getRequestMethod() === 'POST'){
             $contactModel = (new ContactModel())->hydrateForSql([
-                "full_name" => $_POST["contactFirstName"] .' : '. $_POST["contactName"],
-                "email"     => $_POST["contactMail"],
-                "subject"   => $_POST["contactObject"],
-                "content"   => $_POST["contactMessage"],
+                "full_name" => $this->request->getPost()["contactFirstName"] .' : '. $this->request->getPost()["contactName"],
+                "email"     => $this->request->getPost()["contactMail"],
+                "subject"   => $this->request->getPost()["contactObject"],
+                "content"   => $this->request->getPost()["contactMessage"],
                 "sent_at"   => date($_ENV["DATE_FORMAT"])
             ]);
         
             if((new Validator)->assertion($contactModel, [
                 'rgpd'      => [
-                    'value'         => $_POST["acceptRGPD_contact"],
+                    'value'         => $this->request->getPost()["acceptRGPD_contact"],
                     "constraints"   => [new CheckboxConstraint()]
                 ],
                 'submit'    => [
-                    'value'         => $_POST["submit"],
+                    'value'         => $this->request->getPost()["submit"],
                     "constraints"   => [new StringConstraint()]
                 ]], true)){
                 $this->getDatabase()->getManager('\Project\Model\ContactModel')->insertByModel($contactModel);
@@ -69,15 +69,15 @@ class ContactController extends Controller
                 $message = (new \Swift_Message('Prise de contact Site Web'))
                     ->setFrom(['swift.mailer.lacrotte.florent@gmail.com' => 'Contact Site JeanForteroche'])
                     ->setTo(['bralocaz@gmail.com' => 'Bralocaz'])
-                    ->setBody('Vous avez reçu une nouvelle demande de contact :' . $_POST['contactMessage'])
+                    ->setBody('Vous avez reçu une nouvelle demande de contact :' . $this->request->getPost()['contactMessage'])
                     ;
                 (SwiftMailer::getInstance())->getMailer()->send($message, $failure);
 
                     // send a email to sender to notify it
                 $message = (new \Swift_Message('Contact Jean Forteroche'))
                     ->setFrom(['swift.mailer.lacrotte.florent@gmail.com' => 'Jean Forteroche'])
-                    ->setTo([$_POST['contactMail'] => $_POST['contactName']])
-                    ->setBody(self::STARTAUTORESPONSE . $_POST['contactMessage'] . self::ENDAUTORESPONSE)
+                    ->setTo([$this->request->getPost()['contactMail'] => $this->request->getPost()['contactName']])
+                    ->setBody(self::STARTAUTORESPONSE . $this->request->getPost()['contactMessage'] . self::ENDAUTORESPONSE)
                     ;
                 (SwiftMailer::getInstance())->getMailer()->send($message, $failure);
 

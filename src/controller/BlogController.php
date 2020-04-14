@@ -40,14 +40,14 @@ class BlogController extends Controller
     {
         if($this->request->getRequestMethod() === 'POST'){
             $newsletterModel = (new NewsletterModel())->hydrateForSql([
-                "full_name" => $_POST["firstName"] .' : '. $_POST["lastName"],
-                "email"     => $_POST["mail"],
+                "full_name" => $this->request->getPost()["firstName"] .' : '. $this->request->getPost()["lastName"],
+                "email"     => $this->request->getPost()["mail"],
                 "signed_at" => date($_ENV["DATE_FORMAT"])
             ]);
         
             if((new Validator)->assertion($newsletterModel, [
                 'rgpd'      => [
-                    'value'         => $_POST["acceptRGPD"],
+                    'value'         => $this->request->getPost()["acceptRGPD"],
                     "constraints"   => [new CheckboxConstraint()]
                 ]
                 ], true)){

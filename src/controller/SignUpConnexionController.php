@@ -27,22 +27,22 @@ class SignUpConnexionController extends Controller
     {
         if($this->request->getRequestMethod() === 'POST'){
             $userModel = (new UserModel())->hydrateForSql([
-                "password"      => password_hash(($_POST["password"]), PASSWORD_DEFAULT),
-                "username"      => $_POST["login"],
-                "email"         => $_POST["mail"],
+                "password"      => password_hash(($this->request->getPost()["password"]), PASSWORD_DEFAULT),
+                "username"      => $this->request->getPost()["login"],
+                "email"         => $this->request->getPost()["mail"],
                 "role"          => "ROLE_USER"
             ]);
             if((new Validator)->assertion($userModel, [
                 'rgpd'      => [
-                    'value'     => $_POST["acceptRGPD"],
+                    'value'     => $this->request->getPost()["acceptRGPD"],
                     "constraints"   => [new CheckboxConstraint()]
                 ],
                 'submit'    => [
-                    'value'         => $_POST["submit"],
+                    'value'         => $this->request->getPost()["submit"],
                     "constraints"   => [new StringConstraint()]
             ]], true)){
-                    $connectUser = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['username' => $_POST["login"]]))['count']));
-                    $connectMail = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['email' => $_POST["mail"]]))['count']));
+                    $connectUser = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['username' => $this->request->getPost()["login"]]))['count']));
+                    $connectMail = ((($this->getDatabase()->getManager('\Project\Model\UserModel')->countParam(['email' => $this->request->getPost()["mail"]]))['count']));
                     if($connectUser + $connectMail >= 1){
                         FlashBag::getInstance()->add("orange", "Cet identifiant / mail existe déja.");
                         return $this->redirection('/signUpConnexion');
@@ -55,7 +55,7 @@ class SignUpConnexionController extends Controller
                         $failure = null;
                         $message = (new \Swift_Message('Prise de contact Site Web'))
                         ->setFrom(['swift.mailer.lacrotte.florent@gmail.com' => 'Inscription Site JeanForteroche'])
-                        ->setTo([$_POST['mail'] => $_POST['mail']])
+                        ->setTo([$this->request->getPost()['mail'] => $this->request->getPost()['mail']])
                         ->setBody("Vous êtes maintenant inscrit sur l'espace membre de JeanForteroche")
                         ;
                         (SwiftMailer::getInstance())->getMailer()->send($message, $failure);
