@@ -17,9 +17,9 @@
                         <p>Un roman publié en ligne</p>
                     </div>
                     <div id="inputLeaf" class="col-12 mb-3">
-                        <a href="#news"> <button>Derniers chapitres</button></a>
-                        <a href="#about"> <button>À Propos</button></a>
-                        <a href="#author"> <button>L'auteur</button></a>
+                        <a href="#news">Derniers chapitres</a>
+                        <a href="#about">À Propos</a>
+                        <a href="#author">L'auteur</a>
                     </div>
                 </div>
             </div>
@@ -30,13 +30,13 @@
                 <p><i>"J'ai fait le choix de partager ce livre avec vous en m'affranchissant d'un éditeur classique"</i></p>
                 <p><i>Partagez mon aventure !</i></p>
                 <div class="socialNetwork">
-                    <div id="facebook" class="circle d-flex justify-content-center align-items-center">
+                    <div class="facebook circle d-flex justify-content-center align-items-center">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                     </div>
-                    <div id="instagram" class="circle d-flex justify-content-center align-items-center">
+                    <div class="instagram circle d-flex justify-content-center align-items-center">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
-                    <div id="twitter" class="circle d-flex justify-content-center align-items-center">
+                    <div class="twitter circle d-flex justify-content-center align-items-center">
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
@@ -68,15 +68,15 @@
                                 <div class="contentChapter">{{billet.content|truncate(500)|raw}}</div>
                             </div>
                             <div class="more">
-                                <a href="/billet/{{billet.id}}"> <button>Lire la suite</button></a>
+                                <a class="lireSuite" href="/billet/{{billet.id}}">Lire la suite</a>
                             </div>
                             <div class="socialNetworkChapter mx-3 row">
                                 <div class="split col-3 d-none d-sm-block"></div>
                                 <div class="socialCircles col-10 col-sm-6">
                                     <div class="row">
-                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-facebook-f"></a></i></div>
-                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-instagram"></a></i></div>
-                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-twitter"></i></a></div>
+                                        <div class="facebook circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-facebook-f"></i></a></div>
+                                        <div class="instagram circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-instagram"></i></a></div>
+                                        <div class="twitter circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-twitter"></i></a></div>
                                     </div>
                                 </div>
                                 <div class="split col-3 d-none d-sm-block"></div>
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <div class="photo col-12 col-sm-12 col-md-5">
-                        <img src="/public/img/chapter2.jpg" />
+                        <img src="/public/img/chapter2.jpg" alt="Photo de couverture" />
                     </div>
                     <div class="content col-12 col-sm-12 col-md-7">
                         <h3 Class="my-3 m-md-0 mb-md-3">Billet simple pour l'Alaska</h3>
@@ -132,7 +132,7 @@
                         <p>Je suis originaire de Haute Savoie et nés de parents explorateurs.</p>
                     </div>
                     <div class="photo col-12 col-sm-12 col-md-5">
-                        <img src="/public/img/jean_forteroche.jpg" />
+                        <img src="/public/img/jean_forteroche.jpg" alt="Photo de l'auteur Jean Forteroche" />
                     </div>
                 </div>
             </div>

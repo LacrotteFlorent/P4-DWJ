@@ -12,7 +12,7 @@
     -->
 <!-- Blog d'écrivain - Made by Lacrotte Florent / Projet 4 - OpenClassrooms -->
 
-<html>
+<html lang="fr">
     <head>
         {% include "include_head.html" %}
         {% block head %}{% endblock %}
@@ -68,20 +68,20 @@
                     <div class="col-12">
                         <div class="row">
                             <form method="POST" class="bubbleDashboard bubbleDashboardButton col-6 text-center" id="cookiesAccept">
-                                <button type="submit" formaction="/acceptCookies" class="bg-transparent border-0 mx-2">
-                                    <div class="row d-flex justify-content-center">
-                                        <h5 class="mt-2">Accepter les cookies</h5>
-                                        <i class="fas fa-cookie-bite mt-2 mb-3 ml-3"></i>
-                                    </div>
-                                </button>
+                                <div class="row d-flex justify-content-center">
+                                    <button type="submit" formaction="/acceptCookies" class="bg-transparent border-0 mx-2">
+                                        <p class="mt-2 mb-2">Accepter les cookies</p>
+                                        <i class="fas fa-cookie-bite mt-0 mb-2 ml-3"></i>
+                                    </button>
+                                </div>
                             </form>
                             <form method="POST" class="bubbleDashboard bubbleDashboardButton col-6 text-center" id="cookiesDeny">
-                                <button type="submit" formaction="/refusedCookies" class="bg-transparent border-0 mx-2">
-                                    <div class="row d-flex justify-content-center">
-                                        <h5 class="mt-2">Refuser les cookies</h5>
-                                        <i class="fas fa-cookie-bite mt-2 mb-3 ml-3"></i>
-                                    </div>
-                                </button>
+                                <div class="row d-flex justify-content-center">
+                                    <button type="submit" formaction="/refusedCookies" class="bg-transparent border-0 mx-2">
+                                        <p class="mt-2 mb-2">Refuser les cookies</p>
+                                        <i class="fas fa-cookie-bite mt-0 mb-2 ml-3"></i>
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>

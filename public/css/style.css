@@ -162,13 +162,14 @@ header a {
     margin: 10px;
 }
 
-#inputLeaf button {
+#inputLeaf a {
     color: #FFF;
     background-color: #542E00;
     border: none;
     font-family: "Roboto";
     font-size: 1.3em;
     border-radius: 3px;
+    padding: 5px;
 }
 
 
@@ -279,7 +280,7 @@ header a {
     background-color: #FFF;
 }
 
-#news button {
+#news .lireSuite {
     color: #FFF;
     background-color: #542E00;
     border: none;
@@ -287,6 +288,7 @@ header a {
     font-size: 1.3em;
     border-radius: 3px;
     margin-bottom: 10px;
+    padding: 3px;
 }
 
 #frameworkNews .fab, #frameworkNews .far {

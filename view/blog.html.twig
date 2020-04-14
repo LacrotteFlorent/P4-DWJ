@@ -37,9 +37,9 @@
                                 </div>
                                 <div id="blogLastChapterSocialNetwork" class="col-12">
                                     <div class="row">
-                                        <div id="facebook" class="circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-facebook-f"></i></a></div>
-                                        <div id="instagram" class="circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-instagram"></i></a></div>
-                                        <div id="twitter" class="circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-twitter"></i></a></div>
+                                        <div class="facebook circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-facebook-f"></i></a></div>
+                                        <div class="instagram circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-instagram"></i></a></div>
+                                        <div class="twitter circle d-flex justify-content-center align-items-center"><a href="#"><i class="fab fa-twitter"></i></a></div>
                                     </div>
                                 </div>
                                 <div id="blogLastChapterContent" class="col-12">
@@ -54,7 +54,7 @@
                                             <div class="row">
                                                 <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
                                                 <div class="more col-6 col-md-6 col-lg-3 col-xl-2">
-                                                    <a href="/billet/{{billet.id}}"><button>Lire la suite</button></a>
+                                                    <a href="/billet/{{billet.id}}">Lire la suite</a>
                                                 </div>
                                                 <div class="split col-3 col-md-3 col-lg-4 col-xl-5"></div>
                                             </div>
@@ -68,9 +68,9 @@
                                             <i class="far fa-comment"></i>
                                             <p>
                                                 {% if nbComments.count > 1 %}
-                                                    <a href="/billet/{{billet.id}}#newComBillet">{{nbComments.count}}<p class="pl-1">Commentaires</p></a>
+                                                    <a href="/billet/{{billet.id}}#newComBillet" ><span class="pl-1">{{nbComments.count}} Commentaires</span></a>
                                                 {% else %}
-                                                    <a href="/billet/{{billet.id}}#newComBillet">{{nbComments.count}}<p class="pl-1">Commentaire</p></a>
+                                                    <a href="/billet/{{billet.id}}#newComBillet" ><span class="pl-1">{{nbComments.count}} Commentaire</span></a>
                                                 {% endif %}
                                             </p>
                                         </div>
@@ -88,12 +88,12 @@
                             {% if not loop.first %}
                                 <div class="col-12 col-sm-10">
                                     <div class="row">
-                                        <div id="blogPhotoChapter" class="col-12 col-sm-5 text-center">
+                                        <div class="blogPhotoChapter col-12 col-sm-5 text-center">
                                             <a href="/billet/{{billet.id}}">
                                                 <img src="/public/img/{{images[billet.getId].getName}}" alt="{{images[billet.getId].getAlt}}" />
                                             </a>
                                         </div>
-                                        <div id="blogContentChapter" class="col-12 col-sm-7">
+                                        <div class="blogContentChapter col-12 col-sm-7">
                                             <div class="context">
                                                 <a href="/billet/{{billet.id}}"><h3>{{billet.title}}</h3></a>
                                                 <p class="dateChapter">Publié le {{billet.postedAt|date('d-m-Y \à H:i:s')}}</p>
@@ -110,7 +110,7 @@
                             <ul class="pagination justify-content-center mb-4">
                                 <li class="page-item">
                                 {% if billetsToShow.getPaginate %}
-                                    <a class="page-link" href="/blog?page=1">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                                    <a class="page-link" href="/blog?page=1">&#60;&#60;&#60;</a><!-- Affiche un chevron '<' -->
                                 {% endif %}
                                 </li>
                                 {% for page in billetsToShow.getPages %}
@@ -122,7 +122,7 @@
                                 {% endfor %}
                                 <li class="page-item">
                                 {% if billetsToShow.getPaginate %}
-                                    <a class="page-link" href="/blog?page={{billetsToShow.getLastPage}}">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                                    <a class="page-link" href="/blog?page={{billetsToShow.getLastPage}}">&#62;&#62;&#62;</a><!-- Affiche un chevron '>' -->
                                 {% endif %}
                                 </li>
                             </ul>
@@ -172,7 +172,7 @@
                                     <form method="POST">
                                     <div class="form-group">
                                         <label for="prenom_newsletter_blog">Prénom :</label>
-                                        <input required type="text" id="prenom__newsletter_blog" name="firstName" placeholder=" Votre prénom" class="form-control" value="{{RELOAD.getMessages.0.full_name}}" />
+                                        <input required type="text" id="prenom_newsletter_blog" name="firstName" placeholder=" Votre prénom" class="form-control" value="{{RELOAD.getMessages.0.full_name}}" />
                                         <label for="nom_newsletter_blog">Nom :</label>
                                         <input required type="text" id="nom_newsletter_blog" name="lastName" placeholder=" Votre nom" class="form-control" value="{{RELOAD.getMessages.0.full_name}}" />
                                         <label for="mail_newsletter_blog">Adresse mail :</label>
