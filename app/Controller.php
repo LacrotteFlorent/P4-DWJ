@@ -46,7 +46,7 @@ class Controller
         $this->database = Database::getInstance($request);
         $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/../view');
         $this->twig = new \Twig\Environment($loader, array(
-            'cache' => true    // le temps du développement on laisse le cache à false // __DIR__ . '/tmp'
+            'cache' => false    // le temps du développement on laisse le cache à false // __DIR__ . '/tmp'
         ));
         $this->twig->addExtension(new PersonalFunctions());
         $this->twig->addExtension(new PersonalFilters());

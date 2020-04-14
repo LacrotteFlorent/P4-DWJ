@@ -29,7 +29,7 @@
             {% include "include_header.html" %}
             <div class="row justify-content-center" id="adminPost">
                 <div class="col-12 col-sm-10">
-                    <h2 class="my-3">Editeur d'articles</h2>
+                    <h2 class="my-3">Éditeur d'articles</h2>
                     <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
                     <div class="mb-4 row card">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="card-body">
                             <h4>Choisissez un titre pour votre article</h4>
-                            <p>Ce titre apparaitra dans l'article et dans la liste d'articles</p>
+                            <p>Ce titre apparaîtra dans l'article et dans la liste d'articles</p>
                             <div class="input-group flex-nowrap">
                                 <input type="text" class="form-control" name="title" value="{{billet.title}}" value="{{RELOAD.getMessages.0.title}}" placeholder="Entrez un titre ici" aria-label="Username" aria-describedby="addon-wrapping">
                                 <div class="input-group-prepend">
@@ -90,11 +90,11 @@
                         <div class="card-header">
                             <h3><i class="fas fa-check"></i> Validation</h3>
                             {% if billet == false %}
-                            <p class="text-danger" ><strong>ETAT : Non crée</strong></p>
+                            <p class="text-danger" ><strong>ÉTAT : Non créé</strong></p>
                             {% elseif billet.getDraft == 1 %}
-                            <p class="text-primary" ><strong>ETAT : Brouillon</strong></p>
+                            <p class="text-primary" ><strong>ÉTAT : Brouillon</strong></p>
                             {% else %}
-                            <p class="text-success" ><strong>ETAT : Publié</strong></p>
+                            <p class="text-success" ><strong>ÉTAT : Publié</strong></p>
                             {% endif %}
                         </div>
                         <div class="row p-4">
@@ -137,7 +137,7 @@
                                         <p class="card-text">Attention pas de retour possible.</p>
                                         <button class="btn btn-danger" name="submit" value="delete" type="submit" formaction="/deleteAdminPost/{{billet.getId}}">Supprimer</button>
                                     {% else %}
-                                        <p class="card-text">L'article n'est pas encore crée.</p>
+                                        <p class="card-text">L'article n'est pas encore créé.</p>
                                     {% endif %}
                                     </div>
                                 </div>
@@ -207,7 +207,7 @@
                                         <button class="btn btn-warning" name="submit" value="return" type="submit" formaction="/adminDashboard">Tableau de bord</button>
                                     {% else %}
                                         <p class="card-text">En cliquant sur le boutton vous retournez au tableau de bord.</p>
-                                        <p class="card-text">Attention votre article ne sera pas crée.</p>
+                                        <p class="card-text">Attention votre article ne sera pas créé.</p>
                                         <button class="btn btn-warning" name="submit" value="return" type="submit" formaction="/adminDashboard">Tableau de bord</button>
                                     {% endif %}
                                     </div>
