@@ -113,7 +113,7 @@
             <ul class="pagination justify-content-center mb-4">
                 {% if pages.getPaginate %}
                     <li class="page-item">
-                        <a class="page-link" href="/billet/{{billet.id}}?pageCom=1#comBillet">&#60&#60&#60</a><!-- Affiche un chevron '<' -->
+                        <a class="page-link" href="/billet/{{billet.id}}?pageCom=1#comBillet">&#60;&#60;&#60;</a><!-- Affiche un chevron '<' -->
                     </li>
                     {% for page in pages.getPages %}
                         {% if pages.getActualPage == page %}
@@ -123,7 +123,7 @@
                         {% endif %}
                     {% endfor %}
                     <li class="page-item">
-                        <a class="page-link" href="/billet/{{billet.id}}?pageCom={{pages.getLastPage}}#comBillet">&#62&#62&#62</a><!-- Affiche un chevron '>' -->
+                        <a class="page-link" href="/billet/{{billet.id}}?pageCom={{pages.getLastPage}}#comBillet">&#62;&#62;&#62;</a><!-- Affiche un chevron '>' -->
                     </li>
                 {% endif %}
             </ul>

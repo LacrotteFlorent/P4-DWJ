@@ -26,7 +26,6 @@ class FlashBag implements \Countable, \Iterator
      */
     public static function getInstance() : FlashBag
     {
-            
         if(isset($_SESSION["FLASHBAG"])){
             self::$flashBagInstance = $_SESSION["FLASHBAG"];
         }
